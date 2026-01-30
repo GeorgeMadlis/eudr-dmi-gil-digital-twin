@@ -7,12 +7,22 @@ This repository publishes the public, inspectable HTML/DAO portal for the EUDR-D
 - EUDR = European Union Deforestation Regulation
 - DMI = Data Management Infrastructure
 - GIL = Geospatial Intelligence Layer
+- DAO = Decentralized Autonomous Organization (procedural, non-blockchain governance model in this project)
 
 ## What is the Digital Twin portal?
 
 This repository exists to support inspection, transparency, and governance by publishing static, human-inspectable HTML views and DAO templates.
 
 It is not authoritative for code or compliance logic.
+
+## How to view the Digital Twin portal
+
+- HTML files viewed via `github.com/.../blob/...` are not the website.
+- The portal must be viewed via GitHub Pages:
+
+<https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/>
+
+A portable offline bundle can be inspected by downloading the site bundle and opening `index.html` locally in a browser.
 
 ## Definitions
 
