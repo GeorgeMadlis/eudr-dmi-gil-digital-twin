@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DAO – Developers</title>
+    <style>
+      :root {
+        --bg: #0b1220;
+        --panel: #0f1a33;
+        --text: #e8eefc;
+        --muted: #b7c5ff;
+        --link: #8ab4ff;
+        --border: rgba(232, 238, 252, 0.16);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+      .wrap { max-width: 980px; margin: 0 auto; padding: 40px 20px; }
+      .panel { padding: 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
+      a { color: var(--link); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      p { color: var(--muted); margin: 10px 0 0; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="panel">
+        <h1>DAO – Developers</h1>
+        <p>
+          Purpose: provide an inspectable coordination space for proposing changes to schemas, evidence contracts,
+          deterministic view generation, and governance interfaces — anchored to published artefacts.
+        </p>
+
+        <p><strong>In scope</strong></p>
+        <ul>
+          <li>Questions about how a rendered view is produced from authoritative inputs.</li>
+          <li>Proposals to adjust schemas, contracts, or view structure (naming, fields, layout, traceability).</li>
+          <li>Proposals to improve reproducibility and version-to-view mapping.</li>
+          <li>Proposals to add new inspectable pages that reference existing published artefacts.</li>
+        </ul>
+
+        <p><strong>Out of scope</strong></p>
+        <ul>
+          <li>Uploading artefacts, datasets, or binaries through this portal.</li>
+          <li>Executing code, pipelines, or running any logic server-side.</li>
+          <li>Mutating authoritative state from this interface.</li>
+        </ul>
+
+        <p>
+          This interface does not accept uploads and does not execute logic. Proposals must be grounded in published
+          artefacts (for example: a rendered HTML view, a referenced schema, or a versioned report).
+        </p>
+        <p><a href="../../index.html">← Back to portal</a></p>
+      </div>
+    </div>
+  </body>
+</html>
