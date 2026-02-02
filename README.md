@@ -8,6 +8,8 @@ This repository publishes the public, inspectable HTML/DAO portal for the EUDR-D
 - DMI = Data Management Infrastructure
 - GIL = Geospatial Intelligence Layer
 - DAO = Decentralized Autonomous Organization (procedural, non-blockchain governance model in this project)
+- DT = Digital Twin
+- DTE = EUDR DAO Digital Twin Engineer
 
 ## What is the Digital Twin portal?
 
@@ -34,7 +36,7 @@ In this portal, the DAO is expressed as a governance interface: templates, struc
 
 The intent is to make governance artefacts auditable and transparent, with deterministic outputs that can be reproduced and reviewed.
 
-### Digital Twin
+### Digital Twin (DT)
 
 The Digital Twin is a public, inspectable, versioned representation of system state, evidence mappings, and generated outputs.
 
@@ -60,7 +62,7 @@ This portal is the public-facing, non-authoritative Digital Twin interface. It i
 
 **Roles**
 
-- **EUDR DAO Digital Twin Engineer (AI inspection/proposal engine)**: Inspects published outputs, drafts DAO proposals, and prepares structured questions for stakeholder review. It does not publish authoritative changes by itself.
+- **EUDR DAO Digital Twin Engineer (AI inspection/proposal engine) (DTE)**: Inspects published outputs, drafts DAO proposals, and prepares structured questions for stakeholder review. It does not publish authoritative changes by itself.
 - **eudr-dmi-gil-digital-twin**: Public DT portal with non-authoritative, example outputs and DAO templates for inspection and governance.
 - **eudr-dmi-gil**: Authoritative implementation with deterministic pipelines, tests, and report generation.
 
@@ -90,6 +92,17 @@ This portal is the public-facing, non-authoritative Digital Twin interface. It i
 - [docs/regulation/sources.md](docs/regulation/sources.md)
 - [docs/agent_prompts/dao_dev_prompt.md](docs/agent_prompts/dao_dev_prompt.md)
 - [docs/agent_prompts/dao_stakeholders_prompt.md](docs/agent_prompts/dao_stakeholders_prompt.md)
+
+## Inspection & DAO Entry Points
+
+DTE instructions govern stakeholder Q/A and proposal closeout.
+Every claim must be grounded in portal URLs or indexed repo paths.
+
+- DTE Instructions (Canonical): [docs/governance/dte_instructions.md](docs/governance/dte_instructions.md)
+- Inspection Index: [docs/INSPECTION_INDEX.md](docs/INSPECTION_INDEX.md)
+- DAO Stakeholders Prompt: [docs/agent_prompts/dao_stakeholders_prompt.md](docs/agent_prompts/dao_stakeholders_prompt.md)
+- DAO Developers Prompt: [docs/agent_prompts/dao_dev_prompt.md](docs/agent_prompts/dao_dev_prompt.md)
+- DAO Proposal Schema: [docs/dao/dao_proposal_schema.yaml](docs/dao/dao_proposal_schema.yaml)
 
 
 

@@ -49,6 +49,14 @@ See determinism rules in [docs/architecture/evidence_bundle_spec.md](../architec
 - Method tests: `pytest -q -rs tests/test_methods_*` (see [docs/testing.md](../testing.md))
 - Doc structure checks: [tests/articles/test_articles_structure_smoke.py](../../tests/articles/test_articles_structure_smoke.py)
 
+## Implementation inspection summaries
+
+These mirrors are for inspection only. All changes must be proposed against authoritative files in eudr-dmi-gil.
+
+- [docs/implementation_mirror/report_pipeline.md](../implementation_mirror/report_pipeline.md)
+- [docs/implementation_mirror/dependency_model.md](../implementation_mirror/dependency_model.md)
+- [docs/implementation_mirror/report_outputs.md](../implementation_mirror/report_outputs.md)
+
 ## How stakeholders use this view in Q/A
 
 - Clarify which agent role is responsible for a reported issue or evidence gap.
@@ -67,6 +75,8 @@ Provenance record (placeholder):
 ## See also
 
 - [README.md](../../README.md)
+- DTE Instructions: [docs/governance/dte_instructions.md](../governance/dte_instructions.md)
+- Inspection Index: [docs/INSPECTION_INDEX.md](../INSPECTION_INDEX.md)
 - [docs/governance/roles_and_workflow.md](../governance/roles_and_workflow.md)
 - [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 - [docs/agent_prompts/dao_stakeholders_prompt.md](../agent_prompts/dao_stakeholders_prompt.md)

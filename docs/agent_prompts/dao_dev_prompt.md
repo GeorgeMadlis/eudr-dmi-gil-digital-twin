@@ -5,6 +5,12 @@
 1) If the bundle contains `machine/bundle_manifest.yaml`, start there.
 2) Otherwise start at `machine/dao_dev/view.yaml`.
 
+## Canonical DTE Instructions
+
+These prompts are governed by the canonical DTE instructions.
+
+- [docs/governance/dte_instructions.md](../governance/dte_instructions.md)
+
 ## Closed World Rule
 
 Treat the bundle as a closed world.
@@ -31,11 +37,28 @@ When the Q/A session ends, draft a concrete proposal folder under `proposals/`.
 
 **Stakeholder confirmation is required before persisting a proposal.** If confirmation is not explicit, pause and request it.
 
+Final Session Closeout must be convertible into the DAO proposal schema:
+- [docs/dao/dao_proposal_schema.yaml](../dao/dao_proposal_schema.yaml)
+
+Populate explicitly:
+- `grounding.portal_references`
+- `grounding.implementation_references`
+
+Reject proposals that lack file-level grounding unless marked as an evidence gap (`evidence_gap.present: true`).
+
 Standardized end-of-session output:
 
 A) DT portal recommendations
 B) eudr-dmi-gil evidence/mapping/code change recommendations
 C) testing/regeneration/runbook recommendations
+
+## Implementation inspection summaries
+
+These mirrors are for inspection only. All changes must be proposed against authoritative files in eudr-dmi-gil.
+
+- [docs/implementation_mirror/report_pipeline.md](../implementation_mirror/report_pipeline.md)
+- [docs/implementation_mirror/dependency_model.md](../implementation_mirror/dependency_model.md)
+- [docs/implementation_mirror/report_outputs.md](../implementation_mirror/report_outputs.md)
 
 Create:
 
@@ -114,6 +137,13 @@ refs:
 ## See also
 
 - [README.md](../../README.md)
+- [docs/dao/dao_proposal_schema.yaml](../dao/dao_proposal_schema.yaml)
 - [docs/governance/roles_and_workflow.md](../governance/roles_and_workflow.md)
 - [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 ```
+
+## See also
+
+- [docs/governance/dte_instructions.md](../governance/dte_instructions.md)
+- [docs/INSPECTION_INDEX.md](../INSPECTION_INDEX.md)
+- [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)

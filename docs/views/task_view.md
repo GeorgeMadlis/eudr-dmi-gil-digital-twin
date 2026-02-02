@@ -42,6 +42,8 @@ Provenance record (placeholder):
 ## See also
 
 - [README.md](../../README.md)
+- DTE Instructions: [docs/governance/dte_instructions.md](../governance/dte_instructions.md)
+- Inspection Index: [docs/INSPECTION_INDEX.md](../INSPECTION_INDEX.md)
 - [docs/governance/roles_and_workflow.md](../governance/roles_and_workflow.md)
 - [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 - [docs/agent_prompts/dao_stakeholders_prompt.md](../agent_prompts/dao_stakeholders_prompt.md)

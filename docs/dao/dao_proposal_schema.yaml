@@ -1,0 +1,66 @@
+# DAO Proposal Schema (YAML)
+#
+# Rules:
+# - Every proposal MUST include at least one grounded file path in grounding.* references.
+# - If grounding is missing, evidence_gap.present must be true.
+# - Proposals must not be merged unless confirmation.stakeholder_confirmed is true.
+
+proposal:
+  id: string
+  title: string
+  date: ISO-8601 date
+  proposer:
+    name: string
+    role: string
+  scope:
+    aoi: string | null
+    obligation:
+      - Art9
+      - Art10
+      - Art11
+    artefact_slice:
+      - DigitalTwin
+      - Dependencies
+      - Spine
+      - AOIReports
+  summary: string
+
+grounding:
+  portal_references:
+    - url: string
+      description: string
+  implementation_references:
+    - repo: eudr-dmi-gil
+      path: string
+      purpose: string
+  inspection_index_refs:
+    - path: docs/INSPECTION_INDEX.md
+
+evidence_gap:
+  present: boolean
+  description: string | null
+
+recommendations:
+  digital_twin:
+    - description: string
+      impacted_paths:
+        - string
+  implementation:
+    - description: string
+      impacted_files:
+        - string
+  reporting:
+    - description: string
+      impacted_outputs:
+        - report.html
+        - summary.json
+
+acceptance_criteria:
+  inspection:
+    - string
+  developer:
+    - string
+
+confirmation:
+  stakeholder_confirmed: boolean
+  confirmed_at: ISO-8601 datetime | null
