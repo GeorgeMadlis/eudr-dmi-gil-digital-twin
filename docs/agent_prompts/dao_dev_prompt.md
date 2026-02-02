@@ -21,9 +21,21 @@ When answering questions:
 - Keep deterministic ordering when listing files or steps.
 - If you identify a gap, propose a concrete change and include the exact files to modify.
 
+## Grounding checklist (must apply)
+
+- Every claim must cite a DT URL or repo-relative path. If not, mark it as **assumption/evidence gap**.
+
 ## How to End the Session (Draft a Proposal)
 
 When the Q/A session ends, draft a concrete proposal folder under `proposals/`.
+
+**Stakeholder confirmation is required before persisting a proposal.** If confirmation is not explicit, pause and request it.
+
+Standardized end-of-session output:
+
+A) DT portal recommendations
+B) eudr-dmi-gil evidence/mapping/code change recommendations
+C) testing/regeneration/runbook recommendations
 
 Create:
 
@@ -98,4 +110,10 @@ refs:
 ## How to validate (bundle-only)
 - Open: <path>
 - Check: <what to confirm>
+
+## See also
+
+- [README.md](../../README.md)
+- [docs/governance/roles_and_workflow.md](../governance/roles_and_workflow.md)
+- [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 ```

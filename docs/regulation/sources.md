@@ -2,6 +2,8 @@
 
 Purpose: record authoritative source snapshots (HTML/PDF) and their SHA-256 fingerprints without embedding the regulation text in this repository.
 
+**Authority boundary:** This document provides inspectable mappings only. Authoritative acquisition logic and deterministic pipelines live in the implementation repository: https://github.com/GeorgeMadlis/eudr-dmi-gil
+
 Server audit root: `/Users/server/audit/eudr_dmi`
 
 | Source | URL | Local Path (server) | SHA256 | Notes |
@@ -12,6 +14,10 @@ Server audit root: `/Users/server/audit/eudr_dmi`
 
 ## Operator workflow (WAF-safe)
 Some EUR-Lex endpoints may be protected by WAF/login challenges depending on network and headers. This project does not attempt to bypass challenges.
+
+Implementation reference (authoritative):
+- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/operations/environment_setup.md
+- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/operations/minio_setup.md
 
 a) Open the link launcher in a browser:
 - [docs/regulation/links.html](links.html)
@@ -84,3 +90,15 @@ Exit codes:
 
 ## Manual verification checklist
 See [docs/regulation/mirror_manual_checklist.md](mirror_manual_checklist.md).
+
+## How to propose changes
+
+Use the DAO stakeholder prompt to submit questions or change proposals:
+- [docs/agent_prompts/dao_stakeholders_prompt.md](../agent_prompts/dao_stakeholders_prompt.md)
+
+## See also
+
+- [README.md](../../README.md)
+- [docs/governance/roles_and_workflow.md](../governance/roles_and_workflow.md)
+- [docs/views/digital_twin_view.md](../views/digital_twin_view.md)
+- https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/

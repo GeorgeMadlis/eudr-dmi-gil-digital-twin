@@ -1,5 +1,7 @@
 # Agentic View (EUDR DMI GIL)
 
+Role in the ecosystem: This view is a public, non-authoritative Digital Twin portal artifact used for inspection and governance; authoritative implementation and deterministic outputs are produced in eudr-dmi-gil.
+
 ## Agent roles
 This view describes the intended agent/workflow split for producing inspection-grade artifacts.
 
@@ -47,6 +49,12 @@ See determinism rules in [docs/architecture/evidence_bundle_spec.md](../architec
 - Method tests: `pytest -q -rs tests/test_methods_*` (see [docs/testing.md](../testing.md))
 - Doc structure checks: [tests/articles/test_articles_structure_smoke.py](../../tests/articles/test_articles_structure_smoke.py)
 
+## How stakeholders use this view in Q/A
+
+- Clarify which agent role is responsible for a reported issue or evidence gap.
+- Use the role descriptions to scope questions before review.
+- Capture stakeholder Q/A using the DAO stakeholder prompt: [docs/agent_prompts/dao_stakeholders_prompt.md](../agent_prompts/dao_stakeholders_prompt.md).
+
 ## Provenance & ownership
 Adopted from `geospatial_dmi` documentation patterns; owned here; divergence expected.
 
@@ -55,3 +63,11 @@ Provenance record (placeholder):
 - adopted_pattern: “agent-oriented navigation view”
 - source_commit_sha: `UNKNOWN`
 - adoption_date: `2026-01-22`
+
+## See also
+
+- [README.md](../../README.md)
+- [docs/governance/roles_and_workflow.md](../governance/roles_and_workflow.md)
+- [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
+- [docs/agent_prompts/dao_stakeholders_prompt.md](../agent_prompts/dao_stakeholders_prompt.md)
+- [docs/agent_prompts/dao_dev_prompt.md](../agent_prompts/dao_dev_prompt.md)

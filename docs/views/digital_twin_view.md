@@ -1,5 +1,7 @@
 # Digital Twin View (EUDR DMI GIL)
 
+Role in the ecosystem: This view is a public, non-authoritative Digital Twin portal artifact used for inspection and governance; authoritative implementation and deterministic outputs are produced in eudr-dmi-gil.
+
 ## Change loop: regulation × data × method
 The EUDR Digital Twin is treated as an inspection-grade representation of:
 - Authoritative regulation snapshots (mirrored, hashed, and versioned)
@@ -44,6 +46,12 @@ If evidence bundle spec or contract changes:
 - Evidence contract: [docs/architecture/evidence_contract.md](../architecture/evidence_contract.md)
 - Policy-to-evidence spine: [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 
+## How stakeholders use this view in Q/A
+
+- Review the change loop to frame questions about traceability and reproducibility.
+- Validate which triggers should force re-runs before approving proposals.
+- Capture stakeholder Q/A using the DAO stakeholder prompt: [docs/agent_prompts/dao_stakeholders_prompt.md](../agent_prompts/dao_stakeholders_prompt.md).
+
 ## Provenance & ownership
 Adopted from `geospatial_dmi` documentation patterns; owned here; divergence expected.
 
@@ -52,3 +60,11 @@ Provenance record (placeholder):
 - adopted_pattern: “digital-twin navigation view”
 - source_commit_sha: `UNKNOWN`
 - adoption_date: `2026-01-22`
+
+## See also
+
+- [README.md](../../README.md)
+- [docs/governance/roles_and_workflow.md](../governance/roles_and_workflow.md)
+- [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
+- [docs/agent_prompts/dao_stakeholders_prompt.md](../agent_prompts/dao_stakeholders_prompt.md)
+- [docs/agent_prompts/dao_dev_prompt.md](../agent_prompts/dao_dev_prompt.md)

@@ -3,8 +3,14 @@
 ## Purpose
 This document provides the master mapping from obligations (e.g., regulatory articles) to control objectives and the concrete evidence artifacts that support inspection.
 
+**Authority boundary:** This document provides inspectable mappings only. Authoritative logic, pipelines, and tests live in the implementation repository: https://github.com/GeorgeMadlis/eudr-dmi-gil
+
 ## Boundary
 This repo does not describe upstream platform internals (including `geospatial_dmi`). The “Produced By” column references agents/workflows and canonical entrypoints only.
+
+Implementation references (authoritative):
+- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/README.md
+- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/runbook_generate_aoi_report.md
 
 ## Master Spine Table
 
@@ -24,3 +30,15 @@ This repo does not describe upstream platform internals (including `geospatial_d
 - Each control objective has at least one artifact with objective acceptance criteria.
 - Evidence paths are relative to the bundle root and resolve to real files.
 - “Produced By” identifies the responsible workflow/agent version (recorded in manifest).
+
+## How to propose changes
+
+Use the DAO stakeholder prompt to submit questions or change proposals:
+- [docs/agent_prompts/dao_stakeholders_prompt.md](../agent_prompts/dao_stakeholders_prompt.md)
+
+## See also
+
+- [README.md](../../README.md)
+- [docs/governance/roles_and_workflow.md](../governance/roles_and_workflow.md)
+- [docs/views/digital_twin_view.md](../views/digital_twin_view.md)
+- https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/
