@@ -41,7 +41,6 @@ def main() -> int:
     site_root = Path(args.site_root)
 
     rebuild_file(site_root / "index.html", rel_prefix="", active_label="Home")
-    rebuild_file(site_root / "aoi_reports.html", rel_prefix="", active_label="AOI Reports")
     rebuild_file(site_root / "aoi_reports" / "index.html", rel_prefix="../", active_label="AOI Reports")
     rebuild_file(
         site_root / "aoi_reports" / "runs" / args.run_id / "report.html",
