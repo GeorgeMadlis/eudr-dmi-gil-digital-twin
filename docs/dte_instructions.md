@@ -135,7 +135,7 @@ When inspecting AOI reports, you MUST follow this exact discipline:
    **Home → AOI Reports → Run entry → `report.html`**
 
 3. Open JSON artefacts **only via links inside `report.html`**  
-   (e.g. `summary.json`, `aoi_report.json`)
+  (e.g. `aoi_report.json`)
 
 🚫 **You MUST NOT:**
 - Construct or infer “expected” URLs from run IDs
@@ -152,7 +152,7 @@ Some AI inspection environments will refuse to open artefacts unless the URL was
 Every AOI-related claim MUST cite **one of the following**:
 
 - The AOI Reports index entry that was clicked
-- The specific `runs/<run_id>/report.html` page that was opened
+- The specific `runs/example/report.html` page that was opened
 - A JSON artefact that was reached via an in-page link
 
 If an artefact is listed in the portal but **cannot be opened via navigation**, this MUST be recorded as:
@@ -172,7 +172,7 @@ This is a valid and actionable governance finding.
   Evidence source registry entries with “Used by” pointers into implementation paths
 
 - **AOI Reports index**  
-  Example runs showing only the **two most recent published runs**, each linking to:
+  A single AOI-agnostic example run under `runs/example/`, linking to:
   - `report.html`
   - Associated JSON artefacts via in-page links
 
@@ -281,10 +281,10 @@ Produce a **structured Session Closeout** matching the DAO proposal schema.
 **AOI reporting change request #1 (title)**
 
 - **New or changed output:**  
-  e.g. `summary.json`, deforestation signal, Maa-amet cross-check
+  e.g. `aoi_report.json`, deforestation signal, Maa-amet cross-check
 
 - **Portal appearance:**  
-  `runs/<run_id>/report.html` + JSON linked from report page
+  `runs/example/report.html` + JSON linked from report page
 
 - **Tests / validation:**  
   Schema checks; hash/manifest consistency
@@ -303,7 +303,7 @@ Produce a **structured Session Closeout** matching the DAO proposal schema.
    → Reproducibility, provenance, “Used by”
 
 3. Inspect **AOI Runs**  
-   → `summary.json` vs acceptance criteria
+  → `aoi_report.json` vs acceptance criteria
 
 4. Record gaps  
    → Missing artefact, unclear criteria, broken or inaccessible link
