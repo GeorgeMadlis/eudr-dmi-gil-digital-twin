@@ -39,6 +39,9 @@ if [[ ! -d "$SITE_ROOT" ]]; then
   exit 2
 fi
 
+# Render DTE instructions into docs/site/dte_instructions.html (MD -> HTML)
+python3 scripts/render_dte_instructions.py --site-root "$SITE_ROOT"
+
 python3 - "$SITE_ROOT" <<'PY'
 from __future__ import annotations
 

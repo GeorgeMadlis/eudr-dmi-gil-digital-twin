@@ -8,6 +8,7 @@ from pathlib import Path
 SCRIPT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(SCRIPT_DIR))
 
+from render_dte_instructions import render_to_site  # noqa: E402
 from site_nav import render_header_nav  # noqa: E402
 
 
@@ -67,7 +68,8 @@ def build_page(*, runs_dir: Path) -> str:
       <div class=\"wrap\">
         <!-- Generated from docs/site/aoi_reports/runs/ -->
 <h1>AOI Reports</h1>
-<p class=\"muted\">Portable mode: links point into the bundle under <code>runs/&lt;run_id&gt;/report.html</code>.</p>
+<p class=\"muted\">Portable mode: links point into the bundle under <code>runs/&lt;run_id&gt;/report.html</code>. For inspection guidance, see <a href=\"../dte_instructions.html\">DTE instructions</a>.</p>
+<p class=\"muted\">AI/automation inspection note: see <a href=\"../dte_instructions.html\">DTE instructions</a>.</p>
 <p class=\"muted\">This page shows a single AOI-agnostic example report. It is overwritten on each publish; older versions remain available via git history but are not exposed in the portal.</p>
 <div class=\"notice\" style=\"border:1px solid #ddd; padding:12px; border-radius:8px; margin:12px 0;\">
   <strong>AI/automation inspection note (mandatory):</strong>
@@ -106,6 +108,7 @@ def main() -> int:
     args = p.parse_args()
 
     site_root = Path(args.site_root)
+    render_to_site(source_path=Path("docs/dte_instructions.md"), site_root=site_root)
     runs_dir = site_root / "aoi_reports" / "runs"
     if not runs_dir.is_dir():
         raise SystemExit(f"Runs dir not found: {runs_dir}")
