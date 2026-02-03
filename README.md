@@ -26,6 +26,18 @@ It is not authoritative for code or compliance logic.
 
 A portable offline bundle can be inspected by downloading the site bundle and opening `index.html` locally in a browser.
 
+## AOI Reports publishing policy
+
+Only the 2 most recent AOI report runs are published in this DT portal. Older AOI reports are retained on the server in the authoritative environment and are not published here.
+
+### Verify links locally
+
+From the repo root:
+
+```sh
+scripts/check_links_local.sh
+```
+
 ## Definitions
 
 ### DAO (Procedural DAO)
