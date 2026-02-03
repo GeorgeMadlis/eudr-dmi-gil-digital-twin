@@ -41,6 +41,6 @@ This document describes AOI report artefacts for inspection and certification wo
 ## See also
 
 - https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/README.md
-- [docs/governance/dte_instructions.md](../governance/dte_instructions.md)
+- [DTE Instructions v1.1](../dte_instructions.md)
 - [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 - [docs/INSPECTION_INDEX.md](../INSPECTION_INDEX.md)

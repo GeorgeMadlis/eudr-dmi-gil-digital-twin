@@ -99,7 +99,7 @@ Use the DAO stakeholder prompt to submit questions or change proposals:
 ## See also
 
 - [README.md](../../README.md)
-- [docs/governance/dte_instructions.md](../governance/dte_instructions.md)
+- [DTE Instructions v1.1](../dte_instructions.md)
 - [docs/governance/roles_and_workflow.md](../governance/roles_and_workflow.md)
 - [docs/views/digital_twin_view.md](../views/digital_twin_view.md)
 - https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/

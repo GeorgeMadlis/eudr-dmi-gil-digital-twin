@@ -41,6 +41,6 @@ Implementation changes must be proposed against that file.
 ## See also
 
 - [docs/INSPECTION_INDEX.md](../INSPECTION_INDEX.md)
-- [docs/governance/dte_instructions.md](../governance/dte_instructions.md)
+- [DTE Instructions v1.1](../dte_instructions.md)
 - [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 - [docs/agent_prompts/dao_stakeholders_prompt.md](../agent_prompts/dao_stakeholders_prompt.md)

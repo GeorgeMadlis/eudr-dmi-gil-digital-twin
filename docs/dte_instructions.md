@@ -4,8 +4,6 @@
 **Status:** Canonical governance instruction  
 **Applies to:** AI engines used for DAO inspection (e.g. ChatGPT, Gemini, Claude, Sonnet)
 
-> Canonical copy: [docs/dte_instructions.md](../dte_instructions.md)
-
 ---
 
 ## 1. ROLE

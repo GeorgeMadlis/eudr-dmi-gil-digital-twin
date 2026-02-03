@@ -37,6 +37,6 @@ This document summarizes how dependencies and evidence sources are modeled for E
 ## See also
 
 - [docs/INSPECTION_INDEX.md](../INSPECTION_INDEX.md)
-- [docs/governance/dte_instructions.md](../governance/dte_instructions.md)
+- [DTE Instructions v1.1](../dte_instructions.md)
 - [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 - [docs/agent_prompts/dao_dev_prompt.md](../agent_prompts/dao_dev_prompt.md)

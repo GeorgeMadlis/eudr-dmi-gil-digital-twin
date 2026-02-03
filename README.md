@@ -119,10 +119,10 @@ This portal is the public-facing, non-authoritative Digital Twin interface. It i
 
 ## Inspection & DAO Entry Points
 
-DTE instructions govern stakeholder Q/A and proposal closeout.
+DTE Instructions v1.1 govern stakeholder Q/A and proposal closeout.
 Every claim must be grounded in portal URLs or indexed repo paths.
 
-- DTE Instructions (Canonical): [docs/governance/dte_instructions.md](docs/governance/dte_instructions.md)
+- DTE Instructions v1.1 (Canonical): [docs/dte_instructions.md](docs/dte_instructions.md)
 - Inspection Index: [docs/INSPECTION_INDEX.md](docs/INSPECTION_INDEX.md)
 - DAO Stakeholders Prompt: [docs/agent_prompts/dao_stakeholders_prompt.md](docs/agent_prompts/dao_stakeholders_prompt.md)
 - DAO Developers Prompt: [docs/agent_prompts/dao_dev_prompt.md](docs/agent_prompts/dao_dev_prompt.md)
