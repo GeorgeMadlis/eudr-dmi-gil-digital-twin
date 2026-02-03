@@ -38,6 +38,8 @@ From the repo root:
 scripts/check_links_local.sh
 ```
 
+This verifies that docs/site/index.html and docs/site/aoi_reports/index.html resolve local file links for both GitHub Pages and file:// usage.
+
 ## Definitions
 
 ### DAO (Procedural DAO)
