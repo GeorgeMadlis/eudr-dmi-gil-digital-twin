@@ -30,6 +30,16 @@ A portable offline bundle can be inspected by downloading the site bundle and op
 
 Only the 2 most recent AOI report runs are published in this DT portal. Older AOI reports are retained on the server in the authoritative environment and are not published here.
 
+### Delete-before-publish invariant
+
+Before copying a new AOI site bundle into docs/site/aoi_reports, run:
+
+```sh
+scripts/clean_aoi_reports.sh
+```
+
+This removes all existing AOI runs and the AOI reports index so stale reports cannot accumulate.
+
 ### Verify links locally
 
 From the repo root:
