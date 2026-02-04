@@ -8,11 +8,7 @@
 
 ## DTE LINK REGISTRY (CURRENT)
 
-<a href="https://chatgpt.com/g/g-697a5cf9d7648191b323d79d98bdeb84-eudr-dao-digital-twin-engineer-dte"
-  target="_blank"
-  rel="noopener noreferrer">
-  EUDR DAO Digital Twin Engineer (DTE) — GPT
-</a>
+<a href="https://chatgpt.com/g/g-697a5cf9d7648191b323d79d98bdeb84-eudr-dao-digital-twin-engineer-dte" target="_blank" rel="noopener noreferrer">EUDR DAO Digital Twin Engineer (DTE) — GPT</a>
 
 Canonical list (text file): docs/dte_links.txt
 
