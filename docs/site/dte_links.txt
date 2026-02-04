@@ -1,0 +1,3 @@
+DTE link registry (current and future)
+
+- GPT (current): https://chatgpt.com/g/g-697a5cf9d7648191b323d79d98bdeb84-eudr-dao-digital-twin-engineer-dte
