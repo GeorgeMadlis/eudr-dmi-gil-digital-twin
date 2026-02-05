@@ -14,12 +14,12 @@
     },
     {
       "relpath": "reports/aoi_report_v1/estonia_testland1.html",
-      "sha256": "965700d96d026ec56b375c7c063d2e02e38686a64ffa74c554cf6bf837f34f6e",
-      "size_bytes": 2365
+      "sha256": "7b5cb2c9616a287893d9996d9e8ba36505906a6308f6de07b5762670d5bc8136",
+      "size_bytes": 2541
     },
     {
       "relpath": "reports/aoi_report_v1/estonia_testland1.json",
-      "sha256": "6b3f603cfcef64457ade50d926235233e4c1ab10c1caf847ba9f47a6b88099b7",
+      "sha256": "4571c82fd74d013f0989108fcefb8136d4d0adeb6734e1aa18674196a1bf305e",
       "size_bytes": 2003
     },
     {

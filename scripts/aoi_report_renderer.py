@@ -98,12 +98,24 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
     evidence_registry = report.get("evidence_registry")
     if evidence_registry is None and isinstance(report_metadata, dict):
         evidence_registry = report_metadata.get("evidence_registry")
+    acceptance_criteria = report.get("acceptance_criteria")
+    if acceptance_criteria is None and isinstance(report_metadata, dict):
+        acceptance_criteria = report_metadata.get("acceptance_criteria")
 
     inputs = report.get("inputs", {}).get("sources", [])
     inputs_sorted = sorted(inputs, key=lambda item: str(item.get("source_id", "")))
 
     evidence = report.get("evidence_artifacts", [])
     evidence_sorted = sorted(evidence, key=lambda item: str(item.get("relpath", "")))
+
+    criteria_alert_statuses = {"unmet", "unevaluable", "not_evaluable", "missing", "unknown", "not_evaluated"}
+
+    def format_criteria_refs(value: Any) -> str:
+        if value is None:
+            return "Not declared"
+        if isinstance(value, list):
+            return ", ".join(str(item) for item in value) if value else "Not declared"
+        return str(value)
 
     lines: list[str] = []
     lines.append("<!doctype html>")
@@ -199,6 +211,49 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
             )
         lines.append("  </table>")
         lines.append("  <div style=\"height:12px;\"></div>")
+
+    lines.append("  <h2>Acceptance Criteria</h2>")
+    if not acceptance_criteria:
+        lines.append("  <p><em>No acceptance criteria declared.</em></p>")
+    else:
+        lines.append("  <table>")
+        lines.append("    <tr><th>Criteria</th><th>Status</th><th>Details</th></tr>")
+        if isinstance(acceptance_criteria, list):
+            for entry in acceptance_criteria:
+                if not isinstance(entry, dict):
+                    value = json.dumps(entry, sort_keys=True, ensure_ascii=False)
+                    lines.append(
+                        "    <tr>"
+                        f"<td><code>{html.escape(value)}</code></td>"
+                        "<td></td>"
+                        "<td></td>"
+                        "</tr>"
+                    )
+                    continue
+                criteria_id = entry.get("id") or entry.get("name") or entry.get("criteria")
+                status = entry.get("status")
+                status_text = "" if status is None else str(status)
+                details_value = json.dumps(entry, sort_keys=True, ensure_ascii=False)
+                is_alert = status_text.lower() in criteria_alert_statuses
+                row_style = " style=\"background:#fff5f5; border-left:4px solid #b00020;\"" if is_alert else ""
+                lines.append(
+                    f"    <tr{row_style}>"
+                    f"<td>{html.escape(str(criteria_id))}</td>"
+                    f"<td>{html.escape(status_text)}</td>"
+                    f"<td><code>{html.escape(details_value)}</code></td>"
+                    "</tr>"
+                )
+        else:
+            value = json.dumps(acceptance_criteria, sort_keys=True, ensure_ascii=False)
+            lines.append(
+                "    <tr>"
+                f"<td><code>{html.escape(value)}</code></td>"
+                "<td></td>"
+                "<td></td>"
+                "</tr>"
+            )
+        lines.append("  </table>")
+    lines.append("  <div style=\"height:12px;\"></div>")
     lines.append("  <h1>AOI Report Summary</h1>")
     lines.append("  <table>")
     lines.append(f"    <tr><th>AOI</th><td>{html.escape(aoi_id)}</td></tr>")
@@ -226,8 +281,10 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
 
     lines.append("  <h2>Metrics</h2>")
     lines.append("  <table>")
-    lines.append("    <tr><th>Metric</th><th>Value</th><th>Unit</th><th>Notes</th><th>Source</th></tr>")
+    lines.append("    <tr><th>Metric</th><th>Value</th><th>Unit</th><th>Notes</th><th>Source</th><th>Criteria</th></tr>")
     for row in render_metrics_rows(report):
+        metric_entry = report.get("metrics", {}).get(row["variable"], {})
+        criteria_refs = format_criteria_refs(metric_entry.get("criteria_refs") or metric_entry.get("acceptance_criteria"))
         lines.append(
             "    <tr>"
             f"<td>{html.escape(row['variable'])}</td>"
@@ -235,6 +292,7 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
             f"<td>{html.escape(row['unit'])}</td>"
             f"<td>{html.escape(row['notes'])}</td>"
             f"<td>{html.escape(row['source'])}</td>"
+            f"<td>{html.escape(criteria_refs)}</td>"
             "</tr>"
         )
     lines.append("  </table>")
