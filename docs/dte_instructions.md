@@ -12,6 +12,82 @@
 
 Canonical list (text file): docs/dte_links.txt
 
+<style>
+.dte-tabs { margin: 18px 0 24px; }
+.dte-tablist { display: flex; gap: 8px; border-bottom: 1px solid #dde0e6; }
+.dte-tab { background: #f6f7f9; border: 1px solid #dde0e6; border-bottom: none; padding: 8px 12px; font-weight: 600; cursor: pointer; }
+.dte-tab[aria-selected="true"] { background: #fff; color: #111; }
+.dte-tabpanel { border: 1px solid #dde0e6; padding: 12px; }
+.dte-copy { margin: 0 0 10px; }
+.dte-copy button { background: #0b5fff; color: #fff; border: none; padding: 6px 10px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+.dte-copy button:disabled { opacity: 0.6; cursor: not-allowed; }
+</style>
+
+<div class="dte-tabs">
+<div class="dte-tablist" role="tablist" aria-label="DTE Instructions Tabs">
+<button class="dte-tab" role="tab" aria-selected="true" aria-controls="dte-panel-instructions" id="dte-tab-instructions">Instructions</button>
+<button class="dte-tab" role="tab" aria-selected="false" aria-controls="dte-panel-starters" id="dte-tab-starters" tabindex="-1">Conversation Starters</button>
+</div>
+<div id="dte-panel-instructions" class="dte-tabpanel" role="tabpanel" aria-labelledby="dte-tab-instructions">
+<p>Primary instructions continue below. Use the tabs to view conversation starters.</p>
+</div>
+<div id="dte-panel-starters" class="dte-tabpanel" role="tabpanel" aria-labelledby="dte-tab-starters" hidden>
+<div class="dte-copy"><button type="button" id="dte-copy-starters">Copy all starters</button></div>
+<ol>
+<li>Analyze the example EUDR AOI report published in the Digital Twin HTML bundle.  Use the authorized inspection links to open the example AOI report (HTML and JSON). Describe:  report structure,  evidence artefacts included,  and how results are presented for inspection.</li>
+<li>Navigate to the AOI Reports section of the Digital Twin and inspect the published example report.  Start from the AOI Reports index and follow the portal links to the example report HTML and JSON.</li>
+<li>Evaluate whether the example AOI report provides sufficient evidence for EUDR due-diligence review.  Identify:  what evidence is present,  what is missing or ambiguous,  and which EUDR requirements cannot be assessed from this report alone.</li>
+<li>Trace how evidence in the example AOI report maps to EUDR regulatory requirements.  Identify:  which Articles are implicitly addressed,  where mappings are explicit vs inferred,  and where traceability breaks down.</li>
+<li>Identify evidence gaps revealed by the example AOI report.  List gaps that should be raised through the DAO process, distinguishing:  missing artefacts,  unclear acceptance criteria,  and unverifiable assumptions.</li>
+<li>Convert observations from the example AOI report into DAO (Stakeholders) questions and proposals.  Focus on:  transparency,  inspectability,  and evidence sufficiency — not implementation details.</li>
+<li>DAO proposal (Developers)  Propose concrete DAO (Developers) changes based on the example AOI report.  Specify:  file-level changes,  deterministic output requirements,  validation or test criteria,  and regeneration guarantees.</li>
+<li>Explain what conclusions cannot be drawn from the example AOI report.  Explicitly distinguish:  inspection vs certification,  example artefact vs production evidence,  and assumptions vs grounded facts.</li>
+</ol>
+</div>
+</div>
+
+<script>
+(() => {
+  const tabs = Array.from(document.querySelectorAll('.dte-tab'));
+  const panels = Array.from(document.querySelectorAll('.dte-tabpanel'));
+  const activate = (tab) => {
+    tabs.forEach((t) => {
+      const selected = t === tab;
+      t.setAttribute('aria-selected', selected ? 'true' : 'false');
+      t.tabIndex = selected ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+      if (panel) panel.hidden = !selected;
+    });
+  };
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => activate(tab));
+    tab.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        activate(tab);
+      }
+    });
+  });
+  const copyButton = document.getElementById('dte-copy-starters');
+  if (copyButton && navigator.clipboard) {
+    copyButton.addEventListener('click', async () => {
+      const listItems = Array.from(document.querySelectorAll('#dte-panel-starters ol li'));
+      const text = listItems.map((item, index) => `${index + 1}. ${item.textContent}`).join('\n');
+      try {
+        await navigator.clipboard.writeText(text);
+        copyButton.textContent = 'Copied';
+        setTimeout(() => { copyButton.textContent = 'Copy all starters'; }, 1500);
+      } catch {
+        copyButton.textContent = 'Copy failed';
+        setTimeout(() => { copyButton.textContent = 'Copy all starters'; }, 1500);
+      }
+    });
+  } else if (copyButton) {
+    copyButton.disabled = true;
+  }
+})();
+</script>
+
 ## 1. ROLE
 
 You are the **EUDR DAO Digital Twin Engineer (DTE)**.
