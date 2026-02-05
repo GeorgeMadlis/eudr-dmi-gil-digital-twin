@@ -101,6 +101,8 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
     acceptance_criteria = report.get("acceptance_criteria")
     if acceptance_criteria is None and isinstance(report_metadata, dict):
         acceptance_criteria = report_metadata.get("acceptance_criteria")
+    results = report.get("results")
+    regulatory_traceability = report.get("regulatory_traceability")
 
     inputs = report.get("inputs", {}).get("sources", [])
     inputs_sorted = sorted(inputs, key=lambda item: str(item.get("source_id", "")))
@@ -109,6 +111,10 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
     evidence_sorted = sorted(evidence, key=lambda item: str(item.get("relpath", "")))
 
     criteria_alert_statuses = {"unmet", "unevaluable", "not_evaluable", "missing", "unknown", "not_evaluated"}
+
+    def anchor_id(prefix: str, value: Any) -> str:
+        safe = str(value).strip().replace(" ", "-")
+        return f"{prefix}-{safe}"
 
     def format_criteria_refs(value: Any) -> str:
         if value is None:
@@ -163,6 +169,61 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
             )
         lines.append("  </table>")
         lines.append("  <div style=\"height:12px;\"></div>")
+        lines.append("  <h2>Regulatory traceability</h2>")
+        if not regulatory_traceability:
+            lines.append(
+                "  <div style=\"border:2px solid #b00020; background:#fff5f5; padding:12px; margin-bottom:16px;\">"
+                "<strong>Traceability not declared in report JSON</strong>"
+                "</div>"
+            )
+        else:
+            lines.append("  <table>")
+            lines.append("    <tr><th>Regulation</th><th>Article</th><th>Evidence class</th><th>Acceptance criteria</th><th>Result ref</th></tr>")
+            evidence_ids = {anchor_id("evidence", e.get("class") or e.get("evidence_class") or e.get("id")) for e in evidence_registry or [] if isinstance(e, dict)}
+            criteria_ids = {anchor_id("criteria", c.get("id") or c.get("name") or c.get("criteria")) for c in acceptance_criteria or [] if isinstance(c, dict)}
+            result_ids = {anchor_id("result", r.get("result_id")) for r in results or [] if isinstance(r, dict) and r.get("result_id") is not None}
+
+            def link_or_error(prefix: str, value: Any, declared_ids: set[str]) -> str:
+                if value is None:
+                    return "<strong>missing</strong>"
+                anchor = anchor_id(prefix, value)
+                if anchor in declared_ids:
+                    return f"<a href=\"#{html.escape(anchor)}\">{html.escape(str(value))}</a>"
+                return f"<strong>missing-link</strong> {html.escape(str(value))}"
+
+            if isinstance(regulatory_traceability, list):
+                for entry in regulatory_traceability:
+                    if not isinstance(entry, dict):
+                        value = json.dumps(entry, sort_keys=True, ensure_ascii=False)
+                        lines.append(
+                            "    <tr>"
+                            f"<td colspan=\"5\"><code>{html.escape(value)}</code></td>"
+                            "</tr>"
+                        )
+                        continue
+                    regulation = entry.get("regulation")
+                    article = entry.get("article_ref")
+                    evidence_class = entry.get("evidence_class")
+                    criteria = entry.get("acceptance_criteria")
+                    result_ref = entry.get("result_ref")
+                    lines.append(
+                        "    <tr>"
+                        f"<td>{html.escape(str(regulation)) if regulation is not None else '<strong>missing</strong>'}</td>"
+                        f"<td>{html.escape(str(article)) if article is not None else '<strong>missing</strong>'}</td>"
+                        f"<td>{link_or_error('evidence', evidence_class, evidence_ids)}</td>"
+                        f"<td>{link_or_error('criteria', criteria, criteria_ids)}</td>"
+                        f"<td>{link_or_error('result', result_ref, result_ids)}</td>"
+                        "</tr>"
+                    )
+            else:
+                value = json.dumps(regulatory_traceability, sort_keys=True, ensure_ascii=False)
+                lines.append(
+                    "    <tr>"
+                    f"<td colspan=\"5\"><code>{html.escape(value)}</code></td>"
+                    "</tr>"
+                )
+            lines.append("  </table>")
+        lines.append("  <div style=\"height:12px;\"></div>")
 
     lines.append("  <h2>Evidence Registry</h2>")
     if not evidence_registry:
@@ -193,9 +254,10 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
                 mandatory_text = "" if mandatory is None else str(mandatory)
                 is_missing = bool(mandatory is True and status_text.lower() in {"missing", "absent", "unavailable", "not_found"})
                 row_style = " style=\"background:#fff5f5; border-left:4px solid #b00020;\"" if is_missing else ""
+                evidence_id = anchor_id("evidence", evidence_class)
                 lines.append(
                     f"    <tr{row_style}>"
-                    f"<td>{html.escape(str(evidence_class))}</td>"
+                    f"<td id=\"{html.escape(evidence_id)}\">{html.escape(str(evidence_class))}</td>"
                     f"<td>{html.escape(mandatory_text)}</td>"
                     f"<td>{html.escape(status_text)}</td>"
                     "</tr>"
@@ -236,9 +298,10 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
                 details_value = json.dumps(entry, sort_keys=True, ensure_ascii=False)
                 is_alert = status_text.lower() in criteria_alert_statuses
                 row_style = " style=\"background:#fff5f5; border-left:4px solid #b00020;\"" if is_alert else ""
+                criteria_anchor = anchor_id("criteria", criteria_id)
                 lines.append(
                     f"    <tr{row_style}>"
-                    f"<td>{html.escape(str(criteria_id))}</td>"
+                    f"<td id=\"{html.escape(criteria_anchor)}\">{html.escape(str(criteria_id))}</td>"
                     f"<td>{html.escape(status_text)}</td>"
                     f"<td><code>{html.escape(details_value)}</code></td>"
                     "</tr>"
@@ -296,6 +359,47 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
             "</tr>"
         )
     lines.append("  </table>")
+
+    lines.append("  <h2>Results</h2>")
+    if not results:
+        lines.append("  <p><em>No results declared.</em></p>")
+    else:
+        lines.append("  <table>")
+        lines.append("    <tr><th>Result</th><th>Status</th><th>Criteria</th></tr>")
+        if isinstance(results, list):
+            for entry in results:
+                if not isinstance(entry, dict):
+                    value = json.dumps(entry, sort_keys=True, ensure_ascii=False)
+                    lines.append(
+                        "    <tr>"
+                        f"<td colspan=\"3\"><code>{html.escape(value)}</code></td>"
+                        "</tr>"
+                    )
+                    continue
+                result_id = entry.get("result_id")
+                status = entry.get("status")
+                criteria_ids = entry.get("criteria_ids") or []
+                result_anchor = anchor_id("result", result_id)
+                criteria_links = []
+                for cid in criteria_ids:
+                    criteria_links.append(f"<a href=\"#{html.escape(anchor_id('criteria', cid))}\">{html.escape(str(cid))}</a>")
+                criteria_html = ", ".join(criteria_links) if criteria_links else ""
+                lines.append(
+                    "    <tr>"
+                    f"<td id=\"{html.escape(result_anchor)}\">{html.escape(str(result_id))}</td>"
+                    f"<td>{html.escape(str(status)) if status is not None else ''}</td>"
+                    f"<td>{criteria_html}</td>"
+                    "</tr>"
+                )
+        else:
+            value = json.dumps(results, sort_keys=True, ensure_ascii=False)
+            lines.append(
+                "    <tr>"
+                f"<td colspan=\"3\"><code>{html.escape(value)}</code></td>"
+                "</tr>"
+            )
+        lines.append("  </table>")
+    lines.append("  <div style=\"height:12px;\"></div>")
 
     lines.append("  <h2>Evidence Artifacts</h2>")
     lines.append("  <ul>")

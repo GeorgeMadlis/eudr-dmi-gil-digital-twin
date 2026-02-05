@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AOI Report Summary — estonia_testland1</title>
+  <style>
+    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; margin: 24px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
+    th { background: #f6f6f6; text-align: left; width: 240px; }
+    h2 { margin-top: 28px; }
+    code { background: #f6f6f6; padding: 1px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h2>Report Intent & Scope</h2>
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>assessment_capability</td><td><code>&quot;inspectable_only&quot;</code></td></tr>
+    <tr><td>regulatory_context</td><td><code>{&quot;in_scope_articles&quot;: [], &quot;out_of_scope_articles&quot;: [], &quot;regulation&quot;: &quot;EUDR&quot;}</code></td></tr>
+    <tr><td>report_type</td><td><code>&quot;example&quot;</code></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h2>Regulatory traceability</h2>
+  <table>
+    <tr><th>Regulation</th><th>Article</th><th>Evidence class</th><th>Acceptance criteria</th><th>Result ref</th></tr>
+    <tr><td>EUDR</td><td>article-3</td><td><strong>missing-link</strong> aoi_geometry</td><td><strong>missing-link</strong> aoi_geometry_present</td><td><a href="#result-result-001">result-001</a></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h2>Evidence Registry</h2>
+  <table>
+    <tr><th>Evidence Class</th><th>Mandatory</th><th>Status</th></tr>
+    <tr><td><code>value</code></td><td></td><td><code>{&quot;evidence_classes&quot;: [{&quot;class_id&quot;: &quot;aoi_geometry&quot;, &quot;mandatory&quot;: true, &quot;status&quot;: &quot;present&quot;}]}</code></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h2>Acceptance Criteria</h2>
+  <table>
+    <tr><th>Criteria</th><th>Status</th><th>Details</th></tr>
+    <tr><td id="criteria-None">None</td><td></td><td><code>{&quot;criteria_id&quot;: &quot;aoi_geometry_present&quot;, &quot;decision_type&quot;: &quot;presence&quot;, &quot;description&quot;: &quot;AOI geometry is present and referenced in inputs.&quot;, &quot;evidence_classes&quot;: [&quot;aoi_geometry&quot;]}</code></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h1>AOI Report Summary</h1>
+  <table>
+    <tr><th>AOI</th><td>estonia_testland1</td></tr>
+    <tr><th>Bundle</th><td>estonia_testland1_example</td></tr>
+    <tr><th>Report Version</th><td>aoi_report_v1</td></tr>
+    <tr><th>Geometry Ref</th><td>geojson: inputs/aoi.geojson</td></tr>
+  </table>
+  <h2>Inputs</h2>
+  <table>
+    <tr><th>Source</th><th>URI</th><th>SHA256</th><th>Content Type</th></tr>
+    <tr><td>aoi_geometry</td><td>inputs/aoi.geojson</td><td><code>22ad6fe53d54f93b3d2f5894c9722b944ebd005734435308c2f14020e76bc28b</code></td><td>application/geo+json</td></tr>
+  </table>
+  <h2>Metrics</h2>
+  <table>
+    <tr><th>Metric</th><th>Value</th><th>Unit</th><th>Notes</th><th>Source</th><th>Criteria</th></tr>
+    <tr><td>area_ha</td><td>12.34</td><td>ha</td><td>deterministic</td><td>example</td><td>Not declared</td></tr>
+    <tr><td>forest_cover_fraction</td><td>0.56</td><td>fraction</td><td>deterministic</td><td>example</td><td>Not declared</td></tr>
+  </table>
+  <h2>Results</h2>
+  <table>
+    <tr><th>Result</th><th>Status</th><th>Criteria</th></tr>
+    <tr><td id="result-result-001">result-001</td><td>placeholder</td><td><a href="#criteria-aoi_geometry_present">aoi_geometry_present</a></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h2>Evidence Artifacts</h2>
+  <ul>
+    <li><a href="../../inputs/aoi.geojson">inputs/aoi.geojson</a></li>
+    <li><a href="estonia_testland1.html">reports/aoi_report_v1/estonia_testland1.html</a></li>
+    <li><a href="estonia_testland1.json">reports/aoi_report_v1/estonia_testland1.json</a></li>
+    <li><a href="estonia_testland1/metrics.csv">reports/aoi_report_v1/estonia_testland1/metrics.csv</a></li>
+  </ul>
+</body>
+</html>
