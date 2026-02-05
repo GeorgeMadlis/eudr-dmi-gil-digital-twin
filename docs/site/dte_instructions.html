@@ -47,6 +47,7 @@
       <a href="regulation/policy_to_evidence_spine.html">Spine</a>
       <a href="views/index.html">Views</a>
       <a href="dte_instructions.html" class="active">DTE Instructions v1.1</a>
+      <a href="dte_instructions.html#conversation-starters">Conversation Starters</a>
       <a href="aoi_reports/index.html">AOI Reports</a>
       <a href="dao_stakeholders/index.html">DAO (Stakeholders)</a>
       <a href="dao_dev/index.html">DAO (Developers)</a>
@@ -65,79 +66,6 @@
 <h2>DTE LINK REGISTRY (CURRENT)</h2>
 <a href="https://chatgpt.com/g/g-697a5cf9d7648191b323d79d98bdeb84-eudr-dao-digital-twin-engineer-dte" target="_blank" rel="noopener noreferrer">EUDR DAO Digital Twin Engineer (DTE) — GPT</a>
 <p>Canonical list (text file): docs/dte_links.txt</p>
-<style>
-<p>.dte-tabs { margin: 18px 0 24px; }</p>
-<p>.dte-tablist { display: flex; gap: 8px; border-bottom: 1px solid #dde0e6; }</p>
-<p>.dte-tab { background: #f6f7f9; border: 1px solid #dde0e6; border-bottom: none; padding: 8px 12px; font-weight: 600; cursor: pointer; }</p>
-<p>.dte-tab[aria-selected="true"] { background: #fff; color: #111; }</p>
-<p>.dte-tabpanel { border: 1px solid #dde0e6; padding: 12px; }</p>
-<p>.dte-copy { margin: 0 0 10px; }</p>
-<p>.dte-copy button { background: #0b5fff; color: #fff; border: none; padding: 6px 10px; border-radius: 6px; font-weight: 600; cursor: pointer; }</p>
-<p>.dte-copy button:disabled { opacity: 0.6; cursor: not-allowed; }</p>
-</style>
-<div class="dte-tabs">
-<div class="dte-tablist" role="tablist" aria-label="DTE Instructions Tabs">
-<button class="dte-tab" role="tab" aria-selected="true" aria-controls="dte-panel-instructions" id="dte-tab-instructions">Instructions</button>
-<button class="dte-tab" role="tab" aria-selected="false" aria-controls="dte-panel-starters" id="dte-tab-starters" tabindex="-1">Conversation Starters</button>
-</div>
-<div id="dte-panel-instructions" class="dte-tabpanel" role="tabpanel" aria-labelledby="dte-tab-instructions">
-<p>Primary instructions continue below. Use the tabs to view conversation starters.</p>
-</div>
-<div id="dte-panel-starters" class="dte-tabpanel" role="tabpanel" aria-labelledby="dte-tab-starters" hidden>
-<div class="dte-copy"><button type="button" id="dte-copy-starters">Copy all starters</button></div>
-<ol>
-<li>Analyze the example EUDR AOI report published in the Digital Twin HTML bundle.  Use the authorized inspection links to open the example AOI report (HTML and JSON). Describe:  report structure,  evidence artefacts included,  and how results are presented for inspection.</li>
-<li>Navigate to the AOI Reports section of the Digital Twin and inspect the published example report.  Start from the AOI Reports index and follow the portal links to the example report HTML and JSON.</li>
-<li>Evaluate whether the example AOI report provides sufficient evidence for EUDR due-diligence review.  Identify:  what evidence is present,  what is missing or ambiguous,  and which EUDR requirements cannot be assessed from this report alone.</li>
-<li>Trace how evidence in the example AOI report maps to EUDR regulatory requirements.  Identify:  which Articles are implicitly addressed,  where mappings are explicit vs inferred,  and where traceability breaks down.</li>
-<li>Identify evidence gaps revealed by the example AOI report.  List gaps that should be raised through the DAO process, distinguishing:  missing artefacts,  unclear acceptance criteria,  and unverifiable assumptions.</li>
-<li>Convert observations from the example AOI report into DAO (Stakeholders) questions and proposals.  Focus on:  transparency,  inspectability,  and evidence sufficiency — not implementation details.</li>
-<li>DAO proposal (Developers)  Propose concrete DAO (Developers) changes based on the example AOI report.  Specify:  file-level changes,  deterministic output requirements,  validation or test criteria,  and regeneration guarantees.</li>
-<li>Explain what conclusions cannot be drawn from the example AOI report.  Explicitly distinguish:  inspection vs certification,  example artefact vs production evidence,  and assumptions vs grounded facts.</li>
-</ol>
-</div>
-</div>
-<script>
-<p>(() => {</p>
-<p>  const tabs = Array.from(document.querySelectorAll('.dte-tab'));</p>
-<p>  const panels = Array.from(document.querySelectorAll('.dte-tabpanel'));</p>
-<p>  const activate = (tab) => {</p>
-<p>    tabs.forEach((t) => {</p>
-<p>      const selected = t === tab;</p>
-<p>      t.setAttribute('aria-selected', selected ? 'true' : 'false');</p>
-<p>      t.tabIndex = selected ? 0 : -1;</p>
-<p>      const panel = document.getElementById(t.getAttribute('aria-controls'));</p>
-<p>      if (panel) panel.hidden = !selected;</p>
-<p>    });</p>
-<p>  };</p>
-<p>  tabs.forEach((tab) => {</p>
-<p>    tab.addEventListener('click', () => activate(tab));</p>
-<p>    tab.addEventListener('keydown', (event) => {</p>
-<p>      if (event.key === 'Enter' || event.key === ' ') {</p>
-<p>        event.preventDefault();</p>
-<p>        activate(tab);</p>
-<p>      }</p>
-<p>    });</p>
-<p>  });</p>
-<p>  const copyButton = document.getElementById('dte-copy-starters');</p>
-<p>  if (copyButton && navigator.clipboard) {</p>
-<p>    copyButton.addEventListener('click', async () => {</p>
-<p>      const listItems = Array.from(document.querySelectorAll('#dte-panel-starters ol li'));</p>
-<p>      const text = listItems.map((item, index) => <code>${index + 1}. ${item.textContent}</code>).join('\n');</p>
-<p>      try {</p>
-<p>        await navigator.clipboard.writeText(text);</p>
-<p>        copyButton.textContent = 'Copied';</p>
-<p>        setTimeout(() => { copyButton.textContent = 'Copy all starters'; }, 1500);</p>
-<p>      } catch {</p>
-<p>        copyButton.textContent = 'Copy failed';</p>
-<p>        setTimeout(() => { copyButton.textContent = 'Copy all starters'; }, 1500);</p>
-<p>      }</p>
-<p>    });</p>
-<p>  } else if (copyButton) {</p>
-<p>    copyButton.disabled = true;</p>
-<p>  }</p>
-<p>})();</p>
-</script>
 <h2>1. ROLE</h2>
 <p>You are the <strong>EUDR DAO Digital Twin Engineer (DTE)</strong>.</p>
 <p>Your role is to facilitate <strong>stakeholder Q/A</strong> by inspecting the published <strong>Digital Twin portal</strong> and its artefacts, and to convert the outcomes of those sessions into <strong>auditable, template-ready DAO proposals</strong> that can be reviewed and implemented by developers.</p>
@@ -428,6 +356,18 @@
 <blockquote>it MUST be labeled as an <strong>evidence gap</strong> — not a fact.</blockquote>
 <p>This rule ensures stakeholder Q/A always results in <strong>actionable, auditable, and developer-ready proposals</strong>.</p>
 <p>---</p>
+<h2 id="conversation-starters">Conversation Starters</h2>
+<p>Use these starters to inspect the published AOI report bundle and formulate DAO proposals.</p>
+<ol>
+<li>Analyze the example EUDR AOI report published in the Digital Twin HTML bundle.  Use the authorized inspection links to open the example AOI report (HTML and JSON). Describe:  report structure,  evidence artefacts included,  and how results are presented for inspection.</li>
+<li>Navigate to the AOI Reports section of the Digital Twin and inspect the published example report.  Start from the AOI Reports index and follow the portal links to the example report HTML and JSON.</li>
+<li>Evaluate whether the example AOI report provides sufficient evidence for EUDR due-diligence review.  Identify:  what evidence is present,  what is missing or ambiguous,  and which EUDR requirements cannot be assessed from this report alone.</li>
+<li>Trace how evidence in the example AOI report maps to EUDR regulatory requirements.  Identify:  which Articles are implicitly addressed,  where mappings are explicit vs inferred,  and where traceability breaks down.</li>
+<li>Identify evidence gaps revealed by the example AOI report.  List gaps that should be raised through the DAO process, distinguishing:  missing artefacts,  unclear acceptance criteria,  and unverifiable assumptions.</li>
+<li>Convert observations from the example AOI report into DAO (Stakeholders) questions and proposals.  Focus on:  transparency,  inspectability,  and evidence sufficiency — not implementation details.</li>
+<li>DAO proposal (Developers)  Propose concrete DAO (Developers) changes based on the example AOI report.  Specify:  file-level changes,  deterministic output requirements,  validation or test criteria,  and regeneration guarantees.</li>
+<li>Explain what conclusions cannot be drawn from the example AOI report.  Explicitly distinguish:  inspection vs certification,  example artefact vs production evidence,  and assumptions vs grounded facts.</li>
+</ol>
         </div>
       </div>
     </main>
