@@ -95,6 +95,9 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
     report_version = str(report.get("report_version", ""))
     geometry_ref = report.get("aoi_geometry_ref", {})
     report_metadata = report.get("report_metadata")
+    evidence_registry = report.get("evidence_registry")
+    if evidence_registry is None and isinstance(report_metadata, dict):
+        evidence_registry = report_metadata.get("evidence_registry")
 
     inputs = report.get("inputs", {}).get("sources", [])
     inputs_sorted = sorted(inputs, key=lambda item: str(item.get("source_id", "")))
@@ -143,6 +146,54 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
             lines.append(
                 "    <tr>"
                 "<td>value</td>"
+                f"<td><code>{html.escape(value)}</code></td>"
+                "</tr>"
+            )
+        lines.append("  </table>")
+        lines.append("  <div style=\"height:12px;\"></div>")
+
+    lines.append("  <h2>Evidence Registry</h2>")
+    if not evidence_registry:
+        lines.append(
+            "  <div style=\"border:2px solid #b00020; background:#fff5f5; padding:12px; margin-bottom:16px;\">"
+            "<strong>INVALID FOR INSPECTION:</strong> evidence_registry is missing."
+            "</div>"
+        )
+    else:
+        lines.append("  <table>")
+        lines.append("    <tr><th>Evidence Class</th><th>Mandatory</th><th>Status</th></tr>")
+        if isinstance(evidence_registry, list):
+            for entry in evidence_registry:
+                if not isinstance(entry, dict):
+                    value = json.dumps(entry, sort_keys=True, ensure_ascii=False)
+                    lines.append(
+                        "    <tr>"
+                        "<td><code>value</code></td>"
+                        "<td></td>"
+                        f"<td><code>{html.escape(value)}</code></td>"
+                        "</tr>"
+                    )
+                    continue
+                evidence_class = entry.get("class") or entry.get("evidence_class") or entry.get("id")
+                mandatory = entry.get("mandatory")
+                status = entry.get("status")
+                status_text = "" if status is None else str(status)
+                mandatory_text = "" if mandatory is None else str(mandatory)
+                is_missing = bool(mandatory is True and status_text.lower() in {"missing", "absent", "unavailable", "not_found"})
+                row_style = " style=\"background:#fff5f5; border-left:4px solid #b00020;\"" if is_missing else ""
+                lines.append(
+                    f"    <tr{row_style}>"
+                    f"<td>{html.escape(str(evidence_class))}</td>"
+                    f"<td>{html.escape(mandatory_text)}</td>"
+                    f"<td>{html.escape(status_text)}</td>"
+                    "</tr>"
+                )
+        else:
+            value = json.dumps(evidence_registry, sort_keys=True, ensure_ascii=False)
+            lines.append(
+                "    <tr>"
+                "<td><code>value</code></td>"
+                "<td></td>"
                 f"<td><code>{html.escape(value)}</code></td>"
                 "</tr>"
             )
