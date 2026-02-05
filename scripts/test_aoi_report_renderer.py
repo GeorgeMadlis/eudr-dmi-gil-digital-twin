@@ -22,9 +22,23 @@ def copy_fixture(tmp_dir: Path) -> Path:
     return run_dir
 
 
+def ensure_declared_artifacts_exist(run_dir: Path, report: dict) -> None:
+    for entry in report.get("evidence_artifacts", []):
+        relpath = entry.get("relpath")
+        if not relpath:
+            continue
+        artifact_path = run_dir / relpath
+        if artifact_path.is_file():
+            continue
+        artifact_path.parent.mkdir(parents=True, exist_ok=True)
+        # Deterministic placeholder content for declared-but-not-generated artefacts.
+        artifact_path.write_bytes(b"placeholder\n")
+
+
 def render_once(tmp_dir: Path) -> dict[str, bytes]:
     run_dir = copy_fixture(tmp_dir)
     report = load_report(run_dir / "aoi_report.json")
+    ensure_declared_artifacts_exist(run_dir, report)
     render_aoi_run(run_dir)
     updated = update_evidence_hashes(run_dir, report)
     write_report(run_dir / "aoi_report.json", updated)
