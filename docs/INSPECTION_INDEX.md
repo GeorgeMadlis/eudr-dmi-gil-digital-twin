@@ -42,6 +42,10 @@ Any DAO proposal that recommends changes to implementation MUST:
   → docs/dependencies/README.md
 - Evidence source definitions (authoritative)  
   → docs/dependencies/sources.md
+- Hansen GFC acquisition + storage contract (authoritative)  
+  → docs/dependencies/hansen_gfc.yaml
+  → src/eudr_dmi_gil/deps/hansen_acquire.py
+  → src/eudr_dmi_gil/deps/hansen_tiles.py
 
 ## Reports and Outputs
 

@@ -68,6 +68,22 @@
   </ul>
 </div>
 <div class="card">
+  <h2>How dependency links are maintained (data_db-driven)</h2>
+  <ul>
+    <li>Current preferred links are sourced from <code>eudr-dmi-gil/data_db/dependency_sources.csv</code></li>
+    <li>Candidate/newer links are tracked in <code>eudr-dmi-gil/data_db/dependency_link_history.csv</code></li>
+    <li>Links are validated via <code>scripts/validate_dependency_links.py</code></li>
+    <li>Newer links may be proposed and optionally promoted via <code>scripts/suggest_dependency_updates.py --promote-best</code></li>
+    <li>The DT publishes inspection views; it does not host raw data downloads.</li>
+  </ul>
+  <h3>Authoritative sources (eudr-dmi-gil)</h3>
+  <ul>
+    <li><a href="https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/dependencies/flow.md">https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/dependencies/flow.md</a></li>
+    <li><a href="https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/dependencies/sources.md">https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/dependencies/sources.md</a></li>
+    <li><a href="https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/dependencies/sources.json">https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/dependencies/sources.json</a></li>
+  </ul>
+</div>
+<div class="card">
   <h2>Hansen GFC 2024 v1.12 – definitions/download page</h2>
 <p class="muted">Authoritative dataset definitions/semantics used to interpret Hansen GFC layers (loss, cover, etc.) in EUDR-oriented checks and definition-comparison controls.</p>
   <ul>
@@ -75,6 +91,12 @@
     <li><b>URL</b>: <a href="https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/download.html">https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/download.html</a></li>
     <li><b>Expected content type</b>: <code>text/html</code></li>
     <li><b>Server audit path</b>: <code>/Users/server/audit/eudr_dmi/dependencies/hansen_gfc_definitions</code></li>
+  </ul>
+  <h3>Authority boundary</h3>
+  <ul>
+    <li><b>Acquisition &amp; local storage contract (authoritative)</b>: <a href="https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/dependencies/hansen_gfc.yaml">https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/dependencies/hansen_gfc.yaml</a></li>
+    <li>Tiles stored under <code>eudr-dmi-gil/data/external/hansen/...</code> (not published)</li>
+    <li>AOI report includes <code>tiles_manifest.json</code> + hashes for inspection</li>
   </ul>
   <h3>Used by</h3>
   <ul>
