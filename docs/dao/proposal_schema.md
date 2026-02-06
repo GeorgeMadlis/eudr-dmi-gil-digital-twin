@@ -6,6 +6,19 @@
 - One proposal = one file
 - Store under: `dao/proposals/YYYY/MM/<slug>.yaml`
 
+## DAO proposals output format (summary)
+
+**Stakeholders**
+- Questions raised
+- Acceptance criteria decisions (pass/fail thresholds, evidence sufficiency)
+
+**Developers**
+- File-level changes
+- Schema changes (if needed)
+- Tests / validation
+- Determinism guarantees
+- Regeneration steps
+
 ## File-level grounding (enforced)
 
 Every claim must be grounded to a DT URL or repo-relative path. If a claim cannot be grounded, mark it as `assumption` and list the missing evidence in `evidence_gaps`.

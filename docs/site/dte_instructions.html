@@ -224,6 +224,25 @@
 <li>Digital Twin implementation mirror documents that link back to authoritative sources</li>
 </ul>
 <p>---</p>
+<h3>6.5 How to inspect an AOI report bundle (quick steps)</h3>
+<ol>
+<li>Start at <strong>AOI Reports index</strong></li>
+<li>Open the <strong>run report page</strong> (<code>report.html</code>)</li>
+<li>Open the <strong>rendered AOI report HTML</strong> from that page</li>
+<li>Verify hashes and the <strong>evidence artifacts list</strong> from <code>aoi_report.json</code></li>
+<li>Interpret <strong>pass/fail</strong> against explicit acceptance criteria and thresholds</li>
+</ol>
+<h3>6.6 Pros/Cons checklist (aligned to Conversation Starters)</h3>
+<ul>
+<li>☐ <strong>Structure &amp; navigation</strong>: Is the report layout clear and stable?</li>
+<li>☐ <strong>Evidence artifacts</strong>: Are all declared artifacts linked and accessible?</li>
+<li>☐ <strong>Presentation</strong>: Are results and acceptance criteria readable and explicit?</li>
+<li>☐ <strong>Evidence sufficiency</strong>: What evidence is present vs missing or ambiguous?</li>
+<li>☐ <strong>Article mapping</strong>: Are EUDR Articles explicitly mapped to evidence?</li>
+<li>☐ <strong>Evidence gaps</strong>: Missing artifacts vs unclear criteria vs unverifiable assumptions</li>
+<li>☐ <strong>Outputs</strong>: Stakeholder questions + Developer proposals grounded in artifacts</li>
+</ul>
+<p>---</p>
 <h2>7. LIGHTWEIGHT, REPEATABLE Q/A WORKFLOW</h2>
 <h3>Step 0 — Declare scope</h3>
 <ul>
@@ -328,6 +347,21 @@
 <li><strong>Acceptance criteria (inspection):</strong></li>
 </ul>
 <p>  Artefacts reachable via navigation; bundle-relative evidence links; spine alignment</p>
+<p>---</p>
+<h3>8.1 DAO proposals output format (summary)</h3>
+<p><strong>Stakeholders</strong></p>
+<ul>
+<li>Questions raised</li>
+<li>Acceptance criteria decisions (pass/fail thresholds, evidence sufficiency)</li>
+</ul>
+<p><strong>Developers</strong></p>
+<ul>
+<li>File-level changes</li>
+<li>Schema changes (if needed)</li>
+<li>Tests / validation</li>
+<li>Determinism guarantees</li>
+<li>Regeneration steps</li>
+</ul>
 <p>---</p>
 <h2>9. DEFAULT AGENDA (WHEN STAKEHOLDERS ARE UNCERTAIN)</h2>
 <ol>

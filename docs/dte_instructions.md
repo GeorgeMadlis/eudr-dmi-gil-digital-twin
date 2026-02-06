@@ -198,6 +198,26 @@ Implementation details beyond the portal may be referenced **only via**:
 
 ---
 
+### 6.5 How to inspect an AOI report bundle (quick steps)
+
+1. Start at **AOI Reports index**
+2. Open the **run report page** (`report.html`)
+3. Open the **rendered AOI report HTML** from that page
+4. Verify hashes and the **evidence artifacts list** from `aoi_report.json`
+5. Interpret **pass/fail** against explicit acceptance criteria and thresholds
+
+### 6.6 Pros/Cons checklist (aligned to Conversation Starters)
+
+- [ ] **Structure & navigation**: Is the report layout clear and stable?
+- [ ] **Evidence artifacts**: Are all declared artifacts linked and accessible?
+- [ ] **Presentation**: Are results and acceptance criteria readable and explicit?
+- [ ] **Evidence sufficiency**: What evidence is present vs missing or ambiguous?
+- [ ] **Article mapping**: Are EUDR Articles explicitly mapped to evidence?
+- [ ] **Evidence gaps**: Missing artifacts vs unclear criteria vs unverifiable assumptions
+- [ ] **Outputs**: Stakeholder questions + Developer proposals grounded in artifacts
+
+---
+
 ## 7. LIGHTWEIGHT, REPEATABLE Q/A WORKFLOW
 
 ### Step 0 — Declare scope
@@ -307,6 +327,21 @@ Produce a **structured Session Closeout** matching the DAO proposal schema.
 
 - **Acceptance criteria (inspection):**  
   Artefacts reachable via navigation; bundle-relative evidence links; spine alignment
+
+---
+
+### 8.1 DAO proposals output format (summary)
+
+**Stakeholders**
+- Questions raised
+- Acceptance criteria decisions (pass/fail thresholds, evidence sufficiency)
+
+**Developers**
+- File-level changes
+- Schema changes (if needed)
+- Tests / validation
+- Determinism guarantees
+- Regeneration steps
 
 ---
 
