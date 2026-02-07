@@ -206,7 +206,15 @@ Implementation details beyond the portal may be referenced **only via**:
 4. Verify hashes and the **evidence artifacts list** from `aoi_report.json`
 5. Interpret **pass/fail** against explicit acceptance criteria and thresholds
 
-### 6.6 Pros/Cons checklist (aligned to Conversation Starters)
+### 6.6 How to read AOI report status fields
+
+- **results[].status** indicates the reported status for each acceptance criteria result.
+  - `computed` means derived from data processing outputs declared in the report.
+  - `placeholder` means declared but not yet backed by computed evidence.
+- **acceptance_criteria** defines the testable requirements; **regulatory_traceability** links those criteria to EUDR articles.
+- **policy_mapping_refs** are **refs only** for DAO discussion (no compliance claim implied).
+
+### 6.7 Pros/Cons checklist (aligned to Conversation Starters)
 
 - [ ] **Structure & navigation**: Is the report layout clear and stable?
 - [ ] **Evidence artifacts**: Are all declared artifacts linked and accessible?
@@ -377,12 +385,12 @@ This rule ensures stakeholder Q/A always results in **actionable, auditable, and
 
 Use these starters to inspect the published AOI report bundle and formulate DAO proposals.
 
-1. Analyze the example EUDR AOI report published in the Digital Twin HTML bundle.  Use the authorized inspection links to open the example AOI report (HTML and JSON). Describe:  report structure,  evidence artefacts included,  and how results are presented for inspection.
-2. Navigate to the AOI Reports section of the Digital Twin and inspect the published example report.  Start from the AOI Reports index and follow the portal links to the example report HTML and JSON.
-3. Evaluate whether the example AOI report provides sufficient evidence for EUDR due-diligence review.  Identify:  what evidence is present,  what is missing or ambiguous,  and which EUDR requirements cannot be assessed from this report alone.
-4. Trace how evidence in the example AOI report maps to EUDR regulatory requirements.  Identify:  which Articles are implicitly addressed,  where mappings are explicit vs inferred,  and where traceability breaks down.
-5. Identify evidence gaps revealed by the example AOI report.  List gaps that should be raised through the DAO process, distinguishing:  missing artefacts,  unclear acceptance criteria,  and unverifiable assumptions.
-6. Convert observations from the example AOI report into DAO (Stakeholders) questions and proposals.  Focus on:  transparency,  inspectability,  and evidence sufficiency — not implementation details.
-7. DAO proposal (Developers)  Propose concrete DAO (Developers) changes based on the example AOI report.  Specify:  file-level changes,  deterministic output requirements,  validation or test criteria,  and regeneration guarantees.
-8. Explain what conclusions cannot be drawn from the example AOI report.  Explicitly distinguish:  inspection vs certification,  example artefact vs production evidence,  and assumptions vs grounded facts.
+1. Analyze the example EUDR AOI report published in the Digital Twin HTML bundle.  Use the authorized inspection links to open the example AOI report (HTML and JSON). Describe:  report structure,  evidence artefacts included,  and how results are presented for inspection.<br>Helper: Use runs/example/report.html → “Core inspection artifacts” and “Declared evidence artifacts”.
+2. Navigate to the AOI Reports section of the Digital Twin and inspect the published example report.  Start from the AOI Reports index and follow the portal links to the example report HTML and JSON.<br>Helper: Use AOI Reports index → run report page → open aoi_report.json and the rendered report link.
+3. Evaluate whether the example AOI report provides sufficient evidence for EUDR due-diligence review.  Identify:  what evidence is present,  what is missing or ambiguous,  and which EUDR requirements cannot be assessed from this report alone.<br>Helper: Use “What this example demonstrates”, “Known evidence gaps (for DAO)”, and the Evidence Registry tables.
+4. Trace how evidence in the example AOI report maps to EUDR regulatory requirements.  Identify:  which Articles are implicitly addressed,  where mappings are explicit vs inferred,  and where traceability breaks down.<br>Helper: Use aoi_report.json → regulatory_traceability + report_metadata.regulatory_context.
+5. Identify evidence gaps revealed by the example AOI report.  List gaps that should be raised through the DAO process, distinguishing:  missing artefacts,  unclear acceptance criteria,  and unverifiable assumptions.<br>Helper: Use “Known evidence gaps (for DAO)” and validation/acceptance criteria sections.
+6. Convert observations from the example AOI report into DAO (Stakeholders) questions and proposals.  Focus on:  transparency,  inspectability,  and evidence sufficiency — not implementation details.<br>Helper: Use the DAO (Stakeholders) template block and cite portal URLs.
+7. DAO proposal (Developers)  Propose concrete DAO (Developers) changes based on the example AOI report.  Specify:  file-level changes,  deterministic output requirements,  validation or test criteria,  and regeneration guarantees.<br>Helper: Use the DAO (Developers) template block and the gate requirement for scripts/run_example_report_clean.sh.
+8. Explain what conclusions cannot be drawn from the example AOI report.  Explicitly distinguish:  inspection vs certification,  example artefact vs production evidence,  and assumptions vs grounded facts.<br>Helper: Use “What this example demonstrates” → inspection != certification.
 

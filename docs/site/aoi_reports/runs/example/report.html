@@ -48,18 +48,36 @@
       <div class="card">
         <h2>Core inspection artifacts</h2>
         <ul>
-          <li><a href="aoi_report.json">aoi_report.json</a> (bundle declaration)</li>
-          <li><a href="reports/aoi_report_v1/estonia_testland1.html">reports/aoi_report_v1/estonia_testland1.html</a> (rendered report)</li>
-          <li><a href="reports/aoi_report_v1/estonia_testland1.json">reports/aoi_report_v1/estonia_testland1.json</a> (human-readable JSON)</li>
-          <li><a href="reports/aoi_report_v1/estonia_testland1/metrics.csv">reports/aoi_report_v1/estonia_testland1/metrics.csv</a> (metrics)</li>
-          <li><a href="inputs/aoi.geojson">inputs/aoi.geojson</a> (AOI geometry)</li>
+          <li><a href="aoi_report.json">aoi_report.json</a> (aoi_report.json)</li>
+          <li><a href="reports/aoi_report_v1/estonia_testland1.html">reports/aoi_report_v1/estonia_testland1.html</a> (reports/aoi_report_v1/estonia_testland1.html)</li>
+          <li><a href="reports/aoi_report_v1/estonia_testland1.json">reports/aoi_report_v1/estonia_testland1.json</a> (reports/aoi_report_v1/estonia_testland1.json)</li>
+          <li><a href="reports/aoi_report_v1/estonia_testland1/metrics.csv">reports/aoi_report_v1/estonia_testland1/metrics.csv</a> (reports/aoi_report_v1/estonia_testland1/metrics.csv)</li>
+          <li><a href="inputs/aoi.geojson">inputs/aoi.geojson</a> (inputs/aoi.geojson)</li>
         </ul>
         <p class="muted">If a manifest is present in this bundle, it should also be linked from this page.</p>
       </div>
       <div class="card">
+        <h2>What this example demonstrates</h2>
+        <ul>
+          <li>Inspectable artifacts with links + hashes (10 declared in <code>aoi_report.json</code>).</li>
+          <li>Computed vs placeholder results are declared in <code>results[].status</code>.</li>
+          <li>Computed results: <code>forest_loss_post_2020_computed</code>.</li>
+          <li>Placeholder results: <code>result-001</code>.</li>
+          <li>Inspection shows declared evidence, not certification or compliance.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Known evidence gaps (for DAO)</h2>
+        <ul>
+          <li>Maa-amet crosscheck not comparable: missing_reference_forest_area</li>
+          <li>Missing tile source URLs in external_dependencies.tiles_used: N50_E020:lossyear, N50_E020:treecover2000</li>
+          <li>policy_mapping_refs is empty</li>
+          <li>regulatory_context.in_scope_articles is empty</li>
+        </ul>
+      </div>
+      <div class="card">
         <h2>Declared evidence artifacts</h2>
         <ul>
-          <li><a href="aoi_report.json">aoi_report.json</a></li>
           <li><a href="inputs/aoi.geojson">inputs/aoi.geojson</a></li>
           <li><a href="reports/aoi_report_v1/estonia_testland1.html">reports/aoi_report_v1/estonia_testland1.html</a></li>
           <li><a href="reports/aoi_report_v1/estonia_testland1.json">reports/aoi_report_v1/estonia_testland1.json</a></li>

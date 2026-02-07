@@ -44,6 +44,7 @@ def render_once(tmp_dir: Path) -> dict[str, bytes]:
     write_report(run_dir / "aoi_report.json", updated)
     outputs = {}
     for relpath in [
+        "report.html",
         "reports/aoi_report_v1/estonia_testland1.html",
         "reports/aoi_report_v1/estonia_testland1.json",
         "reports/aoi_report_v1/estonia_testland1/metrics.csv",

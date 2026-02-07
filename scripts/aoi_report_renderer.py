@@ -478,6 +478,240 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
     return "\n".join(lines) + "\n"
 
 
+def render_run_report_html(report: dict[str, Any], run_dir: Path) -> str:
+    aoi_id = str(report.get("aoi_id", ""))
+    bundle_id = str(report.get("bundle_id", ""))
+    generated = str(report.get("generated_at_utc", ""))
+
+    report_metadata = report.get("report_metadata") or {}
+    regulatory_context = {}
+    if isinstance(report_metadata, dict):
+        regulatory_context = report_metadata.get("regulatory_context") or {}
+
+    results = report.get("results") or []
+    evidence = report.get("evidence_artifacts") or []
+
+    def _find_relpath(suffix: str) -> str | None:
+        for entry in evidence:
+            relpath = entry.get("relpath", "") if isinstance(entry, dict) else ""
+            if relpath.endswith(suffix):
+                return relpath
+        return None
+
+    html_relpath = find_html_relpath(report)
+    report_json_relpath = _find_relpath(f"{aoi_id}.json") or _find_relpath(".json") or ""
+    metrics_relpath = _find_relpath(f"{aoi_id}/metrics.csv") or _find_relpath("metrics.csv") or ""
+    aoi_geojson_relpath = report.get("aoi_geometry_ref", {}).get("value", "")
+
+    core_links: list[tuple[str, str]] = [
+        ("aoi_report.json", "aoi_report.json"),
+        (f"reports/{report.get('report_version', 'aoi_report_v1')}/{aoi_id}.html", html_relpath),
+        (f"reports/{report.get('report_version', 'aoi_report_v1')}/{aoi_id}.json", report_json_relpath),
+        (f"reports/{report.get('report_version', 'aoi_report_v1')}/{aoi_id}/metrics.csv", metrics_relpath),
+        ("inputs/aoi.geojson", aoi_geojson_relpath),
+    ]
+    deduped_links: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for label, relpath in core_links:
+        if not relpath or relpath in seen:
+            continue
+        seen.add(relpath)
+        deduped_links.append((label, relpath))
+
+    evidence_sorted = sorted(
+        [entry for entry in evidence if isinstance(entry, dict)],
+        key=lambda item: str(item.get("relpath", "")),
+    )
+
+    status_map: dict[str, list[str]] = {}
+    for entry in results:
+        if not isinstance(entry, dict):
+            continue
+        status = str(entry.get("status", ""))
+        result_id = str(entry.get("result_id", ""))
+        if not status:
+            status = "unknown"
+        status_map.setdefault(status, []).append(result_id)
+
+    computed_results = sorted(status_map.get("computed", []))
+    placeholder_results = sorted(status_map.get("placeholder", []))
+    other_statuses = sorted(
+        [
+            f"{status}: {', '.join(sorted(ids)) or '(none)'}"
+            for status, ids in status_map.items()
+            if status not in {"computed", "placeholder"}
+        ]
+    )
+
+    gaps: list[str] = []
+    for dep in report.get("external_dependencies", []) or []:
+        if not isinstance(dep, dict):
+            continue
+        if dep.get("tile_source") != "local":
+            continue
+        missing_tiles: list[str] = []
+        for tile in dep.get("tiles_used", []) or []:
+            if not isinstance(tile, dict):
+                continue
+            if str(tile.get("source_url", "")).strip():
+                continue
+            tile_id = str(tile.get("tile_id", ""))
+            layer = str(tile.get("layer", ""))
+            missing_tiles.append(f"{tile_id}:{layer}")
+        if missing_tiles:
+            missing_tiles = sorted(set(missing_tiles))
+            gaps.append(
+                "Missing tile source URLs in external_dependencies.tiles_used: "
+                + ", ".join(missing_tiles)
+            )
+
+    crosscheck = report.get("validation", {}).get("forest_area_crosscheck", {})
+    if isinstance(crosscheck, dict):
+        outcome = crosscheck.get("outcome")
+        reason = crosscheck.get("reason")
+        if outcome == "not_comparable":
+            gaps.append(f"Maa-amet crosscheck not comparable: {reason or 'reason_not_declared'}")
+
+    in_scope = []
+    if isinstance(regulatory_context, dict):
+        in_scope = regulatory_context.get("in_scope_articles") or []
+    if not in_scope:
+        gaps.append("regulatory_context.in_scope_articles is empty")
+
+    policy_refs = report.get("policy_mapping_refs") or []
+    if not policy_refs:
+        gaps.append("policy_mapping_refs is empty")
+
+    gaps = sorted(dict.fromkeys(gaps))
+
+    lines: list[str] = []
+    lines.append("<!doctype html>")
+    lines.append('<html lang="en">')
+    lines.append("<head>")
+    lines.append("  <meta charset=\"utf-8\" />")
+    lines.append("  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />")
+    lines.append(f"  <title>AOI Report — {html.escape(aoi_id)}</title>")
+    lines.append("  <style>")
+    lines.append("    :root { --fg:#111; --bg:#fff; --muted:#666; --card:#f6f7f9; --link:#0b5fff; }")
+    lines.append("    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;")
+    lines.append("           color: var(--fg); background: var(--bg); margin: 0; }")
+    lines.append("    header { border-bottom: 1px solid #e7e7e7; background: #fff; position: sticky; top: 0; }")
+    lines.append("    .wrap { max-width: 980px; margin: 0 auto; padding: 16px 20px; }")
+    lines.append("    nav a { margin-right: 14px; text-decoration: none; color: var(--link); font-weight: 600; }")
+    lines.append("    nav a.active { color: var(--fg); }")
+    lines.append("    main { padding: 18px 20px 40px; }")
+    lines.append("    h1 { margin: 0 0 6px; font-size: 22px; }")
+    lines.append("    p { line-height: 1.5; }")
+    lines.append("    .muted { color: var(--muted); }")
+    lines.append("    .card { background: var(--card); border: 1px solid #e8eaee; border-radius: 12px; padding: 14px 14px; }")
+    lines.append("    ul { padding-left: 18px; }")
+    lines.append("    code { background: #f1f1f1; padding: 1px 4px; border-radius: 6px; }")
+    lines.append("  </style>")
+    lines.append("</head>")
+    lines.append("<body>")
+    lines.append("  <header>")
+    lines.append("    <div class=\"wrap\">")
+    lines.append("      <nav>")
+    lines.append("        <a href=\"../../../index.html\">Home</a>")
+    lines.append("        <a href=\"../../../articles/index.html\">Articles</a>")
+    lines.append("        <a href=\"../../../dependencies/index.html\">Dependencies</a>")
+    lines.append("        <a href=\"../../../regulation/links.html\">Regulation</a>")
+    lines.append("        <a href=\"../../../regulation/sources.html\">Sources</a>")
+    lines.append("        <a href=\"../../../regulation/policy_to_evidence_spine.html\">Spine</a>")
+    lines.append("        <a href=\"../../../views/index.html\">Views</a>")
+    lines.append("        <a href=\"../../index.html\" class=\"active\">AOI Reports</a>")
+    lines.append("        <a href=\"../../../dao_stakeholders/index.html\">DAO (Stakeholders)</a>")
+    lines.append("        <a href=\"../../../dao_dev/index.html\">DAO (Developers)</a>")
+    lines.append("      </nav>")
+    lines.append("    </div>")
+    lines.append("  </header>")
+    lines.append("  <main>")
+    lines.append("    <div class=\"wrap\">")
+    lines.append("      <p class=\"muted\"><a href=\"../../index.html\">Back to AOI runs</a></p>")
+    lines.append("      <h1>AOI Report</h1>")
+    lines.append(
+        "      <p><b>AOI</b>: <code>"
+        + html.escape(aoi_id)
+        + "</code><br />\n"
+        + "         <b>Bundle</b>: <code>"
+        + html.escape(bundle_id)
+        + "</code><br />\n"
+        + "         <b>Generated (UTC)</b>: <code>"
+        + html.escape(generated)
+        + "</code></p>"
+    )
+
+    lines.append("      <div class=\"card\">")
+    lines.append("        <h2>Core inspection artifacts</h2>")
+    lines.append("        <ul>")
+    for label, relpath in deduped_links:
+        href = html.escape(relpath_from_html(run_dir, run_dir / "report.html", relpath))
+        lines.append(f"          <li><a href=\"{href}\">{html.escape(relpath)}</a> ({html.escape(label)})</li>")
+    lines.append("        </ul>")
+    lines.append("        <p class=\"muted\">If a manifest is present in this bundle, it should also be linked from this page.</p>")
+    lines.append("      </div>")
+
+    lines.append("      <div class=\"card\">")
+    lines.append("        <h2>What this example demonstrates</h2>")
+    lines.append("        <ul>")
+    lines.append(
+        "          <li>Inspectable artifacts with links + hashes ("
+        + str(len(evidence_sorted))
+        + " declared in <code>aoi_report.json</code>).</li>"
+    )
+    lines.append("          <li>Computed vs placeholder results are declared in <code>results[].status</code>.</li>")
+    if computed_results:
+        lines.append(
+            "          <li>Computed results: <code>"
+            + html.escape(", ".join(computed_results))
+            + "</code>.</li>"
+        )
+    if placeholder_results:
+        lines.append(
+            "          <li>Placeholder results: <code>"
+            + html.escape(", ".join(placeholder_results))
+            + "</code>.</li>"
+        )
+    if other_statuses:
+        lines.append(
+            "          <li>Other status values: <code>"
+            + html.escape("; ".join(other_statuses))
+            + "</code>.</li>"
+        )
+    lines.append("          <li>Inspection shows declared evidence, not certification or compliance.</li>")
+    lines.append("        </ul>")
+    lines.append("      </div>")
+
+    lines.append("      <div class=\"card\">")
+    lines.append("        <h2>Known evidence gaps (for DAO)</h2>")
+    if gaps:
+        lines.append("        <ul>")
+        for gap in gaps:
+            lines.append(f"          <li>{html.escape(gap)}</li>")
+        lines.append("        </ul>")
+    else:
+        lines.append("        <p class=\"muted\">No gaps detected from <code>aoi_report.json</code>.</p>")
+    lines.append("      </div>")
+
+    lines.append("      <div class=\"card\">")
+    lines.append("        <h2>Declared evidence artifacts</h2>")
+    lines.append("        <ul>")
+    for entry in evidence_sorted:
+        relpath = str(entry.get("relpath", ""))
+        if not relpath:
+            continue
+        href = html.escape(relpath_from_html(run_dir, run_dir / "report.html", relpath))
+        lines.append(f"          <li><a href=\"{href}\">{html.escape(relpath)}</a></li>")
+    lines.append("        </ul>")
+    lines.append("      </div>")
+
+    lines.append("    </div>")
+    lines.append("  </main>")
+    lines.append("</body>")
+    lines.append("</html>")
+    return "\n".join(lines) + "\n"
+
+
 def write_text(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
@@ -506,6 +740,7 @@ def render_aoi_run(run_dir: Path) -> RenderedArtifacts:
     write_text(run_dir / html_relpath, html_content)
     write_text(run_dir / json_relpath, report_json_content)
     write_text(run_dir / metrics_relpath, metrics_csv_content)
+    write_text(run_dir / "report.html", render_run_report_html(report, run_dir))
 
     return RenderedArtifacts(
         html_relpath=html_relpath,
