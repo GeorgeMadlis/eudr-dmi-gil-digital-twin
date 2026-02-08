@@ -5,7 +5,14 @@ import shutil
 import tempfile
 from pathlib import Path
 
-from aoi_report_renderer import load_report, render_aoi_run, update_evidence_hashes, write_report
+from aoi_report_renderer import (
+    find_artifact_relpath,
+    find_html_relpath,
+    load_report,
+    render_aoi_run,
+    update_evidence_hashes,
+    write_report,
+)
 
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -42,12 +49,15 @@ def render_once(tmp_dir: Path) -> dict[str, bytes]:
     render_aoi_run(run_dir)
     updated = update_evidence_hashes(run_dir, report)
     write_report(run_dir / "aoi_report.json", updated)
+    html_relpath = find_html_relpath(updated)
+    json_relpath = find_artifact_relpath(updated, ".json")
+    metrics_relpath = find_artifact_relpath(updated, "metrics.csv")
     outputs = {}
     for relpath in [
         "report.html",
-        "reports/aoi_report_v1/estonia_testland1.html",
-        "reports/aoi_report_v1/estonia_testland1.json",
-        "reports/aoi_report_v1/estonia_testland1/metrics.csv",
+        html_relpath,
+        json_relpath,
+        metrics_relpath,
     ]:
         outputs[relpath] = (run_dir / relpath).read_bytes()
     return outputs

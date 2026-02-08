@@ -20,6 +20,24 @@ Implementation changes must be proposed against that file.
 - Report materialization (HTML + JSON)
 - Export to Digital Twin (examples only)
 
+## AOI Forest Metrics (Inspection Notes)
+
+The example AOI report bundle in docs/site/aoi_reports/runs/example/ reflects the current
+authoritative implementation outputs. Inspectors should expect:
+
+- Metric names used in v2 reports:
+	- rfm_area_ha
+	- loss_2021_2024_ha
+	- forest_end_year_area_ha
+- Method strings in the forest metrics block:
+	- area: geodesic_pixel_area_wgs84
+	- zonal: rasterize_polygon_all_touched
+- Hansen artifacts listed in the run-level report.html with bundle-relative links:
+	- forest_loss_post_2020_mask.geojson
+	- forest_current_tree_cover_mask.geojson
+	- forest_loss_post_2020_summary.json
+	- forest_loss_post_2020_tiles.json
+
 ## Determinism Guarantees (Inspection-Relevant)
 
 - Stable ordering

@@ -15,6 +15,30 @@ This document describes AOI report artefacts for inspection and certification wo
 - `summary.json`
 - supporting evidence artefacts (if applicable)
 
+## AOI Forest Metrics & Evidence (Example Bundle)
+
+The example bundle under docs/site/aoi_reports/runs/example/ is the reference for
+inspection. The AOI report v2 exposes forest metrics and Hansen artefacts with
+bundle-relative links in report.html.
+
+Metric names used in v2 (forest metrics block and metrics.csv):
+
+- rfm_area_ha
+- loss_2021_2024_ha
+- forest_end_year_area_ha
+
+Method strings (forest metrics method block):
+
+- geodesic_pixel_area_wgs84
+- rasterize_polygon_all_touched
+
+Evidence artefacts linked from report.html:
+
+- forest_loss_post_2020_mask.geojson
+- forest_current_tree_cover_mask.geojson
+- forest_loss_post_2020_summary.json
+- forest_loss_post_2020_tiles.json
+
 ## What Inspectors Should Be Able to Verify
 
 - Offline navigation
