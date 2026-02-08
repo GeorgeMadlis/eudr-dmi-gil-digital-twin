@@ -1,7 +1,10 @@
 {
   "areas_ha": {
+    "forest_2024": 0.0,
     "forest_end_year": 0.0,
+    "forest_end_year_ha": 0.0,
     "loss_2021_2024": 0.0,
+    "loss_total": 0.0,
     "loss_total_2001_2024": 0.0,
     "rfm": 0.0
   },

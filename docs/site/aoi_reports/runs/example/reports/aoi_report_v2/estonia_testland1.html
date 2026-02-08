@@ -58,10 +58,16 @@
   <table>
     <tr><th>Metric</th><th>Value</th><th>Unit</th><th>Notes</th><th>Source</th><th>Criteria</th></tr>
     <tr><td>aoi_area_ha</td><td>15775.219873859023</td><td>ha</td><td>geodesic_wgs84_pyproj</td><td>geometry</td><td>Not declared</td></tr>
+    <tr><td>end_year</td><td>2024</td><td>year</td><td>forest_end_year</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>forest_2024_ha</td><td>0.0</td><td>ha</td><td>rfm_mask &amp; (lossyear == 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>forest_end_year_ha</td><td>0.0</td><td>ha</td><td>forest_mask_end_year</td><td>hansen_gfc</td><td>Not declared</td></tr>
     <tr><td>forest_loss_post_2020_percent_of_aoi</td><td>0.0</td><td>percent</td><td>forest_loss_post_2020_ha / aoi_area_ha</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>loss_2021_2024_ha</td><td>0.0</td><td>ha</td><td>rfm_mask &amp; (lossyear in 21..24)</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>loss_total_ha</td><td>0.0</td><td>ha</td><td>rfm_mask &amp; (lossyear &gt; 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
     <tr><td>pixel_current_tree_cover_ha</td><td>0.0</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
     <tr><td>pixel_forest_loss_post_2020_ha</td><td>0.0</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
     <tr><td>pixel_initial_tree_cover_ha</td><td>0.0</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>rfm_area_ha</td><td>0.0</td><td>ha</td><td>rfm_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
   </table>
   <h2>Assumptions & Limitations</h2>
   <p><strong>No assumptions declared in this report.</strong></p>
