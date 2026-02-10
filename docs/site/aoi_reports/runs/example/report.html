@@ -44,25 +44,50 @@
       <h1>AOI Report</h1>
       <p><b>AOI</b>: <code>estonia_testland1</code><br />
          <b>Bundle</b>: <code>example</code><br />
-         <b>Generated (UTC)</b>: <code>2026-02-08T13:01:48+00:00</code></p>
+         <b>Generated (UTC)</b>: <code>2026-02-10T11:13:03+00:00</code></p>
       <div class="card">
-        <h2>Artifacts</h2>
+        <h2>Core inspection artifacts</h2>
         <ul>
-          <li><a href="inputs/aoi.geojson">AOI geometry</a> <span class="muted">(inputs/aoi.geojson)</span></li>
-<li><a href="reports/aoi_report_v2/estonia_testland1.html">Rendered AOI report (HTML)</a> <span class="muted">(reports/aoi_report_v2/estonia_testland1.html)</span></li>
-<li><a href="reports/aoi_report_v2/estonia_testland1.json">AOI report JSON</a> <span class="muted">(reports/aoi_report_v2/estonia_testland1.json)</span></li>
-<li><a href="reports/aoi_report_v2/estonia_testland1/metrics.csv">Metrics CSV</a> <span class="muted">(reports/aoi_report_v2/estonia_testland1/metrics.csv)</span></li>
-<li><a href="reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json">Hansen tiles manifest</a> <span class="muted">(reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json)</span></li>
-<li><a href="reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json">Tiles manifest (computed)</a> <span class="muted">(reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json)</span></li>
+          <li><a href="aoi_report.json">aoi_report.json</a> (aoi_report.json)</li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1.html">reports/aoi_report_v2/estonia_testland1.html</a> (reports/aoi_report_v2/estonia_testland1.html)</li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1.json">reports/aoi_report_v2/estonia_testland1.json</a> (reports/aoi_report_v2/estonia_testland1.json)</li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/metrics.csv">reports/aoi_report_v2/estonia_testland1/metrics.csv</a> (reports/aoi_report_v2/estonia_testland1/metrics.csv)</li>
+          <li><a href="inputs/aoi.geojson">inputs/aoi.geojson</a> (inputs/aoi.geojson)</li>
+        </ul>
+        <p class="muted">If a manifest is present in this bundle, it should also be linked from this page.</p>
+      </div>
+      <div class="card">
+        <h2>What this example demonstrates</h2>
+        <ul>
+          <li>Inspectable artifacts with links + hashes (14 declared in <code>aoi_report.json</code>).</li>
+          <li>Computed vs placeholder results are declared in <code>results[].status</code>.</li>
+          <li>Other status values: <code>pass: result-001</code>.</li>
+          <li>Inspection shows declared evidence, not certification or compliance.</li>
         </ul>
       </div>
-      <div class="card" style="margin-top:16px;">
-        <h2>Forest area and loss (pixel-based, AOI intersection)</h2>
+      <div class="card">
+        <h2>Known evidence gaps (for DAO)</h2>
         <ul>
-          <li><b>Tree cover threshold (%):</b> 30</li>
-<li><b>RFM area (ha):</b> 0.0</li>
-<li><b>Loss 2021–2024 (ha):</b> 0.0 (0.0% of RFM)</li>
-<li><b>Forest end-year area (ha):</b> 0.0</li>
+          <li>Maa-amet crosscheck not comparable: missing_reference_forest_area</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h2>Declared evidence artifacts</h2>
+        <ul>
+          <li><a href="inputs/aoi.geojson">inputs/aoi.geojson</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1.html">reports/aoi_report_v2/estonia_testland1.html</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1.json">reports/aoi_report_v2/estonia_testland1.json</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/hansen/forest_2000_tree_cover_mask.geojson">reports/aoi_report_v2/estonia_testland1/hansen/forest_2000_tree_cover_mask.geojson</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/hansen/forest_current_tree_cover_mask.geojson">reports/aoi_report_v2/estonia_testland1/hansen/forest_current_tree_cover_mask.geojson</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/hansen/forest_end_year_tree_cover_mask.geojson">reports/aoi_report_v2/estonia_testland1/hansen/forest_end_year_tree_cover_mask.geojson</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_mask.geojson">reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_mask.geojson</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_summary.json">reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_summary.json</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json">reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/hansen/forest_mask_debug.json">reports/aoi_report_v2/estonia_testland1/hansen/forest_mask_debug.json</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv">reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json">reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/map/map_config.json">reports/aoi_report_v2/estonia_testland1/map/map_config.json</a></li>
+          <li><a href="reports/aoi_report_v2/estonia_testland1/metrics.csv">reports/aoi_report_v2/estonia_testland1/metrics.csv</a></li>
         </ul>
       </div>
     </div>

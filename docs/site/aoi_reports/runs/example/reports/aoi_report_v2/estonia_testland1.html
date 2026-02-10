@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AOI Report — estonia_testland1</title>
+  <title>AOI Report Summary — estonia_testland1</title>
   <style>
     body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; margin: 24px; }
     table { border-collapse: collapse; width: 100%; }
@@ -11,90 +11,77 @@
     th { background: #f6f6f6; text-align: left; width: 240px; }
     h2 { margin-top: 28px; }
     code { background: #f6f6f6; padding: 1px 4px; border-radius: 4px; }
-    .muted { color: #666; }
   </style>
 </head>
 <body>
-  <h1>AOI Report</h1>
+  <h2>Report Intent & Scope</h2>
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>assessment_capability</td><td><code>&quot;inspectable_only&quot;</code></td></tr>
+    <tr><td>regulatory_context</td><td><code>{&quot;in_scope_articles&quot;: [&quot;article-3&quot;], &quot;out_of_scope_articles&quot;: [], &quot;regulation&quot;: &quot;EUDR&quot;}</code></td></tr>
+    <tr><td>report_type</td><td><code>&quot;example&quot;</code></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h2>Regulatory traceability</h2>
+  <table>
+    <tr><th>Regulation</th><th>Article</th><th>Evidence class</th><th>Acceptance criteria</th><th>Result ref</th></tr>
+    <tr><td>EUDR</td><td>article-3</td><td><strong>missing-link</strong> aoi_geometry</td><td><strong>missing-link</strong> aoi_geometry_present</td><td><a href="#result-result-001">result-001</a></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h2>Evidence Registry</h2>
+  <table>
+    <tr><th>Evidence Class</th><th>Mandatory</th><th>Status</th></tr>
+    <tr><td><code>value</code></td><td></td><td><code>{&quot;evidence_classes&quot;: [{&quot;class_id&quot;: &quot;aoi_geometry&quot;, &quot;mandatory&quot;: true, &quot;status&quot;: &quot;present&quot;}, {&quot;class_id&quot;: &quot;forest_loss_post_2020&quot;, &quot;mandatory&quot;: true, &quot;status&quot;: &quot;present&quot;}, {&quot;class_id&quot;: &quot;hansen_tiles_provenance&quot;, &quot;mandatory&quot;: true, &quot;status&quot;: &quot;present&quot;}]}</code></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h2>Acceptance Criteria</h2>
+  <table>
+    <tr><th>Criteria</th><th>Status</th><th>Details</th></tr>
+    <tr><td id="criteria-None">None</td><td></td><td><code>{&quot;criteria_id&quot;: &quot;aoi_geometry_present&quot;, &quot;decision_type&quot;: &quot;presence&quot;, &quot;description&quot;: &quot;AOI geometry is present and referenced in inputs.&quot;, &quot;evidence_classes&quot;: [&quot;aoi_geometry&quot;]}</code></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h1>AOI Report Summary</h1>
   <table>
     <tr><th>AOI</th><td>estonia_testland1</td></tr>
     <tr><th>Bundle</th><td>example</td></tr>
-    <tr><th>Generated (UTC)</th><td>2026-02-08T13:01:48+00:00</td></tr>
     <tr><th>Report Version</th><td>aoi_report_v2</td></tr>
     <tr><th>Geometry Ref</th><td>geojson: inputs/aoi.geojson</td></tr>
-    <tr><th>AOI area (ha)</th><td>15775.219873859023</td></tr>
-    <tr><th>AOI area method</th><td>geodesic_wgs84_pyproj</td></tr>
   </table>
-
-  <h2>Deforestation-free (post-2020)</h2>
+  <h2>Inputs</h2>
   <table>
-    <tr><th>Definition</th><td>Forest loss after 2020-12-31 (pixel-wise intersection)</td></tr>
-<tr><th>Forest loss (ha)</th><td>0.0</td></tr>
-<tr><th>Percent of AOI</th><td>0.0</td></tr>
-<tr><th>Threshold (ha)</th><td>0.0</td></tr>
-<tr><th>Status</th><td>pass</td></tr>
-<tr><th>Uncertainty</th><td>{'pixel_area_method': 'geodesic_wgs84_pyproj', 'nodata': 'masked_as_no_loss', 'projection': 'EPSG:4326', 'conservative_bounds': 'area estimates are lower-bound for masked/no-data pixels'}</td></tr>
+    <tr><th>Source</th><th>URI</th><th>SHA256</th><th>Content Type</th></tr>
+    <tr><td>aoi_geometry</td><td>inputs/aoi.geojson</td><td><code>22ad6fe53d54f93b3d2f5894c9722b944ebd005734435308c2f14020e76bc28b</code></td><td>application/geo+json</td></tr>
   </table>
-
-  <h2>Forest baseline / forest mask</h2>
+  <h2>Metrics</h2>
   <table>
-    <tr><th>Tree cover threshold (%)</th><td>30</td></tr>
-    <tr><th>Baseline year</th><td>2000</td></tr>
-    <tr><th>Cutoff year</th><td>2020</td></tr>
+    <tr><th>Metric</th><th>Value</th><th>Unit</th><th>Notes</th><th>Source</th><th>Criteria</th></tr>
+    <tr><td>aoi_area_ha</td><td>15775.219873859023</td><td>ha</td><td>geodesic_wgs84_pyproj</td><td>geometry</td><td>Not declared</td></tr>
   </table>
-
-    <h2>Forest area and loss (pixel-based, AOI intersection)</h2>
-    <table>
-        <tr><th>Tree cover threshold (%)</th><td>30</td></tr>
-<tr><th>Reference forest mask year</th><td>2000</td></tr>
-<tr><th>RFM area (ha)</th><td>0.0</td></tr>
-<tr><th>Loss 2021–2024 (ha)</th><td>0.0 (0.0% of RFM)</td></tr>
-<tr><th>Forest end-year area (ha)</th><td>0.0</td></tr>
-<tr><th>Method summary</th><td>area_ha = sum(pixel_area_m2 * mask * zone_mask)/10000</td></tr>
-    </table>
-
-  <h2>Data sources & provenance</h2>
+  <h2>Assumptions & Limitations</h2>
+  <p><strong>No assumptions declared in this report.</strong></p>
+  <div style="height:12px;"></div>
+  <h2>Results</h2>
   <table>
-    <tr><th>dataset_id</th><th>version</th><th>retrieved_at_utc</th><th>license</th><th>source_url</th></tr>
-    <tr><td>aoi_geometry_input</td><td>user_supplied</td><td>2026-02-08T13:01:48+00:00</td><td>user_supplied</td><td>inputs/aoi.geojson</td></tr>
-<tr><td>hansen_gfc_2024_v1_12</td><td>2024-v1.12</td><td>2026-02-08T13:01:48+00:00</td><td>Hansen GFC (public)</td><td>https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/</td></tr>
+    <tr><th>Result</th><th>Status</th><th>Criteria</th></tr>
+    <tr><td id="result-result-001">result-001</td><td>pass</td><td><a href="#criteria-aoi_geometry_present">aoi_geometry_present</a></td></tr>
   </table>
-
-  <h2>Methods & parameters</h2>
-  <table>
-    <tr><th>aoi_area_method</th><td>geodesic_wgs84_pyproj</td></tr>
-<tr><th>forest_loss_post_2020</th><td>{'canopy_threshold_percent': 30, 'cutoff_year': 2020, 'acceptance_threshold_ha': 0.0, 'pixel_area_method': 'geodesic_wgs84_pyproj', 'area_method': 'pipeline_a_raster_zonal_geodesic_wgs84', 'lossyear_mapping': '0=no_loss; 21..24=2021..2024 (year=lossyear+2000)', 'mask_definitions': {'rfm_mask': 'treecover2000 >= canopy_threshold_percent', 'loss_total': 'rfm_mask & (lossyear > 0)', 'loss_2021_2024': 'rfm_mask & (lossyear in 21..24)', 'forest_2024': 'rfm_mask & (lossyear == 0)'}, 'end_year': 2024, 'forest_end_year_ha': 0.0}</td></tr>
-<tr><th>implementation</th><td>{'forest_loss_post_2020': 'v1', 'git_commit': 'd0f7543e1d97f78c9918859f800b314e7f34b06a'}</td></tr>
-  </table>
-
-  <h2>Traceability to EUDR Articles</h2>
-  <table>
-    <tr><th>Article</th><th>Requirement</th><th>Evidence fields</th><th>Artifacts</th><th>Status</th></tr>
-    <tr><td>EUDR Article 9</td><td>AOI geometry is declared and traceable</td><td>aoi_geometry_ref, inputs.sources</td><td><a href="../../inputs/aoi.geojson">inputs/aoi.geojson</a></td><td>pass</td></tr>
-<tr><td>EUDR Article 3</td><td>Deforestation-free after 2020-12-31</td><td>results_summary.deforestation_free_post_2020, computed.forest_loss_post_2020.pixel_forest_loss_post_2020_ha</td><td><a href="estonia_testland1/hansen/forest_loss_post_2020_mask.geojson">reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_mask.geojson</a>, <a href="estonia_testland1/hansen/forest_loss_post_2020_tiles.json">reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json</a></td><td>pass</td></tr>
-  </table>
-
-  <h2>Evidence artifact index</h2>
-  <table>
-    <tr><th>relpath</th><th>sha256</th><th>size_bytes</th><th>role</th></tr>
-    <tr><td colspan="4">(none)</td></tr>
-  </table>
-
-  <h2>Bundle artifacts</h2>
+  <div style="height:12px;"></div>
+  <h2>Evidence Artifacts</h2>
   <ul>
-    <li><a href="../../inputs/aoi.geojson">../../inputs/aoi.geojson</a></li>
-<li><a href="estonia_testland1.json">estonia_testland1.json</a></li>
-<li><a href="estonia_testland1/hansen/forest_current_tree_cover_mask.geojson">estonia_testland1/hansen/forest_current_tree_cover_mask.geojson</a></li>
-<li><a href="estonia_testland1/hansen/forest_loss_post_2020_mask.geojson">estonia_testland1/hansen/forest_loss_post_2020_mask.geojson</a></li>
-<li><a href="estonia_testland1/hansen/forest_loss_post_2020_summary.json">estonia_testland1/hansen/forest_loss_post_2020_summary.json</a></li>
-<li><a href="estonia_testland1/hansen/forest_loss_post_2020_tiles.json">estonia_testland1/hansen/forest_loss_post_2020_tiles.json</a></li>
-<li><a href="estonia_testland1/hansen/forest_mask_debug.json">estonia_testland1/hansen/forest_mask_debug.json</a></li>
-<li><a href="estonia_testland1/maaamet/maaamet_fields_inventory.json">estonia_testland1/maaamet/maaamet_fields_inventory.json</a></li>
-<li><a href="estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv">estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv</a></li>
-<li><a href="estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json">estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json</a></li>
-<li><a href="estonia_testland1/maaamet/maaamet_top10_parcels.csv">estonia_testland1/maaamet/maaamet_top10_parcels.csv</a></li>
-<li><a href="estonia_testland1/maaamet/maaamet_top10_parcels.geojson">estonia_testland1/maaamet/maaamet_top10_parcels.geojson</a></li>
-<li><a href="estonia_testland1/metrics.csv">estonia_testland1/metrics.csv</a></li>
+    <li><a href="../../inputs/aoi.geojson">inputs/aoi.geojson</a></li>
+    <li><a href="estonia_testland1.html">reports/aoi_report_v2/estonia_testland1.html</a></li>
+    <li><a href="estonia_testland1.json">reports/aoi_report_v2/estonia_testland1.json</a></li>
+    <li><a href="estonia_testland1/hansen/forest_2000_tree_cover_mask.geojson">reports/aoi_report_v2/estonia_testland1/hansen/forest_2000_tree_cover_mask.geojson</a></li>
+    <li><a href="estonia_testland1/hansen/forest_current_tree_cover_mask.geojson">reports/aoi_report_v2/estonia_testland1/hansen/forest_current_tree_cover_mask.geojson</a></li>
+    <li><a href="estonia_testland1/hansen/forest_end_year_tree_cover_mask.geojson">reports/aoi_report_v2/estonia_testland1/hansen/forest_end_year_tree_cover_mask.geojson</a></li>
+    <li><a href="estonia_testland1/hansen/forest_loss_post_2020_mask.geojson">reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_mask.geojson</a></li>
+    <li><a href="estonia_testland1/hansen/forest_loss_post_2020_summary.json">reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_summary.json</a></li>
+    <li><a href="estonia_testland1/hansen/forest_loss_post_2020_tiles.json">reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json</a></li>
+    <li><a href="estonia_testland1/hansen/forest_mask_debug.json">reports/aoi_report_v2/estonia_testland1/hansen/forest_mask_debug.json</a></li>
+    <li><a href="estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv">reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv</a></li>
+    <li><a href="estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json">reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json</a></li>
+    <li><a href="estonia_testland1/map/map_config.json">reports/aoi_report_v2/estonia_testland1/map/map_config.json</a></li>
+    <li><a href="estonia_testland1/metrics.csv">reports/aoi_report_v2/estonia_testland1/metrics.csv</a></li>
   </ul>
 </body>
 </html>
