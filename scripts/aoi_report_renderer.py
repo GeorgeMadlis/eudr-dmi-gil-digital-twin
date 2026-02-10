@@ -106,6 +106,7 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
     assumptions = report.get("assumptions")
     if assumptions is None and isinstance(report_metadata, dict):
         assumptions = report_metadata.get("assumptions")
+    map_assets = report.get("map_assets") if isinstance(report.get("map_assets"), dict) else None
 
     inputs = report.get("inputs", {}).get("sources", [])
     inputs_sorted = sorted(inputs, key=lambda item: str(item.get("source_id", "")))
@@ -140,7 +141,17 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
     lines.append("    th { background: #f6f6f6; text-align: left; width: 240px; }")
     lines.append("    h2 { margin-top: 28px; }")
     lines.append("    code { background: #f6f6f6; padding: 1px 4px; border-radius: 4px; }")
+    lines.append("    #map { height: 420px; border: 1px solid #ddd; border-radius: 8px; margin: 12px 0 16px; background: #fafafa; }")
     lines.append("  </style>")
+    if map_assets and map_assets.get("config_relpath"):
+        lines.append(
+            "  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.css\" "
+            "integrity=\"sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=\" crossorigin=\"\" />"
+        )
+        lines.append(
+            "  <script src=\"https://unpkg.com/leaflet@1.9.4/dist/leaflet.js\" "
+            "integrity=\"sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=\" crossorigin=\"\"></script>"
+        )
     lines.append("</head>")
     lines.append("<body>")
     if not report_metadata:
@@ -362,6 +373,52 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
             "</tr>"
         )
     lines.append("  </table>")
+
+    if map_assets and map_assets.get("config_relpath"):
+        map_config_relpath = str(map_assets.get("config_relpath"))
+        map_href = html.escape(relpath_from_html(run_dir, html_path, map_config_relpath))
+        lines.append("  <h2>Map (interactive)</h2>")
+        lines.append(f"  <p><a href=\"{map_href}\">map_config.json</a></p>")
+        lines.append("  <div id=\"map\"></div>")
+        lines.append("  <script>")
+        lines.append("    (function () {")
+        lines.append("      const map = L.map('map', { zoomControl: true });")
+        lines.append(f"      const configUrl = '{map_href}';")
+        lines.append("      fetch(configUrl)")
+        lines.append("        .then((resp) => resp.json())")
+        lines.append("        .then((config) => {")
+        lines.append("          const bbox = config.aoi_bbox;")
+        lines.append("          const bounds = L.latLngBounds([")
+        lines.append("            [bbox.min_lat, bbox.min_lon],")
+        lines.append("            [bbox.max_lat, bbox.max_lon],")
+        lines.append("          ]);")
+        lines.append("          map.fitBounds(bounds);")
+        lines.append("          const overlays = {};")
+        lines.append("          const addGeoJson = (label, url, options) => {")
+        lines.append("            if (!url) return;")
+        lines.append("            fetch(url)")
+        lines.append("              .then((r) => r.json())")
+        lines.append("              .then((data) => {")
+        lines.append("                const layer = L.geoJSON(data, options).addTo(map);")
+        lines.append("                overlays[label] = layer;")
+        lines.append("              });")
+        lines.append("          };")
+        lines.append("          addGeoJson('Forest cover 2000', config.layers.forest_2000, { style: { color: '#2e7d32', weight: 1, fillOpacity: 0.3 } });")
+        lines.append("          addGeoJson(`Forest cover ${config.latest_year}`, config.layers.forest_end_year, { style: { color: '#1b5e20', weight: 1, fillOpacity: 0.3 } });")
+        lines.append("          addGeoJson('Forest loss since 2020', config.layers.forest_loss_post_2020, { style: { color: '#c62828', weight: 1, fillOpacity: 0.4 } });")
+        lines.append("          addGeoJson('AOI boundary', config.layers.aoi_boundary, { style: { color: '#1976d2', weight: 2, fillOpacity: 0 } });")
+        lines.append("          addGeoJson('Maa-amet parcels', config.layers.parcels, {")
+        lines.append("            style: { color: '#6a1b9a', weight: 1, fillOpacity: 0.05 },")
+        lines.append("            onEachFeature: (feature, layer) => {")
+        lines.append("              const props = feature.properties || {};")
+        lines.append("              const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''}`;")
+        lines.append("              layer.bindTooltip(label, { sticky: true });")
+        lines.append("            },")
+        lines.append("          });")
+        lines.append("          L.control.layers(null, overlays, { collapsed: false }).addTo(map);")
+        lines.append("        });")
+        lines.append("    })();")
+        lines.append("  </script>")
 
     lines.append("  <h2>Assumptions & Limitations</h2>")
     if not assumptions:
