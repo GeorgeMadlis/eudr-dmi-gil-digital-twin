@@ -23,14 +23,14 @@
     {
       "dataset_id": "aoi_geometry_input",
       "license": "user_supplied",
-      "retrieved_at_utc": "2026-02-10T12:22:47+00:00",
+      "retrieved_at_utc": "2026-02-10T14:34:12+00:00",
       "source_url": "inputs/aoi.geojson",
       "version": "user_supplied"
     },
     {
       "dataset_id": "hansen_gfc_2024_v1_12",
       "license": "Hansen GFC (public)",
-      "retrieved_at_utc": "2026-02-10T12:22:47+00:00",
+      "retrieved_at_utc": "2026-02-10T14:34:12+00:00",
       "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
       "version": "2024-v1.12"
     }
@@ -51,7 +51,7 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.html",
-      "sha256": "4b85047bf0e1f3a1679b95425f31db7bf45c10e506d76ac99cf51dc27c09635b",
+      "sha256": "091b819307d2a5364b6596c0863dd4509e823a80c05076081d28b296389f0d48",
       "size_bytes": 9481
     },
     {
@@ -60,7 +60,7 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.json",
-      "sha256": "a59569cb7405ca14e9190929b32d44ba2fa5d212487916ce5bf81771b68895db",
+      "sha256": "f79aa7b1f34b3708969a33a386f58baa57c8beb0cde8e384d44526c94a6e17ae",
       "size_bytes": 6377
     },
     {
@@ -114,7 +114,7 @@
         "role": "hansen_tiles_manifest"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-      "sha256": "49b59bc3bc51449b190c935acedcc46516999dc4b9a2e12a236a5e7dd1dcaa55",
+      "sha256": "40fcb6cdbc464a1d19bb832942635a00dfb4e586c275bcee5b12c346548b6e31",
       "size_bytes": 1154
     },
     {
@@ -198,7 +198,7 @@
       "tile_source": "local",
       "tiles_manifest": {
         "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "49b59bc3bc51449b190c935acedcc46516999dc4b9a2e12a236a5e7dd1dcaa55"
+        "sha256": "40fcb6cdbc464a1d19bb832942635a00dfb4e586c275bcee5b12c346548b6e31"
       },
       "tiles_used": [
         {
@@ -220,7 +220,7 @@
       ]
     }
   ],
-  "generated_at_utc": "2026-02-10T12:22:47+00:00",
+  "generated_at_utc": "2026-02-10T14:34:12+00:00",
   "inputs": {
     "sources": [
       {
@@ -276,7 +276,7 @@
     },
     "implementation": {
       "forest_loss_post_2020": "v1",
-      "git_commit": "7cf89dcbf7d41871ec77761ad110731760a61525"
+      "git_commit": "89c97f5b571d61c4e52a2d962ed5653fa8fc474f"
     }
   },
   "policy_mapping": [
