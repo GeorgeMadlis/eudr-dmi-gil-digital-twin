@@ -23,14 +23,14 @@
     {
       "dataset_id": "aoi_geometry_input",
       "license": "user_supplied",
-      "retrieved_at_utc": "2026-02-10T11:42:38+00:00",
+      "retrieved_at_utc": "2026-02-10T12:22:47+00:00",
       "source_url": "inputs/aoi.geojson",
       "version": "user_supplied"
     },
     {
       "dataset_id": "hansen_gfc_2024_v1_12",
       "license": "Hansen GFC (public)",
-      "retrieved_at_utc": "2026-02-10T11:42:38+00:00",
+      "retrieved_at_utc": "2026-02-10T12:22:47+00:00",
       "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
       "version": "2024-v1.12"
     }
@@ -51,8 +51,8 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.html",
-      "sha256": "d16f41c76f93660140d44b185c63fa24a84db8f2148bb7fa9fafe9af5cc973aa",
-      "size_bytes": 8484
+      "sha256": "2e9ca814c0f834e1500a0543a69b78ab187dbb644585eb01fd5098f1c36bebef",
+      "size_bytes": 8814
     },
     {
       "content_type": "application/json",
@@ -60,8 +60,8 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.json",
-      "sha256": "1d63a2d20f8c205afad991dba63ba734ba70741face7cded862ec1fb2caca05f",
-      "size_bytes": 12563
+      "sha256": "3b5e7bec64d1903716fb3fcb5430be889a2e1cbb2712e624dc2c12874e6505f5",
+      "size_bytes": 12598
     },
     {
       "content_type": "application/geo+json",
@@ -69,8 +69,8 @@
         "role": "forest_2000_mask"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_2000_tree_cover_mask.geojson",
-      "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799",
-      "size_bytes": 43
+      "sha256": "e7b6efc8c9f9c5738576b8c767979b5f2b95f47799be75aee2a6ca18384a6c6b",
+      "size_bytes": 318960
     },
     {
       "content_type": "application/geo+json",
@@ -78,8 +78,8 @@
         "role": "forest_current_mask"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_current_tree_cover_mask.geojson",
-      "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799",
-      "size_bytes": 43
+      "sha256": "62a4174f94b270f25a16a7021b8efead623fde67f6f9e97d15c4365818659323",
+      "size_bytes": 752528
     },
     {
       "content_type": "application/geo+json",
@@ -87,8 +87,8 @@
         "role": "forest_end_year_mask"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_end_year_tree_cover_mask.geojson",
-      "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799",
-      "size_bytes": 43
+      "sha256": "62a4174f94b270f25a16a7021b8efead623fde67f6f9e97d15c4365818659323",
+      "size_bytes": 752528
     },
     {
       "content_type": "application/geo+json",
@@ -96,8 +96,8 @@
         "role": "forest_loss_mask"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_mask.geojson",
-      "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799",
-      "size_bytes": 43
+      "sha256": "0948a4ede585c55020e38e88514614d2f215b0078895ce8b5cb53b19141ac567",
+      "size_bytes": 152466
     },
     {
       "content_type": "application/json",
@@ -105,8 +105,8 @@
         "role": "forest_loss_summary"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_summary.json",
-      "sha256": "1132286cb052a1bfa3a7b9966cc67be5b60c6c321a84f0a08c5264b3c2dc9b37",
-      "size_bytes": 688
+      "sha256": "5554b07c8ea4858fad03c4d0763facf51e5f3f9633052d14c97e381f5ab71497",
+      "size_bytes": 974
     },
     {
       "content_type": "application/json",
@@ -114,7 +114,7 @@
         "role": "hansen_tiles_manifest"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-      "sha256": "63329a11d53b790c57494e969a7d8de3174f310b7f9df845ad7432361ca517d6",
+      "sha256": "49b59bc3bc51449b190c935acedcc46516999dc4b9a2e12a236a5e7dd1dcaa55",
       "size_bytes": 1154
     },
     {
@@ -123,8 +123,8 @@
         "role": "forest_mask_debug"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_mask_debug.json",
-      "sha256": "e6ad15a0c5230e5a0ae26fb697e79ec82454c5daa4e521a9780a8611c4e2ec11",
-      "size_bytes": 196
+      "sha256": "6c6174cd057296af79efbcde6112a33dfd2656a2c0401c5520a31370cee4f3be",
+      "size_bytes": 216
     },
     {
       "content_type": "text/csv",
@@ -138,8 +138,8 @@
     {
       "content_type": "application/json",
       "relpath": "reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json",
-      "sha256": "16b1495b00e01dda094b2cd6cc6cb5a425d3ea418e2bc9b4de17c0a029dd7514",
-      "size_bytes": 337
+      "sha256": "1cb14afa1e300ab8b2e5431814b7a1ea15f0745c66c0f6d5b9e2b6e87bb5fd22",
+      "size_bytes": 342
     },
     {
       "content_type": "application/json",
@@ -198,29 +198,29 @@
       "tile_source": "local",
       "tiles_manifest": {
         "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "63329a11d53b790c57494e969a7d8de3174f310b7f9df845ad7432361ca517d6"
+        "sha256": "49b59bc3bc51449b190c935acedcc46516999dc4b9a2e12a236a5e7dd1dcaa55"
       },
       "tiles_used": [
         {
           "layer": "lossyear",
-          "local_path": "/Users/server/data/eudr-dmi/hansen/hansen_gfc_2024_v1_12/tiles/N50_E020/lossyear.tif",
-          "sha256": "067302ee9c03b49e4c2dd295a13b4244ec9431a1771b2d2bb889a3b1a81556c1",
-          "size_bytes": 36017634,
-          "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_lossyear_50N_020E.tif",
-          "tile_id": "N50_E020"
+          "local_path": "/Users/server/data/eudr-dmi/hansen/hansen_gfc_2024_v1_12/tiles/N60_E020/lossyear.tif",
+          "sha256": "632a748fe2507bb5fd3bae5fb14844989d925b95405137cbd64beb632c401a66",
+          "size_bytes": 71902899,
+          "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_lossyear_60N_020E.tif",
+          "tile_id": "N60_E020"
         },
         {
           "layer": "treecover2000",
-          "local_path": "/Users/server/data/eudr-dmi/hansen/hansen_gfc_2024_v1_12/tiles/N50_E020/treecover2000.tif",
-          "sha256": "8c3e73f13967e168120e3baa7ed7d9223684f798d393933fe6e7b429d89f5fbd",
-          "size_bytes": 406010213,
-          "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_treecover2000_50N_020E.tif",
-          "tile_id": "N50_E020"
+          "local_path": "/Users/server/data/eudr-dmi/hansen/hansen_gfc_2024_v1_12/tiles/N60_E020/treecover2000.tif",
+          "sha256": "705c9bf84828271601fdc53a5c04904673334ce8ea9bb817d3273fc79d3707ca",
+          "size_bytes": 416341309,
+          "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_treecover2000_60N_020E.tif",
+          "tile_id": "N60_E020"
         }
       ]
     }
   ],
-  "generated_at_utc": "2026-02-10T11:42:38+00:00",
+  "generated_at_utc": "2026-02-10T12:22:47+00:00",
   "inputs": {
     "sources": [
       {
@@ -264,7 +264,7 @@
       "canopy_threshold_percent": 30,
       "cutoff_year": 2020,
       "end_year": 2024,
-      "forest_end_year_ha": 0.0,
+      "forest_end_year_ha": 4446.162000214592,
       "lossyear_mapping": "0=no_loss; 21..24=2021..2024 (year=lossyear+2000)",
       "mask_definitions": {
         "forest_2024": "rfm_mask & (lossyear == 0)",
@@ -353,7 +353,7 @@
         "tolerance_percent": 5.0
       },
       "computed": {
-        "forest_area_ha": 0.0
+        "forest_area_ha": 4446.162
       },
       "csv_ref": {
         "content_type": "text/csv",
@@ -374,7 +374,7 @@
       "summary_ref": {
         "content_type": "application/json",
         "relpath": "reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json",
-        "sha256": "16b1495b00e01dda094b2cd6cc6cb5a425d3ea418e2bc9b4de17c0a029dd7514"
+        "sha256": "1cb14afa1e300ab8b2e5431814b7a1ea15f0745c66c0f6d5b9e2b6e87bb5fd22"
       }
     },
     "maaamet": {
