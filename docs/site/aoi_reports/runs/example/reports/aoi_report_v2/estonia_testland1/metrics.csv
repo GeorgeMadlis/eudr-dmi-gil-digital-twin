@@ -1,12 +1,12 @@
 variable,value,unit,notes,source
 aoi_area_ha,15775.219873859023,ha,geodesic_wgs84_pyproj,geometry
 end_year,2024,year,forest_end_year,hansen_gfc
-forest_2024_ha,570.380490532133,ha,rfm_mask & (lossyear == 0),hansen_gfc
-forest_end_year_ha,570.380490532133,ha,forest_mask_end_year,hansen_gfc
+forest_2024_ha,587.744748713547,ha,rfm_mask & (lossyear == 0),hansen_gfc
+forest_end_year_ha,587.744748713547,ha,forest_mask_end_year,hansen_gfc
 forest_loss_post_2020_percent_of_aoi,0.1420975186351962,percent,forest_loss_post_2020_ha / aoi_area_ha,hansen_gfc
 loss_2021_2024_ha,20.67936513042152,ha,rfm_mask & (lossyear in 21..24),hansen_gfc
-loss_total_ha,50.28916938194036,ha,rfm_mask & (lossyear > 0),hansen_gfc
-pixel_current_tree_cover_ha,570.380491,ha,pixel_mask,hansen_gfc
+loss_total_ha,50.45071596904397,ha,rfm_mask & (lossyear > 0),hansen_gfc
+pixel_current_tree_cover_ha,587.744749,ha,pixel_mask,hansen_gfc
 pixel_forest_loss_post_2020_ha,22.416196,ha,pixel_mask,hansen_gfc
-pixel_initial_tree_cover_ha,620.66966,ha,pixel_mask,hansen_gfc
-rfm_area_ha,620.6696599140733,ha,rfm_mask,hansen_gfc
+pixel_initial_tree_cover_ha,638.195465,ha,pixel_mask,hansen_gfc
+rfm_area_ha,638.1954646825909,ha,rfm_mask,hansen_gfc

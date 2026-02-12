@@ -1,6 +1,6 @@
 {
   "area_method": "pipeline_a_raster_zonal_geodesic_wgs84",
-  "canopy_threshold_pct": 30,
+  "canopy_threshold_pct": 10,
   "crs": "EPSG:4326",
   "end_year": 2024,
   "loss_year_code_basis": 2000,
