@@ -64,50 +64,42 @@
     <tr><th>Metric</th><th>Value</th><th>Unit</th><th>Notes</th><th>Source</th><th>Criteria</th></tr>
     <tr><td>aoi_area_ha</td><td>15775.219873859023</td><td>ha</td><td>geodesic_wgs84_pyproj</td><td>geometry</td><td>Not declared</td></tr>
     <tr><td>end_year</td><td>2024</td><td>year</td><td>forest_end_year</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>forest_2024_ha</td><td>416.06087365026985</td><td>ha</td><td>rfm_mask &amp; (lossyear == 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>forest_end_year_ha</td><td>416.06087365026985</td><td>ha</td><td>forest_mask_end_year</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>forest_loss_post_2020_percent_of_aoi</td><td>0.10631728834279121</td><td>percent</td><td>forest_loss_post_2020_ha / aoi_area_ha</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>loss_2021_2024_ha</td><td>16.771785975099796</td><td>ha</td><td>rfm_mask &amp; (lossyear in 21..24)</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>loss_total_ha</td><td>89.66876423288652</td><td>ha</td><td>rfm_mask &amp; (lossyear &gt; 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>pixel_current_tree_cover_ha</td><td>416.060874</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>pixel_forest_loss_post_2020_ha</td><td>16.771786</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>pixel_initial_tree_cover_ha</td><td>505.729638</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>rfm_area_ha</td><td>505.7296378831563</td><td>ha</td><td>rfm_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>forest_2024_ha</td><td>10.63309306918092</td><td>ha</td><td>rfm_mask &amp; (lossyear == 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>forest_end_year_ha</td><td>10.63309306918092</td><td>ha</td><td>forest_mask_end_year</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>forest_loss_post_2020_percent_of_aoi</td><td>0.0006948873034831693</td><td>percent</td><td>forest_loss_post_2020_ha / aoi_area_ha</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>loss_2021_2024_ha</td><td>0.10961951617712284</td><td>ha</td><td>rfm_mask &amp; (lossyear in 21..24)</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>loss_total_ha</td><td>0.9865756455941057</td><td>ha</td><td>rfm_mask &amp; (lossyear &gt; 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>pixel_current_tree_cover_ha</td><td>10.633093</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>pixel_forest_loss_post_2020_ha</td><td>0.10962</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>pixel_initial_tree_cover_ha</td><td>11.619669</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>rfm_area_ha</td><td>11.619668714775026</td><td>ha</td><td>rfm_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
   </table>
   <h2>Maa-amet parcels</h2>
   <table>
     <tr><th>Field</th><th>Value</th></tr>
     <tr><td>enabled</td><td><code>true</code></td></tr>
     <tr><td>parcel_layer</td><td><code>&quot;kataster:ky_kehtiv&quot;</code></td></tr>
-    <tr><td>parcel_count</td><td><code>2330</code></td></tr>
+    <tr><td>parcel_count</td><td><code>10</code></td></tr>
     <tr><td>notes</td><td><code>&quot;WFS: https://gsavalik.envir.ee/geoserver/wfs layer=kataster:ky_kehtiv&quot;</code></td></tr>
-    <tr><td>maaamet_land_area_ha_sum</td><td><code>13888.6646</code></td></tr>
-    <tr><td>hansen_land_area_ha_sum</td><td><code>13891.300459</code></td></tr>
-    <tr><td>land_area_diff_ha</td><td><code>2.635859</code></td></tr>
-    <tr><td>land_area_diff_pct</td><td><code>0.018978</code></td></tr>
+    <tr><td>maaamet_land_area_ha_sum</td><td><code>596.5801</code></td></tr>
+    <tr><td>hansen_land_area_ha_sum</td><td><code>596.364609</code></td></tr>
+    <tr><td>land_area_diff_ha</td><td><code>-0.215491</code></td></tr>
+    <tr><td>land_area_diff_pct</td><td><code>-0.036121</code></td></tr>
   </table>
   <h3>Top 10 parcels (by forest area)</h3>
   <table>
     <tr><th>Parcel ID</th><th>Hansen land (ha)</th><th>Maa-amet land (ha)</th><th>Hansen forest (ha)</th><th>Maa-amet forest (ha)</th></tr>
-    <tr><td>27101:003:0058</td><td>137.046682</td><td>137.0269</td><td>97.728212</td><td>22.4789</td></tr>
-    <tr><td>75902:001:5901</td><td>63.134577</td><td>63.2011</td><td>45.5815</td><td>33.6362</td></tr>
-    <tr><td>75902:001:0109</td><td>42.471727</td><td>42.3496</td><td>37.617937</td><td>32.1173</td></tr>
-    <tr><td>35701:002:1000</td><td>54.234712</td><td>54.1376</td><td>34.917427</td><td>53.3073</td></tr>
-    <tr><td>75902:001:0043</td><td>39.031285</td><td>38.9261</td><td>34.177601</td><td>32.1777</td></tr>
-    <tr><td>35701:001:0020</td><td>42.500208</td><td>42.0425</td><td>31.774147</td><td>39.4194</td></tr>
-    <tr><td>35701:003:0052</td><td>43.264853</td><td>43.4131</td><td>26.257453</td><td>35.1711</td></tr>
-    <tr><td>35701:003:0220</td><td>47.02571</td><td>46.8044</td><td>25.775186</td><td>28.708</td></tr>
-    <tr><td>27101:003:0178</td><td>29.152779</td><td>29.0563</td><td>25.115078</td><td>28.4454</td></tr>
-    <tr><td>35701:002:1440</td><td>50.103747</td><td>49.9785</td><td>23.112119</td><td>47.7426</td></tr>
+    <tr><td>27101:003:0014</td><td>88.38578</td><td>88.6903</td><td>5.213367</td><td>842831.0</td></tr>
+    <tr><td>27101:004:0061</td><td>41.654807</td><td>41.6004</td><td>3.107777</td><td>391447.0</td></tr>
   </table>
   <h2>Hansen vs Maa-amet forest area crosscheck</h2>
   <table>
     <tr><th>Field</th><th>Value</th></tr>
     <tr><td>source</td><td><code>&quot;maaamet&quot;</code></td></tr>
     <tr><td>outcome</td><td><code>&quot;fail&quot;</code></td></tr>
-    <tr><td>reference</td><td><code>{&quot;method&quot;: &quot;mixed&quot;, &quot;source&quot;: &quot;mixed&quot;, &quot;value_ha&quot;: 30837059.615633}</code></td></tr>
-    <tr><td>computed</td><td><code>{&quot;forest_area_ha&quot;: 416.060874}</code></td></tr>
-    <tr><td>comparison</td><td><code>{&quot;diff_pct&quot;: -99.998651, &quot;tolerance_percent&quot;: 5.0}</code></td></tr>
+    <tr><td>reference</td><td><code>{&quot;method&quot;: &quot;reported_ha&quot;, &quot;source&quot;: &quot;attribute:haritav&quot;, &quot;value_ha&quot;: 5752704.0}</code></td></tr>
+    <tr><td>computed</td><td><code>{&quot;forest_area_ha&quot;: 10.633093}</code></td></tr>
+    <tr><td>comparison</td><td><code>{&quot;diff_pct&quot;: -99.999815, &quot;tolerance_percent&quot;: 5.0}</code></td></tr>
     <tr><td>csv_ref</td><td><a href="estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv">reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv</a></td></tr>
     <tr><td>summary_ref</td><td><a href="estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json">reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json</a></td></tr>
   </table>
