@@ -44,7 +44,7 @@
   <table>
     <tr><th>Criteria</th><th>Status</th><th>Details</th></tr>
     <tr><td id="criteria-aoi_geometry_present">aoi_geometry_present</td><td></td><td><code>{&quot;criteria_id&quot;: &quot;aoi_geometry_present&quot;, &quot;decision_type&quot;: &quot;presence&quot;, &quot;description&quot;: &quot;AOI geometry is present and referenced in inputs.&quot;, &quot;evidence_classes&quot;: [&quot;aoi_geometry&quot;]}</code></td></tr>
-    <tr><td id="criteria-forest_loss_post_2020_max_ha">forest_loss_post_2020_max_ha</td><td></td><td><code>{&quot;criteria_id&quot;: &quot;forest_loss_post_2020_max_ha&quot;, &quot;decision_type&quot;: &quot;threshold&quot;, &quot;description&quot;: &quot;Forest loss post-2020 must be &lt;= 0 ha.&quot;, &quot;evidence_classes&quot;: [&quot;forest_loss_post_2020&quot;]}</code></td></tr>
+    <tr><td id="criteria-forest_loss_post_2020_max_ha">forest_loss_post_2020_max_ha</td><td></td><td><code>{&quot;criteria_id&quot;: &quot;forest_loss_post_2020_max_ha&quot;, &quot;decision_type&quot;: &quot;threshold&quot;, &quot;description&quot;: &quot;Forest loss after 2020-12-31 (lossyear &gt;= 2021) must be &lt;= 0 ha.&quot;, &quot;evidence_classes&quot;: [&quot;forest_loss_post_2020&quot;]}</code></td></tr>
   </table>
   <div style="height:12px;"></div>
   <h1>AOI Report Summary</h1>
@@ -64,15 +64,15 @@
     <tr><th>Metric</th><th>Value</th><th>Unit</th><th>Notes</th><th>Source</th><th>Criteria</th></tr>
     <tr><td>aoi_area_ha</td><td>15775.219873859023</td><td>ha</td><td>geodesic_wgs84_pyproj</td><td>geometry</td><td>Not declared</td></tr>
     <tr><td>end_year</td><td>2024</td><td>year</td><td>forest_end_year</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>forest_2024_ha</td><td>0.0</td><td>ha</td><td>rfm_mask &amp; (lossyear == 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>forest_end_year_ha</td><td>0.0</td><td>ha</td><td>forest_mask_end_year</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>forest_loss_post_2020_percent_of_aoi</td><td>0.0</td><td>percent</td><td>forest_loss_post_2020_ha / aoi_area_ha</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>loss_2021_2024_ha</td><td>0.0</td><td>ha</td><td>rfm_mask &amp; (lossyear in 21..24)</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>loss_total_ha</td><td>0.0</td><td>ha</td><td>rfm_mask &amp; (lossyear &gt; 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>pixel_current_tree_cover_ha</td><td>0.0</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>pixel_forest_loss_post_2020_ha</td><td>0.0</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>pixel_initial_tree_cover_ha</td><td>0.0</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
-    <tr><td>rfm_area_ha</td><td>0.0</td><td>ha</td><td>rfm_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>forest_2024_ha</td><td>416.06087365026985</td><td>ha</td><td>rfm_mask &amp; (lossyear == 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>forest_end_year_ha</td><td>416.06087365026985</td><td>ha</td><td>forest_mask_end_year</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>forest_loss_post_2020_percent_of_aoi</td><td>0.10631728834279121</td><td>percent</td><td>forest_loss_post_2020_ha / aoi_area_ha</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>loss_2021_2024_ha</td><td>16.771785975099796</td><td>ha</td><td>rfm_mask &amp; (lossyear in 21..24)</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>loss_total_ha</td><td>89.66876423288652</td><td>ha</td><td>rfm_mask &amp; (lossyear &gt; 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>pixel_current_tree_cover_ha</td><td>416.060874</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>pixel_forest_loss_post_2020_ha</td><td>16.771786</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>pixel_initial_tree_cover_ha</td><td>505.729638</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>rfm_area_ha</td><td>505.7296378831563</td><td>ha</td><td>rfm_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
   </table>
   <h2>Maa-amet parcels</h2>
   <table>
@@ -106,8 +106,8 @@
     <tr><td>source</td><td><code>&quot;maaamet&quot;</code></td></tr>
     <tr><td>outcome</td><td><code>&quot;fail&quot;</code></td></tr>
     <tr><td>reference</td><td><code>{&quot;method&quot;: &quot;mixed&quot;, &quot;source&quot;: &quot;mixed&quot;, &quot;value_ha&quot;: 30837059.615633}</code></td></tr>
-    <tr><td>computed</td><td><code>{&quot;forest_area_ha&quot;: 0.0}</code></td></tr>
-    <tr><td>comparison</td><td><code>{&quot;diff_pct&quot;: -100.0, &quot;tolerance_percent&quot;: 5.0}</code></td></tr>
+    <tr><td>computed</td><td><code>{&quot;forest_area_ha&quot;: 416.060874}</code></td></tr>
+    <tr><td>comparison</td><td><code>{&quot;diff_pct&quot;: -99.998651, &quot;tolerance_percent&quot;: 5.0}</code></td></tr>
     <tr><td>csv_ref</td><td><a href="estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv">reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv</a></td></tr>
     <tr><td>summary_ref</td><td><a href="estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json">reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json</a></td></tr>
   </table>
@@ -164,7 +164,7 @@
   <table>
     <tr><th>Result</th><th>Status</th><th>Criteria</th></tr>
     <tr><td id="result-result-001">result-001</td><td>pass</td><td><a href="#criteria-aoi_geometry_present">aoi_geometry_present</a></td></tr>
-    <tr><td id="result-forest_loss_post_2020_max_ha">forest_loss_post_2020_max_ha</td><td>pass</td><td><a href="#criteria-forest_loss_post_2020_max_ha">forest_loss_post_2020_max_ha</a></td></tr>
+    <tr><td id="result-forest_loss_post_2020_max_ha">forest_loss_post_2020_max_ha</td><td>fail</td><td><a href="#criteria-forest_loss_post_2020_max_ha">forest_loss_post_2020_max_ha</a></td></tr>
   </table>
   <div style="height:12px;"></div>
   <h2>Evidence Artifacts</h2>

@@ -1,5 +1,5 @@
 {
-  "area_method": "pipeline_a_raster_zonal_geodesic_wgs84",
+  "area_method": "projected_constant_pixel_area",
   "canopy_threshold_pct": 10,
   "crs": "EPSG:6933",
   "end_year": 2024,
