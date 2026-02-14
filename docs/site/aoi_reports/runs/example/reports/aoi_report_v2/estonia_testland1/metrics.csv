@@ -1,5 +1,5 @@
 variable,value,unit,notes,source
-aoi_area_ha,256.02486350650787,ha,geodesic_wgs84_pyproj,geometry
+aoi_area_ha,15775.219873859023,ha,geodesic_wgs84_pyproj,geometry
 end_year,2024,year,forest_end_year,hansen_gfc
 forest_2024_ha,0.0,ha,rfm_mask & (lossyear == 0),hansen_gfc
 forest_end_year_ha,0.0,ha,forest_mask_end_year,hansen_gfc
