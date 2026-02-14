@@ -47,7 +47,7 @@
       <h1>AOI Report</h1>
       <p><b>AOI</b>: <code>estonia_testland1</code><br />
          <b>Bundle</b>: <code>example</code><br />
-         <b>Generated (UTC)</b>: <code>2026-02-14T13:41:56+00:00</code></p>
+         <b>Generated (UTC)</b>: <code>2026-02-14T14:03:34+00:00</code></p>
       <div class="card">
         <h2>Core inspection artifacts</h2>
         <ul>
@@ -98,7 +98,7 @@
                   style: { color: '#6a1b9a', weight: 1, fillOpacity: 0.05 },
                   onEachFeature: (feature, layer) => {
                     const props = feature.properties || {};
-                    const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''}`;
+                    const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''} | loss_ha=${props.hansen_forest_loss_ha ?? ''}`;
                     layer.bindTooltip(label, { sticky: true });
                   },
                 });

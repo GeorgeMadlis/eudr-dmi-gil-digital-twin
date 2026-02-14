@@ -426,7 +426,7 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
         if isinstance(parcels, list):
             lines.append("  <h3>Top 10 parcels (by forest area)</h3>")
             lines.append("  <table>")
-            lines.append("    <tr><th>Parcel ID</th><th>Hansen land (ha)</th><th>Maa-amet land (ha)</th><th>Hansen forest (ha)</th><th>Maa-amet forest (ha)</th></tr>")
+            lines.append("    <tr><th>Parcel ID</th><th>Hansen land (ha)</th><th>Maa-amet land (ha)</th><th>Hansen forest (ha)</th><th>Maa-amet forest (ha)</th><th>Forest loss (ha)</th></tr>")
             if parcels:
                 for row in parcels:
                     if not isinstance(row, dict):
@@ -438,10 +438,11 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
                         f"<td>{html.escape(str(row.get('maaamet_land_area_ha','')))}</td>"
                         f"<td>{html.escape(str(row.get('hansen_forest_area_ha','')))}</td>"
                         f"<td>{html.escape(str(row.get('maaamet_forest_area_ha','')))}</td>"
+                        f"<td>{html.escape(str(row.get('hansen_forest_loss_ha','')))}</td>"
                         "</tr>"
                     )
             else:
-                lines.append("    <tr><td colspan=\"5\"><em>No Maa-amet parcels available.</em></td></tr>")
+                lines.append("    <tr><td colspan=\"6\"><em>No Maa-amet parcels available.</em></td></tr>")
             lines.append("  </table>")
 
     forest_crosscheck = validation.get("forest_area_crosscheck", {}) if isinstance(validation.get("forest_area_crosscheck"), dict) else {}
@@ -520,7 +521,7 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
         lines.append("            style: { color: '#6a1b9a', weight: 1, fillOpacity: 0.05 },")
         lines.append("            onEachFeature: (feature, layer) => {")
         lines.append("              const props = feature.properties || {};")
-        lines.append("              const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''}`;")
+        lines.append("              const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''} | loss_ha=${props.hansen_forest_loss_ha ?? ''}`;")
         lines.append("              layer.bindTooltip(label, { sticky: true });")
         lines.append("            },")
         lines.append("          });")
@@ -871,7 +872,7 @@ def render_run_report_html(report: dict[str, Any], run_dir: Path) -> str:
         lines.append("                  style: { color: '#6a1b9a', weight: 1, fillOpacity: 0.05 },")
         lines.append("                  onEachFeature: (feature, layer) => {")
         lines.append("                    const props = feature.properties || {};")
-        lines.append("                    const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''}`;")
+        lines.append("                    const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''} | loss_ha=${props.hansen_forest_loss_ha ?? ''}`;")
         lines.append("                    layer.bindTooltip(label, { sticky: true });")
         lines.append("                  },")
         lines.append("                });")

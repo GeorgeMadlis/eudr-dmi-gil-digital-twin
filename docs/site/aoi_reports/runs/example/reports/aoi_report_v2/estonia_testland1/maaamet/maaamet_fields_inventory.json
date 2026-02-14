@@ -1,1 +1,1 @@
-{"candidate_keys":["haritav","mets","pindala","rohumaa","siht1"],"forest_area_key_used":{"haritav":10},"keys_seen":{"haritav":10,"mets":10,"pindala":10,"rohumaa":10,"siht1":10}}
+{"candidate_keys":["haritav","mets","pindala","rohumaa","siht1"],"forest_area_key_used":{"geometry":1277,"mets":1053},"keys_seen":{"haritav":2330,"mets":2330,"pindala":2330,"rohumaa":2330,"siht1":2330}}
