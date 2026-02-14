@@ -98,7 +98,7 @@
                   style: { color: '#6a1b9a', weight: 1, fillOpacity: 0.05 },
                   onEachFeature: (feature, layer) => {
                     const props = feature.properties || {};
-                    const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''}`;
+                    const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''} | loss_ha=${props.hansen_forest_loss_ha ?? ''}`;
                     layer.bindTooltip(label, { sticky: true });
                   },
                 });

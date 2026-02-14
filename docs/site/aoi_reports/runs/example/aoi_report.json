@@ -95,8 +95,8 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.html",
-      "sha256": "c05edef34a95b05834f67da9d5aa0921fd9b27ef35548b927355d28080de867f",
-      "size_bytes": 14735
+      "sha256": "2dbf411c2f11d49f3dea97e6c069c5966aa10c855a9a661fe3ea62a5bf0eb578",
+      "size_bytes": 14947
     },
     {
       "content_type": "application/json",

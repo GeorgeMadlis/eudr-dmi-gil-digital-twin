@@ -88,17 +88,17 @@
   </table>
   <h3>Top 10 parcels (by forest area)</h3>
   <table>
-    <tr><th>Parcel ID</th><th>Hansen land (ha)</th><th>Maa-amet land (ha)</th><th>Hansen forest (ha)</th><th>Maa-amet forest (ha)</th></tr>
-    <tr><td>27101:003:0058</td><td>137.046682</td><td>137.0269</td><td>97.728212</td><td>22.4789</td></tr>
-    <tr><td>75902:001:5901</td><td>63.134577</td><td>63.2011</td><td>45.5815</td><td>33.6362</td></tr>
-    <tr><td>75902:001:0109</td><td>42.471727</td><td>42.3496</td><td>37.617937</td><td>32.1173</td></tr>
-    <tr><td>35701:002:1000</td><td>54.234712</td><td>54.1376</td><td>34.917427</td><td>53.3073</td></tr>
-    <tr><td>75902:001:0043</td><td>39.031285</td><td>38.9261</td><td>34.177601</td><td>32.1777</td></tr>
-    <tr><td>35701:001:0020</td><td>42.500208</td><td>42.0425</td><td>31.774147</td><td>39.4194</td></tr>
-    <tr><td>35701:003:0052</td><td>43.264853</td><td>43.4131</td><td>26.257453</td><td>35.1711</td></tr>
-    <tr><td>35701:003:0220</td><td>47.02571</td><td>46.8044</td><td>25.775186</td><td>28.708</td></tr>
-    <tr><td>27101:003:0178</td><td>29.152779</td><td>29.0563</td><td>25.115078</td><td>28.4454</td></tr>
-    <tr><td>35701:002:1440</td><td>50.103747</td><td>49.9785</td><td>23.112119</td><td>47.7426</td></tr>
+    <tr><th>Parcel ID</th><th>Hansen land (ha)</th><th>Maa-amet land (ha)</th><th>Hansen forest (ha)</th><th>Maa-amet forest (ha)</th><th>Forest loss (ha)</th></tr>
+    <tr><td>27101:003:0058</td><td>137.046682</td><td>137.0269</td><td>97.728212</td><td>22.4789</td><td>0.968771</td></tr>
+    <tr><td>75902:001:5901</td><td>63.134577</td><td>63.2011</td><td>45.5815</td><td>33.6362</td><td>0.84931</td></tr>
+    <tr><td>75902:001:0109</td><td>42.471727</td><td>42.3496</td><td>37.617937</td><td>32.1173</td><td>1.496531</td></tr>
+    <tr><td>35701:002:1000</td><td>54.234712</td><td>54.1376</td><td>34.917427</td><td>53.3073</td><td>0.0</td></tr>
+    <tr><td>75902:001:0043</td><td>39.031285</td><td>38.9261</td><td>34.177601</td><td>32.1777</td><td>0.0</td></tr>
+    <tr><td>35701:001:0020</td><td>42.500208</td><td>42.0425</td><td>31.774147</td><td>39.4194</td><td>0.0</td></tr>
+    <tr><td>35701:003:0052</td><td>43.264853</td><td>43.4131</td><td>26.257453</td><td>35.1711</td><td>0.0</td></tr>
+    <tr><td>35701:003:0220</td><td>47.02571</td><td>46.8044</td><td>25.775186</td><td>28.708</td><td>0.0</td></tr>
+    <tr><td>27101:003:0178</td><td>29.152779</td><td>29.0563</td><td>25.115078</td><td>28.4454</td><td>0.0</td></tr>
+    <tr><td>35701:002:1440</td><td>50.103747</td><td>49.9785</td><td>23.112119</td><td>47.7426</td><td>11.273593</td></tr>
   </table>
   <h2>Hansen vs Maa-amet forest area crosscheck</h2>
   <table>
@@ -149,7 +149,7 @@
             style: { color: '#6a1b9a', weight: 1, fillOpacity: 0.05 },
             onEachFeature: (feature, layer) => {
               const props = feature.properties || {};
-              const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''}`;
+              const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''} | loss_ha=${props.hansen_forest_loss_ha ?? ''}`;
               layer.bindTooltip(label, { sticky: true });
             },
           });
