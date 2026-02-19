@@ -7,6 +7,14 @@
       "evidence_classes": [
         "aoi_geometry"
       ]
+    },
+    {
+      "criteria_id": "forest_loss_post_2020_max_ha",
+      "decision_type": "threshold",
+      "description": "Forest loss after 2020-12-31 (lossyear >= 2021) must be <= 0 ha.",
+      "evidence_classes": [
+        "forest_loss_post_2020"
+      ]
     }
   ],
   "aoi_geometry_ref": {
@@ -17,20 +25,56 @@
   "aoi_id": "mixed_crop_latin_america_colombia",
   "assumptions": [],
   "bundle_id": "latin_america",
-  "computed": {},
-  "computed_outputs": {},
+  "computed": {
+    "forest_loss_post_2020": {
+      "mask_forest_2000": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_2000_tree_cover_mask.geojson",
+      "mask_forest_current_year": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_current_tree_cover_mask.geojson",
+      "mask_forest_end_year": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_end_year_tree_cover_mask.geojson",
+      "mask_forest_loss_post_2020": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson",
+      "pixel_current_tree_cover_ha": 0.0,
+      "pixel_forest_loss_post_2020_ha": 0.0,
+      "pixel_initial_tree_cover_ha": 0.0,
+      "tiles_manifest": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json"
+    }
+  },
+  "computed_outputs": {
+    "forest_loss_post_2020": {
+      "area_ha": 0.0,
+      "mask_forest_2000_ref": {
+        "content_type": "application/geo+json",
+        "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_2000_tree_cover_mask.geojson",
+        "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799"
+      },
+      "mask_forest_end_year_ref": {
+        "content_type": "application/geo+json",
+        "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_end_year_tree_cover_mask.geojson",
+        "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799"
+      },
+      "mask_geojson_ref": {
+        "content_type": "application/geo+json",
+        "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson",
+        "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799"
+      },
+      "pixel_size_m": 30,
+      "tiles_manifest_ref": {
+        "content_type": "application/json",
+        "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json",
+        "sha256": "0075873385dc4251dfbe24c2f0794538e61e23052689c5a00c8537ee590d1217"
+      }
+    }
+  },
   "datasets": [
     {
       "dataset_id": "aoi_geometry_input",
       "license": "user_supplied",
-      "retrieved_at_utc": "2026-02-19T09:35:23+00:00",
+      "retrieved_at_utc": "2026-02-19T12:16:56+00:00",
       "source_url": "inputs/aoi.geojson",
       "version": "user_supplied"
     },
     {
       "dataset_id": "hansen_gfc_2024_v1_12",
       "license": "Hansen GFC (public)",
-      "retrieved_at_utc": "2026-02-19T09:35:23+00:00",
+      "retrieved_at_utc": "2026-02-19T12:16:56+00:00",
       "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
       "version": "2024-v1.12"
     }
@@ -51,8 +95,8 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia.html",
-      "sha256": "2c82785ba902baa8dd6058f928358dde908f36afce50ae6cafda8b3d0ba03048",
-      "size_bytes": 10266
+      "sha256": "ebe374d9f099c84449e70236fed6c9d5455fff7f7569eb1063796afe9cb4a29a",
+      "size_bytes": 11172
     },
     {
       "content_type": "application/json",
@@ -60,8 +104,8 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia.json",
-      "sha256": "37df0da42c4e8a8104e319187d27eeca384ea3b924c0217364f016f46f19e2c7",
-      "size_bytes": 6540
+      "sha256": "8a3adb48a0535d535affa17d1adb712b20f56eba2200cbe3b863e36cd21ef03c",
+      "size_bytes": 14404
     },
     {
       "content_type": "application/geo+json",
@@ -114,7 +158,7 @@
         "role": "hansen_tiles_manifest"
       },
       "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json",
-      "sha256": "7339fff7812c531607612fc9d1e65f002e3ed6fd3e81282a8440ec03cee34aeb",
+      "sha256": "0075873385dc4251dfbe24c2f0794538e61e23052689c5a00c8537ee590d1217",
       "size_bytes": 1176
     },
     {
@@ -156,8 +200,8 @@
         "role": "metrics_csv"
       },
       "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/metrics.csv",
-      "sha256": "b4851e0f39584df35a884e23d15259b92c358c4844165820c31167073d3a47e9",
-      "size_bytes": 99
+      "sha256": "b748434975b82bf335272f44f77f8d320a1712f806bb53e31251360643981ae1",
+      "size_bytes": 711
     }
   ],
   "evidence_registry": {
@@ -180,6 +224,67 @@
     ]
   },
   "extensions": {
+    "forest_metrics_artifacts": {
+      "debug_ref": "forest_metrics_debug.json",
+      "params_ref": "forest_metrics_params.json"
+    },
+    "forest_metrics_debug": {
+      "areas_ha": {
+        "forest_2024": 0.0,
+        "forest_end_year": 0.0,
+        "forest_end_year_ha": 0.0,
+        "loss_2021_end_year": 0.0,
+        "loss_total": 0.0,
+        "loss_total_2001_2024": 0.0,
+        "rfm": 0.0
+      },
+      "mask_true_pixels": {
+        "forest_end_year": 0,
+        "loss_2021_end_year": 0,
+        "rfm": 0
+      },
+      "pixel_area_m2": {
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0
+      },
+      "raster_shapes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "forest_metrics_params": {
+      "area_method": "projected_constant_pixel_area",
+      "canopy_threshold_pct": 10,
+      "crs": "EPSG:6933",
+      "end_year": 2024,
+      "loss_year_code_basis": 2000,
+      "lossyear_mapping": "0=no_loss; 1..24=2001..2024 (year=lossyear+2000)",
+      "method": {
+        "area": "projected_constant_pixel_area",
+        "notes": "area_ha = sum(mask) * pixel_area_ha (projected; approx for AOI < 50k ha)",
+        "zonal": "rasterize_polygon_all_touched"
+      },
+      "start_year": 2001
+    },
     "metrics_rows_v1": [
       {
         "notes": "geodesic_wgs84_pyproj",
@@ -187,6 +292,76 @@
         "unit": "ha",
         "value": 41772.04912311554,
         "variable": "aoi_area_ha"
+      },
+      {
+        "notes": "forest_end_year",
+        "source": "hansen_gfc",
+        "unit": "year",
+        "value": 2024,
+        "variable": "end_year"
+      },
+      {
+        "notes": "rfm_mask & (lossyear == 0)",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "forest_2024_ha"
+      },
+      {
+        "notes": "forest_mask_end_year",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "forest_end_year_ha"
+      },
+      {
+        "notes": "forest_loss_post_2020_ha / aoi_area_ha",
+        "source": "hansen_gfc",
+        "unit": "percent",
+        "value": 0.0,
+        "variable": "forest_loss_post_2020_percent_of_aoi"
+      },
+      {
+        "notes": "rfm_mask & (lossyear in 21..24)",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "loss_2021_2024_ha"
+      },
+      {
+        "notes": "rfm_mask & (lossyear > 0)",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "loss_total_ha"
+      },
+      {
+        "notes": "pixel_mask",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "pixel_current_tree_cover_ha"
+      },
+      {
+        "notes": "pixel_mask",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "pixel_forest_loss_post_2020_ha"
+      },
+      {
+        "notes": "pixel_mask",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "pixel_initial_tree_cover_ha"
+      },
+      {
+        "notes": "rfm_mask",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "rfm_area_ha"
       }
     ]
   },
@@ -198,7 +373,7 @@
       "tile_source": "local",
       "tiles_manifest": {
         "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "7339fff7812c531607612fc9d1e65f002e3ed6fd3e81282a8440ec03cee34aeb"
+        "sha256": "0075873385dc4251dfbe24c2f0794538e61e23052689c5a00c8537ee590d1217"
       },
       "tiles_used": [
         {
@@ -220,7 +395,61 @@
       ]
     }
   ],
-  "generated_at_utc": "2026-02-19T09:35:23+00:00",
+  "forest_metrics": {
+    "canopy_threshold_pct": 10,
+    "end_year": 2024,
+    "forest_end_year_area_ha": 0.0,
+    "inputs": {
+      "hansen_lossyear": {
+        "hash": "0075873385dc4251dfbe24c2f0794538e61e23052689c5a00c8537ee590d1217",
+        "source": "hansen_gfc_2024_v1_12",
+        "tile_refs": [
+          {
+            "layer": "lossyear",
+            "local_path": "/Users/server/data/eudr-dmi/hansen/hansen_gfc_2024_v1_12/tiles/N00_W080/lossyear.tif",
+            "sha256": "3e26bc4e83f087f51cd5de2ead5a400ac1ef676e8181a57220c01647079a1af0",
+            "size_bytes": 62585513,
+            "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_lossyear_00N_080W.tif",
+            "tile_id": "N00_W080"
+          }
+        ],
+        "tiles_manifest_ref": {
+          "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json",
+          "sha256": "0075873385dc4251dfbe24c2f0794538e61e23052689c5a00c8537ee590d1217"
+        }
+      },
+      "hansen_treecover2000": {
+        "hash": "0075873385dc4251dfbe24c2f0794538e61e23052689c5a00c8537ee590d1217",
+        "source": "hansen_gfc_2024_v1_12",
+        "tile_refs": [
+          {
+            "layer": "treecover2000",
+            "local_path": "/Users/server/data/eudr-dmi/hansen/hansen_gfc_2024_v1_12/tiles/N00_W080/treecover2000.tif",
+            "sha256": "374e5f8a76db3ece922f4601dbacc3f2942581fe551cc5e3fd1aa2f6f6f3defa",
+            "size_bytes": 375924861,
+            "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_treecover2000_00N_080W.tif",
+            "tile_id": "N00_W080"
+          }
+        ],
+        "tiles_manifest_ref": {
+          "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json",
+          "sha256": "0075873385dc4251dfbe24c2f0794538e61e23052689c5a00c8537ee590d1217"
+        }
+      }
+    },
+    "loss_2021_2024_ha": 0.0,
+    "loss_2021_2024_pct_of_rfm": 0.0,
+    "loss_total_2001_2024_ha": 0.0,
+    "loss_year_code_basis": 2000,
+    "method": {
+      "area": "projected_constant_pixel_area",
+      "notes": "area_ha = sum(mask) * pixel_area_ha (projected; approx for AOI < 50k ha)",
+      "zonal": "rasterize_polygon_all_touched"
+    },
+    "reference_forest_mask_year": 2000,
+    "rfm_area_ha": 0.0
+  },
+  "generated_at_utc": "2026-02-19T12:16:56+00:00",
   "inputs": {
     "sources": [
       {
@@ -248,12 +477,84 @@
       "parcels": null
     }
   },
-  "methodology": {},
+  "methodology": {
+    "forest_loss_post_2020": {
+      "calculation": {
+        "area_units": "ha",
+        "cutoff_date": "2020-12-31",
+        "cutoff_rule": "lossyear > (cutoff_year - 2000)",
+        "method": "pixel_wise_intersection"
+      },
+      "data_sources": [
+        "hansen_global_forest_change"
+      ],
+      "dataset_version": "2024-v1.12",
+      "forest_definition": {
+        "tree_cover_threshold_percent": 10
+      },
+      "is_placeholder": false,
+      "resolution": {
+        "pixel_size_m": 30
+      },
+      "tile_source": "local",
+      "tile_source_url_template": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_{layer}_{url_tile_id}.tif"
+    }
+  },
   "metrics": {
     "aoi_area_ha": {
       "notes": "geodesic_wgs84_pyproj",
       "unit": "ha",
       "value": 41772.04912311554
+    },
+    "end_year": {
+      "notes": "forest_end_year",
+      "unit": "year",
+      "value": 2024
+    },
+    "forest_2024_ha": {
+      "notes": "rfm_mask & (lossyear == 0)",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "forest_end_year_ha": {
+      "notes": "forest_mask_end_year",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "forest_loss_post_2020_percent_of_aoi": {
+      "notes": "forest_loss_post_2020_ha / aoi_area_ha",
+      "unit": "percent",
+      "value": 0.0
+    },
+    "loss_2021_2024_ha": {
+      "notes": "rfm_mask & (lossyear in 21..24)",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "loss_total_ha": {
+      "notes": "rfm_mask & (lossyear > 0)",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "pixel_current_tree_cover_ha": {
+      "notes": "pixel_mask",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "pixel_forest_loss_post_2020_ha": {
+      "notes": "pixel_mask",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "pixel_initial_tree_cover_ha": {
+      "notes": "pixel_mask",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "rfm_area_ha": {
+      "notes": "rfm_mask",
+      "unit": "ha",
+      "value": 0.0
     }
   },
   "parameters": {
@@ -304,7 +605,7 @@
         "computed.forest_loss_post_2020.pixel_forest_loss_post_2020_ha"
       ],
       "requirement": "Deforestation-free after 2020-01-31",
-      "status": "na"
+      "status": "pass"
     }
   ],
   "policy_mapping_refs": [
@@ -318,6 +619,13 @@
       "evidence_class": "aoi_geometry",
       "regulation": "EUDR",
       "result_ref": "result-001"
+    },
+    {
+      "acceptance_criteria": "forest_loss_post_2020_max_ha",
+      "article_ref": "article-3",
+      "evidence_class": "forest_loss_post_2020",
+      "regulation": "EUDR",
+      "result_ref": "forest_loss_post_2020_max_ha"
     }
   ],
   "report_metadata": {
@@ -339,12 +647,37 @@
       ],
       "result_id": "result-001",
       "status": "pass"
+    },
+    {
+      "criteria_ids": [
+        "forest_loss_post_2020_max_ha"
+      ],
+      "evidence_classes": [
+        "forest_loss_post_2020"
+      ],
+      "observed_value": 0.0,
+      "result_id": "forest_loss_post_2020_max_ha",
+      "status": "pass",
+      "threshold_value": 0.0,
+      "unit": "ha"
     }
   ],
   "results_summary": {
     "aoi_area": {
       "area_ha": 41772.04912311554,
       "method": "geodesic_wgs84_pyproj"
+    },
+    "deforestation_free_post_2020": {
+      "forest_loss_post_2020_ha": 0.0,
+      "percent_of_aoi": 0.0,
+      "status": "pass",
+      "threshold_ha": 0.0,
+      "uncertainty": {
+        "conservative_bounds": "area estimates are lower-bound for masked/no-data pixels",
+        "nodata": "masked_as_no_loss",
+        "pixel_area_method": "projected_constant_pixel_area",
+        "projection": "EPSG:4326"
+      }
     }
   },
   "validation": {

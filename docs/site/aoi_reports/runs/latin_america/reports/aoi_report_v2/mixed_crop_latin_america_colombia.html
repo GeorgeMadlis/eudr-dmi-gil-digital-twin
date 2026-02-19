@@ -20,7 +20,7 @@
   <table>
     <tr><th>AOI</th><td>mixed_crop_latin_america_colombia</td></tr>
     <tr><th>Bundle</th><td>latin_america</td></tr>
-    <tr><th>Generated (UTC)</th><td>2026-02-19T09:35:23+00:00</td></tr>
+    <tr><th>Generated (UTC)</th><td>2026-02-19T12:16:56+00:00</td></tr>
     <tr><th>Report Version</th><td>aoi_report_v2</td></tr>
     <tr><th>Geometry Ref</th><td>geojson: inputs/aoi.geojson</td></tr>
     <tr><th>AOI area (ha)</th><td>41772.04912311554</td></tr>
@@ -29,7 +29,12 @@
 
   <h2>Deforestation-free (post-2020)</h2>
   <table>
-    <tr><th>(none)</th><td></td></tr>
+    <tr><th>Definition</th><td>Forest loss after 2020-12-31 (pixel-wise intersection)</td></tr>
+<tr><th>Forest loss (ha)</th><td>0.0</td></tr>
+<tr><th>Percent of AOI</th><td>0.0</td></tr>
+<tr><th>Threshold (ha)</th><td>0.0</td></tr>
+<tr><th>Status</th><td>pass</td></tr>
+<tr><th>Uncertainty</th><td>{'pixel_area_method': 'projected_constant_pixel_area', 'nodata': 'masked_as_no_loss', 'projection': 'EPSG:4326', 'conservative_bounds': 'area estimates are lower-bound for masked/no-data pixels'}</td></tr>
   </table>
 
   <h2>Forest baseline / forest mask</h2>
@@ -41,7 +46,12 @@
 
     <h2>Forest area and loss (pixel-based, AOI intersection)</h2>
     <table>
-        <tr><th>(none)</th><td></td></tr>
+        <tr><th>Tree cover threshold (%)</th><td>10</td></tr>
+<tr><th>Reference forest mask year</th><td>2000</td></tr>
+<tr><th>RFM area (ha)</th><td>0.0</td></tr>
+<tr><th>Loss 2021–2024 (ha)</th><td>0.0 (0.0% of RFM)</td></tr>
+<tr><th>Forest end-year area (ha)</th><td>0.0</td></tr>
+<tr><th>Method summary</th><td>area_ha = sum(mask) * pixel_area_ha (projected; approx for AOI < 50k ha)</td></tr>
     </table>
 
     
@@ -70,8 +80,8 @@
             ).addTo(map);
             const configUrl = 'mixed_crop_latin_america_colombia/map/map_config.json';
             fetch(configUrl)
-                .then((resp) => resp.json())
-                .then((config) => {
+                .then((resp) => resp.json().then((config) => ({ config, configBaseUrl: resp.url })))
+                .then(({ config, configBaseUrl }) => {
                     const bbox = config.aoi_bbox;
                     const bounds = L.latLngBounds([
                         [bbox.min_lat, bbox.min_lon],
@@ -83,7 +93,7 @@
                     const baseLayers = { 'Satellite': satellite };
                     const addGeoJson = (label, url, options) => {
                         if (!url) return;
-                        const resolvedUrl = new URL(url, configUrl).toString();
+                        const resolvedUrl = new URL(url, configBaseUrl).toString();
                         fetch(resolvedUrl)
                             .then((r) => r.json())
                             .then((data) => {
@@ -127,8 +137,8 @@
   <h2>Data sources & provenance</h2>
   <table>
     <tr><th>dataset_id</th><th>version</th><th>retrieved_at_utc</th><th>license</th><th>source_url</th></tr>
-    <tr><td>aoi_geometry_input</td><td>user_supplied</td><td>2026-02-19T09:35:23+00:00</td><td>user_supplied</td><td>inputs/aoi.geojson</td></tr>
-<tr><td>hansen_gfc_2024_v1_12</td><td>2024-v1.12</td><td>2026-02-19T09:35:23+00:00</td><td>Hansen GFC (public)</td><td>https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/</td></tr>
+    <tr><td>aoi_geometry_input</td><td>user_supplied</td><td>2026-02-19T12:16:56+00:00</td><td>user_supplied</td><td>inputs/aoi.geojson</td></tr>
+<tr><td>hansen_gfc_2024_v1_12</td><td>2024-v1.12</td><td>2026-02-19T12:16:56+00:00</td><td>Hansen GFC (public)</td><td>https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/</td></tr>
   </table>
 
   <h2>Methods & parameters</h2>
@@ -142,7 +152,7 @@
   <table>
     <tr><th>Article</th><th>Requirement</th><th>Evidence fields</th><th>Artifacts</th><th>Status</th></tr>
     <tr><td>EUDR Article 9</td><td>AOI geometry is declared and traceable</td><td>aoi_geometry_ref, inputs.sources</td><td><a href="../../inputs/aoi.geojson">inputs/aoi.geojson</a></td><td>pass</td></tr>
-<tr><td>EUDR Article 3</td><td>Deforestation-free after 2020-01-31</td><td>results_summary.deforestation_free_post_2020, computed.forest_loss_post_2020.pixel_forest_loss_post_2020_ha</td><td><a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson</a>, <a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json</a></td><td>na</td></tr>
+<tr><td>EUDR Article 3</td><td>Deforestation-free after 2020-01-31</td><td>results_summary.deforestation_free_post_2020, computed.forest_loss_post_2020.pixel_forest_loss_post_2020_ha</td><td><a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson</a>, <a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json</a></td><td>pass</td></tr>
   </table>
 
   <h2>Evidence artifact index</h2>

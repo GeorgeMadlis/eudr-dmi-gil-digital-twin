@@ -7,6 +7,14 @@
       "evidence_classes": [
         "aoi_geometry"
       ]
+    },
+    {
+      "criteria_id": "forest_loss_post_2020_max_ha",
+      "decision_type": "threshold",
+      "description": "Forest loss after 2020-12-31 (lossyear >= 2021) must be <= 0 ha.",
+      "evidence_classes": [
+        "forest_loss_post_2020"
+      ]
     }
   ],
   "aoi_geometry_ref": {
@@ -17,20 +25,56 @@
   "aoi_id": "coffee_se_asia_vietnam",
   "assumptions": [],
   "bundle_id": "se_asia",
-  "computed": {},
-  "computed_outputs": {},
+  "computed": {
+    "forest_loss_post_2020": {
+      "mask_forest_2000": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_2000_tree_cover_mask.geojson",
+      "mask_forest_current_year": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_current_tree_cover_mask.geojson",
+      "mask_forest_end_year": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_end_year_tree_cover_mask.geojson",
+      "mask_forest_loss_post_2020": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_mask.geojson",
+      "pixel_current_tree_cover_ha": 0.0,
+      "pixel_forest_loss_post_2020_ha": 0.0,
+      "pixel_initial_tree_cover_ha": 0.0,
+      "tiles_manifest": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_tiles.json"
+    }
+  },
+  "computed_outputs": {
+    "forest_loss_post_2020": {
+      "area_ha": 0.0,
+      "mask_forest_2000_ref": {
+        "content_type": "application/geo+json",
+        "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_2000_tree_cover_mask.geojson",
+        "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799"
+      },
+      "mask_forest_end_year_ref": {
+        "content_type": "application/geo+json",
+        "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_end_year_tree_cover_mask.geojson",
+        "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799"
+      },
+      "mask_geojson_ref": {
+        "content_type": "application/geo+json",
+        "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_mask.geojson",
+        "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799"
+      },
+      "pixel_size_m": 30,
+      "tiles_manifest_ref": {
+        "content_type": "application/json",
+        "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_tiles.json",
+        "sha256": "b143ab15a1b3e699080a192b408d0c7c8bcf1a74d2fbc67534ccb00b85bbe4f9"
+      }
+    }
+  },
   "datasets": [
     {
       "dataset_id": "aoi_geometry_input",
       "license": "user_supplied",
-      "retrieved_at_utc": "2026-02-19T09:35:24+00:00",
+      "retrieved_at_utc": "2026-02-19T12:16:58+00:00",
       "source_url": "inputs/aoi.geojson",
       "version": "user_supplied"
     },
     {
       "dataset_id": "hansen_gfc_2024_v1_12",
       "license": "Hansen GFC (public)",
-      "retrieved_at_utc": "2026-02-19T09:35:24+00:00",
+      "retrieved_at_utc": "2026-02-19T12:16:58+00:00",
       "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
       "version": "2024-v1.12"
     }
@@ -51,8 +95,8 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam.html",
-      "sha256": "24c222b666b373dbab635992b713552262a3c5fae4b5e1df560ddd939bd03c3e",
-      "size_bytes": 9897
+      "sha256": "c98a9bd9c00f508fafd53d3f1a1a5bd377ee1fa5e26ea9c1c17df489511d37de",
+      "size_bytes": 10803
     },
     {
       "content_type": "application/json",
@@ -60,8 +104,8 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam.json",
-      "sha256": "66848c87fc5c3627756e3525f850d2608f817b1124c98498130aaaa1009e032b",
-      "size_bytes": 6425
+      "sha256": "f84560911dd39b84d595105d7735001f95dac06ce016bd2ea39550c21cac5cc3",
+      "size_bytes": 14168
     },
     {
       "content_type": "application/geo+json",
@@ -114,7 +158,7 @@
         "role": "hansen_tiles_manifest"
       },
       "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_tiles.json",
-      "sha256": "79c4af76d1970561a6921f46938324df9d5bd264368e15b604881670a4c32fe5",
+      "sha256": "b143ab15a1b3e699080a192b408d0c7c8bcf1a74d2fbc67534ccb00b85bbe4f9",
       "size_bytes": 1159
     },
     {
@@ -156,8 +200,8 @@
         "role": "metrics_csv"
       },
       "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/metrics.csv",
-      "sha256": "7bc4995ca6f621812fb8976cd6a77ef24046a08b7b564831c3e3874aefc9eb75",
-      "size_bytes": 99
+      "sha256": "4effda2cae84488b73edb2a4ef2054f8748d664dc8311f650f50b7ed7dcefe3a",
+      "size_bytes": 711
     }
   ],
   "evidence_registry": {
@@ -180,6 +224,67 @@
     ]
   },
   "extensions": {
+    "forest_metrics_artifacts": {
+      "debug_ref": "forest_metrics_debug.json",
+      "params_ref": "forest_metrics_params.json"
+    },
+    "forest_metrics_debug": {
+      "areas_ha": {
+        "forest_2024": 0.0,
+        "forest_end_year": 0.0,
+        "forest_end_year_ha": 0.0,
+        "loss_2021_end_year": 0.0,
+        "loss_total": 0.0,
+        "loss_total_2001_2024": 0.0,
+        "rfm": 0.0
+      },
+      "mask_true_pixels": {
+        "forest_end_year": 0,
+        "loss_2021_end_year": 0,
+        "rfm": 0
+      },
+      "pixel_area_m2": {
+        "max": 0.0,
+        "mean": 0.0,
+        "min": 0.0
+      },
+      "raster_shapes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    "forest_metrics_params": {
+      "area_method": "projected_constant_pixel_area",
+      "canopy_threshold_pct": 10,
+      "crs": "EPSG:6933",
+      "end_year": 2024,
+      "loss_year_code_basis": 2000,
+      "lossyear_mapping": "0=no_loss; 1..24=2001..2024 (year=lossyear+2000)",
+      "method": {
+        "area": "projected_constant_pixel_area",
+        "notes": "area_ha = sum(mask) * pixel_area_ha (projected; approx for AOI < 50k ha)",
+        "zonal": "rasterize_polygon_all_touched"
+      },
+      "start_year": 2001
+    },
     "metrics_rows_v1": [
       {
         "notes": "geodesic_wgs84_pyproj",
@@ -187,6 +292,76 @@
         "unit": "ha",
         "value": 38939.80994465256,
         "variable": "aoi_area_ha"
+      },
+      {
+        "notes": "forest_end_year",
+        "source": "hansen_gfc",
+        "unit": "year",
+        "value": 2024,
+        "variable": "end_year"
+      },
+      {
+        "notes": "rfm_mask & (lossyear == 0)",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "forest_2024_ha"
+      },
+      {
+        "notes": "forest_mask_end_year",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "forest_end_year_ha"
+      },
+      {
+        "notes": "forest_loss_post_2020_ha / aoi_area_ha",
+        "source": "hansen_gfc",
+        "unit": "percent",
+        "value": 0.0,
+        "variable": "forest_loss_post_2020_percent_of_aoi"
+      },
+      {
+        "notes": "rfm_mask & (lossyear in 21..24)",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "loss_2021_2024_ha"
+      },
+      {
+        "notes": "rfm_mask & (lossyear > 0)",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "loss_total_ha"
+      },
+      {
+        "notes": "pixel_mask",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "pixel_current_tree_cover_ha"
+      },
+      {
+        "notes": "pixel_mask",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "pixel_forest_loss_post_2020_ha"
+      },
+      {
+        "notes": "pixel_mask",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "pixel_initial_tree_cover_ha"
+      },
+      {
+        "notes": "rfm_mask",
+        "source": "hansen_gfc",
+        "unit": "ha",
+        "value": 0.0,
+        "variable": "rfm_area_ha"
       }
     ]
   },
@@ -198,7 +373,7 @@
       "tile_source": "local",
       "tiles_manifest": {
         "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "79c4af76d1970561a6921f46938324df9d5bd264368e15b604881670a4c32fe5"
+        "sha256": "b143ab15a1b3e699080a192b408d0c7c8bcf1a74d2fbc67534ccb00b85bbe4f9"
       },
       "tiles_used": [
         {
@@ -220,7 +395,61 @@
       ]
     }
   ],
-  "generated_at_utc": "2026-02-19T09:35:24+00:00",
+  "forest_metrics": {
+    "canopy_threshold_pct": 10,
+    "end_year": 2024,
+    "forest_end_year_area_ha": 0.0,
+    "inputs": {
+      "hansen_lossyear": {
+        "hash": "b143ab15a1b3e699080a192b408d0c7c8bcf1a74d2fbc67534ccb00b85bbe4f9",
+        "source": "hansen_gfc_2024_v1_12",
+        "tile_refs": [
+          {
+            "layer": "lossyear",
+            "local_path": "/Users/server/data/eudr-dmi/hansen/hansen_gfc_2024_v1_12/tiles/N10_E100/lossyear.tif",
+            "sha256": "7d78ccb201ed71804ab54583587890b7c0dc89c57a5e928e2d502fb7c2cd49d4",
+            "size_bytes": 70079803,
+            "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_lossyear_10N_100E.tif",
+            "tile_id": "N10_E100"
+          }
+        ],
+        "tiles_manifest_ref": {
+          "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_tiles.json",
+          "sha256": "b143ab15a1b3e699080a192b408d0c7c8bcf1a74d2fbc67534ccb00b85bbe4f9"
+        }
+      },
+      "hansen_treecover2000": {
+        "hash": "b143ab15a1b3e699080a192b408d0c7c8bcf1a74d2fbc67534ccb00b85bbe4f9",
+        "source": "hansen_gfc_2024_v1_12",
+        "tile_refs": [
+          {
+            "layer": "treecover2000",
+            "local_path": "/Users/server/data/eudr-dmi/hansen/hansen_gfc_2024_v1_12/tiles/N10_E100/treecover2000.tif",
+            "sha256": "48646e738bb4e20bc05a8acb46e2f97b1d372866ea765c94d4bc5e4a49eb733c",
+            "size_bytes": 199956397,
+            "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_treecover2000_10N_100E.tif",
+            "tile_id": "N10_E100"
+          }
+        ],
+        "tiles_manifest_ref": {
+          "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_tiles.json",
+          "sha256": "b143ab15a1b3e699080a192b408d0c7c8bcf1a74d2fbc67534ccb00b85bbe4f9"
+        }
+      }
+    },
+    "loss_2021_2024_ha": 0.0,
+    "loss_2021_2024_pct_of_rfm": 0.0,
+    "loss_total_2001_2024_ha": 0.0,
+    "loss_year_code_basis": 2000,
+    "method": {
+      "area": "projected_constant_pixel_area",
+      "notes": "area_ha = sum(mask) * pixel_area_ha (projected; approx for AOI < 50k ha)",
+      "zonal": "rasterize_polygon_all_touched"
+    },
+    "reference_forest_mask_year": 2000,
+    "rfm_area_ha": 0.0
+  },
+  "generated_at_utc": "2026-02-19T12:16:58+00:00",
   "inputs": {
     "sources": [
       {
@@ -248,12 +477,84 @@
       "parcels": null
     }
   },
-  "methodology": {},
+  "methodology": {
+    "forest_loss_post_2020": {
+      "calculation": {
+        "area_units": "ha",
+        "cutoff_date": "2020-12-31",
+        "cutoff_rule": "lossyear > (cutoff_year - 2000)",
+        "method": "pixel_wise_intersection"
+      },
+      "data_sources": [
+        "hansen_global_forest_change"
+      ],
+      "dataset_version": "2024-v1.12",
+      "forest_definition": {
+        "tree_cover_threshold_percent": 10
+      },
+      "is_placeholder": false,
+      "resolution": {
+        "pixel_size_m": 30
+      },
+      "tile_source": "local",
+      "tile_source_url_template": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_{layer}_{url_tile_id}.tif"
+    }
+  },
   "metrics": {
     "aoi_area_ha": {
       "notes": "geodesic_wgs84_pyproj",
       "unit": "ha",
       "value": 38939.80994465256
+    },
+    "end_year": {
+      "notes": "forest_end_year",
+      "unit": "year",
+      "value": 2024
+    },
+    "forest_2024_ha": {
+      "notes": "rfm_mask & (lossyear == 0)",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "forest_end_year_ha": {
+      "notes": "forest_mask_end_year",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "forest_loss_post_2020_percent_of_aoi": {
+      "notes": "forest_loss_post_2020_ha / aoi_area_ha",
+      "unit": "percent",
+      "value": 0.0
+    },
+    "loss_2021_2024_ha": {
+      "notes": "rfm_mask & (lossyear in 21..24)",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "loss_total_ha": {
+      "notes": "rfm_mask & (lossyear > 0)",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "pixel_current_tree_cover_ha": {
+      "notes": "pixel_mask",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "pixel_forest_loss_post_2020_ha": {
+      "notes": "pixel_mask",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "pixel_initial_tree_cover_ha": {
+      "notes": "pixel_mask",
+      "unit": "ha",
+      "value": 0.0
+    },
+    "rfm_area_ha": {
+      "notes": "rfm_mask",
+      "unit": "ha",
+      "value": 0.0
     }
   },
   "parameters": {
@@ -304,7 +605,7 @@
         "computed.forest_loss_post_2020.pixel_forest_loss_post_2020_ha"
       ],
       "requirement": "Deforestation-free after 2020-01-31",
-      "status": "na"
+      "status": "pass"
     }
   ],
   "policy_mapping_refs": [
@@ -318,6 +619,13 @@
       "evidence_class": "aoi_geometry",
       "regulation": "EUDR",
       "result_ref": "result-001"
+    },
+    {
+      "acceptance_criteria": "forest_loss_post_2020_max_ha",
+      "article_ref": "article-3",
+      "evidence_class": "forest_loss_post_2020",
+      "regulation": "EUDR",
+      "result_ref": "forest_loss_post_2020_max_ha"
     }
   ],
   "report_metadata": {
@@ -339,12 +647,37 @@
       ],
       "result_id": "result-001",
       "status": "pass"
+    },
+    {
+      "criteria_ids": [
+        "forest_loss_post_2020_max_ha"
+      ],
+      "evidence_classes": [
+        "forest_loss_post_2020"
+      ],
+      "observed_value": 0.0,
+      "result_id": "forest_loss_post_2020_max_ha",
+      "status": "pass",
+      "threshold_value": 0.0,
+      "unit": "ha"
     }
   ],
   "results_summary": {
     "aoi_area": {
       "area_ha": 38939.80994465256,
       "method": "geodesic_wgs84_pyproj"
+    },
+    "deforestation_free_post_2020": {
+      "forest_loss_post_2020_ha": 0.0,
+      "percent_of_aoi": 0.0,
+      "status": "pass",
+      "threshold_ha": 0.0,
+      "uncertainty": {
+        "conservative_bounds": "area estimates are lower-bound for masked/no-data pixels",
+        "nodata": "masked_as_no_loss",
+        "pixel_area_method": "projected_constant_pixel_area",
+        "projection": "EPSG:4326"
+      }
     }
   },
   "validation": {

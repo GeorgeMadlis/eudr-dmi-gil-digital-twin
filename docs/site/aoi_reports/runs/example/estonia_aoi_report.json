@@ -59,7 +59,7 @@
       "tiles_manifest_ref": {
         "content_type": "application/json",
         "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "e040376c980753ad77ad7033db6a06e23bb2234c1a892388b63343de18788735"
+        "sha256": "3eb98382653426ffd865a9f8a8dc41ac84e5e9afeee95c90a31e00e4ad8bbb5c"
       }
     }
   },
@@ -67,14 +67,14 @@
     {
       "dataset_id": "aoi_geometry_input",
       "license": "user_supplied",
-      "retrieved_at_utc": "2026-02-19T09:35:17+00:00",
+      "retrieved_at_utc": "2026-02-19T12:16:50+00:00",
       "source_url": "inputs/aoi.geojson",
       "version": "user_supplied"
     },
     {
       "dataset_id": "hansen_gfc_2024_v1_12",
       "license": "Hansen GFC (public)",
-      "retrieved_at_utc": "2026-02-19T09:35:17+00:00",
+      "retrieved_at_utc": "2026-02-19T12:16:50+00:00",
       "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
       "version": "2024-v1.12"
     }
@@ -95,8 +95,8 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.html",
-      "sha256": "7fb428a7b422c51c92b15b5833a91f3a4b2b9b2b82b603d482286a94c41b1b49",
-      "size_bytes": 12290
+      "sha256": "fae3a965bdb15e51b46efdcc7120f7ed18594e53e9f832e678bb385b9edf34b6",
+      "size_bytes": 12369
     },
     {
       "content_type": "application/json",
@@ -104,7 +104,7 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.json",
-      "sha256": "021331463ee7c1255fa39bbaef14a875d3a9bf4dd5c155d20140dc71dbdbde51",
+      "sha256": "58c3e4218f54ffdf5156b91c1768cd8ac45b1170d0971026e2ce72dd5a280ff1",
       "size_bytes": 17145
     },
     {
@@ -158,7 +158,7 @@
         "role": "hansen_tiles_manifest"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-      "sha256": "e040376c980753ad77ad7033db6a06e23bb2234c1a892388b63343de18788735",
+      "sha256": "3eb98382653426ffd865a9f8a8dc41ac84e5e9afeee95c90a31e00e4ad8bbb5c",
       "size_bytes": 1154
     },
     {
@@ -409,7 +409,7 @@
       "tile_source": "local",
       "tiles_manifest": {
         "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "e040376c980753ad77ad7033db6a06e23bb2234c1a892388b63343de18788735"
+        "sha256": "3eb98382653426ffd865a9f8a8dc41ac84e5e9afeee95c90a31e00e4ad8bbb5c"
       },
       "tiles_used": [
         {
@@ -437,7 +437,7 @@
     "forest_end_year_area_ha": 416.06087365026985,
     "inputs": {
       "hansen_lossyear": {
-        "hash": "e040376c980753ad77ad7033db6a06e23bb2234c1a892388b63343de18788735",
+        "hash": "3eb98382653426ffd865a9f8a8dc41ac84e5e9afeee95c90a31e00e4ad8bbb5c",
         "source": "hansen_gfc_2024_v1_12",
         "tile_refs": [
           {
@@ -451,11 +451,11 @@
         ],
         "tiles_manifest_ref": {
           "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-          "sha256": "e040376c980753ad77ad7033db6a06e23bb2234c1a892388b63343de18788735"
+          "sha256": "3eb98382653426ffd865a9f8a8dc41ac84e5e9afeee95c90a31e00e4ad8bbb5c"
         }
       },
       "hansen_treecover2000": {
-        "hash": "e040376c980753ad77ad7033db6a06e23bb2234c1a892388b63343de18788735",
+        "hash": "3eb98382653426ffd865a9f8a8dc41ac84e5e9afeee95c90a31e00e4ad8bbb5c",
         "source": "hansen_gfc_2024_v1_12",
         "tile_refs": [
           {
@@ -469,7 +469,7 @@
         ],
         "tiles_manifest_ref": {
           "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-          "sha256": "e040376c980753ad77ad7033db6a06e23bb2234c1a892388b63343de18788735"
+          "sha256": "3eb98382653426ffd865a9f8a8dc41ac84e5e9afeee95c90a31e00e4ad8bbb5c"
         }
       }
     },
@@ -485,7 +485,7 @@
     "reference_forest_mask_year": 2000,
     "rfm_area_ha": 505.7296378831563
   },
-  "generated_at_utc": "2026-02-19T09:35:17+00:00",
+  "generated_at_utc": "2026-02-19T12:16:50+00:00",
   "inputs": {
     "sources": [
       {
