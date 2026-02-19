@@ -1,0 +1,391 @@
+{
+  "acceptance_criteria": [
+    {
+      "criteria_id": "aoi_geometry_present",
+      "decision_type": "presence",
+      "description": "AOI geometry is present and referenced in inputs.",
+      "evidence_classes": [
+        "aoi_geometry"
+      ]
+    }
+  ],
+  "aoi_geometry_ref": {
+    "kind": "geojson",
+    "sha256": "d447654778e081907f53c16857376f47e3827ef7b2a992438482a6cfd8d6d223",
+    "value": "inputs/aoi.geojson"
+  },
+  "aoi_id": "mixed_crop_latin_america_colombia",
+  "assumptions": [],
+  "bundle_id": "latin_america",
+  "computed": {},
+  "computed_outputs": {},
+  "datasets": [
+    {
+      "dataset_id": "aoi_geometry_input",
+      "license": "user_supplied",
+      "retrieved_at_utc": "2026-02-19T09:14:30+00:00",
+      "source_url": "inputs/aoi.geojson",
+      "version": "user_supplied"
+    },
+    {
+      "dataset_id": "hansen_gfc_2024_v1_12",
+      "license": "Hansen GFC (public)",
+      "retrieved_at_utc": "2026-02-19T09:14:30+00:00",
+      "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
+      "version": "2024-v1.12"
+    }
+  ],
+  "evidence_artifacts": [
+    {
+      "content_type": "application/geo+json",
+      "meta": {
+        "role": "aoi_geometry"
+      },
+      "relpath": "inputs/aoi.geojson",
+      "sha256": "d447654778e081907f53c16857376f47e3827ef7b2a992438482a6cfd8d6d223",
+      "size_bytes": 1726
+    },
+    {
+      "content_type": "text/html",
+      "meta": {
+        "role": "report_html"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia.html",
+      "sha256": "a7c72489d3eb0dd17ba7272e9e915168fb64bb1d4ff76078e2bc9cb5f2fc4604",
+      "size_bytes": 10266
+    },
+    {
+      "content_type": "application/json",
+      "meta": {
+        "role": "report_json"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia.json",
+      "sha256": "02beffca4072317a93d89b20507ac5a0f1f694d0a486d6e1210c3e46e046c6ea",
+      "size_bytes": 6540
+    },
+    {
+      "content_type": "application/geo+json",
+      "meta": {
+        "role": "forest_2000_mask"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_2000_tree_cover_mask.geojson",
+      "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799",
+      "size_bytes": 43
+    },
+    {
+      "content_type": "application/geo+json",
+      "meta": {
+        "role": "forest_current_mask"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_current_tree_cover_mask.geojson",
+      "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799",
+      "size_bytes": 43
+    },
+    {
+      "content_type": "application/geo+json",
+      "meta": {
+        "role": "forest_end_year_mask"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_end_year_tree_cover_mask.geojson",
+      "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799",
+      "size_bytes": 43
+    },
+    {
+      "content_type": "application/geo+json",
+      "meta": {
+        "role": "forest_loss_mask"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson",
+      "sha256": "6d6b80a88dc60e65991d34024fe7cf2eb86531ffba8b75efb697fe0a601f2799",
+      "size_bytes": 43
+    },
+    {
+      "content_type": "application/json",
+      "meta": {
+        "role": "forest_loss_summary"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_summary.json",
+      "sha256": "c76c4b2f9ff1c4d5ea3e6a0c0d5fe4e3f7bb0b101f53b96255c0a8af562e57c1",
+      "size_bytes": 1220
+    },
+    {
+      "content_type": "application/json",
+      "meta": {
+        "role": "hansen_tiles_manifest"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json",
+      "sha256": "be31496ddb5b2ac2ef25e577bbc62f35f834a7fb31ca24462c547de35038ea06",
+      "size_bytes": 1176
+    },
+    {
+      "content_type": "application/json",
+      "meta": {
+        "role": "forest_mask_debug"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_mask_debug.json",
+      "sha256": "2621613aa11c4fae198f7be94f98919490f3609503c4d87eb600d416e3b14b88",
+      "size_bytes": 196
+    },
+    {
+      "content_type": "text/csv",
+      "meta": {
+        "role": "maaamet_crosscheck_csv"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.csv",
+      "sha256": "caa14b64eb9738a3dc9610966dd7bbc76821986ca5bcf1aa4bdadd44c5e9f41c",
+      "size_bytes": 129
+    },
+    {
+      "content_type": "application/json",
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.json",
+      "sha256": "16b1495b00e01dda094b2cd6cc6cb5a425d3ea418e2bc9b4de17c0a029dd7514",
+      "size_bytes": 337
+    },
+    {
+      "content_type": "application/json",
+      "meta": {
+        "role": "report_map_config"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/map/map_config.json",
+      "sha256": "b517495c65df304eff89348ea5211f5d89626bce263393572bf36cbd64c9638f",
+      "size_bytes": 462
+    },
+    {
+      "content_type": "text/csv",
+      "meta": {
+        "role": "metrics_csv"
+      },
+      "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/metrics.csv",
+      "sha256": "b4851e0f39584df35a884e23d15259b92c358c4844165820c31167073d3a47e9",
+      "size_bytes": 99
+    }
+  ],
+  "evidence_registry": {
+    "evidence_classes": [
+      {
+        "class_id": "aoi_geometry",
+        "mandatory": true,
+        "status": "present"
+      },
+      {
+        "class_id": "forest_loss_post_2020",
+        "mandatory": true,
+        "status": "present"
+      },
+      {
+        "class_id": "hansen_tiles_provenance",
+        "mandatory": true,
+        "status": "present"
+      }
+    ]
+  },
+  "extensions": {
+    "metrics_rows_v1": [
+      {
+        "notes": "geodesic_wgs84_pyproj",
+        "source": "geometry",
+        "unit": "ha",
+        "value": 41772.04912311554,
+        "variable": "aoi_area_ha"
+      }
+    ]
+  },
+  "external_dependencies": [
+    {
+      "aoi_geojson_sha256": "d447654778e081907f53c16857376f47e3827ef7b2a992438482a6cfd8d6d223",
+      "dataset_version": "2024-v1.12",
+      "dependency_id": "hansen_gfc_2024_v1_12",
+      "tile_source": "local",
+      "tiles_manifest": {
+        "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json",
+        "sha256": "be31496ddb5b2ac2ef25e577bbc62f35f834a7fb31ca24462c547de35038ea06"
+      },
+      "tiles_used": [
+        {
+          "layer": "lossyear",
+          "local_path": "/Users/server/data/eudr-dmi/hansen/hansen_gfc_2024_v1_12/tiles/N00_W080/lossyear.tif",
+          "sha256": "3e26bc4e83f087f51cd5de2ead5a400ac1ef676e8181a57220c01647079a1af0",
+          "size_bytes": 62585513,
+          "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_lossyear_00N_080W.tif",
+          "tile_id": "N00_W080"
+        },
+        {
+          "layer": "treecover2000",
+          "local_path": "/Users/server/data/eudr-dmi/hansen/hansen_gfc_2024_v1_12/tiles/N00_W080/treecover2000.tif",
+          "sha256": "374e5f8a76db3ece922f4601dbacc3f2942581fe551cc5e3fd1aa2f6f6f3defa",
+          "size_bytes": 375924861,
+          "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/Hansen_GFC-2024-v1.12_treecover2000_00N_080W.tif",
+          "tile_id": "N00_W080"
+        }
+      ]
+    }
+  ],
+  "generated_at_utc": "2026-02-19T09:14:30+00:00",
+  "inputs": {
+    "sources": [
+      {
+        "content_type": "application/geo+json",
+        "sha256": "d447654778e081907f53c16857376f47e3827ef7b2a992438482a6cfd8d6d223",
+        "source_id": "aoi_geometry",
+        "uri": "inputs/aoi.geojson"
+      }
+    ]
+  },
+  "map_assets": {
+    "aoi_bbox": {
+      "max_lat": 3.65,
+      "max_lon": -76.25,
+      "min_lat": 3.48,
+      "min_lon": -76.45
+    },
+    "config_relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/map/map_config.json",
+    "latest_year": 2024,
+    "layers": {
+      "aoi_boundary": "../../inputs/aoi.geojson",
+      "forest_2000": "mixed_crop_latin_america_colombia/hansen/forest_2000_tree_cover_mask.geojson",
+      "forest_end_year": "mixed_crop_latin_america_colombia/hansen/forest_end_year_tree_cover_mask.geojson",
+      "forest_loss_post_2020": "mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson",
+      "parcels": null
+    }
+  },
+  "methodology": {},
+  "metrics": {
+    "aoi_area_ha": {
+      "notes": "geodesic_wgs84_pyproj",
+      "unit": "ha",
+      "value": 41772.04912311554
+    }
+  },
+  "parameters": {
+    "aoi_area_method": "geodesic_wgs84_pyproj",
+    "forest_loss_post_2020": {
+      "acceptance_threshold_ha": 0.0,
+      "area_method": "projected_constant_pixel_area",
+      "canopy_threshold_percent": 10,
+      "cutoff_year": 2020,
+      "end_year": 2024,
+      "forest_end_year_ha": 0.0,
+      "lossyear_mapping": "0=no_loss; 1..end_year_code=2001..end_year (year=lossyear+2000)",
+      "mask_definitions": {
+        "forest_2024": "rfm_mask & (lossyear == 0)",
+        "loss_2021_2024": "rfm_mask & (lossyear in 21..24)",
+        "loss_post_cutoff": "rfm_mask & (lossyear > 20) [2021+]",
+        "loss_total": "rfm_mask & (lossyear > 0)",
+        "rfm_mask": "treecover2000 >= canopy_threshold_percent"
+      },
+      "pixel_area_method": "projected_constant_pixel_area"
+    },
+    "implementation": {
+      "forest_loss_post_2020": "v1",
+      "git_commit": "84f68fd1c14befef767586e2924dab079f1bf3c5"
+    }
+  },
+  "policy_mapping": [
+    {
+      "article_ref": "EUDR Article 9",
+      "artifact_relpaths": [
+        "inputs/aoi.geojson"
+      ],
+      "evidence_fields": [
+        "aoi_geometry_ref",
+        "inputs.sources"
+      ],
+      "requirement": "AOI geometry is declared and traceable",
+      "status": "pass"
+    },
+    {
+      "article_ref": "EUDR Article 3",
+      "artifact_relpaths": [
+        "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson",
+        "reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json"
+      ],
+      "evidence_fields": [
+        "results_summary.deforestation_free_post_2020",
+        "computed.forest_loss_post_2020.pixel_forest_loss_post_2020_ha"
+      ],
+      "requirement": "Deforestation-free after 2020-01-31",
+      "status": "na"
+    }
+  ],
+  "policy_mapping_refs": [
+    "policy-spine:eudr/article-3",
+    "policy-spine:eudr/article-9"
+  ],
+  "regulatory_traceability": [
+    {
+      "acceptance_criteria": "aoi_geometry_present",
+      "article_ref": "article-3",
+      "evidence_class": "aoi_geometry",
+      "regulation": "EUDR",
+      "result_ref": "result-001"
+    }
+  ],
+  "report_metadata": {
+    "assessment_capability": "inspectable_only",
+    "regulatory_context": {
+      "in_scope_articles": [
+        "article-3"
+      ],
+      "out_of_scope_articles": [],
+      "regulation": "EUDR"
+    },
+    "report_type": "example"
+  },
+  "report_version": "aoi_report_v2",
+  "results": [
+    {
+      "criteria_ids": [
+        "aoi_geometry_present"
+      ],
+      "result_id": "result-001",
+      "status": "pass"
+    }
+  ],
+  "results_summary": {
+    "aoi_area": {
+      "area_ha": 41772.04912311554,
+      "method": "geodesic_wgs84_pyproj"
+    }
+  },
+  "validation": {
+    "forest_area_crosscheck": {
+      "comparison": {
+        "diff_pct": null,
+        "tolerance_percent": 5.0
+      },
+      "computed": {
+        "forest_area_ha": 0.0
+      },
+      "csv_ref": {
+        "content_type": "text/csv",
+        "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.csv",
+        "sha256": "caa14b64eb9738a3dc9610966dd7bbc76821986ca5bcf1aa4bdadd44c5e9f41c"
+      },
+      "fields_used": [
+        "forest_area_ha"
+      ],
+      "outcome": "not_comparable",
+      "reason": "missing_reference_forest_area",
+      "reference": {
+        "method": "missing",
+        "source": "missing",
+        "value_ha": null
+      },
+      "source": "maaamet",
+      "summary_ref": {
+        "content_type": "application/json",
+        "relpath": "reports/aoi_report_v2/mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.json",
+        "sha256": "16b1495b00e01dda094b2cd6cc6cb5a425d3ea418e2bc9b4de17c0a029dd7514"
+      }
+    },
+    "maaamet": {
+      "cadastral_forest_ha_sum": null,
+      "enabled": false,
+      "notes": "Populate when Maa-amet WFS integration is enabled in pipeline.",
+      "parcel_count": null,
+      "parcel_layer": "kataster:ky_kehtiv",
+      "pixel_forest_ha_sum": null,
+      "rel_diff_pct": null
+    }
+  }
+}

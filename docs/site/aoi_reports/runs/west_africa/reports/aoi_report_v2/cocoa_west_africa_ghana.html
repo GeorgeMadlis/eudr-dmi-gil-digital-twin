@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AOI Report — cocoa_west_africa_ghana</title>
+    <style>
+    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; margin: 24px; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
+    th { background: #f6f6f6; text-align: left; width: 240px; }
+    h2 { margin-top: 28px; }
+    code { background: #f6f6f6; padding: 1px 4px; border-radius: 4px; }
+    .muted { color: #666; }
+        #map { height: 420px; border: 1px solid #ddd; border-radius: 8px; margin: 12px 0 16px; background: #fafafa; }
+  </style>
+</head>
+<body>
+  <h1>AOI Report</h1>
+  <table>
+    <tr><th>AOI</th><td>cocoa_west_africa_ghana</td></tr>
+    <tr><th>Bundle</th><td>west_africa</td></tr>
+    <tr><th>Generated (UTC)</th><td>2026-02-19T09:17:27+00:00</td></tr>
+    <tr><th>Report Version</th><td>aoi_report_v2</td></tr>
+    <tr><th>Geometry Ref</th><td>geojson: inputs/aoi.geojson</td></tr>
+    <tr><th>AOI area (ha)</th><td>27515.387436814308</td></tr>
+    <tr><th>AOI area method</th><td>geodesic_wgs84_pyproj</td></tr>
+  </table>
+
+  <h2>Deforestation-free (post-2020)</h2>
+  <table>
+    <tr><th>(none)</th><td></td></tr>
+  </table>
+
+  <h2>Forest baseline / forest mask</h2>
+  <table>
+    <tr><th>Tree cover threshold (%)</th><td>10</td></tr>
+    <tr><th>Baseline year</th><td>2000</td></tr>
+    <tr><th>Cutoff year</th><td>2020</td></tr>
+  </table>
+
+    <h2>Forest area and loss (pixel-based, AOI intersection)</h2>
+    <table>
+        <tr><th>(none)</th><td></td></tr>
+    </table>
+
+    
+    <h2>Map (interactive)</h2>
+    <div id="map"></div>
+    <p class="muted">Map layers are loaded from <a href="cocoa_west_africa_ghana/map/map_config.json">cocoa_west_africa_ghana/map/map_config.json</a>.</p>
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""
+    />
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""
+    ></script>
+    <script>
+        (function () {
+            const map = L.map('map', { zoomControl: true });
+            const satellite = L.tileLayer(
+                'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+                {
+                    attribution: 'Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community',
+                },
+            ).addTo(map);
+            const configUrl = 'cocoa_west_africa_ghana/map/map_config.json';
+            fetch(configUrl)
+                .then((resp) => resp.json())
+                .then((config) => {
+                    const bbox = config.aoi_bbox;
+                    const bounds = L.latLngBounds([
+                        [bbox.min_lat, bbox.min_lon],
+                        [bbox.max_lat, bbox.max_lon],
+                    ]);
+                    map.fitBounds(bounds);
+
+                    const overlays = {};
+                    const baseLayers = { 'Satellite': satellite };
+                    const addGeoJson = (label, url, options) => {
+                        if (!url) return;
+                        const resolvedUrl = new URL(url, configUrl).toString();
+                        fetch(resolvedUrl)
+                            .then((r) => r.json())
+                            .then((data) => {
+                                const layer = L.geoJSON(data, options).addTo(map);
+                                overlays[label] = layer;
+                            });
+                    };
+
+                      addGeoJson('Forest cover 2000', config.layers.forest_2000, { style: { color: '#2e7d32', weight: 1, fillOpacity: 0.3 } });
+                      addGeoJson(`Forest cover ${config.latest_year}`, config.layers.forest_end_year, { style: { color: '#1b5e20', weight: 1, fillOpacity: 0.3 } });
+                    addGeoJson('Forest loss since 2020', config.layers.forest_loss_post_2020, { style: { color: '#c62828', weight: 2, fillOpacity: 0.55 } });
+                    addGeoJson('AOI boundary', config.layers.aoi_boundary, { style: { color: '#00e5ff', weight: 4, opacity: 1, fillOpacity: 0 } });
+                    addGeoJson('Maa-amet parcels', config.layers.parcels, {
+                        style: { color: '#000000', weight: 3, opacity: 1, fillOpacity: 0 },
+                        onEachFeature: (feature, layer) => {
+                            const props = feature.properties || {};
+                            const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''} | loss_ha=${props.hansen_forest_loss_ha ?? ''}`;
+                            layer.bindTooltip(label, { sticky: true });
+                        },
+                    });
+
+                    L.control.layers(baseLayers, overlays, { collapsed: false }).addTo(map);
+                });
+        })();
+    </script>
+
+
+    <h2>Parcels (top 10 with forest ≥ 3 ha)</h2>
+    <table>
+        <tr>
+            <th>Parcel ID</th>
+            <th>Hansen land area (ha)</th>
+            <th>Maa-amet land area (ha)</th>
+            <th>Hansen forest area (ha)</th>
+            <th>Maa-amet forest area (ha)</th>
+            <th>Forest loss (ha)</th>
+        </tr>
+        <tr><td colspan="6">(none)</td></tr>
+    </table>
+
+  <h2>Data sources & provenance</h2>
+  <table>
+    <tr><th>dataset_id</th><th>version</th><th>retrieved_at_utc</th><th>license</th><th>source_url</th></tr>
+    <tr><td>aoi_geometry_input</td><td>user_supplied</td><td>2026-02-19T09:17:27+00:00</td><td>user_supplied</td><td>inputs/aoi.geojson</td></tr>
+<tr><td>hansen_gfc_2024_v1_12</td><td>2024-v1.12</td><td>2026-02-19T09:17:27+00:00</td><td>Hansen GFC (public)</td><td>https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/</td></tr>
+  </table>
+
+  <h2>Methods & parameters</h2>
+  <table>
+    <tr><th>aoi_area_method</th><td>geodesic_wgs84_pyproj</td></tr>
+<tr><th>forest_loss_post_2020</th><td>{'canopy_threshold_percent': 10, 'cutoff_year': 2020, 'acceptance_threshold_ha': 0.0, 'pixel_area_method': 'projected_constant_pixel_area', 'area_method': 'projected_constant_pixel_area', 'lossyear_mapping': '0=no_loss; 1..end_year_code=2001..end_year (year=lossyear+2000)', 'mask_definitions': {'rfm_mask': 'treecover2000 >= canopy_threshold_percent', 'loss_total': 'rfm_mask & (lossyear > 0)', 'loss_post_cutoff': 'rfm_mask & (lossyear > 20) [2021+]', 'loss_2021_2024': 'rfm_mask & (lossyear in 21..24)', 'forest_2024': 'rfm_mask & (lossyear == 0)'}, 'end_year': 2024, 'forest_end_year_ha': 16129.862155734862}</td></tr>
+<tr><th>implementation</th><td>{'forest_loss_post_2020': 'v1', 'git_commit': '84f68fd1c14befef767586e2924dab079f1bf3c5'}</td></tr>
+  </table>
+
+  <h2>Traceability to EUDR Articles</h2>
+  <table>
+    <tr><th>Article</th><th>Requirement</th><th>Evidence fields</th><th>Artifacts</th><th>Status</th></tr>
+    <tr><td>EUDR Article 9</td><td>AOI geometry is declared and traceable</td><td>aoi_geometry_ref, inputs.sources</td><td><a href="../../inputs/aoi.geojson">inputs/aoi.geojson</a></td><td>pass</td></tr>
+<tr><td>EUDR Article 3</td><td>Deforestation-free after 2020-01-31</td><td>results_summary.deforestation_free_post_2020, computed.forest_loss_post_2020.pixel_forest_loss_post_2020_ha</td><td><a href="cocoa_west_africa_ghana/hansen/forest_loss_post_2020_mask.geojson">reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_loss_post_2020_mask.geojson</a>, <a href="cocoa_west_africa_ghana/hansen/forest_loss_post_2020_tiles.json">reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_loss_post_2020_tiles.json</a></td><td>na</td></tr>
+  </table>
+
+  <h2>Evidence artifact index</h2>
+  <table>
+    <tr><th>relpath</th><th>sha256</th><th>size_bytes</th><th>role</th></tr>
+    <tr><td colspan="4">(none)</td></tr>
+  </table>
+
+  <h2>Bundle artifacts</h2>
+  <ul>
+    <li><a href="../../inputs/aoi.geojson">../../inputs/aoi.geojson</a></li>
+<li><a href="cocoa_west_africa_ghana.json">cocoa_west_africa_ghana.json</a></li>
+<li><a href="cocoa_west_africa_ghana/hansen/forest_2000_tree_cover_mask.geojson">cocoa_west_africa_ghana/hansen/forest_2000_tree_cover_mask.geojson</a></li>
+<li><a href="cocoa_west_africa_ghana/hansen/forest_current_tree_cover_mask.geojson">cocoa_west_africa_ghana/hansen/forest_current_tree_cover_mask.geojson</a></li>
+<li><a href="cocoa_west_africa_ghana/hansen/forest_end_year_tree_cover_mask.geojson">cocoa_west_africa_ghana/hansen/forest_end_year_tree_cover_mask.geojson</a></li>
+<li><a href="cocoa_west_africa_ghana/hansen/forest_loss_post_2020_mask.geojson">cocoa_west_africa_ghana/hansen/forest_loss_post_2020_mask.geojson</a></li>
+<li><a href="cocoa_west_africa_ghana/hansen/forest_loss_post_2020_summary.json">cocoa_west_africa_ghana/hansen/forest_loss_post_2020_summary.json</a></li>
+<li><a href="cocoa_west_africa_ghana/hansen/forest_loss_post_2020_tiles.json">cocoa_west_africa_ghana/hansen/forest_loss_post_2020_tiles.json</a></li>
+<li><a href="cocoa_west_africa_ghana/hansen/forest_mask_debug.json">cocoa_west_africa_ghana/hansen/forest_mask_debug.json</a></li>
+<li><a href="cocoa_west_africa_ghana/maaamet/maaamet_forest_area_crosscheck.csv">cocoa_west_africa_ghana/maaamet/maaamet_forest_area_crosscheck.csv</a></li>
+<li><a href="cocoa_west_africa_ghana/maaamet/maaamet_forest_area_crosscheck.json">cocoa_west_africa_ghana/maaamet/maaamet_forest_area_crosscheck.json</a></li>
+<li><a href="cocoa_west_africa_ghana/map/map_config.json">cocoa_west_africa_ghana/map/map_config.json</a></li>
+<li><a href="cocoa_west_africa_ghana/metrics.csv">cocoa_west_africa_ghana/metrics.csv</a></li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,2 @@
+variable,value,unit,source,notes
+aoi_area_ha,41772.04912311554,ha,geometry,geodesic_wgs84_pyproj

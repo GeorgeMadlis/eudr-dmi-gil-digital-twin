@@ -7,6 +7,13 @@ from pathlib import Path
 
 
 def resolve_report_json_path(run_dir: Path) -> Path:
+    preferred_candidates = sorted(path for path in run_dir.glob("*_aoi_report.json") if path.is_file())
+    if len(preferred_candidates) == 1:
+        return preferred_candidates[0]
+    if len(preferred_candidates) > 1:
+        names = ", ".join(path.name for path in preferred_candidates)
+        raise SystemExit(f"Multiple *_aoi_report.json candidates in {run_dir}: {names}")
+
     default = run_dir / "aoi_report.json"
     if default.is_file():
         return default

@@ -1,53 +1,85 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AOI Reports</title>
-  <style>
-    :root { --fg:#111; --bg:#fff; --muted:#666; --card:#f6f7f9; --link:#0b5fff; }
-    body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-           color: var(--fg); background: var(--bg); margin: 0; }
-    header { border-bottom: 1px solid #e7e7e7; background: #fff; position: sticky; top: 0; }
-    .wrap { max-width: 980px; margin: 0 auto; padding: 16px 20px; }
-    nav a { margin-right: 14px; text-decoration: none; color: var(--link); font-weight: 600; }
-    nav a.active { color: var(--fg); }
-    main { padding: 18px 20px 40px; }
-    h1 { margin: 0 0 6px; font-size: 22px; }
-    p { line-height: 1.5; }
-    .muted { color: var(--muted); }
-    .card { background: var(--card); border: 1px solid #e8eaee; border-radius: 12px; padding: 14px 14px; }
-    ul { padding-left: 18px; }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="wrap">
-      <nav>
-        <a href="../index.html">Home</a>
-        <a href="../articles/index.html">Articles</a>
-        <a href="../dependencies/index.html">Dependencies</a>
-        <a href="../regulation/links.html">Regulation</a>
-        <a href="../regulation/sources.html">Sources</a>
-        <a href="../regulation/policy_to_evidence_spine.html">Spine</a>
-        <a href="../views/index.html">Views</a>
-        <a href="index.html" class="active">AOI Reports</a>
-        <a href="../dao_stakeholders/index.html">DAO (Stakeholders)</a>
-        <a href="../dao_dev/index.html">DAO (Developers)</a>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <div class="wrap">
-      <h1>AOI Reports</h1>
-      <p class="muted">Portable bundle. Links assume this folder is mounted at <code>docs/site/aoi_reports/</code>.</p>
-      <div class="card">
-        <h2>Runs</h2>
-        <ul>
-          <li><a href="runs/example/report.html">example</a> <span class="muted">(</span><a href="runs/example/aoi_report.json">aoi_report.json</a><span class="muted">)</span></li>
-        </ul>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AOI Reports</title>
+    <style>
+      :root { --fg:#111; --bg:#fff; --muted:#666; --card:#f6f7f9; --link:#0b5fff; }
+      body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+             color: var(--fg); background: var(--bg); margin: 0; }
+      header { border-bottom: 1px solid #e7e7e7; background: #fff; position: sticky; top: 0; }
+      .wrap { max-width: 980px; margin: 0 auto; padding: 16px 20px; }
+      nav a { margin-right: 14px; text-decoration: none; color: var(--link); font-weight: 600; }
+      nav a.active { color: var(--fg); }
+      main { padding: 18px 20px 40px; }
+      h1 { margin: 0 0 6px; font-size: 22px; }
+      h2 { margin-top: 24px; font-size: 18px; }
+      p { line-height: 1.5; }
+      .muted { color: var(--muted); }
+      .card { background: var(--card); border: 1px solid #e8eaee; border-radius: 12px; padding: 14px 14px; }
+      ul { padding-left: 18px; }
+      code { background: #f1f1f1; padding: 1px 4px; border-radius: 6px; }
+      .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+      @media (min-width: 760px) { .grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+  </head>
+  <body>
+    <header>
+  <div class="wrap">
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../articles/index.html">Articles</a>
+      <a href="../dependencies/index.html">Dependencies</a>
+      <a href="../regulation/links.html">Regulation</a>
+      <a href="../regulation/sources.html">Sources</a>
+      <a href="../regulation/policy_to_evidence_spine.html">Spine</a>
+      <a href="../views/index.html">Views</a>
+      <a href="../dte_instructions.html">DTE Instructions v1.1</a>
+      <a href="../dte_instructions.html#conversation-starters">Conversation Starters</a>
+      <a href="../aoi_reports/index.html" class="active">AOI Reports</a>
+      <a href="../dao_stakeholders/index.html">DAO (Stakeholders)</a>
+      <a href="../dao_dev/index.html">DAO (Developers)</a>
+    </nav>
+    
+  </div>
+</header>
+    <main>
+      <div class="wrap">
+        <!-- Generated from docs/site/aoi_reports/runs/ -->
+<h1>AOI Reports</h1>
+<p class="muted">Portable mode: links point into the bundle under <code>runs/&lt;run_id&gt;/report.html</code>. For inspection guidance, see <a href="../dte_instructions.html">DTE instructions</a>.</p>
+<p class="muted"><strong>Artefact publication contract:</strong> the run-level AOI report JSON declares every evidence artefact; each declared file must exist at its declared relative path in the bundle and be reachable via a clickable link from <code>report.html</code>. Builds fail on missing artefacts.</p>
+<p class="muted">AI/automation inspection note: see <a href="../dte_instructions.html">DTE instructions</a>.</p>
+<p class="muted">This page shows the published AOI report set for inspection and comparison across regions.</p>
+<div class="notice" style="border:1px solid #ddd; padding:12px; border-radius:8px; margin:12px 0;">
+  <strong>AI/automation inspection note (mandatory):</strong>
+  <ul style="margin:8px 0 0 18px;">
+    <li><strong>Do not infer or construct report URLs from run IDs.</strong></li>
+    <li>Access reports only by clicking through the portal: <em>Home → AOI Reports → Run entry → report.html → linked JSON artefacts</em>.</li>
+    <li>If a listed artefact cannot be opened via this click-path, record it as an <strong>Evidence gap — published artefact is inaccessible via inspection surface</strong>.</li>
+  </ul>
+  <div style="margin-top:8px;">
+    See: <a href="../dte_instructions.html">DTE Instructions v1.2</a>
+  </div>
+</div>
+<div class="card">
+  <h2>Runs (newest first)</h2>
+  <ul>
+<li><a href="runs/example/report.html">Example with cadastre-based validation in Estonia</a> <span class="muted">(</span><a href="runs/example/estonia_aoi_report.json">estonia_aoi_report.json</a><span class="muted">)</span></li>
+<li><a href="runs/latin_america/report.html">Example of mixed crop in Latin America</a> <span class="muted">(</span><a href="runs/latin_america/latin_america_aoi_report.json">latin_america_aoi_report.json</a><span class="muted">)</span></li>
+<li><a href="runs/se_asia/report.html">Example of coffee in SE Asia</a> <span class="muted">(</span><a href="runs/se_asia/se_asia_aoi_report.json">se_asia_aoi_report.json</a><span class="muted">)</span></li>
+<li><a href="runs/west_africa/report.html">Example of cocoa in West Africa</a> <span class="muted">(</span><a href="runs/west_africa/west_africa_aoi_report.json">west_africa_aoi_report.json</a><span class="muted">)</span></li>
+  </ul>
+</div>
       </div>
-    </div>
-  </main>
-</body>
+    </main>
+    <footer style="border-top:1px solid #e7e7e7; background:#fff;">
+      <div style="max-width:980px; margin:0 auto; padding:18px 20px 28px; color:#666; font-size:13px;">
+        <a href="../privacy.html" style="color:#0b5fff; text-decoration:none; font-weight:600;">Privacy Policy</a>
+        <span style="margin:0 8px; color:#999;">|</span>
+        <a href="../dte_instructions.html" style="color:#0b5fff; text-decoration:none; font-weight:600;">DTE Instructions v1.2</a>
+      </div>
+    </footer>
+  </body>
 </html>
