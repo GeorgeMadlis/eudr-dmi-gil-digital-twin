@@ -24,7 +24,7 @@
   <table>
     <tr><th>AOI</th><td>estonia_testland1</td></tr>
     <tr><th>Bundle</th><td>example</td></tr>
-    <tr><th>Generated (UTC)</th><td>2026-02-19T12:33:41+00:00</td></tr>
+    <tr><th>Generated (UTC)</th><td>2026-02-19T12:47:49+00:00</td></tr>
     <tr><th>Report Version</th><td>aoi_report_v2</td></tr>
     <tr><th>Geometry Ref</th><td>geojson: inputs/aoi.geojson</td></tr>
     <tr><th>AOI area (ha)</th><td>15775.219873859023</td></tr>
@@ -218,15 +218,15 @@
   <h2>Data sources & provenance</h2>
   <table>
     <tr><th>dataset_id</th><th>version</th><th>retrieved_at_utc</th><th>license</th><th>source_url</th></tr>
-    <tr><td>aoi_geometry_input</td><td>user_supplied</td><td>2026-02-19T12:33:41+00:00</td><td>user_supplied</td><td>inputs/aoi.geojson</td></tr>
-<tr><td>hansen_gfc_2024_v1_12</td><td>2024-v1.12</td><td>2026-02-19T12:33:41+00:00</td><td>Hansen GFC (public)</td><td>https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/</td></tr>
+    <tr><td>aoi_geometry_input</td><td>user_supplied</td><td>2026-02-19T12:47:49+00:00</td><td>user_supplied</td><td>inputs/aoi.geojson</td></tr>
+<tr><td>hansen_gfc_2024_v1_12</td><td>2024-v1.12</td><td>2026-02-19T12:47:49+00:00</td><td>Hansen GFC (public)</td><td>https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/</td></tr>
   </table>
 
   <h2>Methods & parameters</h2>
   <table>
     <tr><th>aoi_area_method</th><td>geodesic_wgs84_pyproj</td></tr>
 <tr><th>forest_loss_post_2020</th><td>{'canopy_threshold_percent': 10, 'cutoff_year': 2020, 'acceptance_threshold_ha': 0.0, 'pixel_area_method': 'projected_constant_pixel_area', 'area_method': 'projected_constant_pixel_area', 'lossyear_mapping': '0=no_loss; 1..end_year_code=2001..end_year (year=lossyear+2000)', 'mask_definitions': {'rfm_mask': 'treecover2000 >= canopy_threshold_percent', 'loss_total': 'rfm_mask & (lossyear > 0)', 'loss_post_cutoff': 'rfm_mask & (lossyear > 20) [2021+]', 'loss_2021_2024': 'rfm_mask & (lossyear in 21..24)', 'forest_2024': 'rfm_mask & (lossyear == 0)'}, 'end_year': 2024, 'forest_end_year_ha': 416.06087365026985}</td></tr>
-<tr><th>implementation</th><td>{'forest_loss_post_2020': 'v1', 'git_commit': '2fbec04c76e90e3d248ea00ea94b9a003a4bb9ef'}</td></tr>
+<tr><th>implementation</th><td>{'forest_loss_post_2020': 'v1', 'git_commit': '1bf23e7ffd93126542aa25022ca8b3d2d9ec6e20'}</td></tr>
   </table>
 
   <h2>Traceability to EUDR Articles</h2>

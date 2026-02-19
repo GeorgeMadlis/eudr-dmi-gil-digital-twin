@@ -59,7 +59,7 @@
       "tiles_manifest_ref": {
         "content_type": "application/json",
         "relpath": "reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "1da7cb8c6e2ca6c1f543e0594c5bbc4b2a9862e999a53f3c594c64bb133c88ed"
+        "sha256": "b752b5e68f229a20137281361110901719f1a1bb8cb03b30dfa703b981593e06"
       }
     }
   },
@@ -67,14 +67,14 @@
     {
       "dataset_id": "aoi_geometry_input",
       "license": "user_supplied",
-      "retrieved_at_utc": "2026-02-19T12:33:50+00:00",
+      "retrieved_at_utc": "2026-02-19T12:47:58+00:00",
       "source_url": "inputs/aoi.geojson",
       "version": "user_supplied"
     },
     {
       "dataset_id": "hansen_gfc_2024_v1_12",
       "license": "Hansen GFC (public)",
-      "retrieved_at_utc": "2026-02-19T12:33:50+00:00",
+      "retrieved_at_utc": "2026-02-19T12:47:58+00:00",
       "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
       "version": "2024-v1.12"
     }
@@ -95,7 +95,7 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/cocoa_west_africa_ghana.html",
-      "sha256": "62af47c60f806e3e867abcda3b04c4d64dcc69cc166af07e7c46bcfbce8292f3",
+      "sha256": "89293fcdc7cf3990543675e113daf3d58242749046d0cf4d2622179bc87cc42b",
       "size_bytes": 14856
     },
     {
@@ -104,8 +104,8 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/cocoa_west_africa_ghana.json",
-      "sha256": "fd25e3b59e926522af4e7965b70bcf1badde7eadda83849c33c84c009c7d445a",
-      "size_bytes": 14689
+      "sha256": "7553148acc555ae3be255a81eac9e0791bb8926bd92a2d760b95d4fea3b3cddb",
+      "size_bytes": 14688
     },
     {
       "content_type": "application/geo+json",
@@ -158,7 +158,7 @@
         "role": "hansen_tiles_manifest"
       },
       "relpath": "reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_loss_post_2020_tiles.json",
-      "sha256": "1da7cb8c6e2ca6c1f543e0594c5bbc4b2a9862e999a53f3c594c64bb133c88ed",
+      "sha256": "b752b5e68f229a20137281361110901719f1a1bb8cb03b30dfa703b981593e06",
       "size_bytes": 1165
     },
     {
@@ -191,8 +191,8 @@
         "role": "report_map_config"
       },
       "relpath": "reports/aoi_report_v2/cocoa_west_africa_ghana/map/map_config.json",
-      "sha256": "632c2bdc0b458713fdff9e7260c26782c55b3ca49cc534aacbc38f6d703fade3",
-      "size_bytes": 371
+      "sha256": "1dff0dc2fea90060af19229268abbd9a2ac6a3676c02ba044024505b84a7f8fe",
+      "size_bytes": 370
     },
     {
       "content_type": "text/csv",
@@ -373,7 +373,7 @@
       "tile_source": "local",
       "tiles_manifest": {
         "relpath": "reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "1da7cb8c6e2ca6c1f543e0594c5bbc4b2a9862e999a53f3c594c64bb133c88ed"
+        "sha256": "b752b5e68f229a20137281361110901719f1a1bb8cb03b30dfa703b981593e06"
       },
       "tiles_used": [
         {
@@ -401,7 +401,7 @@
     "forest_end_year_area_ha": 16129.862155734862,
     "inputs": {
       "hansen_lossyear": {
-        "hash": "1da7cb8c6e2ca6c1f543e0594c5bbc4b2a9862e999a53f3c594c64bb133c88ed",
+        "hash": "b752b5e68f229a20137281361110901719f1a1bb8cb03b30dfa703b981593e06",
         "source": "hansen_gfc_2024_v1_12",
         "tile_refs": [
           {
@@ -415,11 +415,11 @@
         ],
         "tiles_manifest_ref": {
           "relpath": "reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_loss_post_2020_tiles.json",
-          "sha256": "1da7cb8c6e2ca6c1f543e0594c5bbc4b2a9862e999a53f3c594c64bb133c88ed"
+          "sha256": "b752b5e68f229a20137281361110901719f1a1bb8cb03b30dfa703b981593e06"
         }
       },
       "hansen_treecover2000": {
-        "hash": "1da7cb8c6e2ca6c1f543e0594c5bbc4b2a9862e999a53f3c594c64bb133c88ed",
+        "hash": "b752b5e68f229a20137281361110901719f1a1bb8cb03b30dfa703b981593e06",
         "source": "hansen_gfc_2024_v1_12",
         "tile_refs": [
           {
@@ -433,7 +433,7 @@
         ],
         "tiles_manifest_ref": {
           "relpath": "reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_loss_post_2020_tiles.json",
-          "sha256": "1da7cb8c6e2ca6c1f543e0594c5bbc4b2a9862e999a53f3c594c64bb133c88ed"
+          "sha256": "b752b5e68f229a20137281361110901719f1a1bb8cb03b30dfa703b981593e06"
         }
       }
     },
@@ -449,7 +449,7 @@
     "reference_forest_mask_year": 2000,
     "rfm_area_ha": 27390.04770602734
   },
-  "generated_at_utc": "2026-02-19T12:33:50+00:00",
+  "generated_at_utc": "2026-02-19T12:47:58+00:00",
   "inputs": {
     "sources": [
       {
@@ -472,7 +472,7 @@
     "layers": {
       "aoi_boundary": "../../../../inputs/aoi.geojson",
       "forest_2000": "../hansen/forest_2000_tree_cover_mask.geojson",
-      "forest_end_year": "../hansen/forest_end_year_tree_cover_mask.geojson",
+      "forest_end_year": "../hansen/forest_current_tree_cover_mask.geojson",
       "forest_loss_post_2020": "../hansen/forest_loss_post_2020_mask.geojson",
       "parcels": null
     }
@@ -578,7 +578,7 @@
     },
     "implementation": {
       "forest_loss_post_2020": "v1",
-      "git_commit": "2fbec04c76e90e3d248ea00ea94b9a003a4bb9ef"
+      "git_commit": "1bf23e7ffd93126542aa25022ca8b3d2d9ec6e20"
     }
   },
   "policy_mapping": [

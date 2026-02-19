@@ -59,7 +59,7 @@
       "tiles_manifest_ref": {
         "content_type": "application/json",
         "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "ba809823256d13083707d7af225d2288a1df6d9b781e4ecb363924527d796351"
+        "sha256": "0f2d02066be37edd20c2362b549bbb1e94559e77e9a4c3cbd137d230cc7eea4c"
       }
     }
   },
@@ -67,14 +67,14 @@
     {
       "dataset_id": "aoi_geometry_input",
       "license": "user_supplied",
-      "retrieved_at_utc": "2026-02-19T12:33:49+00:00",
+      "retrieved_at_utc": "2026-02-19T12:47:56+00:00",
       "source_url": "inputs/aoi.geojson",
       "version": "user_supplied"
     },
     {
       "dataset_id": "hansen_gfc_2024_v1_12",
       "license": "Hansen GFC (public)",
-      "retrieved_at_utc": "2026-02-19T12:33:49+00:00",
+      "retrieved_at_utc": "2026-02-19T12:47:56+00:00",
       "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
       "version": "2024-v1.12"
     }
@@ -95,7 +95,7 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam.html",
-      "sha256": "2a4a2cb3f9bc3d65a3d10b0e2cd8dc1fdc1bb8837a39dca591e0633a636153a1",
+      "sha256": "ff68b2f8e35fa6a6584eece9db9f54e87941971024f16808e71e1ab118356438",
       "size_bytes": 14722
     },
     {
@@ -104,8 +104,8 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam.json",
-      "sha256": "21d9dde5747d5aec5c98b7f17d7abfaba9c480414f5b4a6d7fb4666bb71ed0a8",
-      "size_bytes": 14114
+      "sha256": "5d8f4b6641f50b3273ddd231a937117cf91e410159c4572c495194718962d914",
+      "size_bytes": 14113
     },
     {
       "content_type": "application/geo+json",
@@ -158,7 +158,7 @@
         "role": "hansen_tiles_manifest"
       },
       "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_tiles.json",
-      "sha256": "ba809823256d13083707d7af225d2288a1df6d9b781e4ecb363924527d796351",
+      "sha256": "0f2d02066be37edd20c2362b549bbb1e94559e77e9a4c3cbd137d230cc7eea4c",
       "size_bytes": 1159
     },
     {
@@ -191,8 +191,8 @@
         "role": "report_map_config"
       },
       "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/map/map_config.json",
-      "sha256": "059a8f92f24a575633847a31b89c6c5f7bbd0901b1f44da810a5473d86ef2d11",
-      "size_bytes": 376
+      "sha256": "11b49e434ecc7486931bd45a061f43023e6b796be11a30e8c8490fc6393af22c",
+      "size_bytes": 375
     },
     {
       "content_type": "text/csv",
@@ -373,7 +373,7 @@
       "tile_source": "local",
       "tiles_manifest": {
         "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "ba809823256d13083707d7af225d2288a1df6d9b781e4ecb363924527d796351"
+        "sha256": "0f2d02066be37edd20c2362b549bbb1e94559e77e9a4c3cbd137d230cc7eea4c"
       },
       "tiles_used": [
         {
@@ -401,7 +401,7 @@
     "forest_end_year_area_ha": 0.0,
     "inputs": {
       "hansen_lossyear": {
-        "hash": "ba809823256d13083707d7af225d2288a1df6d9b781e4ecb363924527d796351",
+        "hash": "0f2d02066be37edd20c2362b549bbb1e94559e77e9a4c3cbd137d230cc7eea4c",
         "source": "hansen_gfc_2024_v1_12",
         "tile_refs": [
           {
@@ -415,11 +415,11 @@
         ],
         "tiles_manifest_ref": {
           "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_tiles.json",
-          "sha256": "ba809823256d13083707d7af225d2288a1df6d9b781e4ecb363924527d796351"
+          "sha256": "0f2d02066be37edd20c2362b549bbb1e94559e77e9a4c3cbd137d230cc7eea4c"
         }
       },
       "hansen_treecover2000": {
-        "hash": "ba809823256d13083707d7af225d2288a1df6d9b781e4ecb363924527d796351",
+        "hash": "0f2d02066be37edd20c2362b549bbb1e94559e77e9a4c3cbd137d230cc7eea4c",
         "source": "hansen_gfc_2024_v1_12",
         "tile_refs": [
           {
@@ -433,7 +433,7 @@
         ],
         "tiles_manifest_ref": {
           "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/hansen/forest_loss_post_2020_tiles.json",
-          "sha256": "ba809823256d13083707d7af225d2288a1df6d9b781e4ecb363924527d796351"
+          "sha256": "0f2d02066be37edd20c2362b549bbb1e94559e77e9a4c3cbd137d230cc7eea4c"
         }
       }
     },
@@ -449,7 +449,7 @@
     "reference_forest_mask_year": 2000,
     "rfm_area_ha": 0.0
   },
-  "generated_at_utc": "2026-02-19T12:33:49+00:00",
+  "generated_at_utc": "2026-02-19T12:47:56+00:00",
   "inputs": {
     "sources": [
       {
@@ -472,7 +472,7 @@
     "layers": {
       "aoi_boundary": "../../../../inputs/aoi.geojson",
       "forest_2000": "../hansen/forest_2000_tree_cover_mask.geojson",
-      "forest_end_year": "../hansen/forest_end_year_tree_cover_mask.geojson",
+      "forest_end_year": "../hansen/forest_current_tree_cover_mask.geojson",
       "forest_loss_post_2020": "../hansen/forest_loss_post_2020_mask.geojson",
       "parcels": null
     }
@@ -578,7 +578,7 @@
     },
     "implementation": {
       "forest_loss_post_2020": "v1",
-      "git_commit": "2fbec04c76e90e3d248ea00ea94b9a003a4bb9ef"
+      "git_commit": "1bf23e7ffd93126542aa25022ca8b3d2d9ec6e20"
     }
   },
   "policy_mapping": [
