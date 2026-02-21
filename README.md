@@ -22,7 +22,7 @@ It is not authoritative for code or compliance logic.
 - HTML files viewed via `github.com/.../blob/...` are not the website.
 - The portal must be viewed via GitHub Pages:
 
-<https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/>
+<https://single-earth.github.io/eudr-dmi-gil-digital-twin/>
 
 A portable offline bundle can be inspected by downloading the site bundle and opening `index.html` locally in a browser.
 
@@ -101,7 +101,7 @@ It is not a live “real-time twin” by default. Updates are published through 
 
 The authoritative implementation repository is:
 
-<https://github.com/GeorgeMadlis/eudr-dmi-gil>
+<https://github.com/single-earth/eudr-dmi-gil>
 
 All published views originate from that repository.
 

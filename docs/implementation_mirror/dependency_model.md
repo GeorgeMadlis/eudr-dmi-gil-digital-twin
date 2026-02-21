@@ -6,8 +6,8 @@ This document summarizes how dependencies and evidence sources are modeled for E
 
 ## Source of Truth
 
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/architecture/dependency_register.md
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/dependencies/sources.md
+- https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/architecture/dependency_register.md
+- https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/dependencies/sources.md
 
 ## What a Dependency Entry Represents
 

@@ -2,7 +2,7 @@
 
 Purpose: record authoritative source snapshots (HTML/PDF) and their SHA-256 fingerprints without embedding the regulation text in this repository.
 
-**Authority boundary:** This document provides inspectable mappings only. Authoritative acquisition logic and deterministic pipelines live in the implementation repository: https://github.com/GeorgeMadlis/eudr-dmi-gil
+**Authority boundary:** This document provides inspectable mappings only. Authoritative acquisition logic and deterministic pipelines live in the implementation repository: https://github.com/single-earth/eudr-dmi-gil
 
 Server audit root: `/Users/server/audit/eudr_dmi`
 
@@ -16,8 +16,8 @@ Server audit root: `/Users/server/audit/eudr_dmi`
 Some EUR-Lex endpoints may be protected by WAF/login challenges depending on network and headers. This project does not attempt to bypass challenges.
 
 Implementation reference (authoritative):
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/operations/environment_setup.md
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/operations/minio_setup.md
+- https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/operations/environment_setup.md
+- https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/operations/minio_setup.md
 
 a) Open the link launcher in a browser:
 - [docs/regulation/links.html](links.html)
@@ -30,7 +30,7 @@ c) Run the acquisition tool to verify non-empty files, compute SHA-256, and upda
 python tools/regulation/acquire_and_hash.py --verify
 ```
 
-Optional: if your browser session is required and you can export cookies, see https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/operations/environment_setup.md and run:
+Optional: if your browser session is required and you can export cookies, see https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/operations/environment_setup.md and run:
 
 ```sh
 python tools/regulation/acquire_and_hash.py --fetch --cookie-jar /Users/server/secrets/eudr_dmi/eurlex_cookies.txt
@@ -90,7 +90,7 @@ Exit codes:
 
 ## Manual verification checklist
 Use the run output checks listed above under “What to check” and validate publishable artefacts through:
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/INSPECTION_INDEX.md
+- https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/INSPECTION_INDEX.md
 
 ## How to propose changes
 
@@ -103,4 +103,4 @@ Use the DAO stakeholder prompt to submit questions or change proposals:
 - [DTE Instructions v1.3](../dte_instructions.md)
 - [docs/governance/roles_and_workflow.md](../governance/roles_and_workflow.md)
 - [docs/views/digital_twin_view.md](../views/digital_twin_view.md)
-- https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/
+- https://single-earth.github.io/eudr-dmi-gil-digital-twin/

@@ -8,19 +8,19 @@ This view describes the intended agent/workflow split for producing inspection-g
 - **Agent01 — Regulation mirror / watcher**
   - Owns deterministic acquisition/verification of regulation snapshots and their fingerprints.
   - Key docs: [docs/regulation/sources.md](../regulation/sources.md)
-  - Tooling: https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/scripts/detect_example_bundle_artifact_changes.py
+  - Tooling: https://github.com/single-earth/eudr-dmi-gil/blob/main/scripts/detect_example_bundle_artifact_changes.py
 
 - **Agent02 — Evidence builder (article/control evaluation)**
   - Owns running project-owned method primitives and writing evidence artifacts.
   - Method primitives layer (owned here):
-    - https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/src/eudr_dmi_gil/tasks/forest_loss_post_2020_clean.py
-    - https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/src/eudr_dmi_gil/analysis/maaamet_validation.py
+    - https://github.com/single-earth/eudr-dmi-gil/blob/main/src/eudr_dmi_gil/tasks/forest_loss_post_2020_clean.py
+    - https://github.com/single-earth/eudr-dmi-gil/blob/main/src/eudr_dmi_gil/analysis/maaamet_validation.py
   - Article scaffolds:
-    - https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/scripts/generate_report_v1.py
+    - https://github.com/single-earth/eudr-dmi-gil/blob/main/scripts/generate_report_v1.py
 
 - **Agent03 — Inspector / verifier**
   - Owns verifying integrity/completeness/provenance against the contract and spine.
-  - Key docs: [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md), https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/README.md
+  - Key docs: [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md), https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/reports/README.md
 
 ## Deterministic run contract (for all agents)
 ### Bundle root
@@ -29,12 +29,12 @@ Evidence bundles must be written under the evidence root, by date and bundle id:
 
 Filesystem roots are environment-driven:
 - `EUDR_DMI_AUDIT_ROOT`, `EUDR_DMI_REGULATION_ROOT`, `EUDR_DMI_EVIDENCE_ROOT`
-- See https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/operations/environment_setup.md
+- See https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/operations/environment_setup.md
 
 ### Required inspection invariants
 - Completeness + integrity rules are defined in:
-  - https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/README.md
-  - https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/runbook_generate_aoi_report.md
+  - https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/reports/README.md
+  - https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/reports/runbook_generate_aoi_report.md
 - Traceability rules are defined in:
   - [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 
@@ -43,11 +43,11 @@ Determinism expectations are “byte-identical unless explicitly allowed”.
 Allowed timestamp-bearing artifacts (example pattern):
 - execution logs / run logs (must be excluded from equivalence checks or excluded from deterministic hashes)
 
-See determinism rules in https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/README.md.
+See determinism rules in https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/reports/README.md.
 
 ### Tests / sanity checks
 - Method tests: `pytest -q -rs tests/test_methods_maa_amet_crosscheck.py`
-- Report tests: https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/tests/test_reports_schema_validation.py
+- Report tests: https://github.com/single-earth/eudr-dmi-gil/blob/main/tests/test_reports_schema_validation.py
 
 ## Implementation inspection summaries
 

@@ -11,38 +11,38 @@ These links belong to the **non-authoritative inspection surface**.
 ## Mandatory entrypoint
 
 - Digital Twin home:
-  https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html
+  https://single-earth.github.io/eudr-dmi-gil-digital-twin/site/index.html
 
 ---
 
 ## AOI Reports
 
 - AOI reports index (runs list):
-  https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/index.html
+  https://single-earth.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/index.html
 
 - Example with cadastre-based validation in Estonia (HTML):
-  https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/example/report.html
+  https://single-earth.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/example/report.html
 
 - Example with cadastre-based validation in Estonia (JSON):
-  https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/example/estonia_aoi_report.json
+  https://single-earth.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/example/estonia_aoi_report.json
 
 - Example of mixed crop in Latin America (HTML):
-  https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/latin_america/report.html
+  https://single-earth.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/latin_america/report.html
 
 - Example of mixed crop in Latin America (JSON):
-  https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/latin_america/latin_america_aoi_report.json
+  https://single-earth.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/latin_america/latin_america_aoi_report.json
 
 - Example of coffee in SE Asia (HTML):
-  https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/se_asia/report.html
+  https://single-earth.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/se_asia/report.html
 
 - Example of coffee in SE Asia (JSON):
-  https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/se_asia/se_asia_aoi_report.json
+  https://single-earth.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/se_asia/se_asia_aoi_report.json
 
 - Example of cocoa in West Africa (HTML):
-  https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/west_africa/report.html
+  https://single-earth.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/west_africa/report.html
 
 - Example of cocoa in West Africa (JSON):
-  https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/west_africa/west_africa_aoi_report.json
+  https://single-earth.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/west_africa/west_africa_aoi_report.json
 
 ---
 

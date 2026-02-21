@@ -25,12 +25,12 @@ If regulation source artifacts change fingerprint (SHA-256) or a new mirror run 
 If a dependency provenance/currency changes materially (new dataset version, endpoint behavior change, etc.):
 - Re-run impacted methods and refresh provenance artifacts.
 - Update the dependency register:
-  - https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/architecture/dependency_register.md
+  - https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/architecture/dependency_register.md
 
 ### Method / policy changes
 If a project-owned method changes (logic, thresholds, canonicalization, output schema):
 - Increment and record method versioning according to:
-  - https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/CHANGELOG.md
+  - https://github.com/single-earth/eudr-dmi-gil/blob/main/CHANGELOG.md
 - Re-run impacted controls and refresh evidence bundles.
 
 ### Evidence schema / contract changes
@@ -38,12 +38,12 @@ If evidence bundle spec or contract changes:
 - Update acceptance criteria mapping:
   - [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 - Ensure operations guidance remains consistent:
-  - https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/runbook_generate_aoi_report.md
-  - https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/operations/environment_setup.md
+  - https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/reports/runbook_generate_aoi_report.md
+  - https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/operations/environment_setup.md
 
 ## Canonical links
-- Authoritative inspection index: https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/INSPECTION_INDEX.md
-- Authoritative dependency register: https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/architecture/dependency_register.md
+- Authoritative inspection index: https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/INSPECTION_INDEX.md
+- Authoritative dependency register: https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/architecture/dependency_register.md
 - Policy-to-evidence spine: [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 
 ## Implementation inspection summaries

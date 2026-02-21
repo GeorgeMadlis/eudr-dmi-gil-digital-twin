@@ -7,7 +7,7 @@ This document summarizes the AOI report generation pipeline for inspection and D
 ## Source of Truth
 
 Authoritative ADR:
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/architecture/decision_records/0001-report-pipeline-architecture.md
+- https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/architecture/decision_records/0001-report-pipeline-architecture.md
 
 Implementation changes must be proposed against that file.
 

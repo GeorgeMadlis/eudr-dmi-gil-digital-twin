@@ -3,14 +3,14 @@
 ## Purpose
 This document provides the master mapping from obligations (e.g., regulatory articles) to control objectives and the concrete evidence artifacts that support inspection.
 
-**Authority boundary:** This document provides inspectable mappings only. Authoritative logic, pipelines, and tests live in the implementation repository: https://github.com/GeorgeMadlis/eudr-dmi-gil
+**Authority boundary:** This document provides inspectable mappings only. Authoritative logic, pipelines, and tests live in the implementation repository: https://github.com/single-earth/eudr-dmi-gil
 
 ## Boundary
 This repo does not describe upstream platform internals (including `geospatial_dmi`). The “Produced By” column references agents/workflows and canonical entrypoints only.
 
 Implementation references (authoritative):
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/README.md
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/runbook_generate_aoi_report.md
+- https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/reports/README.md
+- https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/reports/runbook_generate_aoi_report.md
 
 ## Master Spine Table
 
@@ -23,7 +23,7 @@ Implementation references (authoritative):
 
 ### Update Notes (How to Maintain the Spine)
 - Each new obligation/control MUST add a row and MUST reference a concrete artifact and acceptance criteria.
-- Each evidence artifact MUST be aligned with the authoritative report contract in https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/README.md.
+- Each evidence artifact MUST be aligned with the authoritative report contract in https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/reports/README.md.
 - TODO: Add canonical references/links to any upstream entrypoints used (without describing upstream architecture).
 
 ## Inspector Checklist
@@ -42,4 +42,4 @@ Use the DAO stakeholder prompt to submit questions or change proposals:
 - [DTE Instructions v1.3](../dte_instructions.md)
 - [docs/governance/roles_and_workflow.md](../governance/roles_and_workflow.md)
 - [docs/views/digital_twin_view.md](../views/digital_twin_view.md)
-- https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/
+- https://single-earth.github.io/eudr-dmi-gil-digital-twin/
