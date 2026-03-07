@@ -1,0 +1,34 @@
+name: Create portal S3 bucket
+
+on:
+  workflow_dispatch:
+    inputs:
+      bucket_name:
+        description: "Bucket name to create (must match MINIO_BUCKET_PRIVATE in SE Server .env)"
+        required: true
+        default: eudr-portal-private-prod
+      endpoint_url:
+        description: "S3 endpoint URL"
+        required: true
+        default: https://s3.pilw.io
+
+jobs:
+  create-bucket:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install mc
+        run: |
+          curl -sSL https://dl.min.io/client/mc/release/linux-amd64/mc -o /usr/local/bin/mc
+          chmod +x /usr/local/bin/mc
+
+      - name: Create bucket
+        env:
+          S3_ENDPOINT_URL: ${{ github.event.inputs.endpoint_url }}
+          S3_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID }}
+          S3_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+          BUCKET: ${{ github.event.inputs.bucket_name }}
+        run: |
+          mc alias set pilw "$S3_ENDPOINT_URL" "$S3_ACCESS_KEY_ID" "$S3_SECRET_ACCESS_KEY"
+          mc mb --ignore-existing "pilw/$BUCKET"
+          echo "Bucket list:"
+          mc ls pilw
