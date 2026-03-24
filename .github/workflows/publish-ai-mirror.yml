@@ -16,7 +16,7 @@ jobs:
   publish-ai-mirror:
     runs-on: ubuntu-latest
     env:
-      MIRROR_REPO: single-earth/eudr-dmi-gil-digital-twin-ai-mirror
+      MIRROR_REPO: georgemadlis/eudr-dmi-gil-digital-twin-ai-mirror
       MIRROR_BRANCH: main
 
     steps:

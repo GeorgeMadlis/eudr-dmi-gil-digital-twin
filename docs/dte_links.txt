@@ -1,15 +1,15 @@
 DTE link registry (current and future)
 
-DT_BASE_URL_PUBLIC=https://reports.single.earth/site/
-DT_BASE_URL_AI_SAFE=https://single-earth.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/
+DT_BASE_URL_PUBLIC=https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/
+DT_BASE_URL_AI_SAFE=https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/
 
-Use DT_BASE_URL_AI_SAFE when DNS or policy blocks reports.single.earth.
-Do not use https://single-earth.github.io/eudr-dmi-gil-digital-twin/ because it redirects and is not an AI-safe inspection base.
+Use DT_BASE_URL_AI_SAFE when DNS or policy blocks georgemadlis.github.io/eudr-dmi-gil-digital-twin.
+Do not use https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/ because it redirects and is not an AI-safe inspection base.
 
 - GPT (current): https://chatgpt.com/g/g-697a5cf9d7648191b323d79d98bdeb84-eudr-dao-digital-twin-engineer-dte
-- Digital Twin home (public): https://reports.single.earth/site/index.html
-- Digital Twin home (AI-safe): https://single-earth.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/index.html
-- AOI Reports index (public): https://reports.single.earth/site/aoi_reports/index.html
-- AOI Reports index (AI-safe): https://single-earth.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/index.html
-- Digital Twin link registry: https://github.com/single-earth/eudr-dmi-gil-digital-twin/blob/main/docs/DT_LINK_REGISTRY.md
-- Authoritative inspection index: https://github.com/single-earth/eudr-dmi-gil/blob/main/docs/INSPECTION_INDEX.md
+- Digital Twin home (public): https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html
+- Digital Twin home (AI-safe): https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/index.html
+- AOI Reports index (public): https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/index.html
+- AOI Reports index (AI-safe): https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/index.html
+- Digital Twin link registry: https://github.com/georgemadlis/eudr-dmi-gil-digital-twin/blob/main/docs/DT_LINK_REGISTRY.md
+- Authoritative inspection index: https://github.com/georgemadlis/eudr-dmi-gil/blob/main/docs/INSPECTION_INDEX.md

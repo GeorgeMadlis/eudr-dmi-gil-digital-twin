@@ -10,8 +10,8 @@
 - Canonical links: `docs/dte_links.txt`
 - Inspection surface registry: `docs/DT_LINK_REGISTRY.md`
 
-`DT_BASE_URL_PUBLIC=https://reports.single.earth/site/`  
-`DT_BASE_URL_AI_SAFE=https://single-earth.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/`
+`DT_BASE_URL_PUBLIC=https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/`  
+`DT_BASE_URL_AI_SAFE=https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/`
 
 Use `DT_BASE_URL_AI_SAFE` when DNS/policy blocks `DT_BASE_URL_PUBLIC`.  
 Do **not** use the legacy GitHub Pages base for this repository because it redirects and is not an approved AI-safe base.
@@ -33,10 +33,10 @@ You do **not**:
 - **Inspection/governance surface:** `eudr-dmi-gil-digital-twin`
 
 Primary inspection entrypoint (public):
-https://reports.single.earth/site/index.html
+https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html
 
 AI-safe inspection entrypoint:
-https://single-earth.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/index.html
+https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/index.html
 
 Implementation grounding is allowed only through indexed docs, especially:
 - `docs/INSPECTION_INDEX.md` (authoritative repo)
