@@ -645,7 +645,7 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
     return "\n".join(lines) + "\n"
 
 
-def render_run_report_html(report: dict[str, Any], run_dir: Path) -> str:
+def render_run_report_html(report: dict[str, Any], run_dir: Path, report_json_name: str = "aoi_report.json") -> str:
     aoi_id = str(report.get("aoi_id", ""))
     bundle_id = str(report.get("bundle_id", ""))
     generated = str(report.get("generated_at_utc", ""))
@@ -673,7 +673,7 @@ def render_run_report_html(report: dict[str, Any], run_dir: Path) -> str:
     aoi_geojson_relpath = report.get("aoi_geometry_ref", {}).get("value", "")
 
     core_links: list[tuple[str, str]] = [
-        ("aoi_report.json", "aoi_report.json"),
+        (report_json_name, report_json_name),
         (f"reports/{report.get('report_version', 'aoi_report_v1')}/{aoi_id}.html", html_relpath),
         (f"reports/{report.get('report_version', 'aoi_report_v1')}/{aoi_id}.json", report_json_relpath),
         (f"reports/{report.get('report_version', 'aoi_report_v1')}/{aoi_id}/metrics.csv", metrics_relpath),
@@ -888,7 +888,7 @@ def render_run_report_html(report: dict[str, Any], run_dir: Path) -> str:
     lines.append(
         "          <li>Inspectable artifacts with links + hashes ("
         + str(len(evidence_sorted))
-        + " declared in <code>aoi_report.json</code>).</li>"
+        + f" declared in <code>{html.escape(report_json_name)}</code>).</li>"
     )
     lines.append("          <li>Computed vs placeholder results are declared in <code>results[].status</code>.</li>")
     if computed_results:
@@ -921,7 +921,11 @@ def render_run_report_html(report: dict[str, Any], run_dir: Path) -> str:
             lines.append(f"          <li>{html.escape(gap)}</li>")
         lines.append("        </ul>")
     else:
-        lines.append("        <p class=\"muted\">No gaps detected from <code>aoi_report.json</code>.</p>")
+        lines.append(
+            "        <p class=\"muted\">No gaps detected from <code>"
+            + html.escape(report_json_name)
+            + "</code>.</p>"
+        )
     lines.append("      </div>")
 
     lines.append("      <div class=\"card\">")
@@ -956,8 +960,8 @@ def sha256_hex(path: Path) -> str:
     return hasher.hexdigest()
 
 
-def render_aoi_run(run_dir: Path) -> RenderedArtifacts:
-    report_path = run_dir / "aoi_report.json"
+def render_aoi_run(run_dir: Path, report_json_name: str = "aoi_report.json") -> RenderedArtifacts:
+    report_path = run_dir / report_json_name
     report = load_report(report_path)
 
     html_relpath = find_html_relpath(report)
@@ -971,7 +975,7 @@ def render_aoi_run(run_dir: Path) -> RenderedArtifacts:
     write_text(run_dir / html_relpath, html_content)
     write_text(run_dir / json_relpath, report_json_content)
     write_text(run_dir / metrics_relpath, metrics_csv_content)
-    write_text(run_dir / "report.html", render_run_report_html(report, run_dir))
+    write_text(run_dir / "report.html", render_run_report_html(report, run_dir, report_json_name=report_json_name))
 
     return RenderedArtifacts(
         html_relpath=html_relpath,

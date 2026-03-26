@@ -1,0 +1,23 @@
+{
+  "total_unique_urls": 46,
+  "passed": 44,
+  "failed": 2,
+  "failures": [
+    {
+      "url": "http://localhost:9000",
+      "status": 400,
+      "error": "HTTPError: HTTP Error 400: Bad Request",
+      "sources": [
+        "/Users/server/projects/eudr-dmi-gil/docs/operations/minio_setup.md"
+      ]
+    },
+    {
+      "url": "https://gsavalik.envir.ee/geoserver/wfs",
+      "status": 400,
+      "error": "HTTPError: HTTP Error 400: ",
+      "sources": [
+        "/Users/server/projects/eudr-dmi-gil/docs/dependencies/sources.md"
+      ]
+    }
+  ]
+}

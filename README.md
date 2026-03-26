@@ -20,11 +20,34 @@ It is not authoritative for code or compliance logic.
 ## How to view the Digital Twin portal
 
 - HTML files viewed via `github.com/.../blob/...` are not the website.
+- GitHub repo browsing paths such as `github.com/.../tree/.../docs/site` are not the website either.
 - The portal must be viewed via GitHub Pages:
 
-<https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/>
+<https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html>
+
+Direct browser entrypoints:
+
+- Portal home: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html>
+- AOI reports index: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/index.html>
+- Example AOI run bundle: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/example/report.html>
+- AI-safe mirror home: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/index.html>
+- AI-safe mirror AOI index: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/index.html>
+- AI-safe mirror example AOI run bundle: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/runs/example/report.html>
 
 A portable offline bundle can be inspected by downloading the site bundle and opening `index.html` locally in a browser.
+
+## Deployment (Git static + S3 artifacts)
+
+This repository can be deployed in a hybrid model:
+
+- Static portal pages remain in Git-hosted publishing (`docs/site/**`).
+- AOI run artifacts are mirrored to S3 from `docs/site/aoi_reports/runs/**`.
+
+Setup and CI details:
+
+- [docs/ops/option-a-git-static-plus-s3.md](docs/ops/option-a-git-static-plus-s3.md)
+- [scripts/sync_aoi_artifacts_to_s3.sh](scripts/sync_aoi_artifacts_to_s3.sh)
+- [.github/workflows/validate-and-sync-artifacts.yml](.github/workflows/validate-and-sync-artifacts.yml)
 
 ## AOI Reports publishing policy
 
@@ -67,6 +90,14 @@ python3 scripts/test_aoi_report_renderer.py
 python3 scripts/test_aoi_report_integration.py
 ```
 
+### DAO reports validation
+
+From the repo root:
+
+```sh
+python3 scripts/validate_dao_reports_links.py
+```
+
 ## Definitions
 
 ### DAO (Procedural DAO)
@@ -93,7 +124,7 @@ It is not a live “real-time twin” by default. Updates are published through 
 
 The authoritative implementation repository is:
 
-<https://github.com/GeorgeMadlis/eudr-dmi-gil>
+<https://github.com/georgemadlis/eudr-dmi-gil>
 
 All published views originate from that repository.
 
@@ -136,10 +167,10 @@ This portal is the public-facing, non-authoritative Digital Twin interface. It i
 
 ## Inspection & DAO Entry Points
 
-DTE Instructions v1.1 govern stakeholder Q/A and proposal closeout.
+DTE Instructions v1.3 govern stakeholder Q/A and proposal closeout.
 Every claim must be grounded in portal URLs or indexed repo paths.
 
-- DTE Instructions v1.1 (Canonical): [docs/dte_instructions.md](docs/dte_instructions.md)
+- DTE Instructions v1.3 (Canonical): [docs/dte_instructions.md](docs/dte_instructions.md)
 - Inspection Index: [docs/INSPECTION_INDEX.md](docs/INSPECTION_INDEX.md)
 - DAO Stakeholders Prompt: [docs/agent_prompts/dao_stakeholders_prompt.md](docs/agent_prompts/dao_stakeholders_prompt.md)
 - DAO Developers Prompt: [docs/agent_prompts/dao_dev_prompt.md](docs/agent_prompts/dao_dev_prompt.md)
@@ -154,4 +185,3 @@ Every claim must be grounded in portal URLs or indexed repo paths.
 
 This work has been developed on the author’s personal time and is intended for use by the Single.Earth Foundation.
 No formal affiliation or endorsement is implied unless explicitly stated.
-

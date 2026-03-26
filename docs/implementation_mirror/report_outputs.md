@@ -6,8 +6,8 @@ This document describes AOI report artefacts for inspection and certification wo
 
 ## Source of Truth
 
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/README.md
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/runbook_generate_aoi_report.md
+- https://github.com/georgemadlis/eudr-dmi-gil/blob/main/docs/reports/README.md
+- https://github.com/georgemadlis/eudr-dmi-gil/blob/main/docs/reports/runbook_generate_aoi_report.md
 
 ## Report Artefacts
 
@@ -17,8 +17,8 @@ This document describes AOI report artefacts for inspection and certification wo
 
 ## AOI Forest Metrics & Evidence (Example Bundle)
 
-The example bundle under docs/site/aoi_reports/runs/example/ is the reference for
-inspection. The AOI report v2 exposes forest metrics and Hansen artefacts with
+The published AOI run set under docs/site/aoi_reports/runs/<run_id>/ is the reference
+for inspection. AOI report v2 exposes forest metrics and Hansen artefacts with
 bundle-relative links in report.html.
 
 Metric names used in v2 (forest metrics block and metrics.csv):
@@ -64,7 +64,7 @@ Evidence artefacts linked from report.html:
 
 ## See also
 
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/reports/README.md
+- https://github.com/georgemadlis/eudr-dmi-gil/blob/main/docs/reports/README.md
 - [DTE Instructions v1.1](../dte_instructions.md)
 - [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 - [docs/INSPECTION_INDEX.md](../INSPECTION_INDEX.md)

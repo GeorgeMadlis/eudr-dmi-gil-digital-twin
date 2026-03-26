@@ -17,4 +17,4 @@ The EUDR DAO Digital Twin Engineer (DTE) is a public, read-only governance assis
 
 ## Contact
 Maintainer: Jüri Sildam  
-Repository: https://github.com/GeorgeMadlis/eudr-dmi-gil-digital-twin
+Repository: https://github.com/georgemadlis/eudr-dmi-gil-digital-twin

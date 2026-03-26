@@ -18,7 +18,7 @@ It is the canonical entry point for:
   - Deterministic outputs and tests
 - The Digital Twin repository is the public, non-authoritative inspection
   and governance portal:
-  https://github.com/GeorgeMadlis/eudr-dmi-gil-digital-twin
+  https://github.com/georgemadlis/eudr-dmi-gil-digital-twin
 
 Inspection, critique, and proposals may reference this repository,
 but no compliance claims are made here.
@@ -69,4 +69,4 @@ For public inspection, examples, and DAO workflows, see:
 - Digital Twin portal (GitHub Pages):
   https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html
 - Digital Twin repository:
-  https://github.com/GeorgeMadlis/eudr-dmi-gil-digital-twin
+  https://github.com/georgemadlis/eudr-dmi-gil-digital-twin

@@ -12,25 +12,75 @@ from render_dte_instructions import render_to_site  # noqa: E402
 from site_nav import render_header_nav  # noqa: E402
 
 
-def render_runs(runs_dir: Path) -> str:
-  example_dir = runs_dir / "example"
-  if not example_dir.is_dir():
-    return "<li><em>No example report found.</em></li>"
+RUN_DISPLAY_METADATA: dict[str, tuple[str, str]] = {
+  "example": (
+    "Example with cadastre-based validation in Estonia",
+    "estonia_aoi_report.json",
+  ),
+  "latin_america": (
+    "Example of mixed crop in Latin America",
+    "latin_america_aoi_report.json",
+  ),
+  "se_asia": (
+    "Example of coffee in SE Asia",
+    "se_asia_aoi_report.json",
+  ),
+  "west_africa": (
+    "Example of cocoa in West Africa",
+    "west_africa_aoi_report.json",
+  ),
+}
 
-  report_href = "runs/example/report.html"
-  summary_path = example_dir / "summary.json"
-  if summary_path.is_file():
-    summary_href = "runs/example/summary.json"
-    return (
+RUN_DISPLAY_ORDER = ["example", "latin_america", "se_asia", "west_africa"]
+
+
+def _sort_runs(run_ids: list[str]) -> list[str]:
+  order_rank = {run_id: index for index, run_id in enumerate(RUN_DISPLAY_ORDER)}
+  return sorted(run_ids, key=lambda run_id: (order_rank.get(run_id, len(order_rank)), run_id))
+
+
+def _resolve_report_json_filename(run_id: str, run_dir: Path) -> str | None:
+  preferred = RUN_DISPLAY_METADATA.get(run_id, ("", ""))[1]
+  if preferred and (run_dir / preferred).is_file():
+    return preferred
+
+  fallback = run_dir / "aoi_report.json"
+  if fallback.is_file():
+    return "aoi_report.json"
+
+  json_candidates = sorted(
+    p.name for p in run_dir.glob("*.json") if p.name not in {"summary.json", "manifest.json"}
+  )
+  return json_candidates[0] if json_candidates else None
+
+
+def render_runs(runs_dir: Path) -> str:
+  run_dirs = [entry for entry in runs_dir.iterdir() if entry.is_dir()]
+  if not run_dirs:
+    return "<li><em>No AOI reports found.</em></li>"
+
+  rows: list[str] = []
+  for run_id in _sort_runs([entry.name for entry in run_dirs]):
+    run_dir = runs_dir / run_id
+    report_path = run_dir / "report.html"
+    if not report_path.is_file():
+      continue
+
+    label, expected_json_filename = RUN_DISPLAY_METADATA.get(run_id, (run_id, "aoi_report.json"))
+    resolved_json_filename = _resolve_report_json_filename(run_id, run_dir) or expected_json_filename
+
+    report_href = f"runs/{run_id}/report.html"
+    report_json_href = f"runs/{run_id}/{resolved_json_filename}"
+    rows.append(
       "<li>"
-      f"<a href=\"{report_href}\">example</a> "
+      f"<a href=\"{report_href}\">{label}</a> "
       "<span class=\"muted\">(</span>"
-      f"<a href=\"{summary_href}\">summary.json</a>"
+      f"<a href=\"{report_json_href}\">{resolved_json_filename}</a>"
       "<span class=\"muted\">)</span>"
       "</li>"
     )
 
-  return f"<li><a href=\"{report_href}\">example</a></li>"
+  return "\n".join(rows) if rows else "<li><em>No AOI reports found.</em></li>"
 
 
 def build_page(*, runs_dir: Path) -> str:
@@ -69,9 +119,9 @@ def build_page(*, runs_dir: Path) -> str:
         <!-- Generated from docs/site/aoi_reports/runs/ -->
 <h1>AOI Reports</h1>
 <p class=\"muted\">Portable mode: links point into the bundle under <code>runs/&lt;run_id&gt;/report.html</code>. For inspection guidance, see <a href=\"../dte_instructions.html\">DTE instructions</a>.</p>
-<p class=\"muted\"><strong>Artefact publication contract:</strong> <code>aoi_report.json</code> declares every evidence artefact; each declared file must exist at its declared relative path in the bundle and be reachable via a clickable link from <code>report.html</code>. Builds fail on missing artefacts.</p>
+<p class=\"muted\"><strong>Artefact publication contract:</strong> the run-level AOI report JSON declares every evidence artefact; each declared file must exist at its declared relative path in the bundle and be reachable via a clickable link from <code>report.html</code>. Builds fail on missing artefacts.</p>
 <p class=\"muted\">AI/automation inspection note: see <a href=\"../dte_instructions.html\">DTE instructions</a>.</p>
-<p class=\"muted\">This page shows a single AOI-agnostic example report. It is overwritten on each publish; older versions remain available via git history but are not exposed in the portal.</p>
+<p class=\"muted\">This page shows the published AOI report set for inspection and comparison across regions.</p>
 <div class=\"notice\" style=\"border:1px solid #ddd; padding:12px; border-radius:8px; margin:12px 0;\">
   <strong>AI/automation inspection note (mandatory):</strong>
   <ul style=\"margin:8px 0 0 18px;\">

@@ -50,8 +50,22 @@ rsync -a --delete "$STAGING_DIR/" docs/site/aoi_reports/
 # Render deterministic AOI artefacts from aoi_report.json and refresh hashes.
 if [[ -d "docs/site/aoi_reports/runs" ]]; then
   while IFS= read -r -d '' run_dir; do
+    report_json_name=""
     if [[ -f "${run_dir}/aoi_report.json" ]]; then
-      python3 scripts/render_aoi_report_from_json.py --run-dir "${run_dir}" --update-json
+      report_json_name="aoi_report.json"
+    else
+      mapfile -t json_candidates < <(find "${run_dir}" -maxdepth 1 -type f -name "*.json" \
+        ! -name "summary.json" ! -name "manifest.json" -print | sort)
+      if [[ ${#json_candidates[@]} -eq 1 ]]; then
+        report_json_name="$(basename "${json_candidates[0]}")"
+      fi
+    fi
+
+    if [[ -n "$report_json_name" ]]; then
+      python3 scripts/render_aoi_report_from_json.py \
+        --run-dir "${run_dir}" \
+        --report-json-name "$report_json_name" \
+        --update-json
     fi
   done < <(find "docs/site/aoi_reports/runs" -mindepth 1 -maxdepth 1 -type d -print0)
 fi

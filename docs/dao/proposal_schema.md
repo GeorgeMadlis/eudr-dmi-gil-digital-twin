@@ -49,7 +49,7 @@ claims:
   - text: "<claim>"
     grounded_in:
       - "docs/regulation/policy_to_evidence_spine.md"
-      - "https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/..."
+      - "https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html"
     assumption: false
 
 acceptance_criteria:

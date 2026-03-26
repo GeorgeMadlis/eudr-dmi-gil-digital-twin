@@ -7,7 +7,7 @@ This document summarizes the AOI report generation pipeline for inspection and D
 ## Source of Truth
 
 Authoritative ADR:
-- https://github.com/GeorgeMadlis/eudr-dmi-gil/blob/main/docs/architecture/decision_records/0001-report-pipeline-architecture.md
+- https://github.com/georgemadlis/eudr-dmi-gil/blob/main/docs/architecture/decision_records/0001-report-pipeline-architecture.md
 
 Implementation changes must be proposed against that file.
 
@@ -22,7 +22,7 @@ Implementation changes must be proposed against that file.
 
 ## AOI Forest Metrics (Inspection Notes)
 
-The example AOI report bundle in docs/site/aoi_reports/runs/example/ reflects the current
+Published AOI report bundles in docs/site/aoi_reports/runs/<run_id>/ reflect the current
 authoritative implementation outputs. Inspectors should expect:
 
 - Metric names used in v2 reports:
