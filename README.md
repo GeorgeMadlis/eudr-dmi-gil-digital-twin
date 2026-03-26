@@ -20,9 +20,19 @@ It is not authoritative for code or compliance logic.
 ## How to view the Digital Twin portal
 
 - HTML files viewed via `github.com/.../blob/...` are not the website.
+- GitHub repo browsing paths such as `github.com/.../tree/.../docs/site` are not the website either.
 - The portal must be viewed via GitHub Pages:
 
-<https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/>
+<https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html>
+
+Direct browser entrypoints:
+
+- Portal home: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html>
+- AOI reports index: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/index.html>
+- Example AOI run bundle: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/example/report.html>
+- AI-safe mirror home: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/index.html>
+- AI-safe mirror AOI index: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/index.html>
+- AI-safe mirror example AOI run bundle: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/runs/example/report.html>
 
 A portable offline bundle can be inspected by downloading the site bundle and opening `index.html` locally in a browser.
 
