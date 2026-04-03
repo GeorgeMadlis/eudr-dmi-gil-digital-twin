@@ -46,7 +46,7 @@
           <a href="sources.html">Sources</a>
           <a href="policy_to_evidence_spine.html" class="active">Spine</a>
           <a href="../views/index.html">Views</a>
-          <a href="../dte_instructions.html">DTE Instructions v1.1</a>
+          <a href="../dte_instructions.html">DTE Instructions v1.4</a>
           <a href="../aoi_reports/index.html">AOI Reports</a>
           <a href="../dao_stakeholders/index.html">DAO (Stakeholders)</a>
           <a href="../dao_dev/index.html">DAO (Developers)</a>
@@ -79,30 +79,30 @@
 <tbody>
 <tr>
 <td>Article 9 (Information requirements)</td>
-<td>AOI, inputs, and upstream dependencies are captured with provenance sufficient for traceability.</td>
-<td><code>inputs/geometry.*</code><br /><code>inputs/parameters.json</code><br /><code>provenance/provenance.json</code><br /><code>manifest.json</code> + <code>hashes.sha256</code></td>
-<td>Inputs exist and are referenced by the manifest; JSON files parse; provenance entries are present for each used dependency and non-empty where required; recomputed SHA-256 matches <code>hashes.sha256</code> and the manifest (no missing artifacts).</td>
-<td><code>python -m eudr_dmi.articles.art_09.runner</code> (scaffold)</td>
-<td><code>inputs/geometry.*</code>, <code>inputs/parameters.json</code>, <code>provenance/provenance.json</code>, <code>manifest.json</code>, <code>hashes.sha256</code></td>
-<td>Current runner scaffolds write <code>manifest.sha256</code> + <code>bundle_metadata.json</code>; this row defines the target bundle contract used for inspection.</td>
+<td>AOI geometry, operator-supplied inputs, and upstream dataset provenance are captured with enough detail to trace a published AOI result back to its source artefacts.</td>
+<td><code>inputs/aoi.geojson</code><br /><code>bundle_manifest.json</code><br /><code>reports/aoi_report_v2/&lt;aoi_id&gt;.json</code><br /><code>report.html</code></td>
+<td><code>bundle_manifest.json</code> lists the AOI JSON/HTML artefacts; <code>inputs/aoi.geojson</code> exists and matches the declared SHA-256; the AOI report JSON includes <code>aoi_geometry_ref</code>, <code>inputs.sources</code>, and <code>datasets</code>; report links in <code>report.html</code> resolve within the published run bundle.</td>
+<td><code>python -m eudr_dmi_gil.reports.cli</code> plus report analyses under <code>src/eudr_dmi_gil/analysis/</code></td>
+<td><code>inputs/aoi.geojson</code>, <code>bundle_manifest.json</code>, <code>reports/aoi_report_v2/&lt;aoi_id&gt;.json</code>, <code>report.html</code></td>
+<td>Public inspection should follow the published run bundle contract, not legacy scaffold paths. The AOI report JSON is the declaration source of truth for evidence references.</td>
 </tr>
 <tr>
 <td>Article 10 (Risk assessment)</td>
-<td>Deforestation and forest-presence signals are computed for the AOI and included in the assessment outcome.</td>
-<td><code>outputs/summary.json</code><br /><code>outputs/deforestation.json</code> (or similar)<br /><code>outputs/maa_amet_crosscheck.json</code></td>
-<td>Outputs exist and are referenced by the manifest; JSON files parse; <code>outputs/summary.json</code> includes status and evidence references; deforestation + Maa-amet results include an explicit status and inputs fingerprint (or equivalent) so reruns are explainable; hashes verify (SHA-256 matches).</td>
-<td><code>python -m eudr_dmi.articles.art_10.runner</code> (scaffold)</td>
-<td><code>outputs/summary.json</code>, <code>outputs/deforestation.json</code> (or similar), <code>outputs/maa_amet_crosscheck.json</code></td>
-<td>Current runner scaffolds write <code>manifest.sha256</code>; outputs listed here are the intended stable contract for inspection once Step 3/4 land.</td>
+<td>Deforestation, forest-presence, and cross-check evidence for the AOI are computed and surfaced as inspectable results.</td>
+<td><code>reports/aoi_report_v2/&lt;aoi_id&gt;.json</code><br /><code>reports/aoi_report_v2/&lt;aoi_id&gt;/hansen/forest_loss_post_2020_mask.geojson</code><br /><code>reports/aoi_report_v2/&lt;aoi_id&gt;/hansen/forest_loss_post_2020_tiles.json</code><br /><code>reports/aoi_report_v2/&lt;aoi_id&gt;/maaamet/maaamet_forest_area_crosscheck.json</code> (when present)</td>
+<td>The AOI report JSON parses and includes <code>results_summary.deforestation_free_post_2020</code>, <code>forest_metrics</code>, and <code>policy_mapping</code>; linked Hansen artefacts resolve; when Maa-amet cross-check is enabled, the JSON cross-check summary is present and linked from the AOI report.</td>
+<td><code>python -m eudr_dmi_gil.reports.cli</code> orchestrating <code>forest_loss_post_2020.py</code>, <code>hansen_parcels.py</code>, and <code>maaamet_validation.py</code></td>
+<td><code>reports/aoi_report_v2/&lt;aoi_id&gt;.json</code>, <code>reports/aoi_report_v2/&lt;aoi_id&gt;/hansen/forest_loss_post_2020_mask.geojson</code>, <code>reports/aoi_report_v2/&lt;aoi_id&gt;/hansen/forest_loss_post_2020_tiles.json</code>, <code>reports/aoi_report_v2/&lt;aoi_id&gt;/maaamet/maaamet_forest_area_crosscheck.json</code></td>
+<td>Evidence paths should match the generated AOI bundle layout used by the Digital Twin and client portal consumers.</td>
 </tr>
 <tr>
 <td>Article 11 (Risk mitigation)</td>
-<td>If risk is not LOW, mitigation actions are stated and linked to evidence gaps or conflicts.</td>
-<td><code>outputs/mitigation_plan.json</code></td>
-<td>File exists and is referenced by the manifest; JSON parses; plan states the trigger condition (e.g., non-LOW/UNDETERMINED risk) and lists actions linked to specific evidence gaps/conflicts (artifact paths or decision ids); hashes verify (SHA-256 matches).</td>
-<td><code>python -m eudr_dmi.articles.art_11.runner</code> (scaffold)</td>
-<td><code>outputs/mitigation_plan.json</code></td>
-<td>This row defines the minimum mitigation-plan inspection contract; a deterministic scaffold can be emitted before full mitigation logic exists.</td>
+<td>If the AOI result is not deforestation-free, the published artefacts must make the failure condition and follow-up evidence gaps inspectable.</td>
+<td><code>reports/aoi_report_v2/&lt;aoi_id&gt;.json</code><br /><code>reports/aoi_report_v2/&lt;aoi_id&gt;.html</code></td>
+<td>The AOI report JSON includes failed <code>results[]</code>, <code>policy_mapping</code>, and thresholded <code>results_summary</code>; the HTML mirrors the status and links the supporting artefacts so an inspector can identify what needs review or mitigation.</td>
+<td><code>python -m eudr_dmi_gil.reports.cli</code> rendering the AOI JSON + HTML report pair</td>
+<td><code>reports/aoi_report_v2/&lt;aoi_id&gt;.json</code>, <code>reports/aoi_report_v2/&lt;aoi_id&gt;.html</code></td>
+<td>The current public contract exposes inspectable failure conditions; explicit mitigation-plan JSON is not yet part of the published AOI report bundle.</td>
 </tr>
 <tr>
 <td>TODO_ARTICLE_REF_DEFINITIONS</td>
@@ -119,7 +119,7 @@
 <ul>
 <li>Each new obligation/control MUST add a row and MUST reference a concrete artifact and acceptance criteria.</li>
 <li>Each evidence artifact MUST be defined in <a href="#" title="../architecture/evidence_bundle_spec.md">docs/architecture/evidence_bundle_spec.md</a>.</li>
-<li>TODO: Add canonical references/links to any upstream entrypoints used (without describing upstream architecture).</li>
+<li>Canonical implementation entrypoints referenced here should use the current <code>eudr_dmi_gil</code> namespace and the published AOI bundle contract.</li>
 </ul>
 <h2>Inspector Checklist</h2>
 <ul>
@@ -134,7 +134,7 @@
       <div style="max-width:980px; margin:0 auto; padding:18px 20px 28px; color:#666; font-size:13px;">
         <a href="../privacy.html" style="color:#0b5fff; text-decoration:none; font-weight:600;">Privacy Policy</a>
         <span style="margin:0 8px; color:#999;">|</span>
-        <a href="../dte_instructions.html" style="color:#0b5fff; text-decoration:none; font-weight:600;">DTE Instructions v1.1</a>
+        <a href="../dte_instructions.html" style="color:#0b5fff; text-decoration:none; font-weight:600;">DTE Instructions v1.4</a>
       </div>
     </footer>
   </body>

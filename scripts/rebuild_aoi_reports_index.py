@@ -130,7 +130,7 @@ def build_page(*, runs_dir: Path) -> str:
     <li>If a listed artefact cannot be opened via this click-path, record it as an <strong>Evidence gap — published artefact is inaccessible via inspection surface</strong>.</li>
   </ul>
   <div style=\"margin-top:8px;\">
-    See: <a href=\"../dte_instructions.html\">DTE Instructions v1.2</a>
+    See: <a href=\"../dte_instructions.html\">DTE Instructions v1.4</a>
   </div>
 </div>
 <div class=\"card\">
@@ -145,7 +145,7 @@ def build_page(*, runs_dir: Path) -> str:
       <div style=\"max-width:980px; margin:0 auto; padding:18px 20px 28px; color:#666; font-size:13px;\">
         <a href=\"../privacy.html\" style=\"color:#0b5fff; text-decoration:none; font-weight:600;\">Privacy Policy</a>
         <span style=\"margin:0 8px; color:#999;\">|</span>
-        <a href=\"../dte_instructions.html\" style=\"color:#0b5fff; text-decoration:none; font-weight:600;\">DTE Instructions v1.2</a>
+        <a href=\"../dte_instructions.html\" style=\"color:#0b5fff; text-decoration:none; font-weight:600;\">DTE Instructions v1.4</a>
       </div>
     </footer>
   </body>
