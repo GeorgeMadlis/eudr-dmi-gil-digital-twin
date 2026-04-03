@@ -40,7 +40,7 @@ jobs:
         run: |
           set -euxo pipefail
           rm -rf mirror_root
-          mkdir -p mirror_root/site
+          mkdir -p mirror_root/site mirror_root/.github/workflows
           rsync -a --delete docs/site/ mirror_root/site/
           touch mirror_root/.nojekyll
           cat > mirror_root/index.html <<'EOF'
@@ -76,6 +76,56 @@ jobs:
           - Example AOI run bundle: https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/runs/example/report.html
 
           Do not use `github.com/.../tree/...` paths as website URLs; browse the Pages URLs above instead.
+          EOF
+          cat > mirror_root/.github/workflows/deploy-pages.yml <<'EOF'
+          name: Deploy GitHub Pages
+
+          on:
+            workflow_dispatch:
+            push:
+              branches: [main]
+
+          permissions:
+            contents: read
+            pages: write
+            id-token: write
+
+          concurrency:
+            group: pages
+            cancel-in-progress: true
+
+          jobs:
+            deploy:
+              environment:
+                name: github-pages
+                url: ${{ steps.deployment.outputs.page_url }}
+              runs-on: ubuntu-latest
+
+              steps:
+                - name: Checkout
+                  uses: actions/checkout@v4
+
+                - name: Configure Pages
+                  uses: actions/configure-pages@v5
+                  with:
+                    enablement: true
+                    token: ${{ secrets.PAGES_ENABLEMENT_TOKEN }}
+
+                - name: Validate mirror site
+                  run: |
+                    set -euxo pipefail
+                    test -f index.html
+                    test -f site/index.html
+                    test -f site/aoi_reports/index.html
+
+                - name: Upload Pages artifact
+                  uses: actions/upload-pages-artifact@v3
+                  with:
+                    path: .
+
+                - name: Deploy to GitHub Pages
+                  id: deployment
+                  uses: actions/deploy-pages@v4
           EOF
 
       - name: Force-push mirror payload to ai-mirror repo
