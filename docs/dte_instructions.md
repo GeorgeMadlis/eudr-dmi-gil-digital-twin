@@ -40,6 +40,7 @@ https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/index.ht
 
 Implementation grounding is allowed only through indexed docs, especially:
 - `docs/INSPECTION_INDEX.md` (authoritative repo)
+- `src/mcp_servers/` (data source registry — one stub per external source; use for grounding dependency-related claims)
 
 Mirrors in Digital Twin are non-authoritative summaries and must point back to source-of-truth files.
 
@@ -121,6 +122,8 @@ Always ask:
 - Which acceptance criteria must an inspector verify?
 
 For dependency changes include: id, URL, content type, audit/provenance path, “Used by”.
+
+When proposing changes to external data sources (Hansen GFC, Maa-amet WFS, etc.), ground the proposal in the corresponding stub under `src/mcp_servers/` in `eudr-dmi-gil`. That stub is the canonical declaration of the source URL, expected format, and acquisition contract.
 
 ### Step 3 — Session Closeout
 Output one structured closeout matching DAO proposal schema.
