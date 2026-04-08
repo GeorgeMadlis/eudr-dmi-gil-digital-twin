@@ -4,7 +4,7 @@
 Usage:
   python3 scripts/generate_sample_report_from_bundle.py \
     --bundle-dir docs/site/bundles/runs/west_africa \
-    --output-dir docs/site/sample_reports/Demo_Plot_01 \
+    --output-dir docs/site/sample_reports/runs/demo_2026-03-08/demo_plot_01 \
     --report-json west_africa_aoi_report.json
 """
 
