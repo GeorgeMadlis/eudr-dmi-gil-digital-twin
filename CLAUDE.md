@@ -30,7 +30,7 @@ The site root is `docs/site/`. GitHub Pages serves this directory directly (`.no
 # Validate artifact integrity
 python3 scripts/validate_aoi_run_artifacts.py
 
-# Validate DAO report links
+# Validate sample report links
 python3 scripts/validate_dao_reports_links.py
 
 # Test AOI report rendering
@@ -62,7 +62,7 @@ docs/
     │           ├── report.html
     │           ├── aoi_report.json  # Source of truth for declared artifacts
     │           └── reports/aoi_report_v2/<plot>.json
-    ├── dao_reports/runs/            # DAO inspection reports
+    ├── sample_reports/runs/         # Published sample screening reports
     ├── dao_dev/proposals/           # Developer DAO interface
     ├── dao_stakeholders/proposals/  # Stakeholder DAO interface
     ├── regulation/                  # Policy-to-evidence spine

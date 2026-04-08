@@ -1,0 +1,338 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 6 /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 1475 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(AOI Report Summary ? cocoa_west_africa_ghana) Tj T*
+(body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,) Tj T*
+(Helvetica, Arial; margin: 24px; }) Tj T*
+(table { border-collapse: collapse; width: 100%; }) Tj T*
+(th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }) Tj T*
+(th { background: #f6f6f6; text-align: left; width: 240px; }) Tj T*
+(h2 { margin-top: 28px; }) Tj T*
+(code { background: #f6f6f6; padding: 1px 4px; border-radius: 4px; }) Tj T*
+(#map { height: 420px; border: 1px solid #ddd; border-radius: 8px; margin: 12px 0 16px;) Tj T*
+(background: #fafafa; }) Tj T*
+(Report Intent & Scope) Tj T*
+(Field) Tj T*
+(Value) Tj T*
+(assessment_capability) Tj T*
+("inspectable_only") Tj T*
+(regulatory_context) Tj T*
+({"in_scope_articles": ["article-3"], "out_of_scope_articles": [], "regulation": "EUDR"}) Tj T*
+(report_type) Tj T*
+("example") Tj T*
+(Regulatory traceability) Tj T*
+(Regulation) Tj T*
+(Article) Tj T*
+(Evidence class) Tj T*
+(Acceptance criteria) Tj T*
+(Result ref) Tj T*
+(EUDR) Tj T*
+(article-3) Tj T*
+(aoi_geometry) Tj T*
+(aoi_geometry_present) Tj T*
+(result-001) Tj T*
+(EUDR) Tj T*
+(article-3) Tj T*
+(forest_loss_post_2020) Tj T*
+(forest_loss_post_2020_max_ha) Tj T*
+(forest_loss_post_2020_max_ha) Tj T*
+(Evidence Registry) Tj T*
+(Evidence Class) Tj T*
+(Mandatory) Tj T*
+(Status) Tj T*
+(aoi_geometry) Tj T*
+(True) Tj T*
+(present) Tj T*
+(forest_loss_post_2020) Tj T*
+(True) Tj T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 1303 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(present) Tj T*
+(hansen_tiles_provenance) Tj T*
+(True) Tj T*
+(present) Tj T*
+(Acceptance Criteria) Tj T*
+(Criteria) Tj T*
+(Status) Tj T*
+(Details) Tj T*
+(aoi_geometry_present) Tj T*
+({"criteria_id": "aoi_geometry_present", "decision_type": "presence", "description": "AOI) Tj T*
+(geometry is present and referenced in inputs.", "evidence_classes": ["aoi_geometry"]}) Tj T*
+(forest_loss_post_2020_max_ha) Tj T*
+({"criteria_id": "forest_loss_post_2020_max_ha", "decision_type": "threshold",) Tj T*
+("description": "Forest loss after 2020-12-31 \(lossyear >= 2021\) must be <= 0 ha.",) Tj T*
+("evidence_classes": ["forest_loss_post_2020"]}) Tj T*
+(AOI Report Summary) Tj T*
+(AOI) Tj T*
+(cocoa_west_africa_ghana) Tj T*
+(Bundle) Tj T*
+(west_africa) Tj T*
+(Report Version) Tj T*
+(aoi_report_v2) Tj T*
+(Geometry Ref) Tj T*
+(geojson: inputs/aoi.geojson) Tj T*
+(Inputs) Tj T*
+(Source) Tj T*
+(URI) Tj T*
+(SHA256) Tj T*
+(Content Type) Tj T*
+(aoi_geometry) Tj T*
+(inputs/aoi.geojson) Tj T*
+(21ca223d29825979def6931c258232b655b20df180da280a3b65f9dd6e564f4d) Tj T*
+(application/geo+json) Tj T*
+(Metrics) Tj T*
+(Metric) Tj T*
+(Value) Tj T*
+(Unit) Tj T*
+(Notes) Tj T*
+(Source) Tj T*
+(Criteria) Tj T*
+(aoi_area_ha) Tj T*
+(27515.387436814308) Tj T*
+(ha) Tj T*
+(geodesic_wgs84_pyproj) Tj T*
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 1031 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(geometry) Tj T*
+(Not declared) Tj T*
+(end_year) Tj T*
+(2024) Tj T*
+(year) Tj T*
+(forest_end_year) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(forest_2024_ha) Tj T*
+(16129.862155734862) Tj T*
+(ha) Tj T*
+(rfm_mask & \(lossyear == 0\)) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(forest_end_year_ha) Tj T*
+(16129.862155734862) Tj T*
+(ha) Tj T*
+(forest_mask_end_year) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(forest_loss_post_2020_percent_of_aoi) Tj T*
+(11.494169272603086) Tj T*
+(percent) Tj T*
+(forest_loss_post_2020_ha / aoi_area_ha) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(loss_2021_2024_ha) Tj T*
+(3162.665208009166) Tj T*
+(ha) Tj T*
+(rfm_mask & \(lossyear in 21..24\)) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(loss_total_ha) Tj T*
+(11260.185550292475) Tj T*
+(ha) Tj T*
+(rfm_mask & \(lossyear > 0\)) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(pixel_current_tree_cover_ha) Tj T*
+(16129.862156) Tj T*
+(ha) Tj T*
+(pixel_mask) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 1079 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(pixel_forest_loss_post_2020_ha) Tj T*
+(3162.665208) Tj T*
+(ha) Tj T*
+(pixel_mask) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(pixel_initial_tree_cover_ha) Tj T*
+(27390.047706) Tj T*
+(ha) Tj T*
+(pixel_mask) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(rfm_area_ha) Tj T*
+(27390.04770602734) Tj T*
+(ha) Tj T*
+(rfm_mask) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(Maa-amet parcels) Tj T*
+(Field) Tj T*
+(Value) Tj T*
+(enabled) Tj T*
+(false) Tj T*
+(parcel_layer) Tj T*
+("kataster:ky_kehtiv") Tj T*
+(parcel_count) Tj T*
+(null) Tj T*
+(notes) Tj T*
+("Populate when Maa-amet WFS integration is enabled in pipeline.") Tj T*
+(Hansen vs Maa-amet forest area crosscheck) Tj T*
+(Field) Tj T*
+(Value) Tj T*
+(source) Tj T*
+("maaamet") Tj T*
+(outcome) Tj T*
+("not_comparable") Tj T*
+(reason) Tj T*
+("missing_reference_forest_area") Tj T*
+(reference) Tj T*
+({"method": "missing", "source": "missing", "value_ha": null}) Tj T*
+(computed) Tj T*
+({"forest_area_ha": 16129.862156}) Tj T*
+(comparison) Tj T*
+({"diff_pct": null, "tolerance_percent": 5.0}) Tj T*
+ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 1968 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(csv_ref) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/maaamet/maaamet_forest_area_crosscheck.csv) Tj T*
+(summary_ref) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/maaamet/maaamet_forest_area_crosscheck.json) Tj T*
+(Map \(static\)) Tj T*
+(map_config.json) Tj T*
+(?) Tj T*
+(static map PNG) Tj T*
+(?) Tj T*
+(static SVG) Tj T*
+(Assumptions & Limitations) Tj T*
+(No assumptions declared in this report.) Tj T*
+(Results) Tj T*
+(Result) Tj T*
+(Status) Tj T*
+(Criteria) Tj T*
+(result-001) Tj T*
+(pass) Tj T*
+(aoi_geometry_present) Tj T*
+(forest_loss_post_2020_max_ha) Tj T*
+(fail) Tj T*
+(forest_loss_post_2020_max_ha) Tj T*
+(Evidence Artifacts) Tj T*
+(inputs/aoi.geojson) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana.html) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana.json) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_2000_tree_cover_mask.geojson) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_current_tree_cover_mask.geojson) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_end_year_tree_cover_mask.geojson) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_loss_post_2020_mask.geojson) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_loss_post_2020_summary.json) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_loss_post_2020_tiles.json) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/hansen/forest_mask_debug.json) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/maaamet/maaamet_forest_area_crosscheck.csv) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/maaamet/maaamet_forest_area_crosscheck.json) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/map/map_config.json) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/metrics.csv) Tj T*
+(Source Bundle:) Tj T*
+(report.html) Tj T*
+(Sample artifacts:) Tj T*
+(report.json) Tj T*
+(?) Tj T*
+(report.html) Tj T*
+(?) Tj T*
+ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 15 0 R >>
+endobj
+15 0 obj
+<< /Length 185 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(deforestation_map.svg) Tj T*
+(?) Tj T*
+(deforestation_map.png) Tj T*
+(?) Tj T*
+(deforestation_map_satellite.png) Tj T*
+(?) Tj T*
+(manifest.sha256) Tj T*
+ET
+endstream
+endobj
+xref
+0 16
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000148 00000 n 
+0000000218 00000 n 
+0000000344 00000 n 
+0000001871 00000 n 
+0000001997 00000 n 
+0000003352 00000 n 
+0000003478 00000 n 
+0000004561 00000 n 
+0000004689 00000 n 
+0000005821 00000 n 
+0000005949 00000 n 
+0000007970 00000 n 
+0000008098 00000 n 
+trailer
+<< /Size 16 /Root 1 0 R >>
+startxref
+8335
+%%EOF

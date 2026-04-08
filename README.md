@@ -86,7 +86,7 @@ python3 scripts/test_aoi_report_renderer.py
 python3 scripts/test_aoi_report_integration.py
 ```
 
-### DAO reports validation
+### Sample reports validation
 
 From the repo root:
 

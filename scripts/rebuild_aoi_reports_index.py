@@ -11,27 +11,29 @@ sys.path.insert(0, str(SCRIPT_DIR))
 from render_dte_instructions import render_to_site  # noqa: E402
 from site_nav import render_header_nav  # noqa: E402
 
+SAMPLE_REPORTS_RUN_ID = "demo_2026-03-08"
+
 
 RUN_DISPLAY_METADATA: dict[str, tuple[str, str, str | None]] = {
   "example": (
     "Example with cadastre-based validation in Estonia",
     "estonia_aoi_report.json",
-    "../sample_reports/runs/demo_2026-02-20/demo_plot_04/report.html",
+    f"../sample_reports/runs/{SAMPLE_REPORTS_RUN_ID}/demo_plot_04/report.html",
   ),
   "latin_america": (
     "Example of mixed crop in Latin America",
     "latin_america_aoi_report.json",
-    "../sample_reports/runs/demo_2026-02-20/demo_plot_03/report.html",
+    f"../sample_reports/runs/{SAMPLE_REPORTS_RUN_ID}/demo_plot_03/report.html",
   ),
   "se_asia": (
     "Example of coffee in SE Asia",
     "se_asia_aoi_report.json",
-    "../sample_reports/runs/demo_2026-02-20/demo_plot_02/report.html",
+    f"../sample_reports/runs/{SAMPLE_REPORTS_RUN_ID}/demo_plot_02/report.html",
   ),
   "west_africa": (
     "Example of cocoa in West Africa",
     "west_africa_aoi_report.json",
-    "../sample_reports/runs/demo_2026-02-20/demo_plot_01/report.html",
+    f"../sample_reports/runs/{SAMPLE_REPORTS_RUN_ID}/demo_plot_01/report.html",
   ),
 }
 
