@@ -12,22 +12,26 @@ from render_dte_instructions import render_to_site  # noqa: E402
 from site_nav import render_header_nav  # noqa: E402
 
 
-RUN_DISPLAY_METADATA: dict[str, tuple[str, str]] = {
+RUN_DISPLAY_METADATA: dict[str, tuple[str, str, str | None]] = {
   "example": (
     "Example with cadastre-based validation in Estonia",
     "estonia_aoi_report.json",
+    "../sample_reports/runs/demo_2026-02-20/demo_plot_04/report.html",
   ),
   "latin_america": (
     "Example of mixed crop in Latin America",
     "latin_america_aoi_report.json",
+    "../sample_reports/runs/demo_2026-02-20/demo_plot_03/report.html",
   ),
   "se_asia": (
     "Example of coffee in SE Asia",
     "se_asia_aoi_report.json",
+    "../sample_reports/runs/demo_2026-02-20/demo_plot_02/report.html",
   ),
   "west_africa": (
     "Example of cocoa in West Africa",
     "west_africa_aoi_report.json",
+    "../sample_reports/runs/demo_2026-02-20/demo_plot_01/report.html",
   ),
 }
 
@@ -40,7 +44,7 @@ def _sort_runs(run_ids: list[str]) -> list[str]:
 
 
 def _resolve_report_json_filename(run_id: str, run_dir: Path) -> str | None:
-  preferred = RUN_DISPLAY_METADATA.get(run_id, ("", ""))[1]
+  preferred = RUN_DISPLAY_METADATA.get(run_id, ("", "", None))[1]
   if preferred and (run_dir / preferred).is_file():
     return preferred
 
@@ -66,17 +70,27 @@ def render_runs(runs_dir: Path) -> str:
     if not report_path.is_file():
       continue
 
-    label, expected_json_filename = RUN_DISPLAY_METADATA.get(run_id, (run_id, "aoi_report.json"))
+    label, expected_json_filename, sample_report_href = RUN_DISPLAY_METADATA.get(
+      run_id,
+      (run_id, "aoi_report.json", None),
+    )
     resolved_json_filename = _resolve_report_json_filename(run_id, run_dir) or expected_json_filename
 
     report_href = f"runs/{run_id}/report.html"
     report_json_href = f"runs/{run_id}/{resolved_json_filename}"
+    sample_link_html = ""
+    if sample_report_href:
+      sample_link_html = (
+        " <span class=\"muted\">·</span> "
+        f"<a href=\"{sample_report_href}\">Corresponding sample report</a>"
+      )
     rows.append(
       "<li>"
       f"<a href=\"{report_href}\">{label}</a> "
       "<span class=\"muted\">(</span>"
       f"<a href=\"{report_json_href}\">{resolved_json_filename}</a>"
       "<span class=\"muted\">)</span>"
+      f"{sample_link_html}"
       "</li>"
     )
 

@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import base64
 import csv
 import html
 import json
 import os
+import re
+import shutil
+import subprocess
 from dataclasses import dataclass
 from hashlib import sha256
 from pathlib import Path
 from typing import Any, Iterable
+from urllib.parse import urlencode
+from urllib.request import urlopen
 
 
 @dataclass(frozen=True)
@@ -16,6 +22,64 @@ class RenderedArtifacts:
     html_relpath: str
     json_relpath: str
     metrics_relpath: str
+
+
+@dataclass(frozen=True)
+class StaticMapArtifacts:
+    svg_relpath: str
+    png_relpath: str
+    satellite_png_relpath: str | None = None
+
+
+DEFAULT_MAP_WIDTH_PX = 1100
+DEFAULT_MAP_HEIGHT_PX = 760
+DEFAULT_MAP_PADDING_PX = 40.0
+
+MAP_LAYER_STYLES: dict[str, dict[str, Any]] = {
+    "forest_2000": {
+        "label": "Forest cover 2000",
+        "stroke": "#2e7d32",
+        "fill": "#2e7d32",
+        "fill_opacity": 0.25,
+        "stroke_width": 1.0,
+    },
+    "forest_end_year": {
+        "label": "Forest cover {latest_year}",
+        "stroke": "#1b5e20",
+        "fill": "#1b5e20",
+        "fill_opacity": 0.30,
+        "stroke_width": 1.0,
+    },
+    "forest_loss_post_2020": {
+        "label": "Forest loss since 2020",
+        "stroke": "#c62828",
+        "fill": "#c62828",
+        "fill_opacity": 0.55,
+        "stroke_width": 1.2,
+    },
+    "aoi_boundary": {
+        "label": "AOI boundary",
+        "stroke": "#00e5ff",
+        "fill": "none",
+        "fill_opacity": 0.0,
+        "stroke_width": 2.4,
+    },
+    "parcels": {
+        "label": "Maa-amet parcels",
+        "stroke": "#6a1b9a",
+        "fill": "#6a1b9a",
+        "fill_opacity": 0.05,
+        "stroke_width": 1.0,
+    },
+}
+
+MAP_LAYER_FALLBACK_COLORS = [
+    "#ef6c00",
+    "#3949ab",
+    "#00838f",
+    "#ad1457",
+    "#455a64",
+]
 
 
 def load_report(path: Path) -> dict[str, Any]:
@@ -86,6 +150,414 @@ def render_metrics_csv(report: dict[str, Any]) -> str:
 
 def render_report_json(report: dict[str, Any]) -> str:
     return json.dumps(report, sort_keys=True, indent=2, ensure_ascii=False) + "\n"
+
+
+def _properties_dict(value: Any) -> dict[str, Any]:
+    return value if isinstance(value, dict) else {}
+
+
+def _iter_outer_rings(geometry: dict[str, Any]) -> list[list[list[float]]]:
+    geo_type = geometry.get("type")
+    coords = geometry.get("coordinates") or []
+    if geo_type == "Polygon":
+        return [coords[0]] if coords else []
+    if geo_type == "MultiPolygon":
+        rings: list[list[list[float]]] = []
+        for polygon in coords:
+            if polygon:
+                rings.append(polygon[0])
+        return rings
+    return []
+
+
+def _iter_rings(payload: dict[str, Any]) -> list[list[list[float]]]:
+    payload_type = payload.get("type")
+    if payload_type == "FeatureCollection":
+        out: list[list[list[float]]] = []
+        for feature in payload.get("features") or []:
+            geometry = _properties_dict((feature or {}).get("geometry"))
+            out.extend(_iter_outer_rings(geometry))
+        return out
+    if payload_type == "Feature":
+        return _iter_outer_rings(_properties_dict(payload.get("geometry")))
+    return _iter_outer_rings(payload)
+
+
+def _bbox_from_rings(rings: list[list[list[float]]]) -> tuple[float, float, float, float] | None:
+    lon_values: list[float] = []
+    lat_values: list[float] = []
+    for ring in rings:
+        for point in ring:
+            if not isinstance(point, (list, tuple)) or len(point) < 2:
+                continue
+            lon_values.append(float(point[0]))
+            lat_values.append(float(point[1]))
+    if not lon_values or not lat_values:
+        return None
+    return min(lon_values), min(lat_values), max(lon_values), max(lat_values)
+
+
+def _expand_bbox(
+    bbox: tuple[float, float, float, float],
+    *,
+    fraction: float = 0.08,
+) -> tuple[float, float, float, float]:
+    min_lon, min_lat, max_lon, max_lat = bbox
+    lon_pad = max((max_lon - min_lon) * fraction, 1e-6)
+    lat_pad = max((max_lat - min_lat) * fraction, 1e-6)
+    return (
+        min_lon - lon_pad,
+        min_lat - lat_pad,
+        max_lon + lon_pad,
+        max_lat + lat_pad,
+    )
+
+
+def _resolve_map_config(run_dir: Path, map_assets: dict[str, Any]) -> tuple[dict[str, Any], Path]:
+    config_relpath = str(map_assets.get("config_relpath", "")).strip()
+    if not config_relpath:
+        raise ValueError("map_assets.config_relpath is required for static map rendering")
+    config_path = run_dir / config_relpath
+    if not config_path.is_file():
+        raise FileNotFoundError(f"Map config not found: {config_path}")
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    return config, config_path
+
+
+def _resolve_map_layer_paths(config: dict[str, Any], config_path: Path) -> dict[str, Path]:
+    layers = _properties_dict(config.get("layers"))
+    resolved: dict[str, Path] = {}
+    for key, relpath in layers.items():
+        if not isinstance(relpath, str) or not relpath.strip():
+            continue
+        layer_path = (config_path.parent / relpath).resolve()
+        if layer_path.is_file():
+            resolved[key] = layer_path
+    return resolved
+
+
+def _layer_style(key: str, *, latest_year: int, index: int) -> dict[str, Any]:
+    style = dict(MAP_LAYER_STYLES.get(key, {}))
+    if not style:
+        color = MAP_LAYER_FALLBACK_COLORS[index % len(MAP_LAYER_FALLBACK_COLORS)]
+        style = {
+            "label": key.replace("_", " ").title(),
+            "stroke": color,
+            "fill": color,
+            "fill_opacity": 0.20,
+            "stroke_width": 1.0,
+        }
+    label = str(style.get("label", key)).format(latest_year=latest_year)
+    style["label"] = label
+    return style
+
+
+def _download_esri_satellite_png(
+    *,
+    bbox: tuple[float, float, float, float],
+    width_px: int,
+    height_px: int,
+    output_path: Path,
+) -> bytes | None:
+    min_lon, min_lat, max_lon, max_lat = bbox
+    params = {
+        "bbox": f"{min_lon},{min_lat},{max_lon},{max_lat}",
+        "bboxSR": "4326",
+        "imageSR": "4326",
+        "size": f"{width_px},{height_px}",
+        "format": "png32",
+        "f": "image",
+    }
+    url = (
+        "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?"
+        + urlencode(params)
+    )
+    try:
+        with urlopen(url, timeout=20) as response:
+            image_bytes = response.read()
+        if not image_bytes:
+            return None
+        output_path.write_bytes(image_bytes)
+        return image_bytes
+    except Exception:
+        if output_path.is_file():
+            return output_path.read_bytes()
+        return None
+
+
+def _rings_to_svg_path(
+    rings: list[list[list[float]]],
+    *,
+    project: Any,
+) -> str:
+    segments: list[str] = []
+    for ring in rings:
+        points: list[tuple[float, float]] = []
+        for point in ring:
+            if not isinstance(point, (list, tuple)) or len(point) < 2:
+                continue
+            points.append(project(float(point[0]), float(point[1])))
+        if len(points) < 3:
+            continue
+        path_parts = [f"M {points[0][0]:.2f} {points[0][1]:.2f}"]
+        for x, y in points[1:]:
+            path_parts.append(f"L {x:.2f} {y:.2f}")
+        path_parts.append("Z")
+        segments.append(" ".join(path_parts))
+    return " ".join(segments)
+
+
+def _rasterize_svg_to_png(svg_path: Path, png_path: Path) -> None:
+    try:
+        import cairosvg  # type: ignore
+
+        cairosvg.svg2png(url=str(svg_path), write_to=str(png_path))
+        return
+    except Exception:
+        pass
+
+    sips_path = shutil.which("sips")
+    if sips_path:
+        try:
+            subprocess.run(
+                [sips_path, "-s", "format", "png", str(svg_path), "--out", str(png_path)],
+                check=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+            if png_path.is_file():
+                return
+        except subprocess.CalledProcessError:
+            pass
+
+    qlmanage_path = shutil.which("qlmanage")
+    if qlmanage_path:
+        preview_dir = png_path.parent
+        preview_name = f"{svg_path.name}.png"
+        preview_path = preview_dir / preview_name
+        try:
+            if preview_path.is_file():
+                preview_path.unlink()
+            subprocess.run(
+                [qlmanage_path, "-t", "-s", str(DEFAULT_MAP_WIDTH_PX), "-o", str(preview_dir), str(svg_path)],
+                check=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+            )
+            if preview_path.is_file():
+                preview_path.replace(png_path)
+                return
+        except Exception:
+            pass
+
+    raise RuntimeError(
+        "Unable to rasterize SVG to PNG; install cairosvg or ensure 'sips'/'qlmanage' are available"
+    )
+
+
+def render_static_map_image(
+    *,
+    run_dir: Path,
+    map_assets: dict[str, Any],
+    output_dir: Path,
+    output_basename: str = "deforestation_map",
+) -> StaticMapArtifacts:
+    config, config_path = _resolve_map_config(run_dir, map_assets)
+    layer_paths = _resolve_map_layer_paths(config, config_path)
+    if "aoi_boundary" not in layer_paths:
+        raise ValueError("Static map rendering requires an aoi_boundary layer")
+
+    layers_in_order = list(_properties_dict(config.get("layers")).keys())
+    resolved_layers = {
+        key: _iter_rings(json.loads(path.read_text(encoding="utf-8")))
+        for key, path in layer_paths.items()
+    }
+    all_rings: list[list[list[float]]] = []
+    for rings in resolved_layers.values():
+        all_rings.extend(rings)
+    if not all_rings:
+        raise ValueError(f"No polygon rings found in map layers for {config_path}")
+
+    cfg_bbox = _properties_dict(config.get("aoi_bbox"))
+    bbox: tuple[float, float, float, float] | None = None
+    if cfg_bbox:
+        try:
+            bbox = (
+                float(cfg_bbox["min_lon"]),
+                float(cfg_bbox["min_lat"]),
+                float(cfg_bbox["max_lon"]),
+                float(cfg_bbox["max_lat"]),
+            )
+        except Exception:
+            bbox = None
+    if bbox is None:
+        bbox = _bbox_from_rings(all_rings)
+    if bbox is None:
+        raise ValueError(f"Unable to determine bbox for static map from {config_path}")
+
+    padded_bbox = _expand_bbox(bbox)
+    min_lon, min_lat, max_lon, max_lat = padded_bbox
+    span_lon = max(1e-12, max_lon - min_lon)
+    span_lat = max(1e-12, max_lat - min_lat)
+    latest_year = int(config.get("latest_year") or map_assets.get("latest_year") or 2024)
+
+    width = float(DEFAULT_MAP_WIDTH_PX)
+    height = float(DEFAULT_MAP_HEIGHT_PX)
+    pad = DEFAULT_MAP_PADDING_PX
+    plot_w = width - (2 * pad)
+    plot_h = height - (2 * pad)
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    satellite_name = f"{output_basename}_satellite.png"
+    satellite_path = output_dir / satellite_name
+    satellite_bytes = _download_esri_satellite_png(
+        bbox=padded_bbox,
+        width_px=int(plot_w),
+        height_px=int(plot_h),
+        output_path=satellite_path,
+    )
+    satellite_data_uri = None
+    if satellite_bytes is not None:
+        encoded = base64.b64encode(satellite_bytes).decode("ascii")
+        satellite_data_uri = f"data:image/png;base64,{encoded}"
+
+    def project(lon: float, lat: float) -> tuple[float, float]:
+        x = pad + ((lon - min_lon) / span_lon) * plot_w
+        y = pad + ((max_lat - lat) / span_lat) * plot_h
+        return x, y
+
+    svg_name = f"{output_basename}.svg"
+    png_name = f"{output_basename}.png"
+    svg_path = output_dir / svg_name
+    png_path = output_dir / png_name
+
+    svg_lines = [
+        "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" "
+        f"width=\"{DEFAULT_MAP_WIDTH_PX}\" height=\"{DEFAULT_MAP_HEIGHT_PX}\" "
+        f"viewBox=\"0 0 {DEFAULT_MAP_WIDTH_PX} {DEFAULT_MAP_HEIGHT_PX}\" role=\"img\" "
+        "aria-label=\"Static AOI evidence map\">",
+        "  <rect x=\"0\" y=\"0\" width=\"1100\" height=\"760\" fill=\"#ffffff\" />",
+        "  <defs>",
+        "    <clipPath id=\"map-clip\">",
+        f"      <rect x=\"{pad:.2f}\" y=\"{pad:.2f}\" width=\"{plot_w:.2f}\" height=\"{plot_h:.2f}\" />",
+        "    </clipPath>",
+        "  </defs>",
+        f"  <rect x=\"{pad:.2f}\" y=\"{pad:.2f}\" width=\"{plot_w:.2f}\" height=\"{plot_h:.2f}\" fill=\"#f4f4f4\" stroke=\"#d0d7de\" stroke-width=\"1\" />",
+    ]
+    if satellite_data_uri is not None:
+        svg_lines.append(
+            f"  <image href=\"{satellite_data_uri}\" xlink:href=\"{satellite_data_uri}\" "
+            f"x=\"{pad:.2f}\" y=\"{pad:.2f}\" width=\"{plot_w:.2f}\" height=\"{plot_h:.2f}\" "
+            "preserveAspectRatio=\"none\" clip-path=\"url(#map-clip)\" />"
+        )
+
+    legend_rows: list[tuple[str, str]] = []
+    rendered_layer_count = 0
+    for index, key in enumerate(layers_in_order):
+        rings = resolved_layers.get(key)
+        if not rings:
+            continue
+        style = _layer_style(key, latest_year=latest_year, index=index)
+        path_data = _rings_to_svg_path(rings, project=project)
+        if not path_data:
+            continue
+        fill = str(style.get("fill", "none"))
+        fill_opacity = float(style.get("fill_opacity", 0.0))
+        stroke = str(style.get("stroke", "#111111"))
+        stroke_width = float(style.get("stroke_width", 1.0))
+        svg_lines.append(
+            f"  <path d=\"{path_data}\" fill=\"{fill}\" fill-opacity=\"{fill_opacity:.2f}\" "
+            f"stroke=\"{stroke}\" stroke-width=\"{stroke_width:.2f}\" clip-path=\"url(#map-clip)\" />"
+        )
+        legend_rows.append((str(style.get("label", key)), stroke))
+        rendered_layer_count += 1
+
+    legend_height = max(88, 34 + (rendered_layer_count * 22))
+    svg_lines.extend(
+        [
+            f"  <rect x=\"28\" y=\"28\" width=\"320\" height=\"{legend_height}\" fill=\"#ffffff\" fill-opacity=\"0.92\" stroke=\"#d0d7de\" />",
+            "  <text x=\"42\" y=\"52\" font-size=\"18\" font-family=\"Arial, sans-serif\" fill=\"#111\">Static evidence map</text>",
+        ]
+    )
+    for row_index, (label, color) in enumerate(legend_rows):
+        y = 76 + (row_index * 22)
+        svg_lines.append(
+            f"  <text x=\"42\" y=\"{y}\" font-size=\"14\" font-family=\"Arial, sans-serif\" fill=\"{color}\">■ {html.escape(label)}</text>"
+        )
+    basemap_note_y = 76 + (len(legend_rows) * 22)
+    basemap_note = "Basemap: Esri World Imagery" if satellite_data_uri is not None else "Basemap unavailable; overlays only"
+    svg_lines.extend(
+        [
+            f"  <text x=\"42\" y=\"{basemap_note_y}\" font-size=\"11\" font-family=\"Arial, sans-serif\" fill=\"#666\">{html.escape(basemap_note)}</text>",
+            "</svg>",
+            "",
+        ]
+    )
+
+    svg_path.write_text("\n".join(svg_lines), encoding="utf-8")
+    _rasterize_svg_to_png(svg_path, png_path)
+
+    return StaticMapArtifacts(
+        svg_relpath=svg_name,
+        png_relpath=png_name,
+        satellite_png_relpath=satellite_name if satellite_bytes is not None else None,
+    )
+
+
+def render_report_html_static(
+    report: dict[str, Any],
+    run_dir: Path,
+    html_relpath: str,
+    *,
+    static_map_png_relpath: str,
+    static_map_svg_relpath: str | None = None,
+) -> str:
+    html_content = render_report_html(report, run_dir, html_relpath)
+    map_assets = report.get("map_assets") if isinstance(report.get("map_assets"), dict) else None
+    if not map_assets or not map_assets.get("config_relpath"):
+        return html_content
+
+    html_path = run_dir / html_relpath
+    map_config_href = html.escape(relpath_from_html(run_dir, html_path, str(map_assets.get("config_relpath"))))
+    static_png_href = html.escape(static_map_png_relpath)
+    static_svg_link = ""
+    if static_map_svg_relpath:
+        static_svg_href = html.escape(static_map_svg_relpath)
+        static_svg_link = f" · <a href=\"{static_svg_href}\">static SVG</a>"
+
+    replacement = "\n".join(
+        [
+            "  <h2>Map (static)</h2>",
+            f"  <p><a href=\"{map_config_href}\">map_config.json</a> · <a href=\"{static_png_href}\">static map PNG</a>{static_svg_link}</p>",
+            "  <figure style=\"margin: 12px 0 16px;\">",
+            f"    <img src=\"{static_png_href}\" alt=\"Static AOI evidence map\" style=\"max-width:100%; height:auto; border:1px solid #ddd; border-radius:8px; background:#fafafa;\" />",
+            "  </figure>",
+            "",
+        ]
+    )
+
+    html_content = re.sub(
+        r"\n  <link rel=\"stylesheet\" href=\"https://unpkg\.com/leaflet@1\.9\.4/dist/leaflet\.css\" .*? />",
+        "",
+        html_content,
+        count=1,
+    )
+    html_content = re.sub(
+        r"\n  <script src=\"https://unpkg\.com/leaflet@1\.9\.4/dist/leaflet\.js\" .*?</script>",
+        "",
+        html_content,
+        count=1,
+    )
+    html_content = re.sub(
+        r"  <h2>Map \(interactive\)</h2>\n.*?(?=  <h2>Assumptions & Limitations</h2>)",
+        replacement,
+        html_content,
+        count=1,
+        flags=re.S,
+    )
+    return html_content
 
 
 def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str) -> str:
