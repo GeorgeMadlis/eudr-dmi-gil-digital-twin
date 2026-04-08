@@ -1,0 +1,430 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 7 /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 1469 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(AOI Report Summary ? estonia_testland1) Tj T*
+(body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,) Tj T*
+(Helvetica, Arial; margin: 24px; }) Tj T*
+(table { border-collapse: collapse; width: 100%; }) Tj T*
+(th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }) Tj T*
+(th { background: #f6f6f6; text-align: left; width: 240px; }) Tj T*
+(h2 { margin-top: 28px; }) Tj T*
+(code { background: #f6f6f6; padding: 1px 4px; border-radius: 4px; }) Tj T*
+(#map { height: 420px; border: 1px solid #ddd; border-radius: 8px; margin: 12px 0 16px;) Tj T*
+(background: #fafafa; }) Tj T*
+(Report Intent & Scope) Tj T*
+(Field) Tj T*
+(Value) Tj T*
+(assessment_capability) Tj T*
+("inspectable_only") Tj T*
+(regulatory_context) Tj T*
+({"in_scope_articles": ["article-3"], "out_of_scope_articles": [], "regulation": "EUDR"}) Tj T*
+(report_type) Tj T*
+("example") Tj T*
+(Regulatory traceability) Tj T*
+(Regulation) Tj T*
+(Article) Tj T*
+(Evidence class) Tj T*
+(Acceptance criteria) Tj T*
+(Result ref) Tj T*
+(EUDR) Tj T*
+(article-3) Tj T*
+(aoi_geometry) Tj T*
+(aoi_geometry_present) Tj T*
+(result-001) Tj T*
+(EUDR) Tj T*
+(article-3) Tj T*
+(forest_loss_post_2020) Tj T*
+(forest_loss_post_2020_max_ha) Tj T*
+(forest_loss_post_2020_max_ha) Tj T*
+(Evidence Registry) Tj T*
+(Evidence Class) Tj T*
+(Mandatory) Tj T*
+(Status) Tj T*
+(aoi_geometry) Tj T*
+(True) Tj T*
+(present) Tj T*
+(forest_loss_post_2020) Tj T*
+(True) Tj T*
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 1293 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(present) Tj T*
+(hansen_tiles_provenance) Tj T*
+(True) Tj T*
+(present) Tj T*
+(Acceptance Criteria) Tj T*
+(Criteria) Tj T*
+(Status) Tj T*
+(Details) Tj T*
+(aoi_geometry_present) Tj T*
+({"criteria_id": "aoi_geometry_present", "decision_type": "presence", "description": "AOI) Tj T*
+(geometry is present and referenced in inputs.", "evidence_classes": ["aoi_geometry"]}) Tj T*
+(forest_loss_post_2020_max_ha) Tj T*
+({"criteria_id": "forest_loss_post_2020_max_ha", "decision_type": "threshold",) Tj T*
+("description": "Forest loss after 2020-12-31 \(lossyear >= 2021\) must be <= 0 ha.",) Tj T*
+("evidence_classes": ["forest_loss_post_2020"]}) Tj T*
+(AOI Report Summary) Tj T*
+(AOI) Tj T*
+(estonia_testland1) Tj T*
+(Bundle) Tj T*
+(example) Tj T*
+(Report Version) Tj T*
+(aoi_report_v2) Tj T*
+(Geometry Ref) Tj T*
+(geojson: inputs/aoi.geojson) Tj T*
+(Inputs) Tj T*
+(Source) Tj T*
+(URI) Tj T*
+(SHA256) Tj T*
+(Content Type) Tj T*
+(aoi_geometry) Tj T*
+(inputs/aoi.geojson) Tj T*
+(f57dc8c1708c6f3bcbb8a5b4b571ad8c3c70935b8a27738d2c473d06f39a1a9c) Tj T*
+(application/geo+json) Tj T*
+(Metrics) Tj T*
+(Metric) Tj T*
+(Value) Tj T*
+(Unit) Tj T*
+(Notes) Tj T*
+(Source) Tj T*
+(Criteria) Tj T*
+(aoi_area_ha) Tj T*
+(15775.219873859023) Tj T*
+(ha) Tj T*
+(geodesic_wgs84_pyproj) Tj T*
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 1030 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(geometry) Tj T*
+(Not declared) Tj T*
+(end_year) Tj T*
+(2024) Tj T*
+(year) Tj T*
+(forest_end_year) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(forest_2024_ha) Tj T*
+(416.06087365026985) Tj T*
+(ha) Tj T*
+(rfm_mask & \(lossyear == 0\)) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(forest_end_year_ha) Tj T*
+(416.06087365026985) Tj T*
+(ha) Tj T*
+(forest_mask_end_year) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(forest_loss_post_2020_percent_of_aoi) Tj T*
+(0.10631728834279121) Tj T*
+(percent) Tj T*
+(forest_loss_post_2020_ha / aoi_area_ha) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(loss_2021_2024_ha) Tj T*
+(16.771785975099796) Tj T*
+(ha) Tj T*
+(rfm_mask & \(lossyear in 21..24\)) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(loss_total_ha) Tj T*
+(89.66876423288652) Tj T*
+(ha) Tj T*
+(rfm_mask & \(lossyear > 0\)) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(pixel_current_tree_cover_ha) Tj T*
+(416.060874) Tj T*
+(ha) Tj T*
+(pixel_mask) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 1052 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(pixel_forest_loss_post_2020_ha) Tj T*
+(16.771786) Tj T*
+(ha) Tj T*
+(pixel_mask) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(pixel_initial_tree_cover_ha) Tj T*
+(505.729638) Tj T*
+(ha) Tj T*
+(pixel_mask) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(rfm_area_ha) Tj T*
+(505.7296378831563) Tj T*
+(ha) Tj T*
+(rfm_mask) Tj T*
+(hansen_gfc) Tj T*
+(Not declared) Tj T*
+(Maa-amet parcels) Tj T*
+(Field) Tj T*
+(Value) Tj T*
+(enabled) Tj T*
+(true) Tj T*
+(parcel_layer) Tj T*
+("kataster:ky_kehtiv") Tj T*
+(parcel_count) Tj T*
+(2330) Tj T*
+(notes) Tj T*
+("WFS: https://gsavalik.envir.ee/geoserver/wfs layer=kataster:ky_kehtiv") Tj T*
+(maaamet_land_area_ha_sum) Tj T*
+(13888.6646) Tj T*
+(hansen_land_area_ha_sum) Tj T*
+(13891.300459) Tj T*
+(land_area_diff_ha) Tj T*
+(2.635859) Tj T*
+(land_area_diff_pct) Tj T*
+(0.018978) Tj T*
+(Top 10 parcels \(by forest area\)) Tj T*
+(Parcel ID) Tj T*
+(Hansen land \(ha\)) Tj T*
+(Maa-amet land \(ha\)) Tj T*
+(Hansen forest \(ha\)) Tj T*
+(Maa-amet forest \(ha\)) Tj T*
+(Forest loss \(ha\)) Tj T*
+ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 806 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(27101:003:0058) Tj T*
+(137.046682) Tj T*
+(137.0269) Tj T*
+(97.728212) Tj T*
+(22.4789) Tj T*
+(0.968771) Tj T*
+(75902:001:5901) Tj T*
+(63.134577) Tj T*
+(63.2011) Tj T*
+(45.5815) Tj T*
+(33.6362) Tj T*
+(0.84931) Tj T*
+(75902:001:0109) Tj T*
+(42.471727) Tj T*
+(42.3496) Tj T*
+(37.617937) Tj T*
+(32.1173) Tj T*
+(1.496531) Tj T*
+(35701:002:1000) Tj T*
+(54.234712) Tj T*
+(54.1376) Tj T*
+(34.917427) Tj T*
+(53.3073) Tj T*
+(0.0) Tj T*
+(75902:001:0043) Tj T*
+(39.031285) Tj T*
+(38.9261) Tj T*
+(34.177601) Tj T*
+(32.1777) Tj T*
+(0.0) Tj T*
+(35701:001:0020) Tj T*
+(42.500208) Tj T*
+(42.0425) Tj T*
+(31.774147) Tj T*
+(39.4194) Tj T*
+(0.0) Tj T*
+(35701:003:0052) Tj T*
+(43.264853) Tj T*
+(43.4131) Tj T*
+(26.257453) Tj T*
+(35.1711) Tj T*
+(0.0) Tj T*
+(35701:003:0220) Tj T*
+(47.02571) Tj T*
+ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 15 0 R >>
+endobj
+15 0 obj
+<< /Length 1126 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(46.8044) Tj T*
+(25.775186) Tj T*
+(28.708) Tj T*
+(0.0) Tj T*
+(27101:003:0178) Tj T*
+(29.152779) Tj T*
+(29.0563) Tj T*
+(25.115078) Tj T*
+(28.4454) Tj T*
+(0.0) Tj T*
+(35701:002:1440) Tj T*
+(50.103747) Tj T*
+(49.9785) Tj T*
+(23.112119) Tj T*
+(47.7426) Tj T*
+(11.273593) Tj T*
+(Hansen vs Maa-amet forest area crosscheck) Tj T*
+(Field) Tj T*
+(Value) Tj T*
+(source) Tj T*
+("maaamet") Tj T*
+(outcome) Tj T*
+("fail") Tj T*
+(reference) Tj T*
+({"method": "mixed", "source": "mixed", "value_ha": 8435.690942}) Tj T*
+(computed) Tj T*
+({"forest_area_ha": 416.060874}) Tj T*
+(comparison) Tj T*
+({"diff_pct": -95.067851, "tolerance_percent": 5.0}) Tj T*
+(csv_ref) Tj T*
+(reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv) Tj T*
+(summary_ref) Tj T*
+(reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json) Tj T*
+(Map \(static\)) Tj T*
+(map_config.json) Tj T*
+(?) Tj T*
+(static map PNG) Tj T*
+(?) Tj T*
+(static SVG) Tj T*
+(Assumptions & Limitations) Tj T*
+(No assumptions declared in this report.) Tj T*
+(Results) Tj T*
+(Result) Tj T*
+(Status) Tj T*
+ET
+endstream
+endobj
+16 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 17 0 R >>
+endobj
+17 0 obj
+<< /Length 1916 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(Criteria) Tj T*
+(result-001) Tj T*
+(pass) Tj T*
+(aoi_geometry_present) Tj T*
+(forest_loss_post_2020_max_ha) Tj T*
+(fail) Tj T*
+(forest_loss_post_2020_max_ha) Tj T*
+(Evidence Artifacts) Tj T*
+(inputs/aoi.geojson) Tj T*
+(reports/aoi_report_v2/estonia_testland1.html) Tj T*
+(reports/aoi_report_v2/estonia_testland1.json) Tj T*
+(reports/aoi_report_v2/estonia_testland1/hansen/forest_2000_tree_cover_mask.geojson) Tj T*
+(reports/aoi_report_v2/estonia_testland1/hansen/forest_current_tree_cover_mask.geojson) Tj T*
+(reports/aoi_report_v2/estonia_testland1/hansen/forest_end_year_tree_cover_mask.geojson) Tj T*
+(reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_mask.geojson) Tj T*
+(reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_summary.json) Tj T*
+(reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json) Tj T*
+(reports/aoi_report_v2/estonia_testland1/hansen/forest_mask_debug.json) Tj T*
+(reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_fields_inventory.json) Tj T*
+(reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.csv) Tj T*
+(reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_forest_area_crosscheck.json) Tj T*
+(reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_parcels_metadata.json) Tj T*
+(reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_top10_parcels.csv) Tj T*
+(reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_top10_parcels.geojson) Tj T*
+(reports/aoi_report_v2/estonia_testland1/map/map_config.json) Tj T*
+(reports/aoi_report_v2/estonia_testland1/metrics.csv) Tj T*
+(Source Bundle:) Tj T*
+(report.html) Tj T*
+(Sample artifacts:) Tj T*
+(report.json) Tj T*
+(?) Tj T*
+(report.html) Tj T*
+(?) Tj T*
+(deforestation_map.svg) Tj T*
+(?) Tj T*
+(deforestation_map.png) Tj T*
+(?) Tj T*
+(deforestation_map_satellite.png) Tj T*
+(?) Tj T*
+(manifest.sha256) Tj T*
+ET
+endstream
+endobj
+xref
+0 18
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000155 00000 n 
+0000000225 00000 n 
+0000000351 00000 n 
+0000001872 00000 n 
+0000001998 00000 n 
+0000003343 00000 n 
+0000003469 00000 n 
+0000004551 00000 n 
+0000004679 00000 n 
+0000005784 00000 n 
+0000005912 00000 n 
+0000006770 00000 n 
+0000006898 00000 n 
+0000008077 00000 n 
+0000008205 00000 n 
+trailer
+<< /Size 18 /Root 1 0 R >>
+startxref
+10174
+%%EOF

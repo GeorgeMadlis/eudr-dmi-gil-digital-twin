@@ -4,7 +4,7 @@
 Usage:
   python3 scripts/generate_sample_report_from_bundle.py \
     --bundle-dir docs/site/bundles/runs/west_africa \
-    --output-dir docs/site/sample_reports/runs/demo_2026-02-20/demo_plot_01 \
+    --output-dir docs/site/sample_reports/Demo_Plot_01 \
     --report-json west_africa_aoi_report.json
 """
 
@@ -123,6 +123,85 @@ def _write_manifest(output_dir: Path, artifact_names: list[str]) -> None:
     (output_dir / "manifest.sha256").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def _to_pdf_safe_text(value: str) -> str:
+    return (
+        value.replace("\\", "\\\\")
+        .replace("(", "\\(")
+        .replace(")", "\\)")
+        .encode("ascii", "replace")
+        .decode("ascii")
+    )
+
+
+def _wrap_pdf_line(value: str, max_chars: int = 88) -> list[str]:
+    words = value.split()
+    if not words:
+        return [""]
+
+    lines: list[str] = []
+    current = words[0]
+    for word in words[1:]:
+        candidate = f"{current} {word}"
+        if len(candidate) <= max_chars:
+            current = candidate
+            continue
+        lines.append(current)
+        current = word
+
+    lines.append(current)
+    return lines
+
+
+def _write_minimal_pdf(lines: list[str], pdf_path: Path) -> None:
+    lines_per_page = 44
+    pages = [lines[index:index + lines_per_page] for index in range(0, len(lines), lines_per_page)]
+    if not pages:
+        pages = [[""]]
+
+    objects: dict[int, str] = {}
+    objects[1] = "<< /Type /Catalog /Pages 2 0 R >>"
+    kids = " ".join(f"{4 + page_index * 2} 0 R" for page_index in range(len(pages)))
+    objects[2] = f"<< /Type /Pages /Count {len(pages)} /Kids [{kids}] >>"
+    objects[3] = "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>"
+
+    for page_index, page_lines in enumerate(pages):
+        page_object_id = 4 + page_index * 2
+        content_object_id = page_object_id + 1
+        stream = "\n".join(
+            [
+                "BT",
+                "/F1 11 Tf",
+                "48 780 Td",
+                "14 TL",
+                *[f"({_to_pdf_safe_text(line)}) Tj T*" for line in page_lines],
+                "ET",
+            ]
+        )
+        objects[page_object_id] = (
+            "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] "
+            f"/Resources << /Font << /F1 3 0 R >> >> /Contents {content_object_id} 0 R >>"
+        )
+        objects[content_object_id] = (
+            f"<< /Length {len(stream.encode('utf-8'))} >>\nstream\n{stream}\nendstream"
+        )
+
+    pdf = "%PDF-1.4\n"
+    offsets = {0: 0}
+
+    for object_id in sorted(objects):
+        offsets[object_id] = len(pdf.encode("utf-8"))
+        pdf += f"{object_id} 0 obj\n{objects[object_id]}\nendobj\n"
+
+    xref_offset = len(pdf.encode("utf-8"))
+    pdf += f"xref\n0 {max(objects) + 1}\n"
+    pdf += "0000000000 65535 f \n"
+    for object_id in range(1, max(objects) + 1):
+        offset = offsets.get(object_id, 0)
+        pdf += f"{offset:010d} 00000 n \n"
+    pdf += f"trailer\n<< /Size {max(objects) + 1} /Root 1 0 R >>\nstartxref\n{xref_offset}\n%%EOF"
+    pdf_path.write_bytes(pdf.encode("utf-8"))
+
+
 def _maybe_render_pdf_from_html(html_path: Path, pdf_path: Path) -> bool:
     try:
         from weasyprint import HTML  # type: ignore
@@ -136,7 +215,15 @@ def _maybe_render_pdf_from_html(html_path: Path, pdf_path: Path) -> bool:
         from reportlab.lib.pagesizes import A4  # type: ignore
         from reportlab.pdfgen import canvas  # type: ignore
     except Exception:
-        return False
+        text = html.unescape(re.sub(r"<[^>]+>", "\n", html_path.read_text(encoding="utf-8")))
+        lines = []
+        for raw_line in text.splitlines():
+            stripped = raw_line.strip()
+            if not stripped:
+                continue
+            lines.extend(_wrap_pdf_line(stripped))
+        _write_minimal_pdf(lines, pdf_path)
+        return pdf_path.is_file()
 
     text = html.unescape(re.sub(r"<[^>]+>", "\n", html_path.read_text(encoding="utf-8")))
     lines = [line.strip() for line in text.splitlines() if line.strip()]

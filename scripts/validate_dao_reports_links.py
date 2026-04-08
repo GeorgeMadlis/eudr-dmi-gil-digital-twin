@@ -5,7 +5,7 @@ import argparse
 from pathlib import Path
 
 
-EXPECTED_PLOTS = ["demo_plot_01", "demo_plot_02", "demo_plot_03", "demo_plot_04"]
+EXPECTED_PLOTS = ["Demo_Plot_01", "Demo_Plot_02", "Demo_Plot_03", "Demo_Plot_04"]
 REQUIRED_ARTIFACTS = ["report.html", "report.json", "manifest.sha256"]
 OPTIONAL_ARTIFACTS = ["report.pdf"]
 
@@ -14,42 +14,31 @@ def validate(site_root: Path) -> list[str]:
     errors: list[str] = []
 
     dao_root = site_root / "sample_reports"
-    runs_dir = dao_root / "runs"
     index_file = dao_root / "index.html"
 
     if not index_file.is_file():
         errors.append(f"missing index: {index_file}")
 
-    if not runs_dir.is_dir():
-        errors.append(f"missing runs dir: {runs_dir}")
-        return errors
-
-    run_dirs = sorted([p for p in runs_dir.iterdir() if p.is_dir()])
-    if not run_dirs:
-        errors.append(f"no run directories found in: {runs_dir}")
-        return errors
-
     index_text = index_file.read_text(encoding="utf-8") if index_file.is_file() else ""
 
-    for run_dir in run_dirs:
-        run_id = run_dir.name
-        if index_text and run_id not in index_text:
-            errors.append(f"run id not referenced in index.html: {run_id}")
+    for plot_id in EXPECTED_PLOTS:
+        plot_dir = dao_root / plot_id
+        if not plot_dir.is_dir():
+            errors.append(f"missing plot folder: {plot_dir}")
+            continue
 
-        for plot_id in EXPECTED_PLOTS:
-            plot_dir = run_dir / plot_id
-            if not plot_dir.is_dir():
-                errors.append(f"missing plot folder: {plot_dir}")
-                continue
-            for artifact in REQUIRED_ARTIFACTS:
-                artifact_path = plot_dir / artifact
-                if not artifact_path.is_file():
-                    errors.append(f"missing artifact: {artifact_path}")
+        if index_text and plot_id not in index_text:
+            errors.append(f"plot id not referenced in index.html: {plot_id}")
 
-            for artifact in OPTIONAL_ARTIFACTS:
-                artifact_path = plot_dir / artifact
-                if artifact_path.exists() and not artifact_path.is_file():
-                    errors.append(f"artifact is not a file: {artifact_path}")
+        for artifact in REQUIRED_ARTIFACTS:
+            artifact_path = plot_dir / artifact
+            if not artifact_path.is_file():
+                errors.append(f"missing artifact: {artifact_path}")
+
+        for artifact in OPTIONAL_ARTIFACTS:
+            artifact_path = plot_dir / artifact
+            if artifact_path.exists() and not artifact_path.is_file():
+                errors.append(f"artifact is not a file: {artifact_path}")
 
     return errors
 

@@ -16,22 +16,22 @@ RUN_DISPLAY_METADATA: dict[str, tuple[str, str, str | None]] = {
   "example": (
     "Example with cadastre-based validation in Estonia",
     "estonia_aoi_report.json",
-    "../sample_reports/runs/demo_2026-02-20/demo_plot_04/report.html",
+    "../sample_reports/Demo_Plot_04/report.html",
   ),
   "latin_america": (
     "Example of mixed crop in Latin America",
     "latin_america_aoi_report.json",
-    "../sample_reports/runs/demo_2026-02-20/demo_plot_03/report.html",
+    "../sample_reports/Demo_Plot_03/report.html",
   ),
   "se_asia": (
     "Example of coffee in SE Asia",
     "se_asia_aoi_report.json",
-    "../sample_reports/runs/demo_2026-02-20/demo_plot_02/report.html",
+    "../sample_reports/Demo_Plot_02/report.html",
   ),
   "west_africa": (
     "Example of cocoa in West Africa",
     "west_africa_aoi_report.json",
-    "../sample_reports/runs/demo_2026-02-20/demo_plot_01/report.html",
+    "../sample_reports/Demo_Plot_01/report.html",
   ),
 }
 
