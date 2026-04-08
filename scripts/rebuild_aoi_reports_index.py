@@ -116,7 +116,7 @@ def build_page(*, runs_dir: Path) -> str:
     {header_html}
     <main>
       <div class=\"wrap\">
-        <!-- Generated from docs/site/aoi_reports/runs/ -->
+        <!-- Generated from docs/site/bundles/runs/ -->
 <h1>AOI Reports</h1>
 <p class=\"muted\">Portable mode: links point into the bundle under <code>runs/&lt;run_id&gt;/report.html</code>. For inspection guidance, see <a href=\"../dte_instructions.html\">DTE instructions</a>.</p>
 <p class=\"muted\"><strong>Artefact publication contract:</strong> the run-level AOI report JSON declares every evidence artefact; each declared file must exist at its declared relative path in the bundle and be reachable via a clickable link from <code>report.html</code>. Builds fail on missing artefacts.</p>
@@ -130,7 +130,7 @@ def build_page(*, runs_dir: Path) -> str:
     <li>If a listed artefact cannot be opened via this click-path, record it as an <strong>Evidence gap — published artefact is inaccessible via inspection surface</strong>.</li>
   </ul>
   <div style=\"margin-top:8px;\">
-    See: <a href=\"../dte_instructions.html\">DTE Instructions v1.2</a>
+    See: <a href=\"../dte_instructions.html\">DTE Instructions v1.4</a>
   </div>
 </div>
 <div class=\"card\">
@@ -145,7 +145,7 @@ def build_page(*, runs_dir: Path) -> str:
       <div style=\"max-width:980px; margin:0 auto; padding:18px 20px 28px; color:#666; font-size:13px;\">
         <a href=\"../privacy.html\" style=\"color:#0b5fff; text-decoration:none; font-weight:600;\">Privacy Policy</a>
         <span style=\"margin:0 8px; color:#999;\">|</span>
-        <a href=\"../dte_instructions.html\" style=\"color:#0b5fff; text-decoration:none; font-weight:600;\">DTE Instructions v1.2</a>
+        <a href=\"../dte_instructions.html\" style=\"color:#0b5fff; text-decoration:none; font-weight:600;\">DTE Instructions v1.4</a>
       </div>
     </footer>
   </body>
@@ -154,17 +154,17 @@ def build_page(*, runs_dir: Path) -> str:
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="Rebuild AOI reports index from docs/site/aoi_reports/runs/.")
+    p = argparse.ArgumentParser(description="Rebuild AOI reports index from docs/site/bundles/runs/.")
     p.add_argument("--site-root", default="docs/site", help="Root folder containing site HTML")
     args = p.parse_args()
 
     site_root = Path(args.site_root)
     render_to_site(source_path=Path("docs/dte_instructions.md"), site_root=site_root)
-    runs_dir = site_root / "aoi_reports" / "runs"
+    runs_dir = site_root / "bundles" / "runs"
     if not runs_dir.is_dir():
         raise SystemExit(f"Runs dir not found: {runs_dir}")
 
-    out_path = site_root / "aoi_reports" / "index.html"
+    out_path = site_root / "bundles" / "index.html"
     out_path.write_text(build_page(runs_dir=runs_dir), encoding="utf-8")
     return 0
 

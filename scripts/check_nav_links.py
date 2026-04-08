@@ -19,13 +19,13 @@ def main() -> int:
 
     site_root = Path(args.site_root)
 
-    assert_contains(site_root / "aoi_reports" / "index.html", 'href="../articles/index.html"')
-    assert_contains(site_root / "aoi_reports" / "index.html", 'href="../dependencies/index.html"')
-    assert_contains(site_root / "aoi_reports" / "index.html", 'href="../regulation/links.html"')
-    assert_contains(site_root / "aoi_reports" / "index.html", 'href="../regulation/policy_to_evidence_spine.html"')
-    assert_contains(site_root / "aoi_reports" / "index.html", 'href="../dao_dev/index.html"')
+    assert_contains(site_root / "bundles" / "index.html", 'href="../articles/index.html"')
+    assert_contains(site_root / "bundles" / "index.html", 'href="../dependencies/index.html"')
+    assert_contains(site_root / "bundles" / "index.html", 'href="../regulation/links.html"')
+    assert_contains(site_root / "bundles" / "index.html", 'href="../regulation/policy_to_evidence_spine.html"')
+    assert_contains(site_root / "bundles" / "index.html", 'href="../dao_dev/index.html"')
 
-    run_path = site_root / "aoi_reports" / "runs" / args.run_id / "report.html"
+    run_path = site_root / "bundles" / "runs" / args.run_id / "report.html"
     assert_contains(run_path, 'href="../../../index.html"')
 
     return 0

@@ -65,6 +65,6 @@ Evidence artefacts linked from report.html:
 ## See also
 
 - https://github.com/georgemadlis/eudr-dmi-gil/blob/main/docs/reports/README.md
-- [DTE Instructions v1.1](../dte_instructions.md)
+- [DTE Instructions v1.4](../dte_instructions.md)
 - [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)
 - [docs/INSPECTION_INDEX.md](../INSPECTION_INDEX.md)

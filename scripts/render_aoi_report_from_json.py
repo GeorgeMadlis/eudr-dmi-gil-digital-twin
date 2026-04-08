@@ -46,7 +46,7 @@ def render_run(run_dir: Path, update_json: bool, report_json_name: str | None) -
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Render AOI HTML/JSON/CSV from a run report JSON file.")
-    parser.add_argument("--run-dir", required=True, help="Path to site/aoi_reports/runs/<run_id>")
+    parser.add_argument("--run-dir", required=True, help="Path to site/bundles/runs/<run_id>")
     parser.add_argument(
         "--report-json-name",
         default=None,

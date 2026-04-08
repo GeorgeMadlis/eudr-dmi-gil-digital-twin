@@ -3,11 +3,11 @@ set -euo pipefail
 
 # Validate that only AOI report publish outputs are staged/modified.
 # Allowed paths:
-# - docs/site/aoi_reports/index.html
-# - docs/site/aoi_reports/runs/
+# - docs/site/bundles/index.html
+# - docs/site/bundles/runs/
 
-allowed_index="docs/site/aoi_reports/index.html"
-allowed_runs_prefix="docs/site/aoi_reports/runs/"
+allowed_index="docs/site/bundles/index.html"
+allowed_runs_prefix="docs/site/bundles/runs/"
 
 changes="$(git status --porcelain)"
 if [[ -z "$changes" ]]; then
@@ -41,7 +41,7 @@ if (( ${#offenders[@]} > 0 )); then
 fi
 
 # Enforce deterministic AOI run set and resolvable index links.
-runs_dir="docs/site/aoi_reports/runs"
+runs_dir="docs/site/bundles/runs"
 if [[ ! -d "$runs_dir" ]]; then
   echo "ERROR: missing AOI runs directory: $runs_dir" >&2
   exit 1
@@ -66,7 +66,7 @@ expected_json[latin_america]="latin_america_aoi_report.json"
 expected_json[se_asia]="se_asia_aoi_report.json"
 expected_json[west_africa]="west_africa_aoi_report.json"
 
-index_path="docs/site/aoi_reports/index.html"
+index_path="docs/site/bundles/index.html"
 
 if [[ ! -f "$index_path" ]]; then
   echo "ERROR: missing AOI index: $index_path" >&2

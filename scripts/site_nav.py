@@ -23,9 +23,9 @@ def render_header_nav(*, rel_prefix: str, active_label: str | None = None) -> st
         NavItem("Sources", "regulation/sources.html"),
         NavItem("Spine", "regulation/policy_to_evidence_spine.html"),
         NavItem("Views", "views/index.html"),
-        NavItem("DTE Instructions v1.1", "dte_instructions.html"),
+        NavItem("DTE Instructions v1.4", "dte_instructions.html"),
         NavItem("Conversation Starters", "dte_instructions.html#conversation-starters"),
-        NavItem("AOI Reports", "aoi_reports/index.html"),
+        NavItem("Bundles", "bundles/index.html"),
         NavItem("DAO (Stakeholders)", "dao_stakeholders/index.html"),
         NavItem("DAO (Developers)", "dao_dev/index.html"),
     ]

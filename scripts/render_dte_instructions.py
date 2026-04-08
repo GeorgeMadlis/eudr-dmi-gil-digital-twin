@@ -107,13 +107,13 @@ def render_markdown(md_text: str) -> str:
 
 
 def build_page(*, body_html: str) -> str:
-    header_html = render_header_nav(rel_prefix="", active_label="DTE Instructions v1.2")
+    header_html = render_header_nav(rel_prefix="", active_label="DTE Instructions v1.4")
     return f"""<!doctype html>
 <html lang=\"en\">
   <head>
     <meta charset=\"utf-8\" />
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
-    <title>DTE Instructions v1.2</title>
+    <title>DTE Instructions v1.4</title>
     <style>
       :root {{ --fg:#111; --bg:#fff; --muted:#666; --card:#f6f7f9; --link:#0b5fff; }}
       body {{ font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;

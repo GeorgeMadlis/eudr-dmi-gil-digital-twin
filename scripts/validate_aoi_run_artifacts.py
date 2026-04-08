@@ -66,7 +66,7 @@ def validate_run(run_dir: Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Validate AOI run artefacts and links.")
-    parser.add_argument("--runs-dir", default="docs/site/aoi_reports/runs", help="Runs directory")
+    parser.add_argument("--runs-dir", default="docs/site/bundles/runs", help="Runs directory")
     args = parser.parse_args()
 
     runs_dir = Path(args.runs_dir)

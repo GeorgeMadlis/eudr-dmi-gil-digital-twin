@@ -72,8 +72,8 @@ jobs:
           Browser entrypoints:
 
           - Home: https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/index.html
-          - AOI reports index: https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/index.html
-          - Example AOI run bundle: https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/runs/example/report.html
+          - DAO Evidence Bundles index: https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/bundles/index.html
+          - Example AOI run bundle: https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/bundles/runs/example/report.html
 
           Do not use `github.com/.../tree/...` paths as website URLs; browse the Pages URLs above instead.
           EOF
@@ -116,7 +116,7 @@ jobs:
                     set -euxo pipefail
                     test -f index.html
                     test -f site/index.html
-                    test -f site/aoi_reports/index.html
+                    test -f site/bundles/index.html
 
                 - name: Upload Pages artifact
                   uses: actions/upload-pages-artifact@v3

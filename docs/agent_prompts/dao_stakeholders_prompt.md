@@ -5,11 +5,11 @@
 1) If the bundle contains `machine/bundle_manifest.yaml`, start there.
 2) Otherwise start at `machine/dao_stakeholders/view.yaml`.
 
-## Canonical DTE Instructions v1.1
+## Canonical DTE Instructions v1.4
 
-These prompts are governed by DTE Instructions v1.1.
+These prompts are governed by DTE Instructions v1.4.
 
-- [DTE Instructions v1.1](../dte_instructions.md)
+- [DTE Instructions v1.4](../dte_instructions.md)
 
 ## Closed World Rule
 
@@ -138,6 +138,6 @@ refs:
 
 ## See also
 
-- [DTE Instructions v1.1](../dte_instructions.md)
+- [DTE Instructions v1.4](../dte_instructions.md)
 - [docs/INSPECTION_INDEX.md](../INSPECTION_INDEX.md)
 - [docs/regulation/policy_to_evidence_spine.md](../regulation/policy_to_evidence_spine.md)

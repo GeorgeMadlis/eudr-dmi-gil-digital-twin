@@ -12,7 +12,7 @@ EXPECTED_ARTIFACTS = ["report.html", "report.pdf", "report.json"]
 def validate(site_root: Path) -> list[str]:
     errors: list[str] = []
 
-    dao_root = site_root / "dao_reports"
+    dao_root = site_root / "sample_reports"
     runs_dir = dao_root / "runs"
     index_file = dao_root / "index.html"
 
