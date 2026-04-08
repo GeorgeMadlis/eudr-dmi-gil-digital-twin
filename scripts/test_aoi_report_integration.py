@@ -7,7 +7,7 @@ from validate_aoi_run_artifacts import validate_run
 
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
-RUN_DIR = ROOT_DIR / "docs/site/aoi_reports/runs/example"
+RUN_DIR = ROOT_DIR / "docs/site/bundles/runs/example"
 
 
 def main() -> int:

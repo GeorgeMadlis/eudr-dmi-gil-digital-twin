@@ -8,14 +8,14 @@ set -euo pipefail
 #
 # Optional env vars:
 #   S3_ENDPOINT_URL    e.g. https://s3.pilw.io
-#   SOURCE_DIR         default: docs/site/aoi_reports/runs
+#   SOURCE_DIR         default: docs/site/bundles/runs
 #   DRY_RUN            default: false
 #   DELETE_EXTRA       default: false
 #   S3_FORCE_PATH_STYLE default: true
 
 S3_ARTIFACTS_URI="${S3_ARTIFACTS_URI:-}"
 S3_ENDPOINT_URL="${S3_ENDPOINT_URL:-}"
-SOURCE_DIR="${SOURCE_DIR:-docs/site/aoi_reports/runs}"
+SOURCE_DIR="${SOURCE_DIR:-docs/site/bundles/runs}"
 DRY_RUN="${DRY_RUN:-false}"
 DELETE_EXTRA="${DELETE_EXTRA:-false}"
 S3_FORCE_PATH_STYLE="${S3_FORCE_PATH_STYLE:-true}"

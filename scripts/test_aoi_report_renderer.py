@@ -16,7 +16,7 @@ from aoi_report_renderer import (
 
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
-FIXTURE_DIR = ROOT_DIR / "docs/site/aoi_reports/runs/example"
+FIXTURE_DIR = ROOT_DIR / "docs/site/bundles/runs/example"
 
 
 def copy_fixture(tmp_dir: Path) -> Path:

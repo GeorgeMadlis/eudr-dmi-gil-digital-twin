@@ -47,11 +47,11 @@ def main() -> int:
     )
 
     rebuild_file(site_root / "index.html", rel_prefix="", active_label="Home")
-    rebuild_file(site_root / "aoi_reports" / "index.html", rel_prefix="../", active_label="AOI Reports")
+    rebuild_file(site_root / "bundles" / "index.html", rel_prefix="../", active_label="Bundles")
     rebuild_file(
-        site_root / "aoi_reports" / "runs" / args.run_id / "report.html",
+        site_root / "bundles" / "runs" / args.run_id / "report.html",
         rel_prefix="../../../",
-        active_label="AOI Reports",
+        active_label="Bundles",
     )
 
     return 0

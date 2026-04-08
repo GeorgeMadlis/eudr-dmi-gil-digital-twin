@@ -2,8 +2,8 @@
 set -euo pipefail
 
 SITE_ROOT="docs/site"
-RUNS_DIR="${SITE_ROOT}/aoi_reports/runs"
-INDEX_FILE="${SITE_ROOT}/aoi_reports/index.html"
+RUNS_DIR="${SITE_ROOT}/bundles/runs"
+INDEX_FILE="${SITE_ROOT}/bundles/index.html"
 
 if [[ -n "$(git status --porcelain)" ]]; then
   echo "ERROR: working tree is not clean. Commit or stash changes before cleaning." >&2

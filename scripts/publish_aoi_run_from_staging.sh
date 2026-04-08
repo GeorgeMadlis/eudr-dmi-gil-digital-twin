@@ -5,13 +5,13 @@ set -euo pipefail
 #
 # Required env vars:
 #   RUN_ID
-#   STAGING_DIR (e.g. /Users/server/projects/eudr-dmi-gil/out/site_publish/aoi_reports)
+#   STAGING_DIR (e.g. /Users/server/projects/eudr-dmi-gil/out/site_publish/bundles)
 #
 # This script:
 # - creates/switches to branch publish/aoi_${RUN_ID}
-# - rsyncs staging into docs/site/aoi_reports/
+# - rsyncs staging into docs/site/bundles/
 # - validates scope
-# - commits only docs/site/aoi_reports/**
+# - commits only docs/site/bundles/**
 # - prints (but does not execute) the push command
 
 RUN_ID="${RUN_ID:-}"
@@ -43,12 +43,12 @@ branch="publish/aoi_${RUN_ID}"
 
 git checkout -B "$branch"
 
-# Sync staging into docs/site/aoi_reports/
-mkdir -p docs/site/aoi_reports
-rsync -a --delete "$STAGING_DIR/" docs/site/aoi_reports/
+# Sync staging into docs/site/bundles/
+mkdir -p docs/site/bundles
+rsync -a --delete "$STAGING_DIR/" docs/site/bundles/
 
 # Render deterministic AOI artefacts from aoi_report.json and refresh hashes.
-if [[ -d "docs/site/aoi_reports/runs" ]]; then
+if [[ -d "docs/site/bundles/runs" ]]; then
   while IFS= read -r -d '' run_dir; do
     report_json_name=""
     if [[ -f "${run_dir}/aoi_report.json" ]]; then
@@ -67,7 +67,7 @@ if [[ -d "docs/site/aoi_reports/runs" ]]; then
         --report-json-name "$report_json_name" \
         --update-json
     fi
-  done < <(find "docs/site/aoi_reports/runs" -mindepth 1 -maxdepth 1 -type d -print0)
+  done < <(find "docs/site/bundles/runs" -mindepth 1 -maxdepth 1 -type d -print0)
 fi
 
 # Enforce publish scope
@@ -75,12 +75,12 @@ scripts/assert_publish_scope.sh
 
 # Stage only AOI reports output
 
-git add docs/site/aoi_reports/
+git add docs/site/bundles/
 
 # Verify staged changes are within allowed scope
-if git diff --cached --name-only | grep -v '^docs/site/aoi_reports/' >/dev/null; then
-  echo "ERROR: staged changes include paths outside docs/site/aoi_reports/" >&2
-  git diff --cached --name-only | grep -v '^docs/site/aoi_reports/' >&2
+if git diff --cached --name-only | grep -v '^docs/site/bundles/' >/dev/null; then
+  echo "ERROR: staged changes include paths outside docs/site/bundles/" >&2
+  git diff --cached --name-only | grep -v '^docs/site/bundles/' >&2
   exit 1
 fi
 

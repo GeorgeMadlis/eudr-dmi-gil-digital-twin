@@ -10,7 +10,7 @@ Usage: scripts/check_links_local.sh [--site-root docs/site]
 
 Checks local links in:
 - docs/site/index.html
-- docs/site/aoi_reports/index.html
+- docs/site/bundles/index.html
 
 Exits non-zero on failure.
 EOF
@@ -50,7 +50,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 site_root = Path(sys.argv[1]).resolve()
-paths = [site_root / "index.html", site_root / "aoi_reports" / "index.html"]
+paths = [site_root / "index.html", site_root / "bundles" / "index.html"]
 
 class LinkExtractor(HTMLParser):
     def __init__(self) -> None:
