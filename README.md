@@ -30,10 +30,6 @@ Direct browser entrypoints:
 - Portal home: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html>
 - AOI reports index: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/index.html>
 - Example AOI run bundle: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/runs/example/report.html>
-- AI-safe mirror home: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/index.html>
-- AI-safe mirror AOI index: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/index.html>
-- AI-safe mirror example AOI run bundle: <https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/runs/example/report.html>
-
 A portable offline bundle can be inspected by downloading the site bundle and opening `index.html` locally in a browser.
 
 ## Deployment (Git static + S3 artifacts)

@@ -1,15 +1,13 @@
 DTE link registry (current and future)
 
-DT_BASE_URL_PUBLIC=https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/
-DT_BASE_URL_AI_SAFE=https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/
+DT_BASE_URL=https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/
 
-Use DT_BASE_URL_AI_SAFE when DNS or policy blocks georgemadlis.github.io/eudr-dmi-gil-digital-twin.
-Do not use https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/ because it redirects and is not an AI-safe inspection base.
+For raw file access: https://raw.githubusercontent.com/georgemadlis/eudr-dmi-gil-digital-twin/main/docs/site/
+
+Note: The ai-mirror repo (eudr-dmi-gil-digital-twin-ai-mirror) has been archived. Use the URLs above.
 
 - GPT (current): https://chatgpt.com/g/g-697a5cf9d7648191b323d79d98bdeb84-eudr-dao-digital-twin-engineer-dte
-- Digital Twin home (public): https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html
-- Digital Twin home (AI-safe): https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/index.html
-- AOI Reports index (public): https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/index.html
-- AOI Reports index (AI-safe): https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/aoi_reports/index.html
+- Digital Twin home: https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html
+- AOI Reports index: https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/aoi_reports/index.html
 - Digital Twin link registry: https://github.com/georgemadlis/eudr-dmi-gil-digital-twin/blob/main/docs/DT_LINK_REGISTRY.md
 - Authoritative inspection index: https://github.com/georgemadlis/eudr-dmi-gil/blob/main/docs/INSPECTION_INDEX.md

@@ -11,7 +11,6 @@ This repo is one of four that form the EUDR evidence platform, all under the `ge
 | **eudr-dmi-gil-digital-twin** ← (this repo) | Public Digital Twin — inspectable example outputs, DAO governance, GitHub Pages site |
 | **eudr-dmi-gil** | Authoritative generation — publishes `out/site_bundle/` here via scripts |
 | **eudr-client-portal** | Private web portal — links to this site for demo reports |
-| **eudr-dmi-gil-digital-twin-ai-mirror** | CI-maintained mirror of `docs/site/` for AI inspection |
 
 This repo is **non-authoritative**. It contains only example outputs and governance templates. All authoritative report generation happens in `eudr-dmi-gil`.
 
@@ -97,14 +96,17 @@ The `eudr-dmi-gil` repo publishes here via `scripts/publish_aoi_reports_to_dt.sh
 
 ---
 
-## AI Mirror (CI)
+## AI Agent Access
 
-`.github/workflows/publish-ai-mirror.yml` runs on every push to `main`:
-1. Renders DTE instructions and rebuilds the AOI reports index
-2. Validates links
-3. Force-pushes the entire `docs/site/` to `georgemadlis/eudr-dmi-gil-digital-twin-ai-mirror`
+Use `raw.githubusercontent.com` URLs directly on this repo for programmatic access:
 
-Required secret: `AI_MIRROR_PUSH_TOKEN` — a PAT with write access to the ai-mirror repo.
+  <https://raw.githubusercontent.com/georgemadlis/eudr-dmi-gil-digital-twin/main/docs/site/>
+
+Example — reading a bundle manifest:
+  <https://raw.githubusercontent.com/georgemadlis/eudr-dmi-gil-digital-twin/main/docs/site/bundles/runs/west_africa/west_africa_aoi_report.json>
+
+The ai-mirror repo (`eudr-dmi-gil-digital-twin-ai-mirror`) has been archived.
+Do NOT use it. All content it contained is available at the paths above.
 
 ---
 

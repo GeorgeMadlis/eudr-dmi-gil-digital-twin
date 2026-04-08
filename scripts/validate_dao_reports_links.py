@@ -5,8 +5,9 @@ import argparse
 from pathlib import Path
 
 
-EXPECTED_PLOTS = ["demo_plot_01", "demo_plot_02", "demo_plot_03"]
-EXPECTED_ARTIFACTS = ["report.html", "report.pdf", "report.json"]
+EXPECTED_PLOTS = ["demo_plot_01", "demo_plot_02", "demo_plot_03", "demo_plot_04"]
+REQUIRED_ARTIFACTS = ["report.html", "report.json", "manifest.sha256"]
+OPTIONAL_ARTIFACTS = ["report.pdf"]
 
 
 def validate(site_root: Path) -> list[str]:
@@ -40,10 +41,15 @@ def validate(site_root: Path) -> list[str]:
             if not plot_dir.is_dir():
                 errors.append(f"missing plot folder: {plot_dir}")
                 continue
-            for artifact in EXPECTED_ARTIFACTS:
+            for artifact in REQUIRED_ARTIFACTS:
                 artifact_path = plot_dir / artifact
                 if not artifact_path.is_file():
                     errors.append(f"missing artifact: {artifact_path}")
+
+            for artifact in OPTIONAL_ARTIFACTS:
+                artifact_path = plot_dir / artifact
+                if artifact_path.exists() and not artifact_path.is_file():
+                    errors.append(f"artifact is not a file: {artifact_path}")
 
     return errors
 

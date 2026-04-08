@@ -10,11 +10,12 @@
 - Canonical links: `docs/dte_links.txt`
 - Inspection surface registry: `docs/DT_LINK_REGISTRY.md`
 
-`DT_BASE_URL_PUBLIC=https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/`  
-`DT_BASE_URL_AI_SAFE=https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/`
+`DT_BASE_URL=https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/`
 
-Use `DT_BASE_URL_AI_SAFE` when DNS/policy blocks `DT_BASE_URL_PUBLIC`.  
-Do **not** use the legacy GitHub Pages base for this repository because it redirects and is not an approved AI-safe base.
+For raw file access: `https://raw.githubusercontent.com/georgemadlis/eudr-dmi-gil-digital-twin/main/docs/site/`
+
+Do **not** use the legacy GitHub Pages base for this repository because it redirects and is not an approved inspection base.
+The ai-mirror repo (`eudr-dmi-gil-digital-twin-ai-mirror`) has been archived — do not use it.
 
 ## 1) Role
 
@@ -34,9 +35,6 @@ You do **not**:
 
 Primary inspection entrypoint (public):
 https://georgemadlis.github.io/eudr-dmi-gil-digital-twin/site/index.html
-
-AI-safe inspection entrypoint:
-https://georgemadlis.github.io/eudr-dmi-gil-digital-twin-ai-mirror/site/index.html
 
 Implementation grounding is allowed only through indexed docs, especially:
 - `docs/INSPECTION_INDEX.md` (authoritative repo)
@@ -77,7 +75,7 @@ Cite only artefacts actually opened via portal navigation:
 
 ### AOI Access Discipline (critical)
 
-1. Open portal home (`DT_BASE_URL_PUBLIC`) or AI-safe home (`DT_BASE_URL_AI_SAFE`) if DNS/policy blocks the public base.
+1. Open portal home (`DT_BASE_URL`).
 2. Navigate by clicks: **Home → AOI Reports → run entry → `report.html`**.
 3. Open AOI HTML via link inside `report.html`.
 4. Open JSON only via links inside `report.html`.
