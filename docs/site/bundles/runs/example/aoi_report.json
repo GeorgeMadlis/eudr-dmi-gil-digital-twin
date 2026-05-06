@@ -59,7 +59,7 @@
       "tiles_manifest_ref": {
         "content_type": "application/json",
         "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff"
+        "sha256": "cacb7eb2d980b65f560289d53ee14b5234f9d6a5457dbd59198691602f038487"
       }
     }
   },
@@ -95,7 +95,7 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.html",
-      "sha256": "3170e8143e98b7c7e265cf829f360234320704ef1264c3e25dc97cc56c977d19",
+      "sha256": "2dccfa352615a9015b35ff0608980cf6988a71f7c7c32eaa08468b2d0865046a",
       "size_bytes": 16273
     },
     {
@@ -104,7 +104,7 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.json",
-      "sha256": "0bcd7babc370d23d93dc711717781364ebece2b3106d424101eefd5252937456",
+      "sha256": "5e569b58b6aeee159f413303e6d8bd1f24643b5f2686020301eb9f75344084fb",
       "size_bytes": 17365
     },
     {
@@ -158,7 +158,7 @@
         "role": "hansen_tiles_manifest"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-      "sha256": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff",
+      "sha256": "cacb7eb2d980b65f560289d53ee14b5234f9d6a5457dbd59198691602f038487",
       "size_bytes": 1159
     },
     {
@@ -407,7 +407,7 @@
       "tile_source": "local",
       "tiles_manifest": {
         "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff"
+        "sha256": "cacb7eb2d980b65f560289d53ee14b5234f9d6a5457dbd59198691602f038487"
       },
       "tiles_used": [
         {
@@ -435,7 +435,7 @@
     "forest_end_year_area_ha": 2422.2489381775713,
     "inputs": {
       "hansen_lossyear": {
-        "hash": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff",
+        "hash": "cacb7eb2d980b65f560289d53ee14b5234f9d6a5457dbd59198691602f038487",
         "source": "hansen_gfc_2024_v1_12",
         "tile_refs": [
           {
@@ -449,11 +449,11 @@
         ],
         "tiles_manifest_ref": {
           "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-          "sha256": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff"
+          "sha256": "cacb7eb2d980b65f560289d53ee14b5234f9d6a5457dbd59198691602f038487"
         }
       },
       "hansen_treecover2000": {
-        "hash": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff",
+        "hash": "cacb7eb2d980b65f560289d53ee14b5234f9d6a5457dbd59198691602f038487",
         "source": "hansen_gfc_2024_v1_12",
         "tile_refs": [
           {
@@ -467,7 +467,7 @@
         ],
         "tiles_manifest_ref": {
           "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-          "sha256": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff"
+          "sha256": "cacb7eb2d980b65f560289d53ee14b5234f9d6a5457dbd59198691602f038487"
         }
       }
     },
@@ -626,7 +626,7 @@
     },
     "implementation": {
       "forest_loss_post_2020": "v1",
-      "git_commit": "de3f34654b27d419a7d1c6e7d6accad979965a17"
+      "git_commit": "b44142f6607d78d0109630c280d19f38cd0c741a"
     }
   },
   "policy_mapping": [
