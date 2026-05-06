@@ -59,7 +59,7 @@
       "tiles_manifest_ref": {
         "content_type": "application/json",
         "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "a06b39455291e4197fa58e8eedef312eb04623ee57c253b638d3a39d0f454d59"
+        "sha256": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff"
       }
     }
   },
@@ -67,14 +67,14 @@
     {
       "dataset_id": "aoi_geometry_input",
       "license": "user_supplied",
-      "retrieved_at_utc": "2026-05-06T11:19:02+00:00",
+      "retrieved_at_utc": "2026-02-19T12:47:49+00:00",
       "source_url": "inputs/aoi.geojson",
       "version": "user_supplied"
     },
     {
       "dataset_id": "hansen_gfc_2024_v1_12",
       "license": "Hansen GFC (public)",
-      "retrieved_at_utc": "2026-05-06T11:19:02+00:00",
+      "retrieved_at_utc": "2026-02-19T12:47:49+00:00",
       "source_url": "https://storage.googleapis.com/earthenginepartners-hansen/GFC-2024-v1.12/",
       "version": "2024-v1.12"
     }
@@ -95,7 +95,7 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.html",
-      "sha256": "511c909fc95dc1607e38a68f8003ab16982bdc8cd129b78d1eda7d9ad60dc396",
+      "sha256": "3170e8143e98b7c7e265cf829f360234320704ef1264c3e25dc97cc56c977d19",
       "size_bytes": 16273
     },
     {
@@ -104,7 +104,7 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.json",
-      "sha256": "a84bb47bc89a7a225ad7d80f440d29eca2c064d6ec7060afd252b4beab4b0407",
+      "sha256": "0bcd7babc370d23d93dc711717781364ebece2b3106d424101eefd5252937456",
       "size_bytes": 17365
     },
     {
@@ -158,7 +158,7 @@
         "role": "hansen_tiles_manifest"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-      "sha256": "a06b39455291e4197fa58e8eedef312eb04623ee57c253b638d3a39d0f454d59",
+      "sha256": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff",
       "size_bytes": 1159
     },
     {
@@ -407,7 +407,7 @@
       "tile_source": "local",
       "tiles_manifest": {
         "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-        "sha256": "a06b39455291e4197fa58e8eedef312eb04623ee57c253b638d3a39d0f454d59"
+        "sha256": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff"
       },
       "tiles_used": [
         {
@@ -435,7 +435,7 @@
     "forest_end_year_area_ha": 2422.2489381775713,
     "inputs": {
       "hansen_lossyear": {
-        "hash": "a06b39455291e4197fa58e8eedef312eb04623ee57c253b638d3a39d0f454d59",
+        "hash": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff",
         "source": "hansen_gfc_2024_v1_12",
         "tile_refs": [
           {
@@ -449,11 +449,11 @@
         ],
         "tiles_manifest_ref": {
           "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-          "sha256": "a06b39455291e4197fa58e8eedef312eb04623ee57c253b638d3a39d0f454d59"
+          "sha256": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff"
         }
       },
       "hansen_treecover2000": {
-        "hash": "a06b39455291e4197fa58e8eedef312eb04623ee57c253b638d3a39d0f454d59",
+        "hash": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff",
         "source": "hansen_gfc_2024_v1_12",
         "tile_refs": [
           {
@@ -467,7 +467,7 @@
         ],
         "tiles_manifest_ref": {
           "relpath": "reports/aoi_report_v2/estonia_testland1/hansen/forest_loss_post_2020_tiles.json",
-          "sha256": "a06b39455291e4197fa58e8eedef312eb04623ee57c253b638d3a39d0f454d59"
+          "sha256": "6042414d5d730a2af61d7a55b692e68d134aa8a2e7da42e9f1faa824324461ff"
         }
       }
     },
@@ -483,7 +483,7 @@
     "reference_forest_mask_year": 2000,
     "rfm_area_ha": 2500.38600069943
   },
-  "generated_at_utc": "2026-05-06T11:19:02+00:00",
+  "generated_at_utc": "2026-02-19T12:47:49+00:00",
   "inputs": {
     "sources": [
       {
