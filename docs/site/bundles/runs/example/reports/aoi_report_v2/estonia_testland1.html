@@ -23,7 +23,7 @@
   <h1>AOI Report</h1>
   <table>
     <tr><th>AOI</th><td>estonia_testland1</td></tr>
-    <tr><th>Bundle</th><td>estonia_testland1_example</td></tr>
+    <tr><th>Bundle</th><td>example</td></tr>
     <tr><th>Generated (UTC)</th><td>2026-02-19T12:47:49+00:00</td></tr>
     <tr><th>Report Version</th><td>aoi_report_v2</td></tr>
     <tr><th>Geometry Ref</th><td>geojson: inputs/aoi.geojson</td></tr>
@@ -34,8 +34,8 @@
   <h2>Deforestation-free (post-2020)</h2>
   <table>
     <tr><th>Definition</th><td>Forest loss after 2020-12-31 (pixel-wise intersection)</td></tr>
-<tr><th>Forest loss (ha)</th><td>78.137063</td></tr>
-<tr><th>Percent of AOI</th><td>0.4953152071717253</td></tr>
+<tr><th>Forest loss (ha)</th><td>16.771786</td></tr>
+<tr><th>Percent of AOI</th><td>0.10631728834279121</td></tr>
 <tr><th>Threshold (ha)</th><td>0.0</td></tr>
 <tr><th>Status</th><td>fail</td></tr>
 <tr><th>Uncertainty</th><td>{'pixel_area_method': 'projected_constant_pixel_area', 'nodata': 'masked_as_no_loss', 'projection': 'EPSG:4326', 'conservative_bounds': 'area estimates are lower-bound for masked/no-data pixels'}</td></tr>
@@ -52,9 +52,9 @@
     <table>
         <tr><th>Tree cover threshold (%)</th><td>10</td></tr>
 <tr><th>Reference forest mask year</th><td>2000</td></tr>
-<tr><th>RFM area (ha)</th><td>2500.38600069943</td></tr>
-<tr><th>Loss 2021–2024 (ha)</th><td>78.13706252185719 (3.125% of RFM)</td></tr>
-<tr><th>Forest end-year area (ha)</th><td>2422.2489381775713</td></tr>
+<tr><th>RFM area (ha)</th><td>505.7296378831563</td></tr>
+<tr><th>Loss 2021–2024 (ha)</th><td>16.771785975099796 (3.3163541779559984% of RFM)</td></tr>
+<tr><th>Forest end-year area (ha)</th><td>416.06087365026985</td></tr>
 <tr><th>Method summary</th><td>area_ha = sum(mask) * pixel_area_ha (projected; approx for AOI < 50k ha)</td></tr>
     </table>
 
@@ -212,7 +212,7 @@
             <th>Maa-amet forest area (ha)</th>
             <th>Forest loss (ha)</th>
         </tr>
-        <tr><td>35701:002:0006</td><td>141.443419</td><td>69.4335</td><td>141.443419</td><td>69.4335</td><td>0.0</td></tr><tr><td>27101:003:0014</td><td>141.304417</td><td>88.6903</td><td>141.304417</td><td>88.6903</td><td>0.0</td></tr><tr><td>75902:001:5901</td><td>106.061717</td><td>63.2011</td><td>106.061717</td><td>33.6362</td><td>0.0</td></tr><tr><td>27101:004:0092</td><td>105.913424</td><td>70.4277</td><td>105.913424</td><td>2.9305</td><td>0.0</td></tr><tr><td>27101:004:0055</td><td>105.86243</td><td>86.2954</td><td>105.86243</td><td>0.8333</td><td>0.0</td></tr><tr><td>35701:001:0151</td><td>70.749502</td><td>47.5491</td><td>70.749502</td><td>35.2532</td><td>0.0</td></tr><tr><td>35701:001:0321</td><td>70.74487</td><td>31.4653</td><td>70.74487</td><td>29.0659</td><td>0.0</td></tr><tr><td>61501:001:1544</td><td>70.740238</td><td>54.4622</td><td>70.740238</td><td>17.7688</td><td>0.0</td></tr><tr><td>27101:003:0025</td><td>70.707811</td><td>38.8428</td><td>70.707811</td><td>0.0125</td><td>0.0</td></tr><tr><td>61501:001:1106</td><td>70.703178</td><td>26.008</td><td>70.703178</td><td>26.008</td><td>0.0</td></tr>
+        <tr><td>27101:003:0058</td><td>137.046682</td><td>137.0269</td><td>97.728212</td><td>22.4789</td><td>0.968771</td></tr><tr><td>75902:001:5901</td><td>63.134577</td><td>63.2011</td><td>45.5815</td><td>33.6362</td><td>0.84931</td></tr><tr><td>75902:001:0109</td><td>42.471727</td><td>42.3496</td><td>37.617937</td><td>32.1173</td><td>1.496531</td></tr><tr><td>35701:002:1000</td><td>54.234712</td><td>54.1376</td><td>34.917427</td><td>53.2879</td><td>0.0</td></tr><tr><td>75902:001:0043</td><td>39.031285</td><td>38.9261</td><td>34.177601</td><td>32.1777</td><td>0.0</td></tr><tr><td>35701:001:0020</td><td>42.500208</td><td>42.0425</td><td>31.774147</td><td>39.4194</td><td>0.0</td></tr><tr><td>35701:003:0052</td><td>43.264853</td><td>43.4131</td><td>26.257453</td><td>35.2243</td><td>0.0</td></tr><tr><td>35701:003:0220</td><td>47.02571</td><td>46.8044</td><td>25.775186</td><td>28.7162</td><td>0.0</td></tr><tr><td>27101:003:0178</td><td>29.152779</td><td>29.0563</td><td>25.115078</td><td>28.4454</td><td>0.0</td></tr><tr><td>35701:002:1440</td><td>50.103747</td><td>49.9785</td><td>23.112119</td><td>47.7426</td><td>11.273593</td></tr>
     </table>
 
   <h2>Data sources & provenance</h2>
@@ -225,8 +225,8 @@
   <h2>Methods & parameters</h2>
   <table>
     <tr><th>aoi_area_method</th><td>geodesic_wgs84_pyproj</td></tr>
-<tr><th>forest_loss_post_2020</th><td>{'canopy_threshold_percent': 10, 'cutoff_year': 2020, 'acceptance_threshold_ha': 0.0, 'pixel_area_method': 'projected_constant_pixel_area', 'area_method': 'projected_constant_pixel_area', 'lossyear_mapping': '0=no_loss; 1..end_year_code=2001..end_year (year=lossyear+2000)', 'mask_definitions': {'rfm_mask': 'treecover2000 >= canopy_threshold_percent', 'loss_total': 'rfm_mask & (lossyear > 0)', 'loss_post_cutoff': 'rfm_mask & (lossyear > 20) [2021+]', 'loss_2021_2024': 'rfm_mask & (lossyear in 21..24)', 'forest_2024': 'rfm_mask & (lossyear == 0)'}, 'end_year': 2024, 'forest_end_year_ha': 2422.2489381775713}</td></tr>
-<tr><th>implementation</th><td>{'forest_loss_post_2020': 'v1', 'git_commit': '29f66412b8242732787443e277c07d05f00405d1'}</td></tr>
+<tr><th>forest_loss_post_2020</th><td>{'canopy_threshold_percent': 10, 'cutoff_year': 2020, 'acceptance_threshold_ha': 0.0, 'pixel_area_method': 'projected_constant_pixel_area', 'area_method': 'projected_constant_pixel_area', 'lossyear_mapping': '0=no_loss; 1..end_year_code=2001..end_year (year=lossyear+2000)', 'mask_definitions': {'rfm_mask': 'treecover2000 >= canopy_threshold_percent', 'loss_total': 'rfm_mask & (lossyear > 0)', 'loss_post_cutoff': 'rfm_mask & (lossyear > 20) [2021+]', 'loss_2021_2024': 'rfm_mask & (lossyear in 21..24)', 'forest_2024': 'rfm_mask & (lossyear == 0)'}, 'end_year': 2024, 'forest_end_year_ha': 416.06087365026985}</td></tr>
+<tr><th>implementation</th><td>{'forest_loss_post_2020': 'v1', 'git_commit': 'd05b72b21b2aec0b351cf8456c89b2d2d94e7f06'}</td></tr>
   </table>
 
   <h2>Traceability to EUDR Articles</h2>
