@@ -1,0 +1,14 @@
+{
+  "area_method": "projected_constant_pixel_area",
+  "canopy_threshold_pct": 10,
+  "crs": "EPSG:6933",
+  "end_year": 2024,
+  "loss_year_code_basis": 2000,
+  "lossyear_mapping": "0=no_loss; 1..24=2001..2024 (year=lossyear+2000)",
+  "method": {
+    "area": "projected_constant_pixel_area",
+    "notes": "area_ha = sum(mask) * pixel_area_ha (projected; approx for AOI < 50k ha)",
+    "zonal": "rasterize_polygon_all_touched"
+  },
+  "start_year": 2001
+}
