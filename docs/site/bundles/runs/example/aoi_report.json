@@ -104,8 +104,8 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.json",
-      "sha256": "3d65f92545a3069a78406ec67a89dd649c8ae8ecc3c6bc4b8cbfb06d079e9c03",
-      "size_bytes": 16774
+      "sha256": "27c6e89b2f8446309c154e1ead60b6d676ec258fcbfa8815cfe921c787396049",
+      "size_bytes": 16482
     },
     {
       "content_type": "application/geo+json",
@@ -218,8 +218,8 @@
         "role": "maaamet_top10_geojson"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/maaamet/maaamet_top10_parcels.geojson",
-      "sha256": "5c16f16740c1f2034dc3f79ee0146ad1b1b1a7fa597c1ec3e223fbaa72c99818",
-      "size_bytes": 13628
+      "sha256": "aad7a304601349345024c7709d9c0d9ac38c8dacf4dabd1d0fc316d071d11aa7",
+      "size_bytes": 12117
     },
     {
       "content_type": "application/json",
@@ -227,8 +227,8 @@
         "role": "report_map_config"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/map/map_config.json",
-      "sha256": "c1950efd07b40a84ee7b18149afad245b83cc2e20ea25c3feff9934e41d6b912",
-      "size_bytes": 462
+      "sha256": "a99db966525c781905276ca4b30ee6ef583cd27723b0c28b866e6b7a7c73cd8a",
+      "size_bytes": 428
     },
     {
       "content_type": "text/csv",
@@ -236,8 +236,8 @@
         "role": "metrics_csv"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1/metrics.csv",
-      "sha256": "857b097dcccc83662b64c7e66a663b966ecb8c022cd40495c409fa1f92ca4e8c",
-      "size_bytes": 821
+      "sha256": "ec8233e9715a0adb8457719cf8cd9820e6368f549f668d9da949fd72347cb02d",
+      "size_bytes": 764
     }
   ],
   "evidence_registry": {
@@ -266,13 +266,13 @@
     },
     "forest_metrics_debug": {
       "areas_ha": {
-        "forest_2024": 416.06087365026985,
-        "forest_end_year": 416.06087365026985,
-        "forest_end_year_ha": 416.06087365026985,
-        "loss_2021_end_year": 16.771785975099796,
-        "loss_total": 89.66876423288652,
-        "loss_total_2001_2024": 89.66876423288652,
-        "rfm": 505.7296378831563
+        "forest_2024": 416.060874,
+        "forest_end_year": 416.060874,
+        "forest_end_year_ha": 416.060874,
+        "loss_2021_end_year": 16.771786,
+        "loss_total": 89.668764,
+        "loss_total_2001_2024": 89.668764,
+        "rfm": 505.729638
       },
       "mask_true_pixels": {
         "forest_end_year": 7591,
@@ -280,9 +280,9 @@
         "rfm": 9227
       },
       "pixel_area_m2": {
-        "max": 548.0975808856142,
-        "mean": 548.0975808856143,
-        "min": 548.0975808856142
+        "max": 548.097581,
+        "mean": 548.097581,
+        "min": 548.097581
       },
       "raster_shapes": [
         [
@@ -310,7 +310,7 @@
         "notes": "geodesic_wgs84_pyproj",
         "source": "geometry",
         "unit": "ha",
-        "value": 15775.219873859023,
+        "value": 15775.219874,
         "variable": "aoi_area_ha"
       },
       {
@@ -324,35 +324,35 @@
         "notes": "rfm_mask & (lossyear == 0)",
         "source": "hansen_gfc",
         "unit": "ha",
-        "value": 416.06087365026985,
+        "value": 416.060874,
         "variable": "forest_2024_ha"
       },
       {
         "notes": "forest_mask_end_year",
         "source": "hansen_gfc",
         "unit": "ha",
-        "value": 416.06087365026985,
+        "value": 416.060874,
         "variable": "forest_end_year_ha"
       },
       {
         "notes": "forest_loss_post_2020_ha / aoi_area_ha",
         "source": "hansen_gfc",
         "unit": "percent",
-        "value": 0.10631728834279121,
+        "value": 0.106317,
         "variable": "forest_loss_post_2020_percent_of_aoi"
       },
       {
         "notes": "rfm_mask & (lossyear in 21..24)",
         "source": "hansen_gfc",
         "unit": "ha",
-        "value": 16.771785975099796,
+        "value": 16.771786,
         "variable": "loss_2021_2024_ha"
       },
       {
         "notes": "rfm_mask & (lossyear > 0)",
         "source": "hansen_gfc",
         "unit": "ha",
-        "value": 89.66876423288652,
+        "value": 89.668764,
         "variable": "loss_total_ha"
       },
       {
@@ -380,7 +380,7 @@
         "notes": "rfm_mask",
         "source": "hansen_gfc",
         "unit": "ha",
-        "value": 505.7296378831563,
+        "value": 505.729638,
         "variable": "rfm_area_ha"
       }
     ]
@@ -418,7 +418,7 @@
   "forest_metrics": {
     "canopy_threshold_pct": 10,
     "end_year": 2024,
-    "forest_end_year_area_ha": 416.06087365026985,
+    "forest_end_year_area_ha": 416.060874,
     "inputs": {
       "hansen_lossyear": {
         "hash": "f0856451015e2378717b557de664b62945d054347251a5b207ffae283ee16cce",
@@ -457,9 +457,9 @@
         }
       }
     },
-    "loss_2021_2024_ha": 16.771785975099796,
-    "loss_2021_2024_pct_of_rfm": 3.3163541779559984,
-    "loss_total_2001_2024_ha": 89.66876423288652,
+    "loss_2021_2024_ha": 16.771786,
+    "loss_2021_2024_pct_of_rfm": 3.316354,
+    "loss_total_2001_2024_ha": 89.668764,
     "loss_year_code_basis": 2000,
     "method": {
       "area": "projected_constant_pixel_area",
@@ -467,7 +467,7 @@
       "zonal": "rasterize_polygon_all_touched"
     },
     "reference_forest_mask_year": 2000,
-    "rfm_area_ha": 505.7296378831563
+    "rfm_area_ha": 505.729638
   },
   "generated_at_utc": "2026-02-19T12:47:49+00:00",
   "inputs": {
@@ -482,10 +482,10 @@
   },
   "map_assets": {
     "aoi_bbox": {
-      "max_lat": 58.71141406271224,
-      "max_lon": 25.785783241241205,
-      "min_lat": 58.58383625078912,
-      "min_lon": 25.426703982836216
+      "max_lat": 58.711414,
+      "max_lon": 25.785783,
+      "min_lat": 58.583836,
+      "min_lon": 25.426704
     },
     "config_relpath": "reports/aoi_report_v2/estonia_testland1/map/map_config.json",
     "latest_year": 2024,
@@ -528,7 +528,7 @@
     "aoi_area_ha": {
       "notes": "geodesic_wgs84_pyproj",
       "unit": "ha",
-      "value": 15775.219873859023
+      "value": 15775.219874
     },
     "end_year": {
       "notes": "forest_end_year",
@@ -538,27 +538,27 @@
     "forest_2024_ha": {
       "notes": "rfm_mask & (lossyear == 0)",
       "unit": "ha",
-      "value": 416.06087365026985
+      "value": 416.060874
     },
     "forest_end_year_ha": {
       "notes": "forest_mask_end_year",
       "unit": "ha",
-      "value": 416.06087365026985
+      "value": 416.060874
     },
     "forest_loss_post_2020_percent_of_aoi": {
       "notes": "forest_loss_post_2020_ha / aoi_area_ha",
       "unit": "percent",
-      "value": 0.10631728834279121
+      "value": 0.106317
     },
     "loss_2021_2024_ha": {
       "notes": "rfm_mask & (lossyear in 21..24)",
       "unit": "ha",
-      "value": 16.771785975099796
+      "value": 16.771786
     },
     "loss_total_ha": {
       "notes": "rfm_mask & (lossyear > 0)",
       "unit": "ha",
-      "value": 89.66876423288652
+      "value": 89.668764
     },
     "pixel_current_tree_cover_ha": {
       "notes": "pixel_mask",
@@ -578,7 +578,7 @@
     "rfm_area_ha": {
       "notes": "rfm_mask",
       "unit": "ha",
-      "value": 505.7296378831563
+      "value": 505.729638
     }
   },
   "parameters": {
@@ -589,7 +589,7 @@
       "canopy_threshold_percent": 10,
       "cutoff_year": 2020,
       "end_year": 2024,
-      "forest_end_year_ha": 416.06087365026985,
+      "forest_end_year_ha": 416.060874,
       "lossyear_mapping": "0=no_loss; 1..end_year_code=2001..end_year (year=lossyear+2000)",
       "mask_definitions": {
         "forest_2024": "rfm_mask & (lossyear == 0)",
@@ -688,12 +688,12 @@
   ],
   "results_summary": {
     "aoi_area": {
-      "area_ha": 15775.219873859023,
+      "area_ha": 15775.219874,
       "method": "geodesic_wgs84_pyproj"
     },
     "deforestation_free_post_2020": {
       "forest_loss_post_2020_ha": 16.771786,
-      "percent_of_aoi": 0.10631728834279121,
+      "percent_of_aoi": 0.106317,
       "status": "fail",
       "threshold_ha": 0.0,
       "uncertainty": {
