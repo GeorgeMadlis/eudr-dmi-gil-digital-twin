@@ -26,6 +26,6 @@ python3 "$SCRIPT_DIR/generate_sample_report_from_bundle.py" \
 python3 "$SCRIPT_DIR/generate_sample_report_from_bundle.py" \
   --bundle-dir docs/site/bundles/runs/example \
   --output-dir "docs/site/sample_reports/runs/${SAMPLE_RUN_ID}/demo_plot_04" \
-  --report-json aoi_report.json
+  --report-json estonia_aoi_report.json
 
 echo "All sample reports regenerated."
