@@ -95,8 +95,8 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.html",
-      "sha256": "b45880328be93bcdfc264a7eced7042a3eaa1febea5e2cdc067302cb1a170054",
-      "size_bytes": 16249
+      "sha256": "43892069a3e5dceed0de99a95c04ab8f63e55831194f9337be802b75457b7c8b",
+      "size_bytes": 16230
     },
     {
       "content_type": "application/json",
@@ -104,8 +104,8 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/estonia_testland1.json",
-      "sha256": "27c6e89b2f8446309c154e1ead60b6d676ec258fcbfa8815cfe921c787396049",
-      "size_bytes": 16482
+      "sha256": "5c2d884bef041752b00e18ba20b8162d6a0952899be6c509959f5dff0eb3c804",
+      "size_bytes": 16522
     },
     {
       "content_type": "application/geo+json",
@@ -602,7 +602,7 @@
     },
     "implementation": {
       "forest_loss_post_2020": "v1",
-      "git_commit": ""
+      "git_commit": "d758fe01e9237cda4c0abc34058343ac6cdea1f6"
     }
   },
   "policy_mapping": [

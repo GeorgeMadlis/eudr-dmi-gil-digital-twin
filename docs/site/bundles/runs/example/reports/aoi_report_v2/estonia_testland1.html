@@ -27,7 +27,7 @@
     <tr><th>Generated (UTC)</th><td>2026-02-19T12:47:49+00:00</td></tr>
     <tr><th>Report Version</th><td>aoi_report_v2</td></tr>
     <tr><th>Geometry Ref</th><td>geojson: inputs/aoi.geojson</td></tr>
-    <tr><th>AOI area (ha)</th><td>15775.219873859023</td></tr>
+    <tr><th>AOI area (ha)</th><td>15775.219874</td></tr>
     <tr><th>AOI area method</th><td>geodesic_wgs84_pyproj</td></tr>
   </table>
 
@@ -35,7 +35,7 @@
   <table>
     <tr><th>Definition</th><td>Forest loss after 2020-12-31 (pixel-wise intersection)</td></tr>
 <tr><th>Forest loss (ha)</th><td>16.771786</td></tr>
-<tr><th>Percent of AOI</th><td>0.10631728834279121</td></tr>
+<tr><th>Percent of AOI</th><td>0.106317</td></tr>
 <tr><th>Threshold (ha)</th><td>0.0</td></tr>
 <tr><th>Status</th><td>fail</td></tr>
 <tr><th>Uncertainty</th><td>{'pixel_area_method': 'projected_constant_pixel_area', 'nodata': 'masked_as_no_loss', 'projection': 'EPSG:4326', 'conservative_bounds': 'area estimates are lower-bound for masked/no-data pixels'}</td></tr>
@@ -52,9 +52,9 @@
     <table>
         <tr><th>Tree cover threshold (%)</th><td>10</td></tr>
 <tr><th>Reference forest mask year</th><td>2000</td></tr>
-<tr><th>RFM area (ha)</th><td>505.7296378831563</td></tr>
-<tr><th>Loss 2021–2024 (ha)</th><td>16.771785975099796 (3.3163541779559984% of RFM)</td></tr>
-<tr><th>Forest end-year area (ha)</th><td>416.06087365026985</td></tr>
+<tr><th>RFM area (ha)</th><td>505.729638</td></tr>
+<tr><th>Loss 2021–2024 (ha)</th><td>16.771786 (3.316354% of RFM)</td></tr>
+<tr><th>Forest end-year area (ha)</th><td>416.060874</td></tr>
 <tr><th>Method summary</th><td>area_ha = sum(mask) * pixel_area_ha (projected; approx for AOI < 50k ha)</td></tr>
     </table>
 
@@ -225,8 +225,8 @@
   <h2>Methods & parameters</h2>
   <table>
     <tr><th>aoi_area_method</th><td>geodesic_wgs84_pyproj</td></tr>
-<tr><th>forest_loss_post_2020</th><td>{'canopy_threshold_percent': 10, 'cutoff_year': 2020, 'acceptance_threshold_ha': 0.0, 'pixel_area_method': 'projected_constant_pixel_area', 'area_method': 'projected_constant_pixel_area', 'lossyear_mapping': '0=no_loss; 1..end_year_code=2001..end_year (year=lossyear+2000)', 'mask_definitions': {'rfm_mask': 'treecover2000 >= canopy_threshold_percent', 'loss_total': 'rfm_mask & (lossyear > 0)', 'loss_post_cutoff': 'rfm_mask & (lossyear > 20) [2021+]', 'loss_2021_2024': 'rfm_mask & (lossyear in 21..24)', 'forest_2024': 'rfm_mask & (lossyear == 0)'}, 'end_year': 2024, 'forest_end_year_ha': 416.06087365026985}</td></tr>
-<tr><th>implementation</th><td>{'forest_loss_post_2020': 'v1', 'git_commit': ''}</td></tr>
+<tr><th>forest_loss_post_2020</th><td>{'canopy_threshold_percent': 10, 'cutoff_year': 2020, 'acceptance_threshold_ha': 0.0, 'pixel_area_method': 'projected_constant_pixel_area', 'area_method': 'projected_constant_pixel_area', 'lossyear_mapping': '0=no_loss; 1..end_year_code=2001..end_year (year=lossyear+2000)', 'mask_definitions': {'rfm_mask': 'treecover2000 >= canopy_threshold_percent', 'loss_total': 'rfm_mask & (lossyear > 0)', 'loss_post_cutoff': 'rfm_mask & (lossyear > 20) [2021+]', 'loss_2021_2024': 'rfm_mask & (lossyear in 21..24)', 'forest_2024': 'rfm_mask & (lossyear == 0)'}, 'end_year': 2024, 'forest_end_year_ha': 416.060874}</td></tr>
+<tr><th>implementation</th><td>{'forest_loss_post_2020': 'v1', 'git_commit': 'd758fe01e9237cda4c0abc34058343ac6cdea1f6'}</td></tr>
   </table>
 
   <h2>Traceability to EUDR Articles</h2>
