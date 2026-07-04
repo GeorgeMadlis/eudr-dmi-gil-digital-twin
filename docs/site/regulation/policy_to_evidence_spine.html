@@ -115,6 +115,22 @@
 </tr>
 </tbody>
 </table></div>
+<h2>Post-2020 Deforestation Evidence Mapping</h2>
+<p>The AOI report section titled <strong>“Post-2020 deforestation evidence”</strong> is an evidence display, not a legal interpretation layer. It separates:</p>
+<ul>
+<li>baseline forest evidence: JRC GFC2020 forest area and forest share for 2020;</li>
+<li>post-cutoff disturbance evidence: Hansen annual loss and optional TMF, RADD, and Sentinel confirmation layers for <code>start_year</code> through <code>resolved_end_year</code>;</li>
+<li>conversion evidence: agricultural, commodity, or land-use conversion layers;</li>
+<li>temporal coverage: requested end year, resolved end year, per-layer latest available year, and per-layer used-through year;</li>
+<li>review state: evidence gaps, dataset conflicts, and human-review flags.</li>
+</ul>
+<p>Mapping to EUDR report-review workflow:</p>
+<ul>
+<li>Article 9: the report exposes AOI identity, source artefacts, dataset identifiers, asset/version strings, and evidence-period metadata so reviewers can trace the information used in the example report.</li>
+<li>Article 10: the report exposes risk-assessment evidence signals and uncertainty/gap markers, including disturbance area, baseline forest area, temporal coverage gaps, and disagreement/conflict entries.</li>
+<li>Article 11: when evidence gaps or conflicts are present, the report exposes the follow-up review state without inventing a mitigation decision or legal compliance conclusion.</li>
+</ul>
+<p>The portal must not treat tree-cover loss or disturbance as EUDR deforestation unless agricultural conversion evidence is separately present. Public examples therefore show missing conversion evidence as an <strong>Evidence gap</strong> rather than a compliance result.</p>
 <h3>Update Notes (How to Maintain the Spine)</h3>
 <ul>
 <li>Each new obligation/control MUST add a row and MUST reference a concrete artifact and acceptance criteria.</li>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GFC2020 Post-2020 Evidence Proposal (Developers)</title>
+    <style>
+      :root { --fg:#111; --bg:#fff; --muted:#666; --card:#f6f7f9; --link:#0b5fff; }
+      body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+             color: var(--fg); background: var(--bg); margin: 0; }
+      header { border-bottom: 1px solid #e7e7e7; background: #fff; position: sticky; top: 0; }
+      .wrap { max-width: 980px; margin: 0 auto; padding: 16px 20px; }
+      nav a { margin-right: 14px; text-decoration: none; color: var(--link); font-weight: 600; }
+      nav a.active { color: var(--fg); }
+      main { padding: 18px 20px 40px; }
+      h1 { margin: 0 0 6px; font-size: 22px; }
+      h2 { margin-top: 24px; font-size: 18px; }
+      p { line-height: 1.5; }
+      .muted { color: var(--muted); }
+      .card { background: var(--card); border: 1px solid #e8eaee; border-radius: 12px; padding: 14px 14px; margin: 12px 0; }
+      ul, ol { padding-left: 20px; }
+      li { margin: 5px 0; }
+      code { background: #f1f1f1; padding: 1px 4px; border-radius: 6px; }
+      pre { white-space: pre-wrap; overflow-x: auto; background: #fff; border: 1px solid #dde0e6; border-radius: 8px; padding: 12px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <nav>
+          <a href="../../index.html">Home</a>
+          <a href="../../articles/index.html">Articles</a>
+          <a href="../../dependencies/index.html">Dependencies</a>
+          <a href="../../regulation/links.html">Regulation</a>
+          <a href="../../regulation/sources.html">Sources</a>
+          <a href="../../regulation/policy_to_evidence_spine.html">Spine</a>
+          <a href="../../views/index.html">Views</a>
+          <a href="../../dte_instructions.html">DTE Instructions v1.4</a>
+          <a href="../../bundles/index.html">Bundles</a>
+          <a href="../../dao_stakeholders/index.html">DAO (Stakeholders)</a>
+          <a href="../index.html" class="active">DAO (Developers)</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="wrap">
+        <p><a href="index.html">Back to proposals</a></p>
+        <h1>Add dynamically versioned GFC2020-based post-2020 deforestation evidence layer to the EUDR Digital Twin</h1>
+        <p class="muted">Proposal ID: <code>SCP-2026-001-gfc2020-post2020-deforestation-evidence</code> | Status: <code>DRAFT</code> | Created: 2026-07-04</p>
+
+        <div class="card">
+          <h2>Implementation Intent</h2>
+          <p>Add a deterministic, inspectable evidence layer that intersects post-2020 disturbance datasets with a GFC2020 2020 forest baseline, records dataset versions and temporal coverage, and separates agricultural-conversion evidence from forest-disturbance evidence.</p>
+          <p><strong>Non-decision rule:</strong> report outputs must classify evidence state only; they must not assert EUDR compliance or non-compliance.</p>
+        </div>
+
+        <div class="card">
+          <h2>DAO (Developers) Tasks</h2>
+          <ol>
+            <li>Add GFC2020 baseline metrics to AOI evidence bundles.</li>
+            <li>Add Hansen post-2020 loss metrics inside the GFC2020 forest mask.</li>
+            <li>Add optional JRC TMF deforestation/degradation metrics where geographically applicable.</li>
+            <li>Add optional RADD confirmed and low-confidence alert metrics where geographically applicable.</li>
+            <li>Add optional Sentinel-1/2 local confirmation indices.</li>
+            <li>Add agricultural-conversion evidence fields, initially nullable.</li>
+            <li>Add deterministic decision-rule outputs that classify evidence state without asserting legal compliance.</li>
+            <li>Add a dataset registry that records dataset asset IDs, versions, temporal coverage, latest available year, and update policy.</li>
+            <li>Implement <code>--end-year auto</code> so the system resolves the latest available complete evidence year dynamically.</li>
+            <li>Implement explicit end-year pinning for reproducibility.</li>
+            <li>Update report templates, JSON schemas, documentation, and tests.</li>
+            <li>Add conflict-register support for disagreement among evidence layers.</li>
+            <li>Add acceptance tests using public example AOIs only.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h2>Evidence Model</h2>
+          <pre><code>{
+  "baseline_forest": {
+    "dataset": "JRC/GFC2020/V3",
+    "role": "forest_baseline_2020",
+    "aoi_area_ha": 0.0,
+    "forest_area_ha": 0.0,
+    "forest_share": 0.0
+  },
+  "evidence_period": {
+    "start_year": 2021,
+    "requested_end_year": "auto",
+    "resolved_end_year": 2025,
+    "end_year_resolution_mode": "auto_latest_available_complete_evidence_year",
+    "notice": "The resolved end year reflects dataset availability, not necessarily the current calendar year."
+  },
+  "dataset_versions": {
+    "hansen_gfc": {
+      "asset_id": "UMD/hansen/global_forest_change_2025_v1_13",
+      "latest_available_year": 2025,
+      "used_through_year": 2025,
+      "update_policy": "annual_release"
+    },
+    "jrc_tmf": {
+      "asset_id": "projects/JRC/TMF/v1_2025",
+      "latest_available_year": 2025,
+      "used_through_year": 2025,
+      "update_policy": "annual_release"
+    }
+  },
+  "post2020_disturbance": {
+    "hansen_loss_ha": 0.0,
+    "tmf_deforestation_ha": null,
+    "tmf_degradation_ha": null,
+    "radd_confirmed_alert_ha": null,
+    "radd_low_confidence_alert_ha": null,
+    "sentinel_confirmation": null,
+    "union_candidate_disturbance_ha": 0.0
+  },
+  "metrics_by_year": {
+    "hansen_loss_inside_gfc2020_ha": {
+      "2021": 0.0,
+      "2022": 0.0,
+      "2023": 0.0,
+      "2024": 0.0,
+      "2025": 0.0
+    }
+  },
+  "agricultural_conversion": {
+    "evidence_present": false,
+    "source": null,
+    "commodity": null,
+    "confidence": null
+  },
+  "evidence_state": {
+    "post2020_disturbance_detected": false,
+    "possible_eudr_relevant_deforestation": "not_assessed",
+    "human_review_required": true,
+    "evidence_gap": [
+      "agricultural_conversion_evidence_missing"
+    ],
+    "conflict_register": []
+  }
+}</code></pre>
+        </div>
+
+        <div class="card">
+          <h2>Acceptance Gates</h2>
+          <ol>
+            <li>Reports expose GFC2020 baseline forest area and post-2020 disturbance metrics.</li>
+            <li>Disturbance is computed only for years 2021 and later and only inside the 2020 forest baseline.</li>
+            <li>Automatic end-year resolution records requested, resolved, latest-available, and used-through years.</li>
+            <li>Explicit end-year pinning reproduces the same output for the same inputs.</li>
+            <li>Agricultural-conversion evidence remains separate and nullable.</li>
+            <li>Dataset disagreement is preserved in a conflict register.</li>
+            <li>Missing conversion evidence and temporal-coverage gaps are displayed as evidence gaps or warnings.</li>
+            <li>Only public example AOIs are used in acceptance tests and public bundles.</li>
+            <li>The output is deterministic, inspectable, and suitable for static publication in the Digital Twin portal.</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h2>Grounded Change Targets</h2>
+          <ul>
+            <li><code>src/eudr/evidence/</code> in <code>eudr-dmi-gil</code></li>
+            <li><code>data_db/</code> in <code>eudr-dmi-gil</code></li>
+            <li><code>tests/</code> in <code>eudr-dmi-gil</code></li>
+            <li><code>scripts/aoi_report_renderer.py</code> in this Digital Twin portal</li>
+            <li><code>docs/site/bundles/runs/</code> public example bundles</li>
+            <li><code>docs/regulation/policy_to_evidence_spine.md</code></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Stakeholder View</h2>
+          <p><a href="../../dao_stakeholders/proposals/gfc2020-post2020-deforestation-evidence.html">Open DAO (Stakeholders) version</a></p>
+          <p class="muted">Source YAML: <code>dao/proposals/2026/07/gfc2020-post2020-deforestation-evidence.yaml</code></p>
+        </div>
+      </div>
+    </main>
+    <footer style="border-top:1px solid #e7e7e7; background:#fff;">
+      <div style="max-width:980px; margin:0 auto; padding:18px 20px 28px; color:#666; font-size:13px;">
+        <a href="../../privacy.html" style="color:#0b5fff; text-decoration:none; font-weight:600;">Privacy Policy</a>
+        <span style="margin:0 8px; color:#999;">|</span>
+        <a href="../../dte_instructions.html" style="color:#0b5fff; text-decoration:none; font-weight:600;">DTE Instructions v1.4</a>
+      </div>
+    </footer>
+  </body>
+</html>

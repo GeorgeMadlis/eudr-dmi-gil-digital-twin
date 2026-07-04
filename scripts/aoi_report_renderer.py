@@ -152,6 +152,460 @@ def render_report_json(report: dict[str, Any]) -> str:
     return json.dumps(report, sort_keys=True, indent=2, ensure_ascii=False) + "\n"
 
 
+def _metric_value(report: dict[str, Any], key: str, default: Any = None) -> Any:
+    entry = report.get("metrics", {}).get(key) if isinstance(report.get("metrics"), dict) else None
+    if isinstance(entry, dict) and "value" in entry:
+        return entry.get("value")
+    return default
+
+
+def _fmt_value(value: Any, suffix: str = "") -> str:
+    if value is None:
+        return "n/a"
+    if isinstance(value, (dict, list)):
+        return json.dumps(value, sort_keys=True, ensure_ascii=False) + suffix
+    if isinstance(value, float):
+        return f"{value:.6f}".rstrip("0").rstrip(".") + suffix
+    return str(value) + suffix
+
+
+def _latest_hansen_dataset(report: dict[str, Any]) -> dict[str, Any]:
+    for dataset in report.get("datasets", []) or []:
+        if not isinstance(dataset, dict):
+            continue
+        dataset_id = str(dataset.get("dataset_id", ""))
+        if dataset_id.startswith("hansen_gfc_"):
+            return dataset
+    return {}
+
+
+def _legacy_post2020_evidence(report: dict[str, Any]) -> dict[str, Any]:
+    forest_metrics = report.get("forest_metrics") if isinstance(report.get("forest_metrics"), dict) else {}
+    computed = report.get("computed", {}) if isinstance(report.get("computed"), dict) else {}
+    computed_loss = (
+        computed.get("forest_loss_post_2020", {})
+        if isinstance(computed.get("forest_loss_post_2020"), dict)
+        else {}
+    )
+    map_assets = report.get("map_assets") if isinstance(report.get("map_assets"), dict) else {}
+    end_year = forest_metrics.get("end_year") or _metric_value(report, "end_year") or map_assets.get("latest_year")
+    try:
+        resolved_end_year = int(end_year) if end_year is not None else 2025
+    except (TypeError, ValueError):
+        resolved_end_year = 2025
+    start_year = 2021
+    loss_key = f"loss_{start_year}_{resolved_end_year}_ha"
+    hansen_dataset = _latest_hansen_dataset(report)
+    hansen_version = str(hansen_dataset.get("version", f"{resolved_end_year}-v1.13"))
+    hansen_asset = "UMD/hansen/global_forest_change_" + hansen_version.replace("-", "_").replace(".", "_")
+    aoi_area = _metric_value(report, "aoi_area_ha")
+    forest_area = (
+        forest_metrics.get("rfm_area_ha")
+        or computed_loss.get("pixel_initial_tree_cover_ha")
+        or _metric_value(report, "rfm_area_ha")
+        or _metric_value(report, "pixel_initial_tree_cover_ha")
+    )
+    forest_share = (float(forest_area) / float(aoi_area)) if forest_area and aoi_area else None
+    disturbance_ha = (
+        forest_metrics.get(loss_key)
+        or computed_loss.get("pixel_forest_loss_post_2020_ha")
+        or _metric_value(report, loss_key)
+        or _metric_value(report, "pixel_forest_loss_post_2020_ha")
+        or 0.0
+    )
+    human_review_required = bool(float(disturbance_ha or 0.0) > 0.0)
+    state = (
+        "post2020_disturbance_detected_agricultural_conversion_evidence_missing"
+        if human_review_required
+        else "insufficient_evidence"
+    )
+
+    return {
+        "period": {
+            "start_year": start_year,
+            "requested_end_year": "auto",
+            "resolved_end_year": resolved_end_year,
+            "end_year_resolution_mode": "auto_latest_available_complete_evidence_year",
+            "notice": (
+                "The resolved end year reflects dataset availability, not necessarily "
+                "the current calendar year."
+            ),
+        },
+        "baseline": {
+            "dataset": "JRC/GFC2020/V3",
+            "role": "forest_baseline_2020",
+            "baseline_year": 2020,
+            "aoi_area_ha": aoi_area,
+            "forest_area_ha": forest_area,
+            "forest_share": forest_share,
+            "display_name": "JRC GFC2020",
+            "resolution": "30 m evidence grid / provider-native raster",
+        },
+        "dataset_versions": {
+            "gfc2020": {
+                "asset_id": "JRC/GFC2020/V3",
+                "role": "forest_baseline_2020",
+                "latest_available_year": 2020,
+                "used_through_year": 2020,
+            },
+            "hansen_gfc": {
+                "asset_id": hansen_asset,
+                "latest_available_year": resolved_end_year,
+                "used_through_year": resolved_end_year,
+            },
+            "jrc_tmf": {
+                "asset_id": "projects/JRC/TMF/v1_2025",
+                "latest_available_year": 2025,
+                "used_through_year": None,
+            },
+            "radd": {
+                "asset_id": "projects/radar-wur/raddalert/v1",
+                "latest_available_year": None,
+                "used_through_year": None,
+            },
+            "sentinel_confirmation": {
+                "asset_id": "provider_configured_sentinel_confirmation",
+                "latest_available_year": None,
+                "used_through_year": None,
+            },
+        },
+        "disturbance": {
+            "hansen_loss_2021_resolved_end_year_ha": disturbance_ha,
+            "tmf_deforestation_2021_resolved_end_year_ha": None,
+            "tmf_degradation_2021_resolved_end_year_ha": None,
+            "radd_confirmed_alert_2021_resolved_end_year_ha": None,
+            "radd_low_confidence_alert_2021_resolved_end_year_ha": None,
+            "sentinel_confirmation": {"dnbr": None, "dndvi": None, "dvh": None},
+            "union_disturbance_candidate_ha": disturbance_ha,
+        },
+        "metrics_by_year": {"hansen_loss_inside_gfc2020_ha": {}},
+        "conversion": {
+            "agricultural_conversion_evidence": "missing",
+            "commodity_layer": None,
+            "land_use_layer": None,
+        },
+        "evidence_state": state,
+        "human_review_required": human_review_required,
+        "warnings": [
+            {
+                "code": "legacy_hansen_only_evidence",
+                "message": (
+                    "This public bundle predates full optional-layer computation; TMF, RADD, "
+                    "Sentinel confirmation, and agricultural-conversion evidence are shown "
+                    "as explicit evidence gaps."
+                ),
+            }
+        ],
+        "conflict_register": [],
+        "non_decision_notice": (
+            "This report provides evidence metrics only and does not assert EUDR "
+            "compliance or non-compliance."
+        ),
+    }
+
+
+def post2020_evidence(report: dict[str, Any]) -> dict[str, Any]:
+    evidence = report.get("post2020_deforestation_evidence")
+    if isinstance(evidence, dict):
+        return evidence
+    return _legacy_post2020_evidence(report)
+
+
+def _period_label(period: dict[str, Any]) -> str:
+    start = period.get("start_year", 2021)
+    end = period.get("resolved_end_year", "unknown")
+    return f"{start}–{end}"
+
+
+def _layer_period(start_year: Any, used_through_year: Any) -> str:
+    if used_through_year is None or used_through_year == "":
+        return "not available"
+    if used_through_year == 2020:
+        return "2020"
+    return f"{start_year}–{used_through_year}"
+
+
+def render_post2020_evidence_section(report: dict[str, Any]) -> str:
+    evidence = post2020_evidence(report)
+    period = evidence.get("period", {}) if isinstance(evidence.get("period"), dict) else {}
+    baseline = evidence.get("baseline", {}) if isinstance(evidence.get("baseline"), dict) else {}
+    versions = evidence.get("dataset_versions", {}) if isinstance(evidence.get("dataset_versions"), dict) else {}
+    disturbance = evidence.get("disturbance", {}) if isinstance(evidence.get("disturbance"), dict) else {}
+    conversion = evidence.get("conversion", {}) if isinstance(evidence.get("conversion"), dict) else {}
+    metrics_by_year = evidence.get("metrics_by_year", {}) if isinstance(evidence.get("metrics_by_year"), dict) else {}
+    yearly_hansen = (
+        metrics_by_year.get("hansen_loss_inside_gfc2020_ha", {})
+        if isinstance(metrics_by_year.get("hansen_loss_inside_gfc2020_ha"), dict)
+        else {}
+    )
+    start_year = period.get("start_year", 2021)
+    resolved_end_year = period.get("resolved_end_year")
+    warnings = [w for w in evidence.get("warnings", []) or [] if isinstance(w, dict)]
+    conflicts = [c for c in evidence.get("conflict_register", []) or [] if isinstance(c, dict)]
+    state = str(evidence.get("evidence_state", "insufficient_evidence"))
+    human_review = bool(evidence.get("human_review_required", False))
+
+    def version(dataset_id: str, key: str, default: Any = None) -> Any:
+        entry = versions.get(dataset_id, {})
+        return entry.get(key, default) if isinstance(entry, dict) else default
+
+    layer_rows = [
+        {
+            "layer": "JRC GFC2020",
+            "role": "2020 forest baseline",
+            "period": "2020",
+            "latest": version("gfc2020", "latest_available_year", 2020),
+            "asset": baseline.get("dataset") or version("gfc2020", "asset_id", "JRC/GFC2020/V3"),
+            "metric": "Forest area in AOI",
+            "result": _fmt_value(baseline.get("forest_area_ha"), " ha"),
+            "interpretation": "Baseline forest evidence",
+        },
+        {
+            "layer": "Hansen GFC",
+            "role": "Annual loss",
+            "period": _layer_period(start_year, version("hansen_gfc", "used_through_year", resolved_end_year)),
+            "latest": version("hansen_gfc", "latest_available_year"),
+            "asset": version("hansen_gfc", "asset_id", "UMD/hansen/global_forest_change"),
+            "metric": "Loss inside GFC2020 forest",
+            "result": _fmt_value(disturbance.get("hansen_loss_2021_resolved_end_year_ha"), " ha"),
+            "interpretation": "Post-2020 disturbance signal",
+        },
+        {
+            "layer": "JRC TMF",
+            "role": "Tropical forest dynamics",
+            "period": _layer_period(start_year, version("jrc_tmf", "used_through_year")),
+            "latest": version("jrc_tmf", "latest_available_year"),
+            "asset": version("jrc_tmf", "asset_id", "projects/JRC/TMF/v1_2025"),
+            "metric": "Deforestation/degradation",
+            "result": (
+                f"{_fmt_value(disturbance.get('tmf_deforestation_2021_resolved_end_year_ha'), ' ha')} / "
+                f"{_fmt_value(disturbance.get('tmf_degradation_2021_resolved_end_year_ha'), ' ha')}"
+            ),
+            "interpretation": "Optional, geography-dependent evidence",
+        },
+        {
+            "layer": "RADD",
+            "role": "Near-real-time radar alerts",
+            "period": _layer_period(start_year, version("radd", "used_through_year")),
+            "latest": version("radd", "latest_available_year"),
+            "asset": version("radd", "asset_id", "projects/radar-wur/raddalert/v1"),
+            "metric": "Confirmed / low-confidence alerts",
+            "result": (
+                f"{_fmt_value(disturbance.get('radd_confirmed_alert_2021_resolved_end_year_ha'), ' ha')} / "
+                f"{_fmt_value(disturbance.get('radd_low_confidence_alert_2021_resolved_end_year_ha'), ' ha')}"
+            ),
+            "interpretation": "Alert-based disturbance evidence",
+        },
+        {
+            "layer": "Sentinel-1/2",
+            "role": "Local confirmation",
+            "period": _layer_period(start_year, version("sentinel_confirmation", "used_through_year")),
+            "latest": version("sentinel_confirmation", "latest_available_year"),
+            "asset": version("sentinel_confirmation", "asset_id", "provider_configured_sentinel_confirmation"),
+            "metric": "dNBR / dNDVI / dVH",
+            "result": _fmt_value(disturbance.get("sentinel_confirmation")),
+            "interpretation": "Corroboration / challenge layer",
+        },
+        {
+            "layer": "Commodity / land-use layer",
+            "role": "Agricultural conversion",
+            "period": "configured dates",
+            "latest": "n/a",
+            "asset": conversion.get("commodity_layer") or conversion.get("land_use_layer") or "not configured",
+            "metric": "Conversion evidence",
+            "result": conversion.get("agricultural_conversion_evidence", "missing"),
+            "interpretation": "Needed for EUDR interpretation",
+        },
+    ]
+
+    lines: list[str] = []
+    lines.append("  <h2>Post-2020 deforestation evidence</h2>")
+    lines.append(
+        "  <p>JRC GFC2020 is used here as a 2020 forest-baseline layer. "
+        "Post-2020 disturbance layers are intersected with the baseline forest mask "
+        "to estimate whether forest disturbance occurred after the EUDR cut-off date. "
+        "The reporting period is resolved from the latest available evidence datasets "
+        "and may not equal the current calendar year. These metrics do not by themselves "
+        "establish EUDR deforestation, because EUDR deforestation also requires conversion "
+        "of forest to agricultural use. Agricultural or commodity-conversion evidence is "
+        "therefore reported separately.</p>"
+    )
+    lines.append("  <table>")
+    lines.append("    <tr><th>Field</th><th>Value</th></tr>")
+    lines.append(f"    <tr><td>Evidence period</td><td>{html.escape(_period_label(period))}</td></tr>")
+    lines.append(
+        "    <tr><td>Requested end year</td>"
+        f"<td><code>{html.escape(json.dumps(period.get('requested_end_year'), ensure_ascii=False))}</code></td></tr>"
+    )
+    lines.append(
+        "    <tr><td>Resolution mode</td>"
+        f"<td><code>{html.escape(str(period.get('end_year_resolution_mode', '')))}</code></td></tr>"
+    )
+    lines.append(
+        "    <tr><td>Resolved end year notice</td>"
+        f"<td>{html.escape(str(period.get('notice', 'The resolved end year reflects dataset availability, not necessarily the current calendar year.')))}</td></tr>"
+    )
+    lines.append(f"    <tr><td>AOI area</td><td>{html.escape(_fmt_value(baseline.get('aoi_area_ha'), ' ha'))}</td></tr>")
+    lines.append(f"    <tr><td>GFC2020 forest share</td><td>{html.escape(_fmt_value(baseline.get('forest_share')))}</td></tr>")
+    lines.append(
+        "    <tr><td>Union disturbance candidate area</td>"
+        f"<td>{html.escape(_fmt_value(disturbance.get('union_disturbance_candidate_ha'), ' ha'))}</td></tr>"
+    )
+    lines.append(f"    <tr><td>Evidence state</td><td><strong>{html.escape(state)}</strong></td></tr>")
+    lines.append(f"    <tr><td>Human review required</td><td>{html.escape(str(human_review))}</td></tr>")
+    lines.append(
+        "    <tr><td>Non-decision notice</td>"
+        f"<td>{html.escape(str(evidence.get('non_decision_notice', 'This report provides evidence metrics only and does not assert EUDR compliance or non-compliance.')))}</td></tr>"
+    )
+    lines.append("  </table>")
+
+    lines.append("  <h3>Evidence layers</h3>")
+    lines.append("  <table>")
+    lines.append(
+        "    <tr><th>Evidence layer</th><th>Role</th><th>Period used</th>"
+        "<th>Latest available year</th><th>Asset/version</th><th>Metric</th>"
+        "<th>Result</th><th>Interpretation</th></tr>"
+    )
+    for row in layer_rows:
+        row_style = " style=\"background:#fff8e1; border-left:4px solid #b26a00;\"" if row["period"] == "not available" else ""
+        lines.append(
+            f"    <tr{row_style}>"
+            f"<td>{html.escape(str(row['layer']))}</td>"
+            f"<td>{html.escape(str(row['role']))}</td>"
+            f"<td>{html.escape(str(row['period']))}</td>"
+            f"<td>{html.escape(_fmt_value(row['latest']))}</td>"
+            f"<td><code>{html.escape(str(row['asset']))}</code></td>"
+            f"<td>{html.escape(str(row['metric']))}</td>"
+            f"<td>{html.escape(str(row['result']))}</td>"
+            f"<td>{html.escape(str(row['interpretation']))}</td>"
+            "</tr>"
+        )
+    lines.append("  </table>")
+
+    lines.append("  <h3>Dataset temporal coverage</h3>")
+    lines.append("  <table>")
+    lines.append("    <tr><th>Dataset</th><th>Latest available year</th><th>Used-through year</th><th>Coverage note</th></tr>")
+    for dataset_id in sorted(versions):
+        entry = versions.get(dataset_id, {})
+        if not isinstance(entry, dict):
+            continue
+        latest = entry.get("latest_available_year")
+        used = entry.get("used_through_year")
+        note = ""
+        if latest is None or used is None:
+            note = "Evidence gap: temporal coverage is unavailable or provider/geography-dependent."
+        elif resolved_end_year is not None and used < resolved_end_year and dataset_id != "gfc2020":
+            note = "Evidence gap: layer coverage is lower than the resolved end year."
+        lines.append(
+            "    <tr>"
+            f"<td><code>{html.escape(str(dataset_id))}</code></td>"
+            f"<td>{html.escape(_fmt_value(latest))}</td>"
+            f"<td>{html.escape(_fmt_value(used))}</td>"
+            f"<td>{html.escape(note)}</td>"
+            "</tr>"
+        )
+    lines.append("  </table>")
+
+    if yearly_hansen:
+        lines.append("  <h3>Hansen annual loss inside GFC2020 forest</h3>")
+        lines.append("  <table>")
+        lines.append("    <tr><th>Year</th><th>Area (ha)</th></tr>")
+        for year in sorted(yearly_hansen, key=str):
+            lines.append(
+                "    <tr>"
+                f"<td>{html.escape(str(year))}</td>"
+                f"<td>{html.escape(_fmt_value(yearly_hansen.get(year)))}</td>"
+                "</tr>"
+            )
+        lines.append("  </table>")
+
+    lines.append("  <h3>Evidence gap</h3>")
+    if conversion.get("agricultural_conversion_evidence") != "present":
+        lines.append(
+            "  <div style=\"background:#fff8e1; border-left:4px solid #b26a00; padding:10px;\">"
+            "<strong>Agricultural conversion evidence missing.</strong> Disturbance evidence "
+            "is not the same as agricultural conversion evidence.</div>"
+        )
+    else:
+        lines.append("  <p>Agricultural conversion evidence is declared as present.</p>")
+
+    lines.append("  <h3>Conflict register</h3>")
+    if conflicts:
+        lines.append("  <table>")
+        lines.append("    <tr><th>Conflict</th><th>Details</th></tr>")
+        for conflict in conflicts:
+            label = conflict.get("code") or conflict.get("dataset_id") or "conflict"
+            lines.append(
+                "    <tr style=\"background:#fff5f5; border-left:4px solid #b00020;\">"
+                f"<td>{html.escape(str(label))}</td>"
+                f"<td><code>{html.escape(json.dumps(conflict, sort_keys=True, ensure_ascii=False))}</code></td>"
+                "</tr>"
+            )
+        lines.append("  </table>")
+    else:
+        lines.append("  <p class=\"muted\">No dataset conflicts declared.</p>")
+
+    if warnings:
+        lines.append("  <h3>Warnings</h3>")
+        lines.append("  <ul>")
+        for warning in warnings:
+            message = warning.get("message") or json.dumps(warning, sort_keys=True, ensure_ascii=False)
+            lines.append(f"    <li>{html.escape(str(message))}</li>")
+        lines.append("  </ul>")
+
+    lines.append("  <h3>Limitations</h3>")
+    limitations = evidence.get("limitations") or [
+        "GFC2020 is not a legal determination.",
+        "Tree-cover loss is not automatically EUDR deforestation.",
+        "Conversion to agricultural use must be supported by additional evidence.",
+        "Dataset conflicts must be exposed, not hidden.",
+        "The report is an evidence report, not a compliance certificate.",
+        "The evidence period depends on dataset availability and may lag the current calendar year.",
+    ]
+    lines.append("  <ul>")
+    for limitation in limitations:
+        lines.append(f"    <li>{html.escape(str(limitation))}</li>")
+    lines.append("  </ul>")
+    return "\n".join(lines)
+
+
+def render_post2020_overview_card(report: dict[str, Any]) -> str:
+    evidence = post2020_evidence(report)
+    period = evidence.get("period", {}) if isinstance(evidence.get("period"), dict) else {}
+    disturbance = evidence.get("disturbance", {}) if isinstance(evidence.get("disturbance"), dict) else {}
+    conversion = evidence.get("conversion", {}) if isinstance(evidence.get("conversion"), dict) else {}
+    versions = evidence.get("dataset_versions", {}) if isinstance(evidence.get("dataset_versions"), dict) else {}
+    state = str(evidence.get("evidence_state", "insufficient_evidence"))
+    human_review = bool(evidence.get("human_review_required", False))
+    conversion_status = str(conversion.get("agricultural_conversion_evidence", "missing"))
+    gap_count = 0
+    for dataset_id, entry in versions.items():
+        if not isinstance(entry, dict) or dataset_id == "gfc2020":
+            continue
+        if entry.get("latest_available_year") is None or entry.get("used_through_year") is None:
+            gap_count += 1
+    if conversion_status != "present":
+        gap_count += 1
+
+    lines = [
+        "      <div class=\"card\">",
+        "        <h2>Post-2020 deforestation evidence</h2>",
+        "        <p>Evidence metrics only; this page does not assert EUDR compliance or non-compliance.</p>",
+        "        <ul>",
+        f"          <li>Evidence period: <code>{html.escape(_period_label(period))}</code> "
+        f"({html.escape(str(period.get('end_year_resolution_mode', '')))}).</li>",
+        "          <li>Union disturbance candidate area: <code>"
+        + html.escape(_fmt_value(disturbance.get("union_disturbance_candidate_ha"), " ha"))
+        + "</code>.</li>",
+        f"          <li>Evidence state: <code>{html.escape(state)}</code>; human review required: <code>{html.escape(str(human_review))}</code>.</li>",
+        f"          <li>Agricultural conversion evidence: <code>{html.escape(conversion_status)}</code>.</li>",
+        f"          <li>Visible evidence gaps: <code>{gap_count}</code>.</li>",
+        "        </ul>",
+        "      </div>",
+    ]
+    return "\n".join(lines)
+
+
 def _properties_dict(value: Any) -> dict[str, Any]:
     return value if isinstance(value, dict) else {}
 
@@ -619,6 +1073,7 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
     lines.append("    th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }")
     lines.append("    th { background: #f6f6f6; text-align: left; width: 240px; }")
     lines.append("    h2 { margin-top: 28px; }")
+    lines.append("    .muted { color: #666; }")
     lines.append("    code { background: #f6f6f6; padding: 1px 4px; border-radius: 4px; }")
     lines.append("    #map { height: 420px; border: 1px solid #ddd; border-radius: 8px; margin: 12px 0 16px; background: #fafafa; }")
     lines.append("  </style>")
@@ -844,6 +1299,8 @@ def render_report_html(report: dict[str, Any], run_dir: Path, html_relpath: str)
             "</tr>"
         )
     lines.append("  </table>")
+
+    lines.append(render_post2020_evidence_section(report))
 
     lines.append("  <h2>Metrics</h2>")
     lines.append("  <table>")
@@ -1301,6 +1758,8 @@ def render_run_report_html(report: dict[str, Any], run_dir: Path, report_json_na
     lines.append("        </ul>")
     lines.append("        <p class=\"muted\">If a manifest is present in this bundle, it should also be linked from this page.</p>")
     lines.append("      </div>")
+
+    lines.append(render_post2020_overview_card(report))
 
     if map_assets and map_assets.get("config_relpath"):
         map_config_relpath = str(map_assets.get("config_relpath"))

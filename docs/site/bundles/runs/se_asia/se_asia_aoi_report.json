@@ -95,8 +95,8 @@
         "role": "report_html"
       },
       "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam.html",
-      "sha256": "652103024e81e582e8b363a1960429f856797b36bee0448f746dd44fd2c34b56",
-      "size_bytes": 14644
+      "sha256": "66e29b5d923d6423768dde399f2ce48cb3092e8e11f462c345d1cc48a254a77f",
+      "size_bytes": 17996
     },
     {
       "content_type": "application/json",
@@ -104,8 +104,8 @@
         "role": "report_json"
       },
       "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam.json",
-      "sha256": "679178b5035b103b01a8698631fd8eec6ef6f069fff681fffa7d3de38b93a6fa",
-      "size_bytes": 13723
+      "sha256": "ddc79fe28f65f7de42172f387948c219852f49e50f58f089d47d40028393e312",
+      "size_bytes": 25927
     },
     {
       "content_type": "application/geo+json",
@@ -200,8 +200,8 @@
         "role": "metrics_csv"
       },
       "relpath": "reports/aoi_report_v2/coffee_se_asia_vietnam/metrics.csv",
-      "sha256": "0f850c8414ce98c0a63dd3ee4ec0d73fc4c4a3bf327bdea0dab513b6cc15f26f",
-      "size_bytes": 751
+      "sha256": "c4ebc5ac3af9b04a7444d51545d885cf33519aad7fadd697fa4c55be1f4070f9",
+      "size_bytes": 694
     }
   ],
   "evidence_registry": {
@@ -700,5 +700,91 @@
       "pixel_forest_ha_sum": null,
       "rel_diff_pct": null
     }
+  },
+  "post2020_deforestation_evidence": {
+    "period": {
+      "start_year": 2021,
+      "requested_end_year": "auto",
+      "resolved_end_year": 2025,
+      "end_year_resolution_mode": "auto_latest_available_complete_evidence_year",
+      "notice": "The resolved end year reflects dataset availability, not necessarily the current calendar year."
+    },
+    "baseline": {
+      "dataset": "JRC/GFC2020/V3",
+      "role": "forest_baseline_2020",
+      "baseline_year": 2020,
+      "aoi_area_ha": 38939.809945,
+      "forest_area_ha": 0.0,
+      "forest_share": null,
+      "display_name": "JRC GFC2020",
+      "resolution": "30 m evidence grid / provider-native raster"
+    },
+    "dataset_versions": {
+      "gfc2020": {
+        "asset_id": "JRC/GFC2020/V3",
+        "role": "forest_baseline_2020",
+        "latest_available_year": 2020,
+        "used_through_year": 2020
+      },
+      "hansen_gfc": {
+        "asset_id": "UMD/hansen/global_forest_change_2025_v1_13",
+        "latest_available_year": 2025,
+        "used_through_year": 2025
+      },
+      "jrc_tmf": {
+        "asset_id": "projects/JRC/TMF/v1_2025",
+        "latest_available_year": 2025,
+        "used_through_year": null
+      },
+      "radd": {
+        "asset_id": "projects/radar-wur/raddalert/v1",
+        "latest_available_year": null,
+        "used_through_year": null
+      },
+      "sentinel_confirmation": {
+        "asset_id": "provider_configured_sentinel_confirmation",
+        "latest_available_year": null,
+        "used_through_year": null
+      }
+    },
+    "disturbance": {
+      "hansen_loss_2021_resolved_end_year_ha": 0.0,
+      "tmf_deforestation_2021_resolved_end_year_ha": null,
+      "tmf_degradation_2021_resolved_end_year_ha": null,
+      "radd_confirmed_alert_2021_resolved_end_year_ha": null,
+      "radd_low_confidence_alert_2021_resolved_end_year_ha": null,
+      "sentinel_confirmation": {
+        "dnbr": null,
+        "dndvi": null,
+        "dvh": null
+      },
+      "union_disturbance_candidate_ha": 0.0
+    },
+    "metrics_by_year": {
+      "hansen_loss_inside_gfc2020_ha": {}
+    },
+    "conversion": {
+      "agricultural_conversion_evidence": "missing",
+      "commodity_layer": null,
+      "land_use_layer": null
+    },
+    "evidence_state": "insufficient_evidence",
+    "human_review_required": false,
+    "warnings": [
+      {
+        "code": "legacy_hansen_only_evidence",
+        "message": "This public bundle predates full optional-layer computation; TMF, RADD, Sentinel confirmation, and agricultural-conversion evidence are shown as explicit evidence gaps."
+      }
+    ],
+    "conflict_register": [],
+    "non_decision_notice": "This report provides evidence metrics only and does not assert EUDR compliance or non-compliance.",
+    "limitations": [
+      "GFC2020 is not a legal determination.",
+      "Tree-cover loss is not automatically EUDR deforestation.",
+      "Conversion to agricultural use must be supported by additional evidence.",
+      "Dataset conflicts must be exposed, not hidden.",
+      "The report is an evidence report, not a compliance certificate.",
+      "The evidence period depends on dataset availability and may lag the current calendar year."
+    ]
   }
 }

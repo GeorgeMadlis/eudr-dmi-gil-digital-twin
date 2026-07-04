@@ -3,7 +3,7 @@
 << /Type /Catalog /Pages 2 0 R >>
 endobj
 2 0 obj
-<< /Type /Pages /Count 6 /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R] >>
+<< /Type /Pages /Count 9 /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R 18 0 R 20 0 R] >>
 endobj
 3 0 obj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
@@ -12,7 +12,7 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>
 endobj
 5 0 obj
-<< /Length 1475 >>
+<< /Length 1494 >>
 stream
 BT
 /F1 11 Tf
@@ -25,6 +25,7 @@ BT
 (th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }) Tj T*
 (th { background: #f6f6f6; text-align: left; width: 240px; }) Tj T*
 (h2 { margin-top: 28px; }) Tj T*
+(.muted { color: #666; }) Tj T*
 (code { background: #f6f6f6; padding: 1px 4px; border-radius: 4px; }) Tj T*
 (#map { height: 420px; border: 1px solid #ddd; border-radius: 8px; margin: 12px 0 16px;) Tj T*
 (background: #fafafa; }) Tj T*
@@ -61,7 +62,6 @@ BT
 (True) Tj T*
 (present) Tj T*
 (forest_loss_post_2020) Tj T*
-(True) Tj T*
 ET
 endstream
 endobj
@@ -69,12 +69,13 @@ endobj
 << /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 7 0 R >>
 endobj
 7 0 obj
-<< /Length 1297 >>
+<< /Length 1809 >>
 stream
 BT
 /F1 11 Tf
 48 780 Td
 14 TL
+(True) Tj T*
 (present) Tj T*
 (hansen_tiles_provenance) Tj T*
 (True) Tj T*
@@ -108,6 +109,173 @@ BT
 (inputs/aoi.geojson) Tj T*
 (21ca223d29825979def6931c258232b655b20df180da280a3b65f9dd6e564f4d) Tj T*
 (application/geo+json) Tj T*
+(Post-2020 deforestation evidence) Tj T*
+(JRC GFC2020 is used here as a 2020 forest-baseline layer. Post-2020 disturbance layers) Tj T*
+(are intersected with the baseline forest mask to estimate whether forest disturbance) Tj T*
+(occurred after the EUDR cut-off date. The reporting period is resolved from the latest) Tj T*
+(available evidence datasets and may not equal the current calendar year. These metrics) Tj T*
+(do not by themselves establish EUDR deforestation, because EUDR deforestation also) Tj T*
+(requires conversion of forest to agricultural use. Agricultural or commodity-conversion) Tj T*
+(evidence is therefore reported separately.) Tj T*
+(Field) Tj T*
+(Value) Tj T*
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 1263 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(Evidence period) Tj T*
+(2021?2025) Tj T*
+(Requested end year) Tj T*
+("auto") Tj T*
+(Resolution mode) Tj T*
+(auto_latest_available_complete_evidence_year) Tj T*
+(Resolved end year notice) Tj T*
+(The resolved end year reflects dataset availability, not necessarily the current) Tj T*
+(calendar year.) Tj T*
+(AOI area) Tj T*
+(27515.387437 ha) Tj T*
+(GFC2020 forest share) Tj T*
+(0.995445) Tj T*
+(Union disturbance candidate area) Tj T*
+(3689.247459 ha) Tj T*
+(Evidence state) Tj T*
+(post2020_disturbance_detected_agricultural_conversion_evidence_missing) Tj T*
+(Human review required) Tj T*
+(True) Tj T*
+(Non-decision notice) Tj T*
+(This report provides evidence metrics only and does not assert EUDR compliance or) Tj T*
+(non-compliance.) Tj T*
+(Evidence layers) Tj T*
+(Evidence layer) Tj T*
+(Role) Tj T*
+(Period used) Tj T*
+(Latest available year) Tj T*
+(Asset/version) Tj T*
+(Metric) Tj T*
+(Result) Tj T*
+(Interpretation) Tj T*
+(JRC GFC2020) Tj T*
+(2020 forest baseline) Tj T*
+(2020) Tj T*
+(2020) Tj T*
+(JRC/GFC2020/V3) Tj T*
+(Forest area in AOI) Tj T*
+(27390.047706 ha) Tj T*
+(Baseline forest evidence) Tj T*
+(Hansen GFC) Tj T*
+(Annual loss) Tj T*
+(2021?2025) Tj T*
+(2025) Tj T*
+(UMD/hansen/global_forest_change_2025_v1_13) Tj T*
+ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 1215 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(Loss inside GFC2020 forest) Tj T*
+(3689.247459 ha) Tj T*
+(Post-2020 disturbance signal) Tj T*
+(JRC TMF) Tj T*
+(Tropical forest dynamics) Tj T*
+(not available) Tj T*
+(2025) Tj T*
+(projects/JRC/TMF/v1_2025) Tj T*
+(Deforestation/degradation) Tj T*
+(n/a / n/a) Tj T*
+(Optional, geography-dependent evidence) Tj T*
+(RADD) Tj T*
+(Near-real-time radar alerts) Tj T*
+(not available) Tj T*
+(n/a) Tj T*
+(projects/radar-wur/raddalert/v1) Tj T*
+(Confirmed / low-confidence alerts) Tj T*
+(n/a / n/a) Tj T*
+(Alert-based disturbance evidence) Tj T*
+(Sentinel-1/2) Tj T*
+(Local confirmation) Tj T*
+(not available) Tj T*
+(n/a) Tj T*
+(provider_configured_sentinel_confirmation) Tj T*
+(dNBR / dNDVI / dVH) Tj T*
+({"dnbr": null, "dndvi": null, "dvh": null}) Tj T*
+(Corroboration / challenge layer) Tj T*
+(Commodity / land-use layer) Tj T*
+(Agricultural conversion) Tj T*
+(configured dates) Tj T*
+(n/a) Tj T*
+(not configured) Tj T*
+(Conversion evidence) Tj T*
+(missing) Tj T*
+(Needed for EUDR interpretation) Tj T*
+(Dataset temporal coverage) Tj T*
+(Dataset) Tj T*
+(Latest available year) Tj T*
+(Used-through year) Tj T*
+(Coverage note) Tj T*
+(gfc2020) Tj T*
+(2020) Tj T*
+(2020) Tj T*
+(hansen_gfc) Tj T*
+ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 1560 >>
+stream
+BT
+/F1 11 Tf
+48 780 Td
+14 TL
+(2025) Tj T*
+(2025) Tj T*
+(jrc_tmf) Tj T*
+(2025) Tj T*
+(n/a) Tj T*
+(Evidence gap: temporal coverage is unavailable or provider/geography-dependent.) Tj T*
+(radd) Tj T*
+(n/a) Tj T*
+(n/a) Tj T*
+(Evidence gap: temporal coverage is unavailable or provider/geography-dependent.) Tj T*
+(sentinel_confirmation) Tj T*
+(n/a) Tj T*
+(n/a) Tj T*
+(Evidence gap: temporal coverage is unavailable or provider/geography-dependent.) Tj T*
+(Evidence gap) Tj T*
+(Agricultural conversion evidence missing.) Tj T*
+(Disturbance evidence is not the same as agricultural conversion evidence.) Tj T*
+(Conflict register) Tj T*
+(No dataset conflicts declared.) Tj T*
+(Warnings) Tj T*
+(This public bundle predates full optional-layer computation; TMF, RADD, Sentinel) Tj T*
+(confirmation, and agricultural-conversion evidence are shown as explicit evidence gaps.) Tj T*
+(Limitations) Tj T*
+(GFC2020 is not a legal determination.) Tj T*
+(Tree-cover loss is not automatically EUDR deforestation.) Tj T*
+(Conversion to agricultural use must be supported by additional evidence.) Tj T*
+(Dataset conflicts must be exposed, not hidden.) Tj T*
+(The report is an evidence report, not a compliance certificate.) Tj T*
+(The evidence period depends on dataset availability and may lag the current calendar) Tj T*
+(year.) Tj T*
 (Metrics) Tj T*
 (Metric) Tj T*
 (Value) Tj T*
@@ -119,22 +287,22 @@ BT
 (27515.387437) Tj T*
 (ha) Tj T*
 (geodesic_wgs84_pyproj) Tj T*
+(geometry) Tj T*
+(Not declared) Tj T*
+(end_year) Tj T*
 ET
 endstream
 endobj
-8 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 9 0 R >>
+14 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 15 0 R >>
 endobj
-9 0 obj
-<< /Length 998 >>
+15 0 obj
+<< /Length 1013 >>
 stream
 BT
 /F1 11 Tf
 48 780 Td
 14 TL
-(geometry) Tj T*
-(Not declared) Tj T*
-(end_year) Tj T*
 (2025) Tj T*
 (year) Tj T*
 (forest_end_year) Tj T*
@@ -176,22 +344,22 @@ BT
 (pixel_mask) Tj T*
 (hansen_gfc) Tj T*
 (Not declared) Tj T*
+(pixel_forest_loss_post_2020_ha) Tj T*
+(3689.247459) Tj T*
+(ha) Tj T*
 ET
 endstream
 endobj
-10 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 11 0 R >>
+16 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 17 0 R >>
 endobj
-11 0 obj
-<< /Length 1074 >>
+17 0 obj
+<< /Length 1137 >>
 stream
 BT
 /F1 11 Tf
 48 780 Td
 14 TL
-(pixel_forest_loss_post_2020_ha) Tj T*
-(3689.247459) Tj T*
-(ha) Tj T*
 (pixel_mask) Tj T*
 (hansen_gfc) Tj T*
 (Not declared) Tj T*
@@ -233,22 +401,22 @@ BT
 ({"forest_area_ha": 15603.279905}) Tj T*
 (comparison) Tj T*
 ({"diff_pct": null, "tolerance_percent": 5.0}) Tj T*
+(csv_ref) Tj T*
+(reports/aoi_report_v2/cocoa_west_africa_ghana/maaamet/maaamet_forest_area_crosscheck.csv) Tj T*
+(summary_ref) Tj T*
 ET
 endstream
 endobj
-12 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 13 0 R >>
+18 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 19 0 R >>
 endobj
-13 0 obj
-<< /Length 1968 >>
+19 0 obj
+<< /Length 1905 >>
 stream
 BT
 /F1 11 Tf
 48 780 Td
 14 TL
-(csv_ref) Tj T*
-(reports/aoi_report_v2/cocoa_west_africa_ghana/maaamet/maaamet_forest_area_crosscheck.csv) Tj T*
-(summary_ref) Tj T*
 (reports/aoi_report_v2/cocoa_west_africa_ghana/maaamet/maaamet_forest_area_crosscheck.json) Tj T*
 (Map \(static\)) Tj T*
 (map_config.json) Tj T*
@@ -290,22 +458,22 @@ BT
 (?) Tj T*
 (report.html) Tj T*
 (?) Tj T*
+(deforestation_map.svg) Tj T*
+(?) Tj T*
+(deforestation_map.png) Tj T*
 ET
 endstream
 endobj
-14 0 obj
-<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 15 0 R >>
+20 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 21 0 R >>
 endobj
-15 0 obj
-<< /Length 185 >>
+21 0 obj
+<< /Length 115 >>
 stream
 BT
 /F1 11 Tf
 48 780 Td
 14 TL
-(deforestation_map.svg) Tj T*
-(?) Tj T*
-(deforestation_map.png) Tj T*
 (?) Tj T*
 (deforestation_map_satellite.png) Tj T*
 (?) Tj T*
@@ -314,25 +482,31 @@ ET
 endstream
 endobj
 xref
-0 16
+0 22
 0000000000 65535 f 
 0000000009 00000 n 
 0000000058 00000 n 
-0000000148 00000 n 
-0000000218 00000 n 
-0000000344 00000 n 
-0000001871 00000 n 
-0000001997 00000 n 
-0000003346 00000 n 
-0000003472 00000 n 
-0000004521 00000 n 
-0000004649 00000 n 
-0000005776 00000 n 
-0000005904 00000 n 
-0000007925 00000 n 
-0000008053 00000 n 
+0000000169 00000 n 
+0000000239 00000 n 
+0000000365 00000 n 
+0000001911 00000 n 
+0000002037 00000 n 
+0000003898 00000 n 
+0000004024 00000 n 
+0000005339 00000 n 
+0000005467 00000 n 
+0000006735 00000 n 
+0000006863 00000 n 
+0000008476 00000 n 
+0000008604 00000 n 
+0000009670 00000 n 
+0000009798 00000 n 
+0000010988 00000 n 
+0000011116 00000 n 
+0000013074 00000 n 
+0000013202 00000 n 
 trailer
-<< /Size 16 /Root 1 0 R >>
+<< /Size 22 /Root 1 0 R >>
 startxref
-8290
+13369
 %%EOF

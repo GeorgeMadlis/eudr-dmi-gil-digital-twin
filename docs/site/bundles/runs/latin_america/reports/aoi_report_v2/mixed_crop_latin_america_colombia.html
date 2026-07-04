@@ -3,260 +3,221 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AOI Report — mixed_crop_latin_america_colombia</title>
-    <style>
+  <title>AOI Report Summary — mixed_crop_latin_america_colombia</title>
+  <style>
     body { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; margin: 24px; }
     table { border-collapse: collapse; width: 100%; }
     th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
     th { background: #f6f6f6; text-align: left; width: 240px; }
     h2 { margin-top: 28px; }
-    code { background: #f6f6f6; padding: 1px 4px; border-radius: 4px; }
     .muted { color: #666; }
-        .map-legend { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 8px 10px; box-shadow: 0 1px 6px rgba(0,0,0,0.2); font-size: 12px; line-height: 1.4; }
-        .map-legend-item { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
-        .map-legend-item input { margin: 0; }
-        .map-legend-swatch { display: inline-block; width: 12px; height: 12px; border: 1px solid #333; }
-        #map { height: 420px; border: 1px solid #ddd; border-radius: 8px; margin: 12px 0 16px; background: #fafafa; }
+    code { background: #f6f6f6; padding: 1px 4px; border-radius: 4px; }
+    #map { height: 420px; border: 1px solid #ddd; border-radius: 8px; margin: 12px 0 16px; background: #fafafa; }
   </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
-  <h1>AOI Report</h1>
+  <h2>Report Intent & Scope</h2>
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>assessment_capability</td><td><code>&quot;inspectable_only&quot;</code></td></tr>
+    <tr><td>regulatory_context</td><td><code>{&quot;in_scope_articles&quot;: [&quot;article-3&quot;], &quot;out_of_scope_articles&quot;: [], &quot;regulation&quot;: &quot;EUDR&quot;}</code></td></tr>
+    <tr><td>report_type</td><td><code>&quot;example&quot;</code></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h2>Regulatory traceability</h2>
+  <table>
+    <tr><th>Regulation</th><th>Article</th><th>Evidence class</th><th>Acceptance criteria</th><th>Result ref</th></tr>
+    <tr><td>EUDR</td><td>article-3</td><td><a href="#evidence-aoi_geometry">aoi_geometry</a></td><td><a href="#criteria-aoi_geometry_present">aoi_geometry_present</a></td><td><a href="#result-result-001">result-001</a></td></tr>
+    <tr><td>EUDR</td><td>article-3</td><td><a href="#evidence-forest_loss_post_2020">forest_loss_post_2020</a></td><td><a href="#criteria-forest_loss_post_2020_max_ha">forest_loss_post_2020_max_ha</a></td><td><a href="#result-forest_loss_post_2020_max_ha">forest_loss_post_2020_max_ha</a></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h2>Evidence Registry</h2>
+  <table>
+    <tr><th>Evidence Class</th><th>Mandatory</th><th>Status</th></tr>
+    <tr><td id="evidence-aoi_geometry">aoi_geometry</td><td>True</td><td>present</td></tr>
+    <tr><td id="evidence-forest_loss_post_2020">forest_loss_post_2020</td><td>True</td><td>present</td></tr>
+    <tr><td id="evidence-hansen_tiles_provenance">hansen_tiles_provenance</td><td>True</td><td>present</td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h2>Acceptance Criteria</h2>
+  <table>
+    <tr><th>Criteria</th><th>Status</th><th>Details</th></tr>
+    <tr><td id="criteria-aoi_geometry_present">aoi_geometry_present</td><td></td><td><code>{&quot;criteria_id&quot;: &quot;aoi_geometry_present&quot;, &quot;decision_type&quot;: &quot;presence&quot;, &quot;description&quot;: &quot;AOI geometry is present and referenced in inputs.&quot;, &quot;evidence_classes&quot;: [&quot;aoi_geometry&quot;]}</code></td></tr>
+    <tr><td id="criteria-forest_loss_post_2020_max_ha">forest_loss_post_2020_max_ha</td><td></td><td><code>{&quot;criteria_id&quot;: &quot;forest_loss_post_2020_max_ha&quot;, &quot;decision_type&quot;: &quot;threshold&quot;, &quot;description&quot;: &quot;Forest loss after 2020-12-31 (lossyear &gt;= 2021) must be &lt;= 0 ha.&quot;, &quot;evidence_classes&quot;: [&quot;forest_loss_post_2020&quot;]}</code></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h1>AOI Report Summary</h1>
   <table>
     <tr><th>AOI</th><td>mixed_crop_latin_america_colombia</td></tr>
     <tr><th>Bundle</th><td>latin_america</td></tr>
-    <tr><th>Generated (UTC)</th><td>2026-02-19T12:47:49+00:00</td></tr>
     <tr><th>Report Version</th><td>aoi_report_v2</td></tr>
     <tr><th>Geometry Ref</th><td>geojson: inputs/aoi.geojson</td></tr>
-    <tr><th>AOI area (ha)</th><td>41772.049123</td></tr>
-    <tr><th>AOI area method</th><td>geodesic_wgs84_pyproj</td></tr>
   </table>
-
-  <h2>Deforestation-free (post-2020)</h2>
+  <h2>Inputs</h2>
   <table>
-    <tr><th>Definition</th><td>Forest loss after 2020-12-31 (pixel-wise intersection)</td></tr>
-<tr><th>Forest loss (ha)</th><td>0.0</td></tr>
-<tr><th>Percent of AOI</th><td>0.0</td></tr>
-<tr><th>Threshold (ha)</th><td>0.0</td></tr>
-<tr><th>Status</th><td>pass</td></tr>
-<tr><th>Uncertainty</th><td>{'pixel_area_method': 'geodesic_pixel_area_wgs84', 'nodata': 'masked_as_no_loss', 'projection': 'EPSG:4326', 'conservative_bounds': 'area estimates are lower-bound for masked/no-data pixels'}</td></tr>
+    <tr><th>Source</th><th>URI</th><th>SHA256</th><th>Content Type</th></tr>
+    <tr><td>aoi_geometry</td><td>inputs/aoi.geojson</td><td><code>d447654778e081907f53c16857376f47e3827ef7b2a992438482a6cfd8d6d223</code></td><td>application/geo+json</td></tr>
   </table>
-
-  <h2>Forest baseline / forest mask</h2>
+  <h2>Post-2020 deforestation evidence</h2>
+  <p>JRC GFC2020 is used here as a 2020 forest-baseline layer. Post-2020 disturbance layers are intersected with the baseline forest mask to estimate whether forest disturbance occurred after the EUDR cut-off date. The reporting period is resolved from the latest available evidence datasets and may not equal the current calendar year. These metrics do not by themselves establish EUDR deforestation, because EUDR deforestation also requires conversion of forest to agricultural use. Agricultural or commodity-conversion evidence is therefore reported separately.</p>
   <table>
-    <tr><th>Tree cover threshold (%)</th><td>10</td></tr>
-    <tr><th>Baseline year</th><td>2000</td></tr>
-    <tr><th>Cutoff year</th><td>2020</td></tr>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Evidence period</td><td>2021–2025</td></tr>
+    <tr><td>Requested end year</td><td><code>&quot;auto&quot;</code></td></tr>
+    <tr><td>Resolution mode</td><td><code>auto_latest_available_complete_evidence_year</code></td></tr>
+    <tr><td>Resolved end year notice</td><td>The resolved end year reflects dataset availability, not necessarily the current calendar year.</td></tr>
+    <tr><td>AOI area</td><td>41772.049123 ha</td></tr>
+    <tr><td>GFC2020 forest share</td><td>n/a</td></tr>
+    <tr><td>Union disturbance candidate area</td><td>0 ha</td></tr>
+    <tr><td>Evidence state</td><td><strong>insufficient_evidence</strong></td></tr>
+    <tr><td>Human review required</td><td>False</td></tr>
+    <tr><td>Non-decision notice</td><td>This report provides evidence metrics only and does not assert EUDR compliance or non-compliance.</td></tr>
   </table>
-
-    <h2>Forest area and loss (pixel-based, AOI intersection)</h2>
-    <table>
-        <tr><th>Tree cover threshold (%)</th><td>10</td></tr>
-<tr><th>Reference forest mask year</th><td>2000</td></tr>
-<tr><th>RFM area (ha)</th><td>0.0</td></tr>
-<tr><th>Loss 2021-2025 (ha)</th><td>0.0 (0.0% of RFM)</td></tr>
-<tr><th>Forest end-year area (ha)</th><td>0.0</td></tr>
-<tr><th>Method summary</th><td>area_ha = sum(pixel_area_m2 * mask * zone_mask)/10000</td></tr>
-    </table>
-
-    
-    <h2>Map (interactive)</h2>
-    <div id="map"></div>
-    <p class="muted">Map layers are loaded from <a href="mixed_crop_latin_america_colombia/map/map_config.json">mixed_crop_latin_america_colombia/map/map_config.json</a>.</p>
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""
-    />
-    <script
-        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""
-    ></script>
-    <script>
-        (function () {
-            const map = L.map('map', { zoomControl: true });
-            const satellite = L.tileLayer(
-                'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-                {
-                    attribution: 'Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community',
-                },
-            ).addTo(map);
-            const configUrl = 'mixed_crop_latin_america_colombia/map/map_config.json';
-            fetch(configUrl)
-                .then((resp) => resp.json().then((config) => ({ config, configBaseUrl: resp.url })))
-                .then(({ config, configBaseUrl }) => {
-                    const bbox = config.aoi_bbox;
-                    const bounds = L.latLngBounds([
-                        [bbox.min_lat, bbox.min_lon],
-                        [bbox.max_lat, bbox.max_lon],
-                    ]);
-                    map.fitBounds(bounds);
-
-                    const layerDefs = [
-                        {
-                            key: 'forest_2000',
-                            label: 'Forest cover 2000',
-                            color: '#2e7d32',
-                            defaultOn: true,
-                            options: { style: { color: '#2e7d32', weight: 1, fillOpacity: 0.3 } },
-                        },
-                        {
-                            key: 'forest_end_year',
-                            label: `Forest cover ${config.latest_year}`,
-                            color: '#1b5e20',
-                            defaultOn: true,
-                            options: { style: { color: '#1b5e20', weight: 1, fillOpacity: 0.3 } },
-                        },
-                        {
-                            key: 'forest_loss_post_2020',
-                            label: 'Forest loss since 2020',
-                            color: '#c62828',
-                            defaultOn: true,
-                            options: { style: { color: '#c62828', weight: 2, fillOpacity: 0.55 } },
-                        },
-                        {
-                            key: 'aoi_boundary',
-                            label: 'AOI boundary',
-                            color: '#00e5ff',
-                            defaultOn: true,
-                            options: { style: { color: '#00e5ff', weight: 4, opacity: 1, fillOpacity: 0 } },
-                        },
-                        {
-                            key: 'parcels',
-                            label: 'Maa-amet parcels',
-                            color: '#000000',
-                            defaultOn: false,
-                            options: {
-                                style: { color: '#000000', weight: 3, opacity: 1, fillOpacity: 0 },
-                                onEachFeature: (feature, layer) => {
-                                    const props = feature.properties || {};
-                                    const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''} | loss_ha=${props.hansen_forest_loss_ha ?? ''}`;
-                                    layer.bindTooltip(label, { sticky: true });
-                                },
-                            },
-                        },
-                    ];
-
-                    const overlayGroups = {};
-                    layerDefs.forEach((def) => {
-                        const group = L.layerGroup();
-                        overlayGroups[def.key] = group;
-                        if (def.defaultOn) {
-                            group.addTo(map);
-                        }
-                    });
-
-                    const addGeoJson = (def, url) => {
-                        if (!url) return;
-                        const resolvedUrl = new URL(url, configBaseUrl).toString();
-                        fetch(resolvedUrl)
-                            .then((r) => r.json())
-                            .then((data) => {
-                                L.geoJSON(data, def.options).addTo(overlayGroups[def.key]);
-                            })
-                            .catch((err) => {
-                                console.warn(`Layer load failed: ${def.label}`, err);
-                            });
-                    };
-
-                    layerDefs.forEach((def) => addGeoJson(def, config.layers?.[def.key]));
-
-                    const legend = L.control({ position: 'topright' });
-                    legend.onAdd = function () {
-                        const div = L.DomUtil.create('div', 'map-legend');
-                        div.innerHTML = '<strong>Map layers</strong>';
-                        layerDefs.forEach((def, idx) => {
-                            const hasUrl = Boolean(config.layers?.[def.key]);
-                            if (!hasUrl) return;
-                            const checked = map.hasLayer(overlayGroups[def.key]) ? 'checked' : '';
-                            const item = document.createElement('label');
-                            item.className = 'map-legend-item';
-                            item.innerHTML = `
-                                <input type="checkbox" data-layer-key="${def.key}" ${checked} />
-                                <span class="map-legend-swatch" style="background:${def.color}"></span>
-                                <span>${def.label}</span>
-                            `;
-                            div.appendChild(item);
-                        });
-                        L.DomEvent.disableClickPropagation(div);
-                        L.DomEvent.disableScrollPropagation(div);
-
-                        div.querySelectorAll('input[type="checkbox"]').forEach((el) => {
-                            el.addEventListener('change', (event) => {
-                                const key = event.target.getAttribute('data-layer-key');
-                                const group = overlayGroups[key];
-                                if (!group) return;
-                                if (event.target.checked) {
-                                    map.addLayer(group);
-                                } else {
-                                    map.removeLayer(group);
-                                }
-                            });
-                        });
-                        return div;
-                    };
-                    legend.addTo(map);
-                });
-        })();
-    </script>
-
-
-    <h2>Parcels (top 10 with forest ≥ 3 ha)</h2>
-    <table>
-        <tr>
-            <th>Parcel ID</th>
-            <th>Hansen land area (ha)</th>
-            <th>Maa-amet land area (ha)</th>
-            <th>Hansen forest area (ha)</th>
-            <th>Maa-amet forest area (ha)</th>
-            <th>Forest loss (ha)</th>
-        </tr>
-        <tr><td colspan="6">(none)</td></tr>
-    </table>
-
-  <h2>Data sources & provenance</h2>
+  <h3>Evidence layers</h3>
   <table>
-    <tr><th>dataset_id</th><th>version</th><th>retrieved_at_utc</th><th>license</th><th>source_url</th></tr>
-    <tr><td>aoi_geometry_input</td><td>user_supplied</td><td>2026-02-19T12:47:49+00:00</td><td>user_supplied</td><td>inputs/aoi.geojson</td></tr>
-<tr><td>hansen_gfc_2025_v1_13</td><td>2025-v1.13</td><td>2026-02-19T12:47:49+00:00</td><td>Hansen GFC (public)</td><td>https://storage.googleapis.com/earthenginepartners-hansen/GFC-2025-v1.13/</td></tr>
+    <tr><th>Evidence layer</th><th>Role</th><th>Period used</th><th>Latest available year</th><th>Asset/version</th><th>Metric</th><th>Result</th><th>Interpretation</th></tr>
+    <tr><td>JRC GFC2020</td><td>2020 forest baseline</td><td>2020</td><td>2020</td><td><code>JRC/GFC2020/V3</code></td><td>Forest area in AOI</td><td>0 ha</td><td>Baseline forest evidence</td></tr>
+    <tr><td>Hansen GFC</td><td>Annual loss</td><td>2021–2025</td><td>2025</td><td><code>UMD/hansen/global_forest_change_2025_v1_13</code></td><td>Loss inside GFC2020 forest</td><td>0 ha</td><td>Post-2020 disturbance signal</td></tr>
+    <tr style="background:#fff8e1; border-left:4px solid #b26a00;"><td>JRC TMF</td><td>Tropical forest dynamics</td><td>not available</td><td>2025</td><td><code>projects/JRC/TMF/v1_2025</code></td><td>Deforestation/degradation</td><td>n/a / n/a</td><td>Optional, geography-dependent evidence</td></tr>
+    <tr style="background:#fff8e1; border-left:4px solid #b26a00;"><td>RADD</td><td>Near-real-time radar alerts</td><td>not available</td><td>n/a</td><td><code>projects/radar-wur/raddalert/v1</code></td><td>Confirmed / low-confidence alerts</td><td>n/a / n/a</td><td>Alert-based disturbance evidence</td></tr>
+    <tr style="background:#fff8e1; border-left:4px solid #b26a00;"><td>Sentinel-1/2</td><td>Local confirmation</td><td>not available</td><td>n/a</td><td><code>provider_configured_sentinel_confirmation</code></td><td>dNBR / dNDVI / dVH</td><td>{&quot;dnbr&quot;: null, &quot;dndvi&quot;: null, &quot;dvh&quot;: null}</td><td>Corroboration / challenge layer</td></tr>
+    <tr><td>Commodity / land-use layer</td><td>Agricultural conversion</td><td>configured dates</td><td>n/a</td><td><code>not configured</code></td><td>Conversion evidence</td><td>missing</td><td>Needed for EUDR interpretation</td></tr>
   </table>
-
-  <h2>Methods & parameters</h2>
+  <h3>Dataset temporal coverage</h3>
   <table>
-    <tr><th>aoi_area_method</th><td>geodesic_wgs84_pyproj</td></tr>
-<tr><th>forest_loss_post_2020</th><td>{'canopy_threshold_percent': 10, 'cutoff_year': 2020, 'acceptance_threshold_ha': 0.0, 'pixel_area_method': 'geodesic_pixel_area_wgs84', 'area_method': 'geodesic_pixel_area_wgs84', 'lossyear_mapping': '0=no_loss; 1..end_year_code=2001..end_year (year=lossyear+2000)', 'mask_definitions': {'rfm_mask': 'treecover2000 >= canopy_threshold_percent', 'loss_total': 'rfm_mask & (lossyear > 0)', 'loss_post_cutoff': 'rfm_mask & (lossyear > 20) [2021+]', 'loss_2021_2025': 'rfm_mask & (lossyear in 21..25)', 'forest_2025': 'rfm_mask & (lossyear == 0)'}, 'end_year': 2025, 'forest_end_year_ha': 0.0}</td></tr>
-<tr><th>implementation</th><td>{'forest_loss_post_2020': 'v1', 'git_commit': ''}</td></tr>
+    <tr><th>Dataset</th><th>Latest available year</th><th>Used-through year</th><th>Coverage note</th></tr>
+    <tr><td><code>gfc2020</code></td><td>2020</td><td>2020</td><td></td></tr>
+    <tr><td><code>hansen_gfc</code></td><td>2025</td><td>2025</td><td></td></tr>
+    <tr><td><code>jrc_tmf</code></td><td>2025</td><td>n/a</td><td>Evidence gap: temporal coverage is unavailable or provider/geography-dependent.</td></tr>
+    <tr><td><code>radd</code></td><td>n/a</td><td>n/a</td><td>Evidence gap: temporal coverage is unavailable or provider/geography-dependent.</td></tr>
+    <tr><td><code>sentinel_confirmation</code></td><td>n/a</td><td>n/a</td><td>Evidence gap: temporal coverage is unavailable or provider/geography-dependent.</td></tr>
   </table>
-
-  <h2>Traceability to EUDR Articles</h2>
-  <table>
-    <tr><th>Article</th><th>Requirement</th><th>Evidence fields</th><th>Artifacts</th><th>Status</th></tr>
-    <tr><td>EUDR Article 9</td><td>AOI geometry is declared and traceable</td><td>aoi_geometry_ref, inputs.sources</td><td><a href="../../inputs/aoi.geojson">inputs/aoi.geojson</a></td><td>pass</td></tr>
-<tr><td>EUDR Article 3</td><td>Deforestation-free after 2020-01-31</td><td>results_summary.deforestation_free_post_2020, computed.forest_loss_post_2020.pixel_forest_loss_post_2020_ha</td><td><a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson</a>, <a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json</a></td><td>pass</td></tr>
-  </table>
-
-  <h2>Evidence artifact index</h2>
-  <table>
-    <tr><th>relpath</th><th>sha256</th><th>size_bytes</th><th>role</th></tr>
-    <tr><td colspan="4">(none)</td></tr>
-  </table>
-
-  <h2>Bundle artifacts</h2>
+  <h3>Evidence gap</h3>
+  <div style="background:#fff8e1; border-left:4px solid #b26a00; padding:10px;"><strong>Agricultural conversion evidence missing.</strong> Disturbance evidence is not the same as agricultural conversion evidence.</div>
+  <h3>Conflict register</h3>
+  <p class="muted">No dataset conflicts declared.</p>
+  <h3>Warnings</h3>
   <ul>
-    <li><a href="../../inputs/aoi.geojson">../../inputs/aoi.geojson</a></li>
-<li><a href="mixed_crop_latin_america_colombia.json">mixed_crop_latin_america_colombia.json</a></li>
-<li><a href="mixed_crop_latin_america_colombia/hansen/forest_2000_tree_cover_mask.geojson">mixed_crop_latin_america_colombia/hansen/forest_2000_tree_cover_mask.geojson</a></li>
-<li><a href="mixed_crop_latin_america_colombia/hansen/forest_current_tree_cover_mask.geojson">mixed_crop_latin_america_colombia/hansen/forest_current_tree_cover_mask.geojson</a></li>
-<li><a href="mixed_crop_latin_america_colombia/hansen/forest_end_year_tree_cover_mask.geojson">mixed_crop_latin_america_colombia/hansen/forest_end_year_tree_cover_mask.geojson</a></li>
-<li><a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson">mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson</a></li>
-<li><a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_summary.json">mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_summary.json</a></li>
-<li><a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json">mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json</a></li>
-<li><a href="mixed_crop_latin_america_colombia/hansen/forest_mask_debug.json">mixed_crop_latin_america_colombia/hansen/forest_mask_debug.json</a></li>
-<li><a href="mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.csv">mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.csv</a></li>
-<li><a href="mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.json">mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.json</a></li>
-<li><a href="mixed_crop_latin_america_colombia/map/map_config.json">mixed_crop_latin_america_colombia/map/map_config.json</a></li>
-<li><a href="mixed_crop_latin_america_colombia/metrics.csv">mixed_crop_latin_america_colombia/metrics.csv</a></li>
+    <li>This public bundle predates full optional-layer computation; TMF, RADD, Sentinel confirmation, and agricultural-conversion evidence are shown as explicit evidence gaps.</li>
+  </ul>
+  <h3>Limitations</h3>
+  <ul>
+    <li>GFC2020 is not a legal determination.</li>
+    <li>Tree-cover loss is not automatically EUDR deforestation.</li>
+    <li>Conversion to agricultural use must be supported by additional evidence.</li>
+    <li>Dataset conflicts must be exposed, not hidden.</li>
+    <li>The report is an evidence report, not a compliance certificate.</li>
+    <li>The evidence period depends on dataset availability and may lag the current calendar year.</li>
+  </ul>
+  <h2>Metrics</h2>
+  <table>
+    <tr><th>Metric</th><th>Value</th><th>Unit</th><th>Notes</th><th>Source</th><th>Criteria</th></tr>
+    <tr><td>aoi_area_ha</td><td>41772.049123</td><td>ha</td><td>geodesic_wgs84_pyproj</td><td>geometry</td><td>Not declared</td></tr>
+    <tr><td>end_year</td><td>2025</td><td>year</td><td>forest_end_year</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>forest_2025_ha</td><td>0.0</td><td>ha</td><td>rfm_mask &amp; (lossyear == 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>forest_end_year_ha</td><td>0.0</td><td>ha</td><td>forest_mask_end_year</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>forest_loss_post_2020_percent_of_aoi</td><td>0.0</td><td>percent</td><td>forest_loss_post_2020_ha / aoi_area_ha</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>loss_2021_2025_ha</td><td>0.0</td><td>ha</td><td>rfm_mask &amp; (lossyear in 21..25)</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>loss_total_ha</td><td>0.0</td><td>ha</td><td>rfm_mask &amp; (lossyear &gt; 0)</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>pixel_current_tree_cover_ha</td><td>0.0</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>pixel_forest_loss_post_2020_ha</td><td>0.0</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>pixel_initial_tree_cover_ha</td><td>0.0</td><td>ha</td><td>pixel_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+    <tr><td>rfm_area_ha</td><td>0.0</td><td>ha</td><td>rfm_mask</td><td>hansen_gfc</td><td>Not declared</td></tr>
+  </table>
+  <h2>Maa-amet parcels</h2>
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>enabled</td><td><code>false</code></td></tr>
+    <tr><td>parcel_layer</td><td><code>&quot;kataster:ky_kehtiv&quot;</code></td></tr>
+    <tr><td>parcel_count</td><td><code>null</code></td></tr>
+    <tr><td>notes</td><td><code>&quot;Populate when Maa-amet WFS integration is enabled in pipeline.&quot;</code></td></tr>
+  </table>
+  <h2>Hansen vs Maa-amet forest area crosscheck</h2>
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>source</td><td><code>&quot;maaamet&quot;</code></td></tr>
+    <tr><td>outcome</td><td><code>&quot;not_comparable&quot;</code></td></tr>
+    <tr><td>reason</td><td><code>&quot;missing_reference_forest_area&quot;</code></td></tr>
+    <tr><td>reference</td><td><code>{&quot;method&quot;: &quot;missing&quot;, &quot;source&quot;: &quot;missing&quot;, &quot;value_ha&quot;: null}</code></td></tr>
+    <tr><td>computed</td><td><code>{&quot;forest_area_ha&quot;: 0.0}</code></td></tr>
+    <tr><td>comparison</td><td><code>{&quot;diff_pct&quot;: null, &quot;tolerance_percent&quot;: 5.0}</code></td></tr>
+    <tr><td>csv_ref</td><td><a href="mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.csv">reports/aoi_report_v2/mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.csv</a></td></tr>
+    <tr><td>summary_ref</td><td><a href="mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.json">reports/aoi_report_v2/mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.json</a></td></tr>
+  </table>
+  <h2>Map (interactive)</h2>
+  <p><a href="mixed_crop_latin_america_colombia/map/map_config.json">map_config.json</a></p>
+  <div id="map"></div>
+  <script>
+    (function () {
+      const map = L.map('map', { zoomControl: true });
+      const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community',
+      }).addTo(map);
+      const configUrl = 'mixed_crop_latin_america_colombia/map/map_config.json';
+      fetch(configUrl)
+        .then((resp) => resp.json())
+        .then((config) => {
+          const bbox = config.aoi_bbox;
+          const bounds = L.latLngBounds([
+            [bbox.min_lat, bbox.min_lon],
+            [bbox.max_lat, bbox.max_lon],
+          ]);
+          map.fitBounds(bounds);
+          const overlays = {};
+          const baseLayers = { Satellite: satellite };
+          const addGeoJson = (label, url, options) => {
+            if (!url) return;
+            fetch(url)
+              .then((r) => r.json())
+              .then((data) => {
+                const layer = L.geoJSON(data, options).addTo(map);
+                overlays[label] = layer;
+              });
+          };
+          addGeoJson('Forest cover 2000', config.layers.forest_2000, { style: { color: '#2e7d32', weight: 1, fillOpacity: 0.3 } });
+          addGeoJson(`Forest cover ${config.latest_year}`, config.layers.forest_end_year, { style: { color: '#1b5e20', weight: 1, fillOpacity: 0.3 } });
+          addGeoJson('Forest loss since 2020', config.layers.forest_loss_post_2020, { style: { color: '#c62828', weight: 1, fillOpacity: 0.4 } });
+          addGeoJson('AOI boundary', config.layers.aoi_boundary, { style: { color: '#1976d2', weight: 2, fillOpacity: 0 } });
+          addGeoJson('Maa-amet parcels', config.layers.parcels, {
+            style: { color: '#6a1b9a', weight: 1, fillOpacity: 0.05 },
+            onEachFeature: (feature, layer) => {
+              const props = feature.properties || {};
+              const label = `${props.parcel_id || ''} | forest_ha=${props.hansen_forest_area_ha ?? ''} | loss_ha=${props.hansen_forest_loss_ha ?? ''}`;
+              layer.bindTooltip(label, { sticky: true });
+            },
+          });
+          L.control.layers(baseLayers, overlays, { collapsed: false }).addTo(map);
+        });
+    })();
+  </script>
+  <h2>Assumptions & Limitations</h2>
+  <p><strong>No assumptions declared in this report.</strong></p>
+  <div style="height:12px;"></div>
+  <h2>Results</h2>
+  <table>
+    <tr><th>Result</th><th>Status</th><th>Criteria</th></tr>
+    <tr><td id="result-result-001">result-001</td><td>pass</td><td><a href="#criteria-aoi_geometry_present">aoi_geometry_present</a></td></tr>
+    <tr><td id="result-forest_loss_post_2020_max_ha">forest_loss_post_2020_max_ha</td><td>pass</td><td><a href="#criteria-forest_loss_post_2020_max_ha">forest_loss_post_2020_max_ha</a></td></tr>
+  </table>
+  <div style="height:12px;"></div>
+  <h2>Evidence Artifacts</h2>
+  <ul>
+    <li><a href="../../inputs/aoi.geojson">inputs/aoi.geojson</a></li>
+    <li><a href="mixed_crop_latin_america_colombia.html">reports/aoi_report_v2/mixed_crop_latin_america_colombia.html</a></li>
+    <li><a href="mixed_crop_latin_america_colombia.json">reports/aoi_report_v2/mixed_crop_latin_america_colombia.json</a></li>
+    <li><a href="mixed_crop_latin_america_colombia/hansen/forest_2000_tree_cover_mask.geojson">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_2000_tree_cover_mask.geojson</a></li>
+    <li><a href="mixed_crop_latin_america_colombia/hansen/forest_current_tree_cover_mask.geojson">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_current_tree_cover_mask.geojson</a></li>
+    <li><a href="mixed_crop_latin_america_colombia/hansen/forest_end_year_tree_cover_mask.geojson">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_end_year_tree_cover_mask.geojson</a></li>
+    <li><a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_mask.geojson</a></li>
+    <li><a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_summary.json">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_summary.json</a></li>
+    <li><a href="mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_loss_post_2020_tiles.json</a></li>
+    <li><a href="mixed_crop_latin_america_colombia/hansen/forest_mask_debug.json">reports/aoi_report_v2/mixed_crop_latin_america_colombia/hansen/forest_mask_debug.json</a></li>
+    <li><a href="mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.csv">reports/aoi_report_v2/mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.csv</a></li>
+    <li><a href="mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.json">reports/aoi_report_v2/mixed_crop_latin_america_colombia/maaamet/maaamet_forest_area_crosscheck.json</a></li>
+    <li><a href="mixed_crop_latin_america_colombia/map/map_config.json">reports/aoi_report_v2/mixed_crop_latin_america_colombia/map/map_config.json</a></li>
+    <li><a href="mixed_crop_latin_america_colombia/metrics.csv">reports/aoi_report_v2/mixed_crop_latin_america_colombia/metrics.csv</a></li>
   </ul>
 </body>
 </html>

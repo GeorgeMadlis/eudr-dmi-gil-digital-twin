@@ -22,7 +22,7 @@ FIXTURE_DIR = ROOT_DIR / "docs/site/bundles/runs/example"
 def copy_fixture(tmp_dir: Path) -> Path:
     run_dir = tmp_dir / "example"
     run_dir.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(FIXTURE_DIR / "aoi_report.json", run_dir / "aoi_report.json")
+    shutil.copy2(FIXTURE_DIR / "estonia_aoi_report.json", run_dir / "aoi_report.json")
     inputs_dir = run_dir / "inputs"
     inputs_dir.mkdir(parents=True, exist_ok=True)
     shutil.copy2(FIXTURE_DIR / "inputs" / "aoi.geojson", inputs_dir / "aoi.geojson")
@@ -63,6 +63,31 @@ def render_once(tmp_dir: Path) -> dict[str, bytes]:
     return outputs
 
 
+def assert_post2020_evidence_section(outputs: dict[str, bytes]) -> None:
+    html_text = outputs["reports/aoi_report_v2/estonia_testland1.html"].decode("utf-8")
+    overview_text = outputs["report.html"].decode("utf-8")
+    json_text = outputs["reports/aoi_report_v2/estonia_testland1.json"].decode("utf-8")
+
+    required_html = [
+        "Post-2020 deforestation evidence",
+        "2021–2025",
+        "Dataset temporal coverage",
+        "Evidence gap",
+        "Conflict register",
+        "Agricultural conversion evidence missing",
+        "does not assert EUDR compliance or non-compliance",
+    ]
+    for needle in required_html:
+        if needle not in html_text:
+            raise SystemExit(f"Missing post-2020 evidence HTML marker: {needle}")
+
+    if "Post-2020 deforestation evidence" not in overview_text:
+        raise SystemExit("Run overview is missing the post-2020 evidence card")
+
+    if "post2020_deforestation_evidence" not in json_text:
+        raise SystemExit("Rendered report JSON is missing post2020_deforestation_evidence")
+
+
 def main() -> int:
     with tempfile.TemporaryDirectory() as dir_one, tempfile.TemporaryDirectory() as dir_two:
         out_one = render_once(Path(dir_one))
@@ -70,6 +95,7 @@ def main() -> int:
 
     if out_one != out_two:
         raise SystemExit("Deterministic render test failed: outputs differ")
+    assert_post2020_evidence_section(out_one)
     return 0
 
 

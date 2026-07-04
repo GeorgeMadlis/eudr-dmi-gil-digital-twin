@@ -21,6 +21,36 @@ Implementation references (authoritative):
 | Article 11 (Risk mitigation) | If the AOI result is not deforestation-free, the published artefacts must make the failure condition and follow-up evidence gaps inspectable. | `reports/aoi_report_v2/<aoi_id>.json`<br />`reports/aoi_report_v2/<aoi_id>.html` | The AOI report JSON includes failed `results[]`, `policy_mapping`, and thresholded `results_summary`; the HTML mirrors the status and links the supporting artefacts so an inspector can identify what needs review or mitigation. | `python -m eudr_dmi_gil.reports.cli` rendering the AOI JSON + HTML report pair | `reports/aoi_report_v2/<aoi_id>.json`, `reports/aoi_report_v2/<aoi_id>.html` | The current public contract exposes inspectable failure conditions; explicit mitigation-plan JSON is not yet part of the published AOI report bundle. |
 | TODO_ARTICLE_REF_DEFINITIONS | Definition consistency / interpretability constraint (scaffold) | `definition_comparison.json` + `dependencies.json` | Artifacts present; parseable JSON; deterministic ordering; `outcome` defaults to `UNKNOWN` until extraction implemented; provenance hashes recorded for dependency run. | `scripts/task3/definition_comparison_control.py` | `method/definition_comparison.json`, `provenance/dependencies.json` | Scaffold for later NLP extraction and mismatch logic. |
 
+## Post-2020 Deforestation Evidence Mapping
+
+The AOI report section titled **“Post-2020 deforestation evidence”** is an
+evidence display, not a legal interpretation layer. It separates:
+
+- baseline forest evidence: JRC GFC2020 forest area and forest share for 2020;
+- post-cutoff disturbance evidence: Hansen annual loss and optional TMF, RADD,
+  and Sentinel confirmation layers for `start_year` through `resolved_end_year`;
+- conversion evidence: agricultural, commodity, or land-use conversion layers;
+- temporal coverage: requested end year, resolved end year, per-layer latest
+  available year, and per-layer used-through year;
+- review state: evidence gaps, dataset conflicts, and human-review flags.
+
+Mapping to EUDR report-review workflow:
+
+- Article 9: the report exposes AOI identity, source artefacts, dataset
+  identifiers, asset/version strings, and evidence-period metadata so reviewers
+  can trace the information used in the example report.
+- Article 10: the report exposes risk-assessment evidence signals and
+  uncertainty/gap markers, including disturbance area, baseline forest area,
+  temporal coverage gaps, and disagreement/conflict entries.
+- Article 11: when evidence gaps or conflicts are present, the report exposes
+  the follow-up review state without inventing a mitigation decision or legal
+  compliance conclusion.
+
+The portal must not treat tree-cover loss or disturbance as EUDR deforestation
+unless agricultural conversion evidence is separately present. Public examples
+therefore show missing conversion evidence as an **Evidence gap** rather than a
+compliance result.
+
 ### Update Notes (How to Maintain the Spine)
 - Each new obligation/control MUST add a row and MUST reference a concrete artifact and acceptance criteria.
 - Each evidence artifact MUST be aligned with the authoritative report contract in https://github.com/georgemadlis/eudr-dmi-gil/blob/main/docs/reports/README.md.

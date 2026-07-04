@@ -94,6 +94,18 @@ From the repo root:
 python3 scripts/validate_dao_reports_links.py
 ```
 
+### Post-2020 deforestation evidence display
+
+AOI report pages render a static **Post-2020 deforestation evidence** section
+from `post2020_deforestation_evidence` in the report JSON, falling back to the
+legacy public Hansen metrics when that object is absent.
+
+The section displays the dynamic period as `start_year–resolved_end_year`, the
+end-year resolution mode, per-layer latest/used-through years, GFC2020 baseline
+forest metrics, post-2020 disturbance metrics, conversion evidence gaps,
+dataset conflicts, and a non-decision notice. It is intentionally an evidence
+view only: the portal must not present legal compliance or non-compliance.
+
 ## Definitions
 
 ### DAO (Procedural DAO)

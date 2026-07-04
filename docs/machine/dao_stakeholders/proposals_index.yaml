@@ -1,3 +1,12 @@
 schema_version: "1.0"
 generated_by: "tools/site/build_dao_indexes.py"
-proposals: []
+proposals:
+  - proposal_id: "SCP-2026-001-gfc2020-post2020-deforestation-evidence"
+    created_at: "2026-07-04"
+    status: "DRAFT"
+    view: "dao_stakeholders"
+    title: "Add dynamically versioned GFC2020-based post-2020 deforestation evidence layer to the EUDR Digital Twin"
+    path: "dao/proposals/2026/07/gfc2020-post2020-deforestation-evidence.yaml"
+    site_path: "docs/site/dao_stakeholders/proposals/gfc2020-post2020-deforestation-evidence.html"
+    stakeholder_confirmation: false
+    summary: "Stakeholder governance questions for accepting GFC2020 as a public 2020 forest-baseline evidence layer, communicating limitations, approving evidence thresholds, and preserving evidence gaps and conflict registers without asserting compliance or non-compliance."
