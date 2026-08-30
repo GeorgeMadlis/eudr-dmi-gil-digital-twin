@@ -193,3 +193,7 @@ Every claim must be grounded in portal URLs or indexed repo paths.
 
 This work has been developed on the author’s personal time and is intended for use by the Single.Earth Foundation.
 No formal affiliation or endorsement is implied unless explicitly stated.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
